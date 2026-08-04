@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AUTZ &times; Diamond Films &middot; Ingresse + RD Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--card:#00323A;--card2:#003D47;--lime:#E9FF4A;--lime2:#D2E132;--white:#ffffff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--blue:#60a5fa;--amber:#fbbf24;--green:#4ade80;--purple:#a78bfa;--pink:#f472b6;--border:rgba(233,255,74,0.15);--borderw:rgba(255,255,255,0.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:rgba(0,39,44,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--borderw);display:flex;align-items:center;justify-content:space-between;padding:0 44px;}
+.nav-logo .text-logo{font-size:22px;font-weight:900;letter-spacing:.06em;line-height:1;}
+.nav-logo .text-logo .a-dot{position:relative;display:inline-block}
+.nav-logo .text-logo .a-dot::after{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-tag{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);border-left:1px solid var(--borderw);padding-left:20px;}
+.progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:150;}
+.pd{width:6px;height:6px;border-radius:3px;background:var(--gray2);transition:all 0.3s ease;cursor:pointer;}
+.pd.active{background:var(--lime);height:24px;}
+.pd:hover{background:var(--gray);}
+section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:column;justify-content:center;max-width:940px;margin:0 auto;}
+.hero{min-height:100vh;max-width:100%;padding:0;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.hero-orb{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-r1{width:600px;height:600px;border:1px solid rgba(233,255,74,0.07);}
+.hero-r2{width:820px;height:820px;border:1px solid rgba(233,255,74,0.04);}
+.hero-r3{width:1040px;height:1040px;border:1px solid rgba(233,255,74,0.02);}
+.hero-content{position:relative;z-index:1;padding:40px 52px;max-width:900px;}
+.hero-logo{margin-bottom:32px;margin-top:80px;}
+.hero-logo .text-logo{font-size:56px;font-weight:900;letter-spacing:.08em;line-height:1;text-align:center}
+.hero-logo .text-logo .a-dot{position:relative;display:inline-block}
+.hero-logo .text-logo .a-dot::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--lime)}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:28px;}
+.hero-title{font-size:clamp(30px,5.6vw,54px);font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:22px;}
+.hero-title em{font-style:normal;color:var(--lime);}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);font-weight:400;color:var(--gray);line-height:1.75;max-width:640px;margin:0 auto 48px;}
+.hero-stats{display:inline-flex;border:1px solid var(--borderw);border-radius:20px;overflow:hidden;margin-bottom:56px;background:rgba(255,255,255,0.02);}
+.hs{padding:22px 34px;text-align:center;border-right:1px solid var(--borderw);}
+.hs:last-child{border-right:none;}
+.hs-num{font-size:24px;font-weight:800;color:var(--lime);line-height:1;}
+.hs-lbl{font-size:11px;color:var(--gray);margin-top:5px;font-weight:500;}
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;animation:cue 2.4s ease-in-out infinite;}
+.scroll-line{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--lime));}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;}
+.stitle{font-size:clamp(26px,4.2vw,44px);font-weight:800;line-height:1.1;letter-spacing:-1.2px;margin-bottom:16px;}
+.stitle em{font-style:normal;color:var(--lime);}
+.ssub{font-size:16px;font-weight:400;color:var(--gray);line-height:1.75;max-width:640px;margin-bottom:40px;}
+.hl{background:var(--lime);color:var(--bg);font-weight:700;padding:1px 8px;border-radius:4px;white-space:nowrap;font-style:normal;}
+.lime{color:var(--lime);font-weight:700;}
+.value-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.value-card{background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:24px;transition:border-color 0.25s,transform 0.25s;}
+.value-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.value-ico{font-size:22px;margin-bottom:10px;}
+.value-title{font-size:16px;font-weight:700;margin-bottom:8px;}
+.value-body{font-size:13.5px;color:var(--gray);line-height:1.65;}
+.fase-wrap{display:flex;flex-direction:column;gap:12px;}
+.fase{background:var(--card);border:1px solid var(--borderw);border-radius:20px;overflow:hidden;transition:border-color 0.3s;cursor:pointer;}
+.fase.open{border-color:var(--border);}
+.fase-head{display:flex;align-items:center;gap:16px;padding:22px 28px;user-select:none;}
+.fase-num{width:48px;height:48px;border-radius:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;}
+.f1 .fase-num{background:rgba(96,165,250,0.15);color:var(--blue);}
+.f2 .fase-num{background:rgba(251,191,36,0.15);color:var(--amber);}
+.f3 .fase-num{background:rgba(74,222,128,0.15);color:var(--green);}
+.fase-info{flex:1;}
+.fase-title{font-size:16px;font-weight:700;}
+.fase-sub{font-size:13px;color:var(--gray);margin-top:3px;font-weight:500;}
+.fase-arrow{color:var(--gray2);transition:transform 0.3s,color 0.3s;flex-shrink:0;}
+.fase-arrow svg{width:22px;height:22px;}
+.fase.open .fase-arrow{transform:rotate(180deg);color:var(--lime);}
+.fase-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);}
+.fase.open .fase-body{max-height:900px;}
+.fase-inner{padding:0 28px 32px;border-top:1px solid var(--borderw);padding-top:28px;}
+.roadmap{display:flex;flex-direction:column;}
+.rm-item{display:flex;gap:16px;position:relative;}
+.rm-item:not(:last-child)::before{content:'';position:absolute;left:6px;top:22px;bottom:0;width:1px;background:var(--borderw);}
+.rm-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:4px;border:2px solid;}
+.f1 .rm-dot{border-color:var(--blue);background:rgba(96,165,250,0.15);}
+.f2 .rm-dot{border-color:var(--amber);background:rgba(251,191,36,0.15);}
+.f3 .rm-dot{border-color:var(--green);background:rgba(74,222,128,0.15);}
+.rm-text{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.6;padding-bottom:18px;}
+.rm-text strong{color:var(--white);font-weight:600;}
+.fase-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.ftag{font-size:12px;padding:4px 12px;border-radius:99px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid var(--borderw);color:var(--gray);}
+.cta-sec{min-height:100vh;max-width:100%;background:linear-gradient(180deg,var(--bg) 0%,#001a1e 50%,var(--bg) 100%);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 52px;position:relative;}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-autz{margin-bottom:24px;position:relative;}
+.cta-autz .text-logo{font-size:36px;font-weight:900;letter-spacing:.08em;opacity:0.85;}
+.cta-autz .text-logo .a-dot{position:relative;display:inline-block}
+.cta-autz .text-logo .a-dot::after{content:'';position:absolute;top:-7px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:var(--lime)}
+.cta-title{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px;position:relative;}
+.cta-title em{font-style:normal;color:var(--lime);}
+.cta-sub{font-size:17px;color:var(--gray);line-height:1.75;max-width:560px;margin:0 auto 44px;position:relative;}
+.cta-box{background:var(--card);border:2px solid var(--lime);border-radius:20px;padding:32px 48px;display:inline-flex;flex-direction:column;gap:8px;position:relative;margin-bottom:20px;}
+.cta-line{font-size:15px;color:rgba(255,255,255,0.7);}
+.cta-line strong{color:var(--white);font-weight:600;}
+.cta-link{color:var(--lime);text-decoration:underline;font-weight:600;}
+.cta-foot{font-size:12px;color:var(--gray2);margin-top:16px;position:relative;}
+@media(max-width:768px){
+nav{padding:0 20px;height:56px;}
+.nav-tag{display:none;}
+section{padding:80px 20px 60px;}
+.hero-content{padding:20px 20px;}
+.hero-stats{flex-direction:column;}
+.hs{border-right:none;border-bottom:1px solid var(--borderw);padding:16px 32px;}
+.hs:last-child{border-bottom:none;}
+.value-grid{grid-template-columns:1fr;}
+.progress{display:none;}
+.cta-box{padding:24px 28px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="text-logo"><span class="a-dot">A</span>UTZ</div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-tag">Ingresse &middot; RD Marketing</div>
+    <div class="nav-tag">Diamond Films &middot; 2026</div>
+  </div>
+</nav>
+
+<div class="progress" id="progressDots"></div>
+
+<section class="hero" id="s0">
+  <div class="hero-orb"></div>
+  <div class="hero-ring hero-r1"></div>
+  <div class="hero-ring hero-r2"></div>
+  <div class="hero-ring hero-r3"></div>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <div class="text-logo"><span class="a-dot">A</span>UTZ</div>
+    </div>
+    <div class="hero-eyebrow">AUTZ &times; Diamond Films</div>
+    <h1 class="hero-title">Do ingresso vendido<br><em>&agrave; pr&oacute;xima bilheteria.</em></h1>
+    <p class="hero-sub">Cada venda feita pela Ingresse pode virar comunica&ccedil;&atilde;o autom&aacute;tica com o cliente e uma base pronta pra novas campanhas no RD Marketing da Diamond Films.</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">Autom&aacute;tica</div><div class="hs-lbl">Confirma&ccedil;&atilde;o a cada compra</div></div>
+      <div class="hs"><div class="hs-num">Segmentada</div><div class="hs-lbl">Por filme, sess&atilde;o e cinema</div></div>
+      <div class="hs"><div class="hs-num">Cont&iacute;nuo</div><div class="hs-lbl">Cross-sell e recompra</div></div>
+    </div>
+    <div class="scroll-cue">
+      <span>Rolar para explorar</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<section id="s1">
+  <div class="eyebrow">01. O que passa a ser poss&iacute;vel</div>
+  <h2 class="stitle">Cada ingresso vendido<br><em>vira uma oportunidade.</em></h2>
+  <p class="ssub">Hoje, quem compra um ingresso pela Ingresse fica restrito &agrave;quela compra. Conectando a Ingresse ao RD Marketing, essa venda passa a alimentar toda a estrat&eacute;gia de relacionamento da Diamond Films.</p>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-ico">&#128233;</div>
+      <div class="value-title">Confirma&ccedil;&otilde;es e lembretes autom&aacute;ticos</div>
+      <div class="value-body">Todo cliente que compra um ingresso recebe confirma&ccedil;&atilde;o na hora e um lembrete perto da sess&atilde;o, sem nenhum trabalho manual da equipe.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-ico">&#127919;</div>
+      <div class="value-title">Base de clientes segmentada no RD Marketing</div>
+      <div class="value-body">Cada compra alimenta automaticamente o RD Marketing, j&aacute; organizada por filme assistido, cinema, valor gasto e frequ&ecirc;ncia de compra.</div>
+    </div>
+    <div class="value-card" style="grid-column:1/-1;">
+      <div class="value-ico">&#128257;</div>
+      <div class="value-title">Cross-sell e recompra</div>
+      <div class="value-body">Quem j&aacute; comprou um ingresso vira alvo de campanhas de novos lan&ccedil;amentos, promo&ccedil;&otilde;es e ofertas por g&ecirc;nero de filme, aumentando a recorr&ecirc;ncia de compra.</div>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="eyebrow">02. Como isso funciona na pr&aacute;tica</div>
+  <h2 class="stitle">3 frentes de<br><em>relacionamento.</em></h2>
+  <p class="ssub">Clique em cada frente pra ver as possibilidades.</p>
+
+  <div class="fase-wrap">
+
+    <div class="fase f1" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">1</div>
+        <div class="fase-info"><div class="fase-title">Confirma&ccedil;&otilde;es e Lembretes</div><div class="fase-sub">Ningu&eacute;m perde a sess&atilde;o por esquecimento</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Na hora da compra:</strong> confirma&ccedil;&atilde;o autom&aacute;tica por e-mail e WhatsApp, com os dados da sess&atilde;o</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Perto do hor&aacute;rio:</strong> lembrete autom&aacute;tico, reduzindo quem esquece ou desiste de ir</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Identidade visual:</strong> toda comunica&ccedil;&atilde;o sai com a cara da Diamond Films, n&atilde;o gen&eacute;rica</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">Confirma&ccedil;&atilde;o autom&aacute;tica</span><span class="ftag">Lembrete de sess&atilde;o</span></div>
+      </div></div>
+    </div>
+
+    <div class="fase f2" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">2</div>
+        <div class="fase-info"><div class="fase-title">Base Segmentada no RD Marketing</div><div class="fase-sub">Cada compra vira um contato qualificado</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Entrada autom&aacute;tica:</strong> todo cliente que compra pela Ingresse entra direto na base do RD Marketing</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Segmenta&ccedil;&atilde;o pronta:</strong> por filme assistido, cinema, valor gasto e frequ&ecirc;ncia de compra</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Zero trabalho manual:</strong> sem digita&ccedil;&atilde;o, sem planilha, sem contato perdido</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">Importa&ccedil;&atilde;o autom&aacute;tica</span><span class="ftag">Segmenta&ccedil;&atilde;o por perfil</span></div>
+      </div></div>
+    </div>
+
+    <div class="fase f3" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">3</div>
+        <div class="fase-info"><div class="fase-title">Cross-sell e Recorr&ecirc;ncia</div><div class="fase-sub">Quem j&aacute; comprou uma vez, compra de novo</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Novos lan&ccedil;amentos:</strong> campanhas autom&aacute;ticas pra quem j&aacute; assistiu filmes do mesmo g&ecirc;nero</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Reativa&ccedil;&atilde;o:</strong> a&ccedil;&otilde;es espec&iacute;ficas pra quem n&atilde;o compra h&aacute; um tempo</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Clientes frequentes:</strong> ofertas exclusivas pra quem compra com regularidade, aumentando o ticket m&eacute;dio</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">Novos lan&ccedil;amentos</span><span class="ftag">Reativa&ccedil;&atilde;o de base</span></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-sec" id="s3" style="max-width:100%;">
+  <div class="cta-autz">
+    <div class="text-logo"><span class="a-dot">A</span>UTZ</div>
+  </div>
+  <div class="eyebrow" style="margin-bottom:18px;">03. Pr&oacute;ximos passos</div>
+  <h2 class="cta-title">Vamos <em>explorar juntos?</em></h2>
+  <p class="cta-sub">Uma conversa r&aacute;pida j&aacute; ajuda a mapear qual dessas frentes traz mais resultado primeiro pra Diamond Films.</p>
+  <div class="cta-box">
+    <div class="cta-line"><strong>&#128222;</strong> (16) 99289-6549</div>
+    <div class="cta-line"><strong>&#9993;&#65039;</strong> mk@autz.com.br</div>
+    <div class="cta-line"><a class="cta-link" href="https://autz.com.br/agenda-online-mika/">&#128197; Agende uma reuni&atilde;o aqui</a></div>
+  </div>
+  <div class="cta-foot">&copy; 2026 AUTZ Solu&ccedil;&otilde;es Digitais Integradas &middot; CNPJ 54.489.785/0001-37</div>
+</section>
+
+<script>
+var sids = ['s0','s1','s2','s3'];
+var dotsWrap = document.getElementById('progressDots');
+sids.forEach(function(id, i){
+  var d = document.createElement('div');
+  d.className = 'pd' + (i === 0 ? ' active' : '');
+  d.onclick = function(){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); };
+  dotsWrap.appendChild(d);
+});
+var dots = dotsWrap.querySelectorAll('.pd');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var idx = sids.indexOf(entry.target.id);
+      if(idx >= 0) dots.forEach(function(d,j){ d.classList.toggle('active', j === idx); });
+    }
+  });
+}, {threshold: 0.35});
+sids.forEach(function(id){ var el = document.getElementById(id); if(el) observer.observe(el); });
+
+function toggleFase(el){
+  var open = el.classList.contains('open');
+  document.querySelectorAll('.fase').forEach(function(f){ f.classList.remove('open'); });
+  if(!open){ el.classList.add('open'); }
+}
+</script>
+
+</body>
+</html>
