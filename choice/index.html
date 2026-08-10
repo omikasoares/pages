@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AUTZ &times; Choice &middot; AUTZ Performance</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--card:#00323A;--card2:#003D47;--lime:#E9FF4A;--lime2:#D2E132;--white:#ffffff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--blue:#60a5fa;--amber:#fbbf24;--green:#4ade80;--purple:#a78bfa;--pink:#f472b6;--border:rgba(233,255,74,0.15);--borderw:rgba(255,255,255,0.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:rgba(0,39,44,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--borderw);display:flex;align-items:center;justify-content:space-between;padding:0 44px;}
+.nav-logo img{height:36px;display:block;}
+.nav-logo .text-logo{font-size:22px;font-weight:900;letter-spacing:.06em;line-height:1;display:none}
+.nav-logo .text-logo .a-dot{position:relative;display:inline-block}
+.nav-logo .text-logo .a-dot::after{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-tag{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);border-left:1px solid var(--borderw);padding-left:20px;}
+
+/* PROGRESS DOTS */
+.progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:150;}
+.pd{width:6px;height:6px;border-radius:3px;background:var(--gray2);transition:all 0.3s ease;cursor:pointer;}
+.pd.active{background:var(--lime);height:24px;}
+.pd:hover{background:var(--gray);}
+
+/* SECTIONS */
+section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:column;justify-content:center;max-width:940px;margin:0 auto;}
+
+/* HERO */
+.hero{min-height:100vh;max-width:100%;padding:0;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.hero-orb{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-r1{width:600px;height:600px;border:1px solid rgba(233,255,74,0.07);}
+.hero-r2{width:820px;height:820px;border:1px solid rgba(233,255,74,0.04);}
+.hero-r3{width:1040px;height:1040px;border:1px solid rgba(233,255,74,0.02);}
+.hero-content{position:relative;z-index:1;padding:40px 52px;max-width:900px;}
+.hero-logo{margin-bottom:32px;margin-top:80px;}
+.hero-logo img{height:48px;display:block;margin:0 auto;}
+.hero-logo .text-logo{font-size:56px;font-weight:900;letter-spacing:.08em;line-height:1;display:none;text-align:center}
+.hero-logo .text-logo .a-dot{position:relative;display:inline-block}
+.hero-logo .text-logo .a-dot::after{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--lime)}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:28px;}
+.hero-title{font-size:clamp(32px,6vw,60px);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:22px;}
+.hero-title em{font-style:normal;color:var(--lime);}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);font-weight:400;color:var(--gray);line-height:1.75;max-width:640px;margin:0 auto 48px;}
+.hero-stats{display:inline-flex;border:1px solid var(--borderw);border-radius:20px;overflow:hidden;margin-bottom:56px;background:rgba(255,255,255,0.02);}
+.hs{padding:22px 34px;text-align:center;border-right:1px solid var(--borderw);}
+.hs:last-child{border-right:none;}
+.hs-num{font-size:28px;font-weight:800;color:var(--lime);line-height:1;}
+.hs-lbl{font-size:11px;color:var(--gray);margin-top:5px;font-weight:500;}
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;animation:cue 2.4s ease-in-out infinite;}
+.scroll-line{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--lime));}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+
+/* EYEBROWS & TITLES */
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;}
+.stitle{font-size:clamp(28px,4.5vw,46px);font-weight:800;line-height:1.1;letter-spacing:-1.2px;margin-bottom:16px;}
+.stitle em{font-style:normal;color:var(--lime);}
+.ssub{font-size:16px;font-weight:400;color:var(--gray);line-height:1.75;max-width:640px;margin-bottom:40px;}
+.hl{background:var(--lime);color:var(--bg);font-weight:700;padding:1px 8px;border-radius:4px;white-space:nowrap;font-style:normal;}
+.lime{color:var(--lime);font-weight:700;}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--borderw);border-radius:20px;padding:26px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* CAROUSEL (clientes AUTZ) */
+.carousel-wrap{overflow:hidden;margin-top:24px;}
+.carousel-track{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;}
+
+
+.logo-card{background:rgba(255,255,255,0.9);border-radius:12px;width:140px;height:56px;display:flex;align-items:center;justify-content:center;padding:8px 14px;flex-shrink:0;}
+.logo-card img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+.logo-card.logo-text{color:#00272C;font-weight:700;font-size:13px;text-align:center;padding:8px 16px;}
+
+/* PROBLEMAS */
+.prob-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;}
+.prob-item{display:flex;align-items:flex-start;gap:18px;background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:22px;transition:border-color 0.25s;}
+.prob-item:hover{border-color:rgba(232,89,60,0.3);}
+.prob-ico{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:rgba(232,89,60,0.1);display:flex;align-items:center;justify-content:center;font-size:19px;}
+.prob-title{font-size:15px;font-weight:700;margin-bottom:5px;}
+.prob-body{font-size:14px;color:var(--gray);line-height:1.6;}
+
+/* FASES (accordion) */
+.fase-wrap{display:flex;flex-direction:column;gap:12px;}
+.fase{background:var(--card);border:1px solid var(--borderw);border-radius:20px;overflow:hidden;transition:border-color 0.3s;cursor:pointer;}
+.fase.open{border-color:var(--border);}
+.fase-head{display:flex;align-items:center;gap:16px;padding:22px 28px;user-select:none;}
+.fase-num{width:48px;height:48px;border-radius:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;}
+.f1 .fase-num{background:rgba(96,165,250,0.15);color:var(--blue);}
+.f2 .fase-num{background:rgba(74,222,128,0.15);color:var(--green);}
+.fase-info{flex:1;}
+.fase-title{font-size:16px;font-weight:700;}
+.fase-sub{font-size:13px;color:var(--gray);margin-top:3px;font-weight:500;}
+.fase-arrow{color:var(--gray2);transition:transform 0.3s,color 0.3s;flex-shrink:0;}
+.fase-arrow svg{width:22px;height:22px;}
+.fase.open .fase-arrow{transform:rotate(180deg);color:var(--lime);}
+.fase-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);}
+.fase.open .fase-body{max-height:900px;}
+.fase-inner{padding:0 28px 32px;border-top:1px solid var(--borderw);padding-top:28px;}
+.dlist{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.dlist li{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.65;color:rgba(255,255,255,0.8);}
+.dlist li .emoji{flex-shrink:0;font-size:15px;line-height:1.6;}
+.fase-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.ftag{font-size:12px;padding:4px 12px;border-radius:99px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid var(--borderw);color:var(--gray);}
+
+/* ACOMPANHAMENTO */
+.acomp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.acomp-card{background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:24px;}
+.acomp-title{font-size:15px;font-weight:700;color:var(--lime);margin-bottom:8px;}
+.acomp-body{font-size:14px;color:var(--gray);line-height:1.65;}
+
+/* INVESTIMENTO */
+.invest-hero{background:rgba(233,255,74,0.05);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;margin-bottom:24px;}
+.invest-lbl{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;}
+.invest-price{font-size:56px;font-weight:900;color:var(--lime);line-height:1;letter-spacing:-2px;}
+.invest-period{font-size:17px;color:var(--gray);font-weight:400;}
+.invest-detail{font-size:13px;color:var(--gray);margin-top:14px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6;}
+
+/* CTA */
+.cta-sec{min-height:100vh;max-width:100%;background:linear-gradient(180deg,var(--bg) 0%,#001a1e 50%,var(--bg) 100%);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 52px;position:relative;}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-autz{margin-bottom:24px;position:relative;}
+.cta-autz img{height:42px;opacity:0.85;display:block;margin:0 auto;}
+.cta-autz .text-logo{font-size:36px;font-weight:900;letter-spacing:.08em;display:none}
+.cta-autz .text-logo .a-dot{position:relative;display:inline-block}
+.cta-autz .text-logo .a-dot::after{content:'';position:absolute;top:-7px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:var(--lime)}
+.cta-title{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px;position:relative;}
+.cta-title em{font-style:normal;color:var(--lime);}
+.cta-sub{font-size:17px;color:var(--gray);line-height:1.75;max-width:560px;margin:0 auto 44px;position:relative;}
+.cta-box{background:var(--card);border:2px solid var(--lime);border-radius:20px;padding:32px 48px;display:inline-flex;flex-direction:column;gap:8px;position:relative;margin-bottom:20px;}
+.cta-line{font-size:15px;color:rgba(255,255,255,0.7);}
+.cta-line strong{color:var(--white);font-weight:600;}
+.cta-link{color:var(--lime);text-decoration:underline;font-weight:600;}
+.cta-foot{font-size:12px;color:var(--gray2);margin-top:16px;position:relative;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{padding:0 20px;height:56px;}
+.nav-tag{display:none;}
+section{padding:80px 20px 60px;}
+.hero-content{padding:20px 20px;}
+.hero-stats{flex-direction:column;}
+.hs{border-right:none;border-bottom:1px solid var(--borderw);padding:16px 32px;}
+.hs:last-child{border-bottom:none;}
+.g2,.acomp-grid{grid-template-columns:1fr;}
+.progress{display:none;}
+.cta-box{padding:24px 28px;}
+.invest-price{font-size:42px;}
+}
+
+/* PRINT */
+@media print{
+body{background:#fff;color:#1a1a1a;}
+nav,.progress,.scroll-cue,.scroll-line,.carousel-wrap{display:none!important;}
+section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 32px;}
+.hero{min-height:auto;padding:60px 32px;}
+.card,.prob-item,.fase,.logo-card,.acomp-card{border-color:#ccc;}
+.stitle em,.lime,.eyebrow,.ctitle,.hl{color:#1a6b2d!important;}
+.hl{background:#e6f7e0!important;color:#1a6b2d!important;}
+.fase-body{max-height:none!important;}
+}
+.autz-logo-img{background-image:url('data:image/png;base64,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');background-size:contain;background-repeat:no-repeat;background-position:center;display:block;}
+.nav-logo .autz-logo-img{width:100px;height:36px;}
+.hero-logo .autz-logo-img{width:133px;height:48px;margin:0 auto;}
+.cta-autz .autz-logo-img{width:116px;height:42px;margin:0 auto;opacity:0.85;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="autz-logo-img"></div>
+    <div class="text-logo"><span class="a-dot">A</span>UTZ</div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-tag">AUTZ Performance &middot; Marketing + CRM</div>
+    <div class="nav-tag">Choice &middot; 2026</div>
+  </div>
+</nav>
+
+<div class="progress" id="progressDots"></div>
+
+<!-- 0. HERO -->
+<section class="hero" id="s0">
+  <div class="hero-orb"></div>
+  <div class="hero-ring hero-r1"></div>
+  <div class="hero-ring hero-r2"></div>
+  <div class="hero-ring hero-r3"></div>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <div class="autz-logo-img"></div>
+      <div class="text-logo"><span class="a-dot">A</span>UTZ</div>
+    </div>
+    <div class="hero-eyebrow">AUTZ &times; Choice</div>
+    <h1 class="hero-title">RD Marketing e CRM<br>rodando <em>com gest&atilde;o de verdade.</em></h1>
+    <p class="hero-sub">As ferramentas j&aacute; est&atilde;o a&iacute; rodando. Com o AUTZ Performance, algu&eacute;m passa a olhar pra elas toda semana &mdash; otimizando fluxo, funil e resultado, sem voc&ecirc;s precisarem virar especialistas em RD Station.</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">2</div><div class="hs-lbl">Ferramentas RD acompanhadas</div></div>
+      <div class="hs"><div class="hs-num">Quinzenal</div><div class="hs-lbl">Reuni&atilde;o de acompanhamento</div></div>
+      <div class="hs"><div class="hs-num">AUTZ</div><div class="hs-lbl">Performance</div></div>
+    </div>
+    <div class="scroll-cue">
+      <span>Rolar para explorar</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. CONTEXTO -->
+<section id="s1">
+  <div class="eyebrow">01. Por que gest&atilde;o cont&iacute;nua</div>
+  <h2 class="stitle">Ferramenta rodando<br><em>n&atilde;o &eacute; o mesmo que<br>ferramenta otimizada.</em></h2>
+  <p class="ssub">RD Marketing e RD CRM j&aacute; est&atilde;o implementados. O que costuma faltar &eacute; algu&eacute;m olhando pra base, pro funil e pros n&uacute;meros com regularidade &mdash; &eacute; isso que o AUTZ Performance resolve.</p>
+
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-ico">📊</div>
+      <div><div class="prob-title">Sem an&aacute;lise recorrente de resultado</div><div class="prob-body">Leads, convers&otilde;es e funil comercial sem algu&eacute;m acompanhando m&ecirc;s a m&ecirc;s pra corrigir rota.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">🔁</div>
+      <div><div class="prob-title">Fluxos e segmenta&ccedil;&otilde;es parados no tempo</div><div class="prob-body">Automa&ccedil;&otilde;es criadas na implementa&ccedil;&atilde;o inicial raramente s&atilde;o revisadas depois que o dia a dia toma conta.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">🧩</div>
+      <div><div class="prob-title">Marketing e CRM cada um no seu canto</div><div class="prob-body">Sem algu&eacute;m garantindo que o que entra pelo Marketing chega bem organizado no funil comercial do CRM.</div></div>
+    </div>
+  </div>
+
+  <p style="font-size:12px;color:var(--gray2);margin-top:20px;margin-bottom:0;text-transform:uppercase;letter-spacing:.1em;font-weight:600;">Quem confia na execu&ccedil;&atilde;o AUTZ</p>
+  <div class="carousel-wrap">
+    <div class="carousel-track">
+      <div class="logo-card logo-text">Toyota</div>
+      <div class="logo-card logo-text">BYD</div>
+      <div class="logo-card logo-text">KYB</div>
+      <div class="logo-card logo-text">Contabilista Play</div>
+      <div class="logo-card logo-text">Armazém Paraíba</div>
+      <div class="logo-card logo-text">Grupo Itavema</div>
+      <div class="logo-card logo-text">NP Ferramentas</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ESCOPO -->
+<section id="s2">
+  <div class="eyebrow">02. AUTZ Performance</div>
+  <h2 class="stitle">Gest&atilde;o cont&iacute;nua de<br><em>Marketing e CRM.</em></h2>
+  <p class="ssub">Clique em cada ferramenta pra ver o que entra no acompanhamento mensal.</p>
+
+  <div class="fase-wrap">
+
+    <div class="fase f1" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">📊</div>
+        <div class="fase-info"><div class="fase-title">RD Station Marketing</div><div class="fase-sub">Base, fluxos e gera&ccedil;&atilde;o de leads</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <ul class="dlist">
+          <li><span class="emoji">📊</span> An&aacute;lise mensal de resultados (visitas, leads, convers&otilde;es)</li>
+          <li><span class="emoji">🔁</span> Otimiza&ccedil;&atilde;o cont&iacute;nua de fluxos de automa&ccedil;&atilde;o e jornadas existentes</li>
+          <li><span class="emoji">🎯</span> Revis&atilde;o de segmenta&ccedil;&otilde;es para manter a base qualificada</li>
+          <li><span class="emoji">🧩</span> Ajustes t&eacute;cnicos e recomenda&ccedil;&otilde;es estrat&eacute;gicas baseadas em dado</li>
+        </ul>
+        <div class="fase-tags"><span class="ftag">Fluxos otimizados</span><span class="ftag">Base qualificada</span></div>
+      </div></div>
+    </div>
+
+    <div class="fase f2" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">🎯</div>
+        <div class="fase-info"><div class="fase-title">RD Station CRM</div><div class="fase-sub">Funil comercial e processo de vendas</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <ul class="dlist">
+          <li><span class="emoji">📈</span> Acompanhamento do funil comercial e taxa de convers&atilde;o por etapa</li>
+          <li><span class="emoji">⚙️</span> Otimiza&ccedil;&atilde;o de automa&ccedil;&otilde;es (lembretes, follow-ups, mudan&ccedil;a de est&aacute;gio)</li>
+          <li><span class="emoji">🔗</span> Garantia de que os leads do Marketing chegam organizados no funil do CRM</li>
+          <li><span class="emoji">🗂️</span> Higieniza&ccedil;&atilde;o peri&oacute;dica da base para manter o CRM confi&aacute;vel</li>
+        </ul>
+        <div class="fase-tags"><span class="ftag">Funil saud&aacute;vel</span><span class="ftag">Marketing &rarr; CRM integrado</span></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3. ACOMPANHAMENTO -->
+<section id="s3">
+  <div class="eyebrow">03. Como acompanhamos</div>
+  <h2 class="stitle">Cad&ecirc;ncia fixa,<br><em>consultoria sob demanda.</em></h2>
+
+  <div class="acomp-grid">
+    <div class="acomp-card">
+      <div class="acomp-title">Reuni&atilde;o quinzenal</div>
+      <div class="acomp-body">Alinhamento de resultado e planejamento das pr&oacute;ximas melhorias em Marketing e CRM.</div>
+    </div>
+    <div class="acomp-card">
+      <div class="acomp-title">Consultoria sob demanda</div>
+      <div class="acomp-body">Suporte para campanhas, segmenta&ccedil;&otilde;es ou novos fluxos sempre que a Choice precisar.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. INVESTIMENTO -->
+<section id="s4">
+  <div class="eyebrow">04. Investimento</div>
+  <h2 class="stitle">Gest&atilde;o cont&iacute;nua,<br><em>investimento mensal.</em></h2>
+
+  <div class="invest-hero">
+    <div class="invest-lbl">Investimento mensal &mdash; AUTZ Performance</div>
+    <div class="invest-price">R$ 2.197<span class="invest-period">/m&ecirc;s</span></div>
+    <div class="invest-detail">Gest&atilde;o cont&iacute;nua de RD Station Marketing e RD Station CRM, com reuni&atilde;o quinzenal e consultoria sob demanda. N&atilde;o inclui a mensalidade das ferramentas RD Station.</div>
+  </div>
+</section>
+
+<!-- 5. CTA -->
+<section class="cta-sec" id="s5" style="max-width:100%;">
+  <div class="cta-autz">
+    <div class="autz-logo-img"></div>
+    <div class="text-logo"><span class="a-dot">A</span>UTZ</div>
+  </div>
+  <div class="eyebrow" style="margin-bottom:18px;">05. Pr&oacute;ximos passos</div>
+  <h2 class="cta-title">Vamos <em>come&ccedil;ar?</em></h2>
+  <p class="cta-sub">Ficamos &agrave; disposi&ccedil;&atilde;o pra alinhar detalhes antes de come&ccedil;armos.</p>
+  <div class="cta-box">
+    <div class="cta-line"><strong>📞</strong> (16) 99289-6549</div>
+    <div class="cta-line"><strong>✉️</strong> mk@autz.com.br</div>
+    <div class="cta-line"><a class="cta-link" href="https://autz.com.br/agenda-online-mika/">📅 Agende uma reuni&atilde;o aqui</a></div>
+  </div>
+  <div class="cta-foot">&copy; 2026 AUTZ Solu&ccedil;&otilde;es Digitais Integradas &middot; CNPJ 54.489.785/0001-37</div>
+</section>
+
+<script>
+var sids = ['s0','s1','s2','s3','s4','s5'];
+var dotsWrap = document.getElementById('progressDots');
+sids.forEach(function(id, i){
+  var d = document.createElement('div');
+  d.className = 'pd' + (i === 0 ? ' active' : '');
+  d.onclick = function(){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); };
+  dotsWrap.appendChild(d);
+});
+var dots = dotsWrap.querySelectorAll('.pd');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var idx = sids.indexOf(entry.target.id);
+      if(idx >= 0) dots.forEach(function(d,j){ d.classList.toggle('active', j === idx); });
+    }
+  });
+}, {threshold: 0.35});
+sids.forEach(function(id){ var el = document.getElementById(id); if(el) observer.observe(el); });
+
+function toggleFase(el){
+  var open = el.classList.contains('open');
+  document.querySelectorAll('.fase').forEach(function(f){ f.classList.remove('open'); });
+  if(!open){ el.classList.add('open'); }
+}
+</script>
+
+</body>
+</html>
