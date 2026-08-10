@@ -29,7 +29,8 @@
 
   /* ---------- header ---------- */
   header{margin-bottom:52px;}
-  .logo{height:26px;display:block;margin-bottom:36px;}
+  .logo-wordmark{font-size:20px;font-weight:800;letter-spacing:.02em;margin-bottom:36px;color:var(--white);}
+  .logo-wordmark .logo-dot{color:var(--lime);}
   .eyebrow{
     font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
     color:var(--lime);margin:0 0 14px;
@@ -206,4 +207,572 @@
 <div class="page">
 
   <header>
-    <img class="logo" alt="AUTZ" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkkAAADZCAYAAAA0eaReAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAADXeSURBVHhe7Z0H1GVVeYaV3kYpAqIgCiIw/x1AsUBEETsmKCiI3cRYYiPGFhuKRI2JBQMaNEajRmMLscagERsWsAeRJnDvUEUBAYF7z/audu0/W+8934bLvlL/space
+    <div class="logo-wordmark">AUTZ<span class="logo-dot">.</span></div>
+    <p class="eyebrow">AUTZ × Contabilista Play</p>
+    <h1>Jornada de comunicação dos eventos presenciais</h1>
+    <p class="lede">Mapa completo da régua de e-mail e WhatsApp de um treinamento presencial da Contabilista Play — da primeira mensagem de pré-venda até a liberação do material do curso. Cada disparo tem um código único, pra facilitar pedidos de ajuste.</p>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <p class="section-title">Como ler este mapa</p>
+      <p class="section-sub">A jornada é dividida em 4 fases. A ordem abaixo é a ordem em que o profissional realmente recebe as mensagens.</p>
+    </div>
+    <div class="legend-grid">
+      <div class="legend-card">
+        <div class="legend-top"><span class="legend-dot" style="background:var(--prv)"></span><span class="legend-code">PRV</span></div>
+        <p class="legend-name">Pré-Venda</p>
+        <p class="legend-desc">Aquece a base antes da inscrição abrir, alternando e-mails de oferta e de prova social até a conversão na página do curso.</p>
+        <p class="legend-count">10 disparos</p>
+      </div>
+      <div class="legend-card">
+        <div class="legend-top"><span class="legend-dot" style="background:var(--pre)"></span><span class="legend-code">PRE</span></div>
+        <p class="legend-name">Pré-Evento</p>
+        <p class="legend-desc">Confirma a presença de quem já comprou e passa as informações práticas na semana do evento.</p>
+        <p class="legend-count">2 disparos</p>
+      </div>
+      <div class="legend-card">
+        <div class="legend-top"><span class="legend-dot" style="background:var(--due)"></span><span class="legend-code">DUE</span></div>
+        <p class="legend-name">Durante o Evento</p>
+        <p class="legend-desc">Mantém o engajamento de quem está na sala, no intervalo do treinamento.</p>
+        <p class="legend-count">1 disparo</p>
+      </div>
+      <div class="legend-card">
+        <div class="legend-top"><span class="legend-dot" style="background:var(--poe)"></span><span class="legend-code">POE</span></div>
+        <p class="legend-name">Pós-Evento</p>
+        <p class="legend-desc">Fecha o ciclo: agradece, pede avaliação, entrega o cupom de desconto e ativa o acesso ao material.</p>
+        <p class="legend-count">4 disparos</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="callout">
+      <div class="callout-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h3>Pedindo um ajuste? Use o código.</h3>
+        <p>Cada mensagem tem um identificador único (fase + número, ex. <b>PRV3</b>). Ele aparece no canto de cada card abaixo — é só apontar o código na hora de pedir a correção, sem precisar descrever "aquele e-mail que fala de prova social".</p>
+        <div class="callout-examples">
+          <span>"Muda o assunto do <b>PRV3</b>"</span>
+          <span>"Ajusta o horário do <b>DUE1</b>"</span>
+          <span>"Revisa o texto do <b>POE1</b>"</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="section-title">Cadência — visão geral</p>
+      <p class="section-sub">Os dois trechos da jornada têm ritmos diferentes: a pré-venda se estende por 30 dias antes da data do evento; a semana do evento concentra tudo em poucos dias.</p>
+    </div>
+
+    <div class="strip-wrap">
+      <p class="strip-label">Pré-Venda — dias a partir do 1º disparo</p>
+      <div class="strip">
+        <div class="strip-axis"></div>
+
+        <div class="strip-point" style="left:0%"><span class="strip-tag up" style="color:var(--prv)">PRV1</span><span class="strip-day up">D0</span><span class="strip-dot" style="background:var(--prv)"></span></div>
+        <div class="strip-point" style="left:7%"><span class="strip-dot" style="background:var(--prv)"></span><span class="strip-tag down" style="color:var(--prv)">PRV2</span><span class="strip-day down">D2</span></div>
+        <div class="strip-point" style="left:23%"><span class="strip-tag up" style="color:var(--prv)">PRV3</span><span class="strip-day up">D7</span><span class="strip-dot" style="background:var(--prv)"></span></div>
+        <div class="strip-point" style="left:30%"><span class="strip-dot" style="background:var(--prv)"></span><span class="strip-tag down" style="color:var(--prv)">PRV4</span><span class="strip-day down">D9</span></div>
+        <div class="strip-point" style="left:47%"><span class="strip-tag up" style="color:var(--prv)">PRV5</span><span class="strip-day up">D14</span><span class="strip-dot" style="background:var(--prv)"></span></div>
+        <div class="strip-point" style="left:53%"><span class="strip-dot" style="background:var(--prv)"></span><span class="strip-tag down" style="color:var(--prv)">PRV6</span><span class="strip-day down">D16</span></div>
+        <div class="strip-point" style="left:77%"><span class="strip-tag up" style="color:var(--prv)">PRV7</span><span class="strip-day up">D23</span><span class="strip-dot" style="background:var(--prv)"></span></div>
+        <div class="strip-point" style="left:100%"><span class="strip-dot" style="background:var(--prv)"></span><span class="strip-tag down" style="color:var(--prv)">PRV8</span><span class="strip-day down">D30</span></div>
+      </div>
+      <p class="strip-note"><b style="color:var(--lime2)">PRV9</b> e <b style="color:var(--lime2)">PRV10</b> não têm dia fixo — disparam por gatilho (conversão na página do curso e compra do ingresso), então ficam fora do eixo acima.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="strip-wrap">
+      <p class="strip-label">Semana do Evento — dias em relação à data do treinamento</p>
+      <div class="strip">
+        <div class="strip-axis"></div>
+        <div class="strip-event-mark" style="left:29%"></div>
+        <span class="strip-event-label" style="left:29%">Evento</span>
+
+        <div class="strip-point" style="left:0%"><span class="strip-tag up" style="color:var(--pre)">PRE1</span><span class="strip-day up">D-4</span><span class="strip-dot" style="background:var(--pre)"></span></div>
+        <div class="strip-point" style="left:21%"><span class="strip-dot" style="background:var(--pre)"></span><span class="strip-tag down" style="color:var(--pre)">PRE2</span><span class="strip-day down">D-1</span></div>
+        <div class="strip-point" style="left:29%;margin-left:-9px"><span class="strip-tag up" style="color:var(--due)">DUE1</span><span class="strip-day up">D0 · 12h15</span><span class="strip-dot" style="background:var(--due)"></span></div>
+        <div class="strip-point" style="left:29%;margin-left:9px"><span class="strip-dot" style="background:var(--poe)"></span><span class="strip-tag down" style="color:var(--poe)">POE1</span><span class="strip-day down">D0 · 19h</span></div>
+        <div class="strip-point" style="left:50%"><span class="strip-tag up" style="color:var(--poe)">POE2</span><span class="strip-day up">D+3</span><span class="strip-dot" style="background:var(--poe)"></span></div>
+        <div class="strip-point" style="left:100%;margin-left:-9px"><span class="strip-dot" style="background:var(--poe)"></span><span class="strip-tag down" style="color:var(--poe)">POE3</span><span class="strip-day down">D+10</span></div>
+        <div class="strip-point" style="left:100%;margin-left:9px"><span class="strip-tag up" style="color:var(--poe)">POE4</span><span class="strip-day up">D+10</span><span class="strip-dot" style="background:var(--poe)"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRV ================= -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="phase-badge" style="background:rgba(96,165,250,.15);color:var(--prv)">PRV</span>
+      <div>
+        <p class="phase-name">Pré-Venda</p>
+        <p class="phase-goal">Do primeiro contato até a compra do ingresso — 30 dias de aquecimento por e-mail, mais 2 mensagens de WhatsApp por gatilho.</p>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">01</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV1</span>
+            </div>
+            <span class="card-timing">Dia 0 · segunda, 8h–9h</span>
+          </div>
+          <p class="card-subject">"Você entrou antes da maioria. Isso pode mudar sua posição no mercado."</p>
+          <div class="card-body">
+<p>Quem trabalha com contabilidade já percebeu: a Reforma Tributária deixou de ser um assunto "do futuro". Ela já começou a mudar:</p>
+<ul><li>processos</li><li>decisões</li><li>estratégias</li><li>posicionamento de mercado</li><li>o valor percebido dos escritórios</li></ul>
+<p>Mas talvez a pergunta mais importante seja: você realmente sente que está preparado para a Apuração Assistida?</p>
+<p>Você já revisou:</p>
+<ul><li>integração entre fiscal e financeiro?</li><li>processos internos?</li><li>documentos?</li><li>classificações fiscais?</li><li>fluxo de caixa?</li></ul>
+<p>Ou ainda acredita que o sistema "vai resolver sozinho"?</p>
+<p>O RT Apuração Assistida em [Cidade] nasceu exatamente para profissionais que decidiram não descobrir isso tarde demais. Um presencial criado para transformar teoria em aplicação prática.</p>
+<p>Você está recebendo esse e-mail porque entrou antes da maioria. E normalmente os profissionais que crescem mais rápido fazem exatamente isso: eles chegam primeiro.</p>
+</div>
+          <div class="card-foot">CTA <b>Pré-venda</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">02</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV2</span>
+            </div>
+            <span class="card-timing">Dia 2 · quarta</span>
+          </div>
+          <p class="card-subject">Prova social 1 — "Eles já fizeram. Agora a pergunta é: você vai esperar a reforma chegar?"</p>
+          <div class="card-body">
+<p>Enquanto muitos profissionais ainda estão tentando entender por onde começar na Reforma Tributária, outros já deram o primeiro passo: buscar conhecimento prático, direto e aplicável.</p>
+<p>E os comentários mostram exatamente isso:</p>
+<ul><li>"Excelente curso, recomendo!"</li><li>"Ótimo curso, o professor é excelente!"</li><li>"Muito bom! Parabéns!"</li><li>"Dia bem produtivo! Super esclarecedor!"</li></ul>
+<p>Não são apenas elogios. São sinais de que quem participou saiu com mais clareza, mais segurança e mais preparo para lidar com as mudanças que já estão batendo na porta.</p>
+<p>Agora a pergunta é: você já entendeu, na prática, como a Apuração Assistida vai impactar sua rotina? Você sabe interpretar as telas, abas, eventos, resultados, saldos atualizados e informações que virão automaticamente? E mais importante: você está preparado para identificar quando esse "automático" pode virar uma armadilha?</p>
+<p>Porque a verdade é simples: na Reforma Tributária, quem não entende o processo pode acabar apenas aceitando o resultado. E aceitar sem saber analisar pode custar caro para empresas, escritórios e clientes.</p>
+<p>No treinamento presencial em [Cidade], você terá acesso a uma explicação prática sobre a Apuração Assistida, com foco no que realmente importa para o contador que vai operar, conferir e tomar decisões.</p>
+</div>
+          <div class="card-foot">CTA <b>Acessar</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">03</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV3</span>
+            </div>
+            <span class="card-timing">Dia 7 · segunda</span>
+          </div>
+          <p class="card-subject">"Você realmente sabe o que será exigido na Apuração Assistida?"</p>
+          <div class="card-body">
+<p>Existe uma enorme diferença entre: assistir conteúdo… e conseguir operar a realidade.</p>
+<p>Você já entendeu:</p>
+<ul><li>aba de resultados?</li><li>eventos?</li><li>saldo atualizado?</li><li>não apropriados?</li><li>outras informações?</li></ul>
+<p>Você sabia que muitos campos não serão preenchíveis? E que um erro de classificação poderá gerar uma carga tributária irreversível?</p>
+<p>Você sente segurança para afirmar que o fiscal das empresas está coerente com o financeiro?</p>
+<p>Porque talvez essa seja a pergunta mais perigosa da Reforma Tributária.</p>
+<p>O RT Apuração Assistida em [Cidade] foi criado justamente para profissionais que querem:</p>
+<ul><li>aplicação prática</li><li>interpretação estratégica</li><li>visão operacional</li><li>segurança técnica</li><li>clareza real</li></ul>
+<p>Porque o mercado não remunera quem apenas acompanha mudanças. O mercado remunera quem sabe orientar empresas dentro da nova realidade tributária.</p>
+</div>
+          <div class="card-foot">CTA <b>Pré-venda</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">04</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV4</span>
+            </div>
+            <span class="card-timing">Dia 9 · quarta</span>
+          </div>
+          <p class="card-subject">Prova social 2 — "Contadores do Brasil todo já começaram. E em [Cidade]?"</p>
+          <div class="card-body">
+<p>Enquanto muitos profissionais ainda estão tentando entender por onde começar na Reforma Tributária, outros já deram o primeiro passo: buscar conhecimento prático, direto e aplicável.</p>
+<p>E os comentários mostram exatamente isso:</p>
+<ul><li>"Excelente curso, recomendo!"</li><li>"Ótimo curso, o professor é excelente!"</li><li>"Muito bom! Parabéns!"</li><li>"Dia bem produtivo! Super esclarecedor!"</li></ul>
+<p>Não são apenas elogios. São sinais de que quem participou saiu com mais clareza, mais segurança e mais preparo para lidar com as mudanças que já estão batendo na porta.</p>
+<p>Agora a pergunta é: você já entendeu, na prática, como a Apuração Assistida vai impactar sua rotina? Você sabe interpretar as telas, abas, eventos, resultados, saldos atualizados e informações que virão automaticamente?</p>
+<p>No treinamento presencial em [Cidade], você terá acesso a uma explicação prática sobre a Apuração Assistida, com foco no que realmente importa para o contador que vai operar, conferir e tomar decisões.</p>
+</div>
+          <div class="card-foot">CTA <b>Acessar</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">05</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV5</span>
+            </div>
+            <span class="card-timing">Dia 14 · segunda</span>
+          </div>
+          <p class="card-subject">"Não é mais um curso que você assiste e esquece."</p>
+          <div class="card-body">
+<p>A maioria dos treinamentos entrega informação. Mas poucos realmente transformam a forma como o profissional atua.</p>
+<p>Você realmente sente que conseguiria:</p>
+<ul><li>encerrar uma Apuração Assistida?</li><li>revisar documentos automaticamente?</li><li>validar eventos?</li><li>identificar não apropriados?</li><li>corrigir impactos fiscais no financeiro?</li></ul>
+<p>Ou ainda está tentando entender tudo sozinho pela internet?</p>
+<p>O RT Apuração Assistida em [Cidade] nasce justamente para isso. Um presencial pensado para transformar um tema complexo em algo aplicável dentro da rotina contábil.</p>
+<p>Nada substitui:</p>
+<ul><li>contato humano</li><li>dúvidas ao vivo</li><li>troca entre profissionais</li><li>dores reais</li><li>construção lógica do começo ao fim</li></ul>
+<p>Porque existem situações sérias demais para serem discutidas superficialmente.</p>
+</div>
+          <div class="card-foot">CTA <b>Pré-venda</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">06</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV6</span>
+            </div>
+            <span class="card-timing">Dia 16 · quarta</span>
+          </div>
+          <p class="card-subject">Prova social 3 — "[Cidade] também já passou por essa experiência"</p>
+          <div class="card-body">
+<p>O treinamento de Apuração Assistida já passou por diferentes estados do Brasil, reunindo contadores, analistas e empresários que entenderam a importância de se antecipar às mudanças da Reforma Tributária. E [Cidade] também fez parte dessa jornada.</p>
+<p>Profissionais que participaram da imersão puderam olhar para a Apuração Assistida de forma mais prática, entendendo os pontos que mais exigem atenção na rotina fiscal.</p>
+<p>Porque o maior risco não está apenas na mudança. Está em acreditar que o automático resolve tudo sozinho.</p>
+<p>As abas de resultado, eventos, não apropriados, saldo atualizado e outras informações precisam ser interpretadas com conhecimento técnico para evitar erros, divergências e impactos financeiros para empresas e escritórios.</p>
+<p>O que temos visto pelo Brasil é claro: quem se prepara antes, ganha segurança para orientar melhor seus clientes. E quem deixa para depois pode acabar aprendendo quando o problema já chegou.</p>
+<p>A Apuração Assistida já começou a movimentar o mercado contábil.</p>
+</div>
+          <div class="card-foot">CTA <b>Acessar</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">07</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV7</span>
+            </div>
+            <span class="card-timing">Dia 23 · segunda</span>
+          </div>
+          <p class="card-subject">"Quem deveria estar nesse presencial?"</p>
+          <div class="card-body">
+<p>O RT Apuração Assistida em [Cidade] foi pensado para profissionais que já perceberam que o mercado mudou.</p>
+<p>Mas talvez a pergunta correta seja: você sente que seu escritório está preparado para a nova realidade operacional da Reforma Tributária?</p>
+<p>Você já ajustou:</p>
+<ul><li>processos?</li><li>equipe?</li><li>conferências?</li><li>validações?</li><li>comunicação com clientes?</li></ul>
+<p>Ou ainda está esperando os problemas aparecerem primeiro?</p>
+<p>Esse presencial foi pensado para:</p>
+<ul><li>contadores</li><li>analistas fiscais</li><li>empresários contábeis</li><li>escritórios</li><li>profissionais tributários</li><li>empresas com fiscal interno</li><li>profissionais que decidiram não ficar para trás</li></ul>
+<p>Porque o mercado não vai esperar ninguém "se sentir pronto". E talvez esse seja justamente o maior erro de muitos profissionais neste momento.</p>
+</div>
+          <div class="card-foot">CTA <b>Pré-venda</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">08</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV8</span>
+            </div>
+            <span class="card-timing">Dia 30 · segunda</span>
+          </div>
+          <p class="card-subject">"O presencial que vai tirar a Reforma Tributária do papel."</p>
+          <div class="card-body">
+<p>Tem muita gente consumindo conteúdo sobre Reforma Tributária. Mas pouca gente realmente preparada para aplicar.</p>
+<p>Porque existe uma enorme diferença entre "acompanhar o assunto" e conseguir operar a realidade da Apuração Assistida.</p>
+<p>Você já simulou:</p>
+<ul><li>compras a prazo?</li><li>vendas parceladas?</li><li>impactos fiscais no fluxo financeiro?</li><li>documentos não apropriados?</li><li>erros de cClassTrib?</li></ul>
+<p>Você já parou para pensar no impacto disso dentro de uma apuração automática?</p>
+<p>O RT Apuração Assistida [Cidade] foi criado justamente para transformar um tema complexo em clareza prática.</p>
+<p>Sem superficialidade. Sem teoria vazia. Sem sensação de "mais do mesmo".</p>
+<p>Somente aplicação estratégica para profissionais que entenderam que atualização deixou de ser diferencial. Agora virou sobrevivência profissional.</p>
+</div>
+          <div class="card-foot">CTA <b>Pré-venda</b> → página do curso</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">09</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><path d="M12 3a8 8 0 00-6.9 12l-1 4 4.1-1.1A8 8 0 1012 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV9</span>
+            </div>
+            <span class="card-timing">&nbsp;</span>
+          </div>
+          <p class="card-subject">Áudio de boas-vindas do consultor + apresentação do professor</p>
+          <div class="card-body">
+<p>"Oi, @NOME! Tudo bem? Aqui é o Rodrigo, da Contabilista Play. 👋</p>
+<p>Vi que você se inscreveu pro curso Reforma Tributária: Apuração Assistida, presencial em [Cidade], dia [Data do Evento].</p>
+<p>O próprio Prof. Gabriel Villena gravou um áudio rapidinho contando como vai ser o curso na prática. Vale a pena ouvir 🎧</p>
+<p>Posso te mandar agora o conteúdo programático completo, com todos os módulos que vamos cobrir?"</p>
+<p><strong>[Sim, manda o material]</strong> · <strong>[Tenho uma dúvida ainda]</strong></p>
+<p>Qualquer que seja a resposta, a pessoa entra no chatbot: recebe o conteúdo programático e as informações do curso (local, data), é perguntada se já é aluna CPlay, e é encaminhada pro consultor de qualquer forma.</p>
+</div>
+          <div class="card-foot"><span class="trigger-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Gatilho: converteu na página do curso</span></div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--prv)">10</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--prv)"><path d="M12 3a8 8 0 00-6.9 12l-1 4 4.1-1.1A8 8 0 1012 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="card-code" style="color:var(--prv)">PRV10</span>
+            </div>
+            <span class="card-timing">&nbsp;</span>
+          </div>
+          <p class="card-subject">Convite pra levar um amigo</p>
+          <div class="card-body">
+<p>Áudio convidando quem já garantiu o ingresso a chamar mais alguém pro presencial. (O material recebido não trouxe o texto integral desse áudio — só a descrição do gatilho e do conteúdo.)</p>
+</div>
+          <div class="card-foot"><span class="trigger-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Gatilho: compra do ingresso</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= PRE ================= -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="phase-badge" style="background:rgba(251,191,36,.15);color:var(--pre)">PRE</span>
+      <div>
+        <p class="phase-name">Pré-Evento</p>
+        <p class="phase-goal">Semana do treinamento — confirma presença e entrega tudo que a pessoa precisa saber pra chegar no dia certo.</p>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--pre)">01</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--pre)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--pre)">PRE1</span>
+            </div>
+            <span class="card-timing">D-4 · segunda</span>
+          </div>
+          <p class="card-subject">"Falta pouco para [Cidade]. Você está preparado para essa mudança?"</p>
+          <div class="card-body">
+<p>O RT Apuração Assistida em [Cidade] está chegando. Daqui poucos dias estaremos reunidos para discutir, na prática, uma das maiores transformações operacionais da história da contabilidade brasileira.</p>
+<p>E talvez a pergunta mais importante neste momento seja: você já percebeu o impacto que a Apuração Assistida terá dentro do seu escritório?</p>
+<p>Você já revisou:</p>
+<ul><li>processos?</li><li>conferências?</li><li>integração fiscal e financeira?</li><li>documentos?</li><li>classificação tributária?</li></ul>
+<p>Ou ainda existem pontos que você sente que precisam de clareza?</p>
+<p>Nossa recomendação: venha preparado para aproveitar ao máximo:</p>
+<ul><li>conteúdo</li><li>networking</li><li>trocas</li><li>dúvidas ao vivo</li><li>conexões</li><li>aplicação prática</li></ul>
+<p>Nada substitui o presencial quando o assunto é construção de raciocínio estratégico.</p>
+<p>[Data do Evento] | [Cidade]</p>
+<p>Nos vemos em breve.</p>
+</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--pre)">02</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--pre)"><path d="M12 3a8 8 0 00-6.9 12l-1 4 4.1-1.1A8 8 0 1012 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="card-code" style="color:var(--pre)">PRE2</span>
+            </div>
+            <span class="card-timing">D-1 · quinta, 13h</span>
+          </div>
+          <p class="card-subject">E-mail + WhatsApp: "Tudo o que você precisa saber antes do evento"</p>
+          <div class="card-body">
+<p><strong>E-mail:</strong></p>
+<p>Estamos entrando na reta final do RT Apuração Assistida [Cidade]. Daqui poucos dias estaremos reunidos presencialmente para discutir aquilo que muitos profissionais ainda estão tentando entender sozinhos pela internet.</p>
+<p>Confira abaixo algumas informações importantes:</p>
+<p>Data [Data do Evento]<br>Horário: 8h30 às 12h e das 13h às 17h30<br>Local: [Endereço do Local]<br>Sala: [Nome da Sala/Auditório]</p>
+<p>Orientações:</p>
+<ul><li>chegue com antecedência</li><li>leve material para anotações</li><li>aproveite os momentos de networking</li><li>tire dúvidas</li><li>converse com outros profissionais</li><li>nossa equipe estará disponível durante todo o evento</li></ul>
+<p>Depois de passar por 84 cidades em 14 estados, uma coisa ficou clara: os profissionais mais preparados são os que decidiram agir antes da maioria.</p>
+<p style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-w)"><strong>WhatsApp:</strong></p>
+<p>📍 Local: [Endereço do Local].<br>🏢 Auditório: [Nome da Sala/Auditório]<br>📆 Data: [Data do Evento]<br>🕗 Credenciamento: 8h<br>🕣 Horário do evento: Das 8h30 às 12h e das 13h às 17h30.</p>
+<p>Nos vemos amanhã, @NOME! Já deixe esse compromisso marcado na sua agenda.</p>
+<p>Equipe Contabilista Play</p>
+</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= DUE ================= -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="phase-badge" style="background:rgba(74,222,128,.15);color:var(--due)">DUE</span>
+      <div>
+        <p class="phase-name">Durante o Evento</p>
+        <p class="phase-goal">Uma única mensagem, disparada no dia — mantém quem está na sala conectado à marca.</p>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--due)">01</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--due)"><path d="M12 3a8 8 0 00-6.9 12l-1 4 4.1-1.1A8 8 0 1012 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="card-code" style="color:var(--due)">DUE1</span>
+            </div>
+            <span class="card-timing">D0 · 12h15</span>
+          </div>
+          <p class="card-subject">Check-in do intervalo de almoço</p>
+          <div class="card-body">
+<p>📍 Reforma Tributária: Apuração Assistida | [Cidade]</p>
+<p>Estamos na metade do nosso treinamento e, até aqui, exploramos pontos essenciais sobre a Reforma Tributária e a Apuração Assistida.</p>
+<p>Daqui a pouco, retornaremos para a segunda etapa do curso, com mais conteúdo prático, esclarecimento de dúvidas e aprofundamento dos temas.</p>
+<p>Até já!</p>
+</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= POE ================= -->
+  <div class="phase">
+    <div class="phase-head">
+      <span class="phase-badge" style="background:rgba(167,139,250,.15);color:var(--poe)">POE</span>
+      <div>
+        <p class="phase-name">Pós-Evento</p>
+        <p class="phase-goal">Agradece, colhe avaliação, entrega o cupom de desconto e ativa o acesso ao material — em ondas até o cupom expirar.</p>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--poe)">01</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--poe)"><path d="M12 3a8 8 0 00-6.9 12l-1 4 4.1-1.1A8 8 0 1012 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="card-code" style="color:var(--poe)">POE1</span>
+            </div>
+            <span class="card-timing">D0 · 19h</span>
+          </div>
+          <p class="card-subject">WhatsApp + e-mail: "O presencial terminou. A Reforma Tributária não."</p>
+          <div class="card-body">
+<p><strong>E-mail:</strong></p>
+<p>O RT Apuração Assistida [Cidade] acabou. Mas talvez a pergunta mais importante comece agora: você realmente já está preparado para aplicar tudo isso na rotina do escritório?</p>
+<p>Porque entender a Reforma Tributária não é assistir um evento. É revisar processos. É alinhar fiscal e financeiro. É ajustar operações. É aprofundar decisões que podem impactar diretamente empresas e escritórios nos próximos anos.</p>
+<p>Muitos profissionais sairão dos presenciais motivados. Poucos continuarão estudando de verdade. E normalmente é exatamente aí que o mercado começa a separar quem apenas participou… de quem realmente vai liderar.</p>
+<p>Por isso liberamos uma condição exclusiva para os participantes do RT Apuração Assistida:</p>
+<p>Seu CUPOM: <strong>[CÓDIGO DO CUPOM]</strong><br>BENEFÍCIO: 20% OFF em todos os cursos da Contabilista Play.<br>VALIDADE: [Validade do Cupom]</p>
+<p>Use com inteligência. Porque o mercado continuará mudando.</p>
+<p style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-w)"><strong>WhatsApp:</strong></p>
+<p>🎓 Obrigado por participar do curso Reforma Tributária e Apuração Assistida em [Cidade]!</p>
+<p>Foi um prazer contar com a sua presença neste dia de aprendizado e atualização. Esperamos que o conteúdo compartilhado tenha agregado conhecimento e contribuído para os desafios da sua rotina profissional.</p>
+<p>🎁 Presente para você! Como participante deste treinamento, você ganhou 20% de desconto em qualquer curso da Contabilista Play. Basta utilizar o cupom [CÓDIGO DO CUPOM] no momento da inscrição.</p>
+<p>📅 Oferta válida até [Validade do Cupom].</p>
+<p>Agora, queremos ouvir você! Sua opinião é essencial para que possamos aprimorar nossos cursos e oferecer experiências cada vez melhores. Clique no botão abaixo e responda à nossa pesquisa de satisfação. Leva apenas alguns minutos.</p>
+<p>Agradecemos pela confiança e esperamos revê-lo em nossos próximos treinamentos. Até a próxima!</p>
+<p>Equipe Contabilista Play</p>
+<p>[Avaliação do Curso] → https://docs.google.com/forms/d/e/1FAIpQLScEeRFJdceQFimlWIHf1hvj2qgpYMAJoHa7zTmeL3j-DGf3Bg/viewform</p>
+</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--poe)">02</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--poe)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--poe)">POE2</span>
+            </div>
+            <span class="card-timing">D+3 · segunda</span>
+          </div>
+          <p class="card-subject">"Você revisaria hoje os processos do seu escritório com segurança?"</p>
+          <div class="card-body">
+<p>Depois do presencial, muitos profissionais perceberam algo importante: a Reforma Tributária não é apenas uma mudança fiscal. Ela exige:</p>
+<ul><li>revisão operacional</li><li>coerência entre fiscal e financeiro</li><li>validação de processos</li><li>análise de documentos</li><li>segurança na apuração</li></ul>
+<p>E talvez a pergunta mais desconfortável seja: o seu escritório realmente está preparado para isso?</p>
+<p>Você já revisou:</p>
+<ul><li>fluxo de documentos?</li><li>classificações fiscais?</li><li>processos internos?</li><li>riscos automáticos da Apuração Assistida?</li></ul>
+<p>Porque o "automático" pode virar uma grande armadilha para quem não domina a lógica por trás da operação.</p>
+<p>Seu CUPOM: <strong>[CÓDIGO DO CUPOM]</strong>, continua ativo até [Validade do Cupom].<br>20% OFF em todos os cursos da plataforma Contabilista Play.</p>
+</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--poe)">03</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--poe)"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="card-code" style="color:var(--poe)">POE3</span>
+            </div>
+            <span class="card-timing">D+10 · segunda</span>
+          </div>
+          <p class="card-subject">Última chamada — "2027 será consequência direta do preparo construído em 2026."</p>
+          <div class="card-body">
+<p>Estamos entrando na reta final do cupom [CÓDIGO DO CUPOM].</p>
+<p>E existe uma realidade que muitos profissionais ainda estão ignorando: o ano seguinte será consequência direta do preparo construído agora.</p>
+<p>A Apuração Assistida não será vencida apenas "na prática". Ela exigirá raciocínio. Interpretação. Processo. Profundidade técnica.</p>
+<p>Você já entende totalmente:</p>
+<ul><li>aba de eventos?</li><li>não apropriados?</li><li>saldo atualizado?</li><li>outras informações?</li><li>impactos entre fiscal e financeiro?</li></ul>
+<p>Se a resposta ainda for "não completamente"… esse é exatamente o momento de aprofundar.</p>
+<p>Seu CUPOM: <strong>[CÓDIGO DO CUPOM]</strong>, continua ativo até [Validade do Cupom].<br>20% OFF em todos os cursos da Contabilista Play até [Validade do Cupom]. Depois disso, o desconto será encerrado.</p>
+</div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-dot" style="background:var(--poe)">04</div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <svg class="card-icon" viewBox="0 0 24 24" fill="none" style="color:var(--poe)"><path d="M12 3a8 8 0 00-6.9 12l-1 4 4.1-1.1A8 8 0 1012 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span class="card-code" style="color:var(--poe)">POE4</span>
+            </div>
+            <span class="card-timing">D+10 · segunda</span>
+          </div>
+          <p class="card-subject">Acesso liberado — passo a passo da plataforma</p>
+          <div class="card-body">
+<p>Olá, @NOME! Tudo bem? Estamos muito felizes com a sua participação no curso presencial da Reforma Tributária: Apuração Assistida em [Cidade].</p>
+<p>Para facilitar o seu acesso às aulas, siga o passo a passo abaixo:</p>
+<p>1. Acesse a plataforma pelo link: https://aluno.contabilistaplay.com.br/login<br>2. Faça login utilizando o e-mail informado no momento da compra do curso.<br>3. No campo de senha, clique em "Esqueci minha senha" para criar uma nova senha de acesso.<br>4. Após entrar na Área do Aluno, preencha todos os campos obrigatórios sinalizados com um asterisco vermelho (*).<br>5. Em seguida, clique em Salvar.</p>
+<p>Para que você também consiga baixar todo o Material de Apoio do curso, assista ao vídeo abaixo, que mostra como encontrá-lo. 👇<br>https://www.youtube.com/watch?v=iG5i1bkvpb8</p>
+</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p class="fnote">Modelo AUTZ — pode ser reaplicado a qualquer cidade/turma trocando datas e o nome da cidade. Códigos (ex. PRV3) identificam cada mensagem de forma única dentro da jornada.</p>
+    <p>autz.com.br</p>
+  </footer>
+
+</div>
