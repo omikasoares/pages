@@ -1,0 +1,209 @@
+<meta charset="UTF-8">
+<title>Jornada de Comunicação — RT Apuração Assistida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+    --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+    --gray:#7a9fa8; --gray2:#4a7078;
+    --border:rgba(233,255,74,0.15); --border-w:rgba(255,255,255,0.08);
+    --prv:#60a5fa; --pre:#fbbf24; --due:#4ade80; --poe:#a78bfa;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Poppins',sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--lime);color:var(--bg2);}
+
+  .page{max-width:880px;margin:0 auto;padding:56px 28px 96px;}
+
+  /* ---------- header ---------- */
+  header{margin-bottom:52px;}
+  .logo{height:26px;display:block;margin-bottom:36px;}
+  .eyebrow{
+    font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--lime);margin:0 0 14px;
+  }
+  h1{
+    font-size:34px;font-weight:800;letter-spacing:-.01em;line-height:1.16;
+    margin:0 0 16px;text-wrap:balance;max-width:11.5em;
+  }
+  .lede{
+    font-size:16px;color:var(--gray);max-width:56ch;margin:0;font-weight:400;
+  }
+
+  /* ---------- section shell ---------- */
+  section{margin-bottom:52px;}
+  .section-head{margin-bottom:22px;}
+  .section-title{
+    font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gray);margin:0 0 6px;
+  }
+  .section-sub{font-size:14.5px;color:var(--gray);margin:0;max-width:62ch;}
+
+  /* ---------- legend ---------- */
+  .legend-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+  }
+  .legend-card{
+    background:var(--surface);border:1px solid var(--border-w);border-radius:12px;
+    padding:18px 18px 16px;
+  }
+  .legend-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .legend-dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .legend-code{
+    font-size:17px;font-weight:700;letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .legend-name{font-size:13px;color:var(--gray);font-weight:500;}
+  .legend-desc{font-size:13.5px;color:var(--gray);margin:0 0 10px;}
+  .legend-count{
+    font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--white);opacity:.55;
+  }
+
+  /* ---------- code callout ---------- */
+  .callout{
+    background:var(--surface2);border:1px solid var(--border);border-radius:12px;
+    padding:22px 24px;display:flex;gap:18px;align-items:flex-start;
+  }
+  .callout-icon{
+    flex:none;width:34px;height:34px;border-radius:9px;background:rgba(233,255,74,.14);
+    display:flex;align-items:center;justify-content:center;color:var(--lime);
+  }
+  .callout h3{font-size:15px;font-weight:700;margin:0 0 6px;}
+  .callout p{font-size:14px;color:var(--gray);margin:0 0 12px;max-width:60ch;}
+  .callout-examples{display:flex;flex-wrap:wrap;gap:8px;}
+  .callout-examples span{
+    font-size:12.5px;background:var(--bg2);border:1px solid var(--border-w);
+    border-radius:7px;padding:5px 10px;color:var(--white);opacity:.85;
+    font-style:italic;
+  }
+  .callout-examples b{font-style:normal;color:var(--lime2);font-weight:600;}
+
+  /* ---------- cadence strips ---------- */
+  .strip-wrap{
+    background:var(--surface);border:1px solid var(--border-w);border-radius:12px;
+    padding:28px 24px 22px;overflow-x:auto;
+  }
+  .strip-label{font-size:12.5px;font-weight:600;color:var(--gray);margin:0 0 30px;}
+  .strip{position:relative;min-width:560px;height:96px;margin:0 8px;}
+  .strip-axis{
+    position:absolute;left:0;right:0;top:48px;height:1px;background:var(--border-w);
+  }
+  .strip-point{position:absolute;top:48px;transform:translate(-50%,-50%);}
+  .strip-dot{
+    width:11px;height:11px;border-radius:50%;border:2px solid var(--bg);
+    box-shadow:0 0 0 1px var(--border-w);
+  }
+  .strip-tag{
+    position:absolute;left:50%;transform:translateX(-50%);
+    font-size:11px;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums;
+  }
+  .strip-tag.up{bottom:20px;}
+  .strip-tag.down{top:20px;}
+  .strip-day{
+    position:absolute;left:50%;transform:translateX(-50%);
+    font-size:9.5px;color:var(--gray2);white-space:nowrap;
+  }
+  .strip-day.up{bottom:6px;}
+  .strip-day.down{top:6px;}
+  .strip-event-mark{
+    position:absolute;top:20px;bottom:20px;width:1px;background:var(--lime);opacity:.5;
+  }
+  .strip-event-label{
+    position:absolute;top:0;transform:translateX(-50%);
+    font-size:10px;color:var(--lime);font-weight:600;white-space:nowrap;
+    letter-spacing:.04em;text-transform:uppercase;
+  }
+  .strip-note{
+    font-size:12.5px;color:var(--gray2);margin:18px 2px 0;padding-top:14px;
+    border-top:1px solid var(--border-w);
+  }
+
+  /* ---------- phase sections ---------- */
+  .phase{margin-bottom:48px;}
+  .phase-head{
+    display:flex;align-items:baseline;gap:12px;margin-bottom:22px;
+    padding-bottom:14px;border-bottom:1px solid var(--border-w);
+  }
+  .phase-badge{
+    font-size:13px;font-weight:800;letter-spacing:.04em;padding:4px 10px;
+    border-radius:6px;flex:none;
+  }
+  .phase-name{font-size:19px;font-weight:700;margin:0;flex:1;}
+  .phase-goal{font-size:13.5px;color:var(--gray);margin:2px 0 0;}
+
+  .timeline{position:relative;padding-left:34px;}
+  .timeline::before{
+    content:"";position:absolute;left:11px;top:6px;bottom:6px;width:1px;background:var(--border-w);
+  }
+  .node{position:relative;margin-bottom:16px;}
+  .node:last-child{margin-bottom:0;}
+  .node-dot{
+    position:absolute;left:-34px;top:14px;width:23px;height:23px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:8.5px;font-weight:800;color:var(--bg2);background:var(--white);
+  }
+  .card{
+    background:var(--surface);border:1px solid var(--border-w);border-radius:11px;
+    padding:16px 18px;
+  }
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
+  .card-title-row{display:flex;align-items:center;gap:9px;}
+  .card-icon{flex:none;width:16px;height:16px;opacity:.9;}
+  .card-code{
+    font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em;
+  }
+  .card-timing{
+    font-size:11px;font-weight:600;color:var(--gray);white-space:nowrap;text-align:right;
+    flex:none;padding-top:2px;
+  }
+  .card-subject{
+    font-size:14.5px;font-weight:600;margin:8px 0 6px;line-height:1.4;
+  }
+  .card-body{font-size:13.5px;color:var(--gray);margin:0 0 10px;}
+  .card-body p{margin:0 0 10px;}
+  .card-body p:last-child{margin-bottom:0;}
+  .card-body ul{margin:4px 0 12px;padding-left:18px;}
+  .card-body li{margin-bottom:4px;}
+  .card-body strong{color:var(--white);font-weight:600;}
+  .card-foot{
+    display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray2);
+    padding-top:10px;border-top:1px dashed var(--border-w);
+  }
+  .card-foot b{color:var(--white);opacity:.75;font-weight:600;}
+  .trigger-tag{
+    display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;
+    color:var(--lime2);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:64px;padding-top:24px;border-top:1px solid var(--border-w);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  footer p{font-size:12px;color:var(--gray2);margin:0;}
+  footer .fnote{font-size:11.5px;color:var(--gray2);max-width:46ch;}
+
+  @media (max-width:600px){
+    .legend-grid{grid-template-columns:1fr;}
+    h1{font-size:27px;}
+    .page{padding:40px 18px 72px;}
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <img class="logo" alt="AUTZ" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkkAAADZCAYAAAA0eaReAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAADXeSURBVHhe7Z0H1GVVeYaV3kYpAqIgCiIw/x1AsUBEETsmKCiI3cRYYiPGFhuKRI2JBQMaNEajRmMLscagERsWsAeRJnDvUEUBAYF7z/audu0/W+8934bLvlL/space
