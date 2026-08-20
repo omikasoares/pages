@@ -223,13 +223,13 @@ Para conhecer tudo de perto e já experimentar, podemos agendar sua visita ainda
       </div>
       <p class="stage-desc">Assim que o consultor move o lead para esta etapa, o relógio de 30 dias começa a contar. Cada marco abaixo dispara tarefa de WhatsApp e Ligação; a automação envia o WhatsApp via RD Conversas, a ligação fica com o consultor.</p>
 
-      <div class="day-head"><span class="day-label">D1 &middot; Reforço e conteúdo</span><div class="day-line"></div></div>
+      <div class="day-head"><span class="day-label">D1 &middot; Retomada, sem resposta ao contato inicial</span><div class="day-line"></div></div>
       <div class="cards">
         <div class="card">
           <div class="card-head"><span class="chip chip-day">D1</span><span class="chip chip-wa">WhatsApp</span><span class="chip chip-call">Ligação</span></div>
-          <div class="card-scenario">Se o lead pedir mais informações sobre a academia</div>
-          <div class="card-body">Claro! Aqui você encontra muito mais do que musculação: temos aulas de ginástica, alongamento, yoga, power bike, natação e muito mais, tudo incluso no plano.
-Me conta rapidinho: qual o seu objetivo, você já treina ou está pensando em começar agora?</div>
+          <div class="card-scenario">Padrão: lead converteu e não respondeu ao contato inicial</div>
+          <div class="card-body">Oi, <span class="ph">[Nome]</span>, tudo bem? Vi que você se interessou pela Companhia Athletica <span class="ph">[unidade]</span> e queria aproveitar pra te contar rapidinho o que a gente tem por aqui: musculação, aulas de ginástica, alongamento, yoga, power bike, natação e muito mais, tudo incluso no plano.
+Me conta rapidinho: qual o seu objetivo hoje, você já treina ou está pensando em começar agora?</div>
         </div>
       </div>
 
@@ -237,34 +237,34 @@ Me conta rapidinho: qual o seu objetivo, você já treina ou está pensando em c
       <div class="cards">
         <div class="card">
           <div class="card-head"><span class="chip chip-day">D3</span><span class="chip chip-wa">WhatsApp</span><span class="chip chip-call">Ligação</span></div>
-          <div class="card-scenario">Convite direto para agendar a visita</div>
-          <div class="card-body">Para você sentir de perto, podemos agendar uma visita à academia com direito a treino experimental. Assim você já conhece toda a estrutura e vê como funciona na prática.
-Prefere vir durante a semana ou no final de semana?</div>
+          <div class="card-scenario">Padrão: ainda sem resposta desde o D1</div>
+          <div class="card-body">Oi, <span class="ph">[Nome]</span>, passando de novo por aqui! Só confirmando se você chegou a ver minha mensagem sobre a Companhia Athletica.
+Para você sentir de perto, posso já agendar uma visita com direito a treino experimental, assim você conhece toda a estrutura e vê como funciona na prática. Prefere vir durante a semana ou no final de semana?</div>
         </div>
         <div class="card">
           <div class="card-head"><span class="chip chip-day">D3</span><span class="chip chip-wa">WhatsApp</span></div>
-          <div class="card-scenario">Se ainda não respondeu desde o primeiro contato</div>
-          <div class="card-body">Oi, <span class="ph">[Nome]</span>, só passando para confirmar se recebeu as informações sobre a Companhia Athletica.
-Quer que eu te ajude a encontrar o melhor horário para vir conhecer?</div>
+          <div class="card-scenario">Alternativo: se o lead respondeu ao D1 e topou saber mais</div>
+          <div class="card-body">Para você sentir de perto, podemos agendar uma visita à academia com direito a treino experimental. Assim você já conhece toda a estrutura e vê como funciona na prática.
+Prefere vir durante a semana ou no final de semana?</div>
         </div>
       </div>
 
       <div class="day-head"><span class="day-label">D5 &middot; Checkpoint: bifurcação por resposta</span><div class="day-line"></div></div>
       <div class="cards grid2">
-        <div class="card">
-          <div class="card-head"><span class="chip chip-day">D5</span><span class="chip chip-call">Ligação</span></div>
-          <div class="card-scenario">Não respondeu ao primeiro contato</div>
-          <div class="card-body">Oi, tudo bem? Passei aqui só para confirmar se recebeu minhas informações sobre a Companhia Athletica.
-Quer que eu te ajude a encontrar o melhor horário para vir conhecer e experimentar um treino com a gente?</div>
+        <div class="card" style="grid-column:1/-1;">
+          <div class="card-head"><span class="chip chip-day">D5</span><span class="chip chip-wa">WhatsApp</span><span class="chip chip-call">Ligação</span></div>
+          <div class="card-scenario">Padrão: ainda sem resposta desde o D1/D3</div>
+          <div class="card-body">Oi, <span class="ph">[Nome]</span>, tudo bem? Passando só pra confirmar se você recebeu minhas mensagens sobre a Companhia Athletica.
+Quer que eu te ajude a encontrar o melhor horário pra vir conhecer e já experimentar um treino com a gente?</div>
         </div>
         <div class="card">
           <div class="card-head"><span class="chip chip-day">D5</span><span class="chip chip-wa">WhatsApp</span></div>
-          <div class="card-scenario">Respondeu, mas ainda não marcou a visita</div>
+          <div class="card-scenario">Alternativo: respondeu em algum ponto, mas ainda não marcou a visita</div>
           <div class="card-body">Legal! Para ficar mais fácil, me diz: você prefere vir durante a semana ou no fim de semana? Assim já encontramos o melhor horário para sua visita.</div>
         </div>
-        <div class="card" style="grid-column:1/-1;">
-          <div class="card-head"><span class="chip chip-day">D5</span><span class="chip chip-wa">WhatsApp</span></div>
-          <div class="card-scenario">Já marcou a visita: usar também como confirmação da etapa Visita Agendada</div>
+        <div class="card">
+          <div class="card-head"><span class="chip chip-wa">WhatsApp</span></div>
+          <div class="card-scenario">Gatilho: assim que o lead marcar a visita, em qualquer dia da cadência</div>
           <div class="card-body">Perfeito! Ficamos te esperando no dia <span class="ph">[XX]</span> às <span class="ph">[XXh]</span>. Prepare-se para conhecer toda a estrutura e já sentir a energia do treino. Vai ser uma ótima oportunidade para ver de perto como funciona o nosso programa personalizado.</div>
         </div>
       </div>
