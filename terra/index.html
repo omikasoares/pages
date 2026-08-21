@@ -13,7 +13,359 @@ html{scroll-behavior:smooth;}
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* LOGO */
-.autz-logo-img{background-image:url('data:image/png;base64,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');background-size:contain;background-repeat:no-repeat;background-position:center;display:block;}
+.autz-logo-img{background-image:url('data:image/png;base64,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');background-size:contain;background-repeat:no-repeat;background-position:center;display:block;}
 .nav-logo .autz-logo-img{width:100px;height:36px;}
 .hero-logo .autz-logo-img{width:133px;height:48px;margin:0 auto;}
 .cta-autz .autz-logo-img{width:116px;height:42px;margin:0 auto;opacity:0.85;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:rgba(0,39,44,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--borderw);display:flex;align-items:center;justify-content:space-between;padding:0 44px;}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-tag{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);border-left:1px solid var(--borderw);padding-left:20px;}
+
+/* PROGRESS DOTS */
+.progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:150;}
+.pd{width:6px;height:6px;border-radius:3px;background:var(--gray2);transition:all 0.3s ease;cursor:pointer;}
+.pd.active{background:var(--lime);height:24px;}
+.pd:hover{background:var(--gray);}
+
+/* SECTIONS */
+section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:column;justify-content:center;max-width:940px;margin:0 auto;}
+
+/* HERO */
+.hero{min-height:100vh;max-width:100%;padding:0;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.hero-orb{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-r1{width:600px;height:600px;border:1px solid rgba(233,255,74,0.07);}
+.hero-r2{width:820px;height:820px;border:1px solid rgba(233,255,74,0.04);}
+.hero-r3{width:1040px;height:1040px;border:1px solid rgba(233,255,74,0.02);}
+.hero-content{position:relative;z-index:1;padding:40px 52px;max-width:900px;}
+.hero-logo{margin-bottom:32px;margin-top:80px;}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:28px;}
+.hero-title{font-size:clamp(28px,5.2vw,54px);font-weight:900;line-height:1.12;letter-spacing:-2px;margin-bottom:22px;}
+.hero-title em{font-style:normal;color:var(--lime);}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);font-weight:400;color:var(--gray);line-height:1.75;max-width:660px;margin:0 auto 48px;}
+.hero-stats{display:inline-flex;border:1px solid var(--borderw);border-radius:20px;overflow:hidden;margin-bottom:56px;background:rgba(255,255,255,0.02);}
+.hs{padding:22px 34px;text-align:center;border-right:1px solid var(--borderw);}
+.hs:last-child{border-right:none;}
+.hs-num{font-size:28px;font-weight:800;color:var(--lime);line-height:1;}
+.hs-lbl{font-size:11px;color:var(--gray);margin-top:5px;font-weight:500;}
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;animation:cue 2.4s ease-in-out infinite;}
+.scroll-line{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--lime));}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+
+/* EYEBROWS & TITLES */
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;}
+.stitle{font-size:clamp(28px,4.5vw,46px);font-weight:800;line-height:1.1;letter-spacing:-1.2px;margin-bottom:16px;}
+.stitle em{font-style:normal;color:var(--lime);}
+.ssub{font-size:16px;font-weight:400;color:var(--gray);line-height:1.75;max-width:660px;margin-bottom:40px;}
+.hl{background:var(--lime);color:var(--bg);font-weight:700;padding:1px 8px;border-radius:4px;white-space:nowrap;font-style:normal;}
+.lime{color:var(--lime);font-weight:700;}
+
+/* PROBLEMAS */
+.prob-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;}
+.prob-item{display:flex;align-items:flex-start;gap:18px;background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:22px;transition:border-color 0.25s;}
+.prob-item:hover{border-color:rgba(232,89,60,0.3);}
+.prob-ico{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:rgba(232,89,60,0.1);display:flex;align-items:center;justify-content:center;font-size:19px;}
+.prob-title{font-size:15px;font-weight:700;margin-bottom:5px;}
+.prob-body{font-size:14px;color:var(--gray);line-height:1.6;}
+
+/* FASES (accordion) */
+.fase-wrap{display:flex;flex-direction:column;gap:12px;}
+.fase{background:var(--card);border:1px solid var(--borderw);border-radius:20px;overflow:hidden;transition:border-color 0.3s;cursor:pointer;}
+.fase.open{border-color:var(--border);}
+.fase-head{display:flex;align-items:center;gap:16px;padding:22px 28px;user-select:none;}
+.fase-num{width:48px;height:48px;border-radius:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;}
+.f1 .fase-num{background:rgba(96,165,250,0.15);color:var(--blue);}
+.f2 .fase-num{background:rgba(251,191,36,0.15);color:var(--amber);}
+.f3 .fase-num{background:rgba(74,222,128,0.15);color:var(--green);}
+.fase-info{flex:1;}
+.fase-title{font-size:16px;font-weight:700;}
+.fase-sub{font-size:13px;color:var(--gray);margin-top:3px;font-weight:500;}
+.fase-arrow{color:var(--gray2);transition:transform 0.3s,color 0.3s;flex-shrink:0;}
+.fase-arrow svg{width:22px;height:22px;}
+.fase.open .fase-arrow{transform:rotate(180deg);color:var(--lime);}
+.fase-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);}
+.fase.open .fase-body{max-height:2200px;}
+.fase-inner{padding:0 28px 32px;border-top:1px solid var(--borderw);padding-top:28px;}
+.roadmap{display:flex;flex-direction:column;}
+.rm-item{display:flex;gap:16px;position:relative;}
+.rm-item:not(:last-child)::before{content:'';position:absolute;left:6px;top:22px;bottom:0;width:1px;background:var(--borderw);}
+.rm-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:4px;border:2px solid;}
+.f1 .rm-dot{border-color:var(--blue);background:rgba(96,165,250,0.15);}
+.f2 .rm-dot{border-color:var(--amber);background:rgba(251,191,36,0.15);}
+.f3 .rm-dot{border-color:var(--green);background:rgba(74,222,128,0.15);}
+.rm-text{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.6;padding-bottom:18px;}
+.rm-text strong{color:var(--white);font-weight:600;}
+.fase-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.ftag{font-size:12px;padding:4px 12px;border-radius:99px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid var(--borderw);color:var(--gray);}
+.note-box{background:rgba(233,255,74,0.04);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-top:18px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;}
+.note-box strong{color:var(--lime);}
+
+/* INVESTIMENTO */
+.invest-hero{background:rgba(233,255,74,0.05);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;margin-bottom:24px;}
+.invest-lbl{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;}
+.invest-price{font-size:56px;font-weight:900;color:var(--lime);line-height:1;letter-spacing:-2px;}
+.invest-detail{font-size:13px;color:var(--gray);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.pay-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;}
+.pay-chip{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px 20px;text-align:center;min-width:180px;}
+.pay-chip-lbl{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px;}
+.pay-chip-val{font-size:18px;font-weight:800;color:var(--lime);}
+
+/* CTA */
+.cta-sec{min-height:100vh;max-width:100%;background:linear-gradient(180deg,var(--bg) 0%,#001a1e 50%,var(--bg) 100%);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 52px;position:relative;}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-autz{margin-bottom:24px;position:relative;}
+.cta-title{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px;position:relative;}
+.cta-title em{font-style:normal;color:var(--lime);}
+.cta-sub{font-size:17px;color:var(--gray);line-height:1.75;max-width:580px;margin:0 auto 44px;position:relative;}
+.cta-box{background:var(--card);border:2px solid var(--lime);border-radius:20px;padding:32px 48px;display:inline-flex;flex-direction:column;gap:8px;position:relative;margin-bottom:20px;}
+.cta-line{font-size:15px;color:rgba(255,255,255,0.7);}
+.cta-line strong{color:var(--white);font-weight:600;}
+.cta-link{color:var(--lime);text-decoration:underline;font-weight:600;}
+.cta-foot{font-size:12px;color:var(--gray2);margin-top:16px;position:relative;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{padding:0 20px;height:56px;}
+.nav-tag{display:none;}
+section{padding:80px 20px 60px;}
+.hero-content{padding:20px 20px;}
+.hero-stats{flex-direction:column;}
+.hs{border-right:none;border-bottom:1px solid var(--borderw);padding:16px 32px;}
+.hs:last-child{border-bottom:none;}
+.fase-head{flex-wrap:wrap;}
+.progress{display:none;}
+.cta-box{padding:24px 28px;}
+}
+
+/* PRINT */
+@media print{
+body{background:#fff;color:#1a1a1a;}
+nav,.progress,.scroll-cue,.scroll-line{display:none!important;}
+section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 32px;}
+.hero{min-height:auto;padding:60px 32px;}
+.card,.prob-item,.fase{border-color:#ccc;}
+.stitle em,.lime,.eyebrow,.hl{color:#1a6b2d!important;}
+.hl{background:#e6f7e0!important;color:#1a6b2d!important;}
+.fase-body{max-height:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><div class="autz-logo-img"></div></div>
+  <div class="nav-right">
+    <div class="nav-tag">AUTZ &middot; Diagn&oacute;stico Salesforce &rarr; RD CRM</div>
+    <div class="nav-tag">Terra Ambiental &amp; Terra Nutri&ccedil;&atilde;o Vegetal &middot; 2026</div>
+  </div>
+</nav>
+
+<div class="progress" id="progressDots"></div>
+
+<!-- 0. HERO -->
+<section class="hero" id="s0">
+  <div class="hero-orb"></div>
+  <div class="hero-ring hero-r1"></div>
+  <div class="hero-ring hero-r2"></div>
+  <div class="hero-ring hero-r3"></div>
+  <div class="hero-content">
+    <div class="hero-logo"><div class="autz-logo-img"></div></div>
+    <div class="hero-eyebrow">AUTZ &times; Terra Ambiental &amp; Terra Nutri&ccedil;&atilde;o Vegetal</div>
+    <h1 class="hero-title">Do Salesforce pro RD CRM,<br><em>sem perder o que faz voc&ecirc;s venderem.</em></h1>
+    <p class="hero-sub">Mapeamento t&eacute;cnico completo de tudo que foi levantado nas conversas com o Robert e a Paloma: o que o RD CRM j&aacute; resolve nativo, o que d&aacute; pra desenvolver por fora com campo personalizado e automa&ccedil;&atilde;o, e o que realmente n&atilde;o d&aacute;, pra decidir com clareza antes da virada.</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">2</div><div class="hs-lbl">Frentes de neg&oacute;cio</div></div>
+      <div class="hs"><div class="hs-num">20</div><div class="hs-lbl">Usu&aacute;rios</div></div>
+      <div class="hs"><div class="hs-num">Outubro</div><div class="hs-lbl">Fim do contrato atual</div></div>
+    </div>
+    <div class="scroll-cue">
+      <span>Rolar para explorar</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. CENÁRIO ATUAL -->
+<section id="s1">
+  <div class="eyebrow">01. Cen&aacute;rio atual</div>
+  <h2 class="stitle">16 anos de Salesforce,<br><em>moldado ao processo de voc&ecirc;s.</em></h2>
+  <p class="ssub">A opera&ccedil;&atilde;o de hoje &eacute; grande e bem espec&iacute;fica. Antes de dizer o que muda, olhamos cada ponto levantado nas duas reuni&otilde;es, com o Robert e depois com a Paloma da RD.</p>
+
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-ico">&#129452;</div>
+      <div><div class="prob-title">Duas frentes, dois processos</div><div class="prob-body">Terra Ambiental (tratamento de efluentes e res&iacute;duos) e Terra Nutri&ccedil;&atilde;o Vegetal (venda do fertilizante org&acirc;nico) rodam como inst&acirc;ncias separadas, com p&uacute;blico, funil e campos pr&oacute;prios.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#129514;</div>
+      <div><div class="prob-title">4 tipos de neg&oacute;cio dentro de um s&oacute; funil</div><div class="prob-body">Res&iacute;duo biol&oacute;gico, f&iacute;sico-qu&iacute;mico, compostagem (s&oacute;lido) e consultoria, cada um com campos e regras espec&iacute;ficas, hoje resolvidos com tipos de registro do Salesforce.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#129534;</div>
+      <div><div class="prob-title">Precifica&ccedil;&atilde;o manual, sem tabela fixa</div><div class="prob-body">Fora dois res&iacute;duos com pre&ccedil;o tabelado, tudo passa por an&aacute;lise da gerente comercial via fluxo de aprova&ccedil;&atilde;o, cruzando laudo t&eacute;cnico e margem.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128268;</div>
+      <div><div class="prob-title">Zero integra&ccedil;&atilde;o com ERP hoje</div><div class="prob-body">O Salesforce funciona como o ERP do comercial: contrato, hist&oacute;rico, controle de sa&iacute;da, tudo dentro dele, sem trocar dado com nenhum outro sistema.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#9203;</div>
+      <div><div class="prob-title">Prazo apertado</div><div class="prob-body">Contrato do Salesforce vence em outubro. A decis&atilde;o de troca de ferramenta e o desenho da implanta&ccedil;&atilde;o precisam sair antes disso.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. O QUE DÁ PRA FAZER -->
+<section id="s2">
+  <div class="eyebrow">02. O que d&aacute; pra fazer</div>
+  <h2 class="stitle">Nativo de um lado,<br><em>desenvolvimento por fora do outro.</em></h2>
+  <p class="ssub">Separamos em dois blocos: o que o RD CRM j&aacute; resolve sem nenhum desenvolvimento extra, e o que d&aacute; pra fazer com campo personalizado e automa&ccedil;&atilde;o por fora, padr&atilde;o que a AUTZ j&aacute; usa em outras migra&ccedil;&otilde;es vindas do Salesforce.</p>
+
+  <div class="fase-wrap">
+
+    <div class="fase f1" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">1</div>
+        <div class="fase-info"><div class="fase-title">Nativo no RD CRM</div><div class="fase-sub">Sem nenhum desenvolvimento extra</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Dois funis distintos</strong> (Terra Ambiental e Terra Nutri&ccedil;&atilde;o Vegetal), cada um com etapas e campos pr&oacute;prios, d&aacute; at&eacute; pra abrir um funil por tipo de res&iacute;duo, se fizer sentido pra opera&ccedil;&atilde;o</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Campos personalizados ilimitados</strong> em negocia&ccedil;&atilde;o, empresa e contato, cobrindo caracter&iacute;stica do res&iacute;duo, destina&ccedil;&atilde;o atual, lead scoring e tudo mais que hoje est&aacute; espalhado nos objetos custom do Salesforce</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Etapa de aprova&ccedil;&atilde;o dentro do pr&oacute;prio funil:</strong> o card muda de respons&aacute;vel automaticamente ao entrar em "Aguardando Precifica&ccedil;&atilde;o", s&oacute; aparece pra quem aprova, e volta sozinho pro vendedor quando ela conclui</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Campos obrigat&oacute;rios por etapa e por funil</strong>, travando o avan&ccedil;o at&eacute; o preenchimento, igual &agrave;s regras de valida&ccedil;&atilde;o de hoje</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Automa&ccedil;&atilde;o de troca de respons&aacute;vel</strong> ao mudar de etapa, e <strong>movimenta&ccedil;&atilde;o autom&aacute;tica de etapa</strong> quando um campo espec&iacute;fico &eacute; preenchido</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Automa&ccedil;&otilde;es encadeadas</strong> (v&aacute;rios gatilhos em sequ&ecirc;ncia): precisa do plano Advanced, mas resolve o fluxo completo sem interven&ccedil;&atilde;o manual</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Hist&oacute;rico completo</strong> de tudo que foi alterado no card, rastre&aacute;vel do in&iacute;cio ao fim, mesmo sem trava de edi&ccedil;&atilde;o (ver bloco 3)</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>V&aacute;rios produtos numa &uacute;nica negocia&ccedil;&atilde;o</strong>, com campos espec&iacute;ficos por produto, resolvendo de cara o "1 oportunidade = 1 res&iacute;duo" que hoje gera 3 oportunidades pra uma s&oacute; proposta</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Gera&ccedil;&atilde;o de proposta em PDF</strong> a partir dos produtos adicionados, com layout customiz&aacute;vel, envio por e-mail ou link e notifica&ccedil;&atilde;o de abertura pro vendedor</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Enriquecimento autom&aacute;tico por CNPJ</strong> (Receita Federal) j&aacute; nativo, sem precisar do plugin externo que voc&ecirc;s usam hoje</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Question&aacute;rio de qualifica&ccedil;&atilde;o</strong> pra pr&eacute;-vendas/SDR, cobrindo o papel que a pontua&ccedil;&atilde;o do pr&eacute;-atendimento faz hoje</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Relat&oacute;rios padr&atilde;o completos</strong> (ganho/perdido, tempo m&eacute;dio, motivo de perda, convers&atilde;o entre etapas) + <strong>dashboard personalizado</strong> cruzando campo customizado (Advanced) + integra&ccedil;&atilde;o com Power BI e API aberta pro Looker/Data Studio</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">2 funis independentes</span><span class="ftag">Campos ilimitados</span><span class="ftag">Aprova&ccedil;&atilde;o por etapa</span><span class="ftag">M&uacute;ltiplos produtos por negocia&ccedil;&atilde;o</span><span class="ftag">Dashboards Advanced</span></div>
+      </div></div>
+    </div>
+
+    <div class="fase f2" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">2</div>
+        <div class="fase-info"><div class="fase-title">Desenvolvimento por fora</div><div class="fase-sub">Campo personalizado + automa&ccedil;&atilde;o, fora do nativo</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Objeto "Contrato" modelado como um funil pr&oacute;prio</strong> (padr&atilde;o que a AUTZ j&aacute; usa em outras migra&ccedil;&otilde;es saindo do Salesforce), enquanto o objeto nativo de contrato do RD CRM n&atilde;o sai completo</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Objeto "Sa&iacute;das" da Terra Nutri&ccedil;&atilde;o Vegetal:</strong> automa&ccedil;&atilde;o que registra o volume realizado e cruza com o previsto da negocia&ccedil;&atilde;o, alimentada pelos dados de expedi&ccedil;&atilde;o</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Consolida&ccedil;&atilde;o de v&aacute;rias negocia&ccedil;&otilde;es (res&iacute;duos) numa &uacute;nica proposta</strong>, a mesma l&oacute;gica que voc&ecirc;s tiveram que desenvolver por fora no pr&oacute;prio Salesforce (o objeto "propostas" com Visualforce), s&oacute; que direto no fluxo do RD CRM</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Versionamento de proposta</strong> com hist&oacute;rico de altera&ccedil;&atilde;o de pre&ccedil;o e produto, a AUTZ j&aacute; desenvolveu exatamente isso pra outro cliente que saiu do Salesforce, &eacute; reaproveit&aacute;vel aqui</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Gera&ccedil;&atilde;o e envio de contrato pra assinatura eletr&ocirc;nica</strong> (DocuSign, ClickSign ou Autentique), puxando o modelo certo pelo produto ou campo personalizado</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Notifica&ccedil;&atilde;o de e-mail customizada</strong> de aprova&ccedil;&atilde;o e reprova&ccedil;&atilde;o, com o conte&uacute;do espec&iacute;fico de cada fluxo</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Valida&ccedil;&atilde;o de campo condicionada ao valor de outro campo</strong> (ex: marcar um res&iacute;duo como "perigoso" passa a exigir preencher campos extra), via automa&ccedil;&atilde;o externa que audita e notifica, j&aacute; que o RD CRM s&oacute; trava por etapa</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>HubSpot e RD Marketing alimentando os mesmos funis do CRM</strong> automaticamente, sem duplicar lead entre as duas frentes</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Fase 2, n&atilde;o urgente:</strong> integra&ccedil;&atilde;o com o SysREM pra puxar o realizado automaticamente em vez da digita&ccedil;&atilde;o manual de hoje, e consulta autom&aacute;tica de cr&eacute;dito via API de terceiro dentro do fluxo de aprova&ccedil;&atilde;o</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">Funil de contrato</span><span class="ftag">Consolida&ccedil;&atilde;o de proposta</span><span class="ftag">Versionamento</span><span class="ftag">Assinatura eletr&ocirc;nica</span><span class="ftag">HubSpot + RD Marketing</span></div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="note-box">&#128206; Os dois blocos acima cobrem a fatia que o pr&oacute;prio Robert definiu como inneg&oacute;ci&aacute;vel: qualifica&ccedil;&atilde;o de lead, regras de valida&ccedil;&atilde;o, fluxo de aprova&ccedil;&atilde;o, gera&ccedil;&atilde;o autom&aacute;tica de proposta, contrato e controle de sa&iacute;das.</div>
+</section>
+
+<!-- 3. O QUE NÃO DÁ PRA FAZER -->
+<section id="s3">
+  <div class="eyebrow">03. O que n&atilde;o d&aacute; pra fazer</div>
+  <h2 class="stitle">Onde o processo precisa<br><em>se adaptar &agrave; ferramenta.</em></h2>
+  <p class="ssub">Sendo direto: isso aqui &eacute; o que fica de fora ou exige abrir m&atilde;o de alguma coisa. Nada some, mas muda de formato.</p>
+
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-ico">&#128274;</div>
+      <div><div class="prob-title">Bloqueio de edi&ccedil;&atilde;o durante a aprova&ccedil;&atilde;o</div><div class="prob-body">O RD CRM n&atilde;o trava o card enquanto ele est&aacute; com o aprovador. Fica o log completo de tudo que foi alterado, rastre&aacute;vel, mas edit&aacute;vel, diferente do lock que existe hoje no Salesforce.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#129513;</div>
+      <div><div class="prob-title">Obrigatoriedade de campo em cascata</div><div class="prob-body">S&oacute; existe granularidade por etapa ou por funil. "Se o campo X tiver esse valor, o campo Y vira obrigat&oacute;rio" n&atilde;o &eacute; regra nativa: vira automa&ccedil;&atilde;o externa (bloco 2), n&atilde;o feature pronta da ferramenta.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#127974;</div>
+      <div><div class="prob-title">Consulta de cr&eacute;dito (Serasa) dentro do fluxo</div><div class="prob-body">N&atilde;o &eacute; nativo. D&aacute; pra integrar com a API de um bir&ocirc; de cr&eacute;dito, mas entra como desenvolvimento &agrave; parte, n&atilde;o como feature pronta do RD CRM.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#127963;&#65039;</div>
+      <div><div class="prob-title">Hierarquia de aprova&ccedil;&atilde;o em v&aacute;rios n&iacute;veis</div><div class="prob-body">O RD CRM faz aprova&ccedil;&atilde;o direta por etapa. Um fluxo com dois n&iacute;veis (ex: jur&iacute;dico aprova, depois passa pra outra pessoa) precisa virar duas etapas sequenciais no funil, n&atilde;o um &uacute;nico fluxo hier&aacute;rquico como no Salesforce.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128268;</div>
+      <div><div class="prob-title">Integra&ccedil;&atilde;o autom&aacute;tica com o ERP/SysREM pro faturamento</div><div class="prob-body">Isso ficou fora por decis&atilde;o de voc&ecirc;s mesmos, n&atilde;o por limita&ccedil;&atilde;o da ferramenta, segue como concilia&ccedil;&atilde;o manual do jeito que &eacute; hoje, com espa&ccedil;o pra rever numa fase futura.</div></div>
+    </div>
+  </div>
+
+  <div class="note-box">&#128202; <strong>N&iacute;vel de fidelidade esperado:</strong> com o nativo do bloco 1 mais o desenvolvimento por fora do bloco 2, a opera&ccedil;&atilde;o cobre a faixa de 80&ndash;85% que o pr&oacute;prio Robert colocou como meta na primeira conversa. O que fica de fora acima &eacute; adapta&ccedil;&atilde;o de processo, n&atilde;o perda de informa&ccedil;&atilde;o.</div>
+</section>
+
+<!-- 4. INVESTIMENTO -->
+<section id="s4">
+  <div class="eyebrow">04. Investimento</div>
+  <h2 class="stitle">Faixa de valores<br><em>pra isso funcionar.</em></h2>
+  <p class="ssub">Com tudo mapeado, a implanta&ccedil;&atilde;o fecha em duas frentes de investimento. O detalhamento fino de horas e cronograma fica alinhado na pr&oacute;xima conversa.</p>
+
+  <div class="invest-hero">
+    <div class="invest-lbl">Faixa de investimento</div>
+    <div class="invest-price">R$ 33.000</div>
+    <div class="invest-detail">Implanta&ccedil;&atilde;o, migra&ccedil;&atilde;o e treinamento de equipe somados &agrave;s regras de neg&oacute;cio personalizadas mapeadas no bloco 2.</div>
+    <div class="pay-row">
+      <div class="pay-chip"><div class="pay-chip-lbl">Implanta&ccedil;&atilde;o + Migra&ccedil;&atilde;o + Treinamento</div><div class="pay-chip-val">R$ 18.000</div></div>
+      <div class="pay-chip"><div class="pay-chip-lbl">Regras personalizadas</div><div class="pay-chip-val">R$ 15.000</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CTA -->
+<section class="cta-sec" id="s5" style="max-width:100%;">
+  <div class="cta-autz"><div class="autz-logo-img"></div></div>
+  <div class="eyebrow" style="margin-bottom:18px;">05. Pr&oacute;ximos passos</div>
+  <h2 class="cta-title">Vamos <em>fechar o escopo?</em></h2>
+  <p class="cta-sub">Pr&oacute;ximo passo &eacute; transformar esse mapeamento em proposta de implanta&ccedil;&atilde;o formal, com horas e investimento, considerando os 20 usu&aacute;rios e o plano Advanced necess&aacute;rio pra cobrir tudo que foi levantado aqui.</p>
+  <div class="cta-box">
+    <div class="cta-line"><strong>&#128222;</strong> (16) 99289-6549</div>
+    <div class="cta-line"><strong>&#9993;&#65039;</strong> mk@autz.com.br</div>
+    <div class="cta-line"><a class="cta-link" href="https://autz.com.br/agenda-online-mika/">&#128197; Agende uma reuni&atilde;o aqui</a></div>
+  </div>
+  <div class="cta-foot">&copy; 2026 AUTZ Solu&ccedil;&otilde;es Digitais Integradas &middot; CNPJ 54.489.785/0001-37</div>
+</section>
+
+<script>
+var sids = ['s0','s1','s2','s3','s4','s5'];
+var dotsWrap = document.getElementById('progressDots');
+sids.forEach(function(id, i){
+  var d = document.createElement('div');
+  d.className = 'pd' + (i === 0 ? ' active' : '');
+  d.onclick = function(){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); };
+  dotsWrap.appendChild(d);
+});
+var dots = dotsWrap.querySelectorAll('.pd');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var idx = sids.indexOf(entry.target.id);
+      if(idx >= 0) dots.forEach(function(d,j){ d.classList.toggle('active', j === idx); });
+    }
+  });
+}, {threshold: 0.35});
+sids.forEach(function(id){ var el = document.getElementById(id); if(el) observer.observe(el); });
+
+function toggleFase(el){
+  var open = el.classList.contains('open');
+  document.querySelectorAll('.fase').forEach(function(f){ f.classList.remove('open'); });
+  if(!open){ el.classList.add('open'); }
+}
+</script>
+</body>
+</html>
