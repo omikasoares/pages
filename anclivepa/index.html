@@ -313,9 +313,9 @@
   <div class="stats">
     <div class="stat done"><span class="n">5</span><span class="l">Concluído</span></div>
     <div class="stat progress"><span class="n">2</span><span class="l">Em andamento</span></div>
-    <div class="stat planned"><span class="n">11</span><span class="l">Planejado</span></div>
-    <div class="stat blocked"><span class="n">3</span><span class="l">Bloqueado</span></div>
-    <div class="stat confirm"><span class="n">3</span><span class="l">A confirmar</span></div>
+    <div class="stat planned"><span class="n">12</span><span class="l">Planejado</span></div>
+    <div class="stat blocked"><span class="n">4</span><span class="l">Bloqueado</span></div>
+    <div class="stat confirm"><span class="n">6</span><span class="l">A confirmar</span></div>
   </div>
 
   <section>
@@ -376,7 +376,7 @@
         <div class="task"><div class="task-dot done"></div><div class="task-body"><p>254 cursos cadastrados como produtos</p><p class="task-note">Preço ainda placeholder (R$0,01)</p></div><span class="owner autz">Autz</span></div>
         <div class="task"><div class="task-dot done"></div><div class="task-body"><p>Automação de teto de desconto por equipe (rascunho, API real via OAuth2)</p></div><span class="owner autz">Autz</span></div>
         <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Nova etapa/fluxo "Pendência Financeira"</p><p class="task-note">Lead inadimplente não sai do funil, vai pra negociação financeira</p></div><span class="owner autz">Autz</span></div>
-        <div class="task"><div class="task-dot blocked"></div><div class="task-body"><p>Criar 8 vendedores + popular os 3 Times</p><p class="task-note">Só a Patrícia consegue, é ação no painel do RD</p></div><span class="owner cliente">Anclivepa</span></div>
+        <div class="task"><div class="task-dot blocked"></div><div class="task-body"><p>Criar 8 vendedores + popular os 3 Times</p><p class="task-note">Só a Patrícia consegue, é ação no painel do RD · agora é bloqueio nº1 da migração também, virou pedido urgente</p></div><span class="owner cliente">Anclivepa</span></div>
         <div class="task"><div class="task-dot confirm"></div><div class="task-body"><p>Preço real dos 254 cursos</p></div><span class="owner cliente">Anclivepa</span></div>
       </div>
 
@@ -385,8 +385,10 @@
         <h3>Migração de Dados Legados</h3>
         <p class="card-sub">Novo nesta reunião (19/08)</p>
 
-        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Vendedores sinalizam leads "em atendimento", movendo pra etapa de negociação no sistema atual</p><p class="task-note">Pré-requisito da migração abaixo</p></div><span class="owner cliente">Anclivepa</span></div>
-        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Extrair via API e migrar negociações ativas do Exact Sales/Spotter (= "Isaac" na fala do cliente, mesmo sistema) pro RD CRM</p><p class="task-note">Prazo 08/09 · só as ativas migram, resto é requalificado pela IA, não migrado cru</p></div><span class="owner ambos">Ambos</span></div>
+        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Leads que migram: os que estiverem em "Em Atendimento" ou "Negociação" no sistema atual, + leads novos captados no dia da exportação</p><p class="task-note">Critério confirmado pela Patrícia em 21/08</p></div><span class="owner cliente">Anclivepa</span></div>
+        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Extrair via API e migrar essas negociações do Exact Sales/Spotter (= "Isaac" na fala do cliente, mesmo sistema) pro RD CRM</p><p class="task-note">Prazo 08/09 · resto da base é requalificado pela IA, não migrado cru</p></div><span class="owner ambos">Ambos</span></div>
+        <div class="task"><div class="task-dot blocked"></div><div class="task-body"><p>Redistribuir oportunidades por vertical na migração (ex.: lead de Pós com o Victor, que no novo modelo é de Cursos Livres)</p><p class="task-note">Resolvido com a estrutura que já existe: `Vertical da Oportunidade` = vertical do produto, `owner_id` = vendedor da vertical certa, `Consultor de Carteira` = Victor (preserva o vínculo original). Só falta ter vendedor real pra atribuir — mesmo bloqueio do card CRM ao lado.</p></div><span class="owner autz">Autz</span></div>
+        <div class="task"><div class="task-dot confirm"></div><div class="task-body"><p>Data exata da migração dentro da janela até 08/09</p><p class="task-note">Depende do bloqueio de usuários ser resolvido primeiro</p></div><span class="owner autz">Autz</span></div>
       </div>
 
       <!-- SDR Virtual / IA -->
@@ -426,9 +428,19 @@
         <h3>RD Conversas</h3>
         <p class="card-sub">Backlog do diagnóstico de 12/08, ainda não iniciado</p>
 
-        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Investigar bug Tallos — contatos ficam inacessíveis pro vendedor</p></div><span class="owner autz">Autz</span></div>
+        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Investigar bug Tallos — contatos ficam inacessíveis pro vendedor</p><p class="task-note">Patrícia reforçou o pedido em 21/08, quer resolvido antes da virada</p></div><span class="owner autz">Autz</span></div>
         <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Consertar roteamento — fila geral → fila por setor com SLA</p></div><span class="owner autz">Autz</span></div>
         <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Consolidar carteiras fragmentadas nas 3 verticais</p></div><span class="owner autz">Autz</span></div>
+        <div class="task"><div class="task-dot confirm"></div><div class="task-body"><p>Definir critério de limpeza geral das filas (tem lead de 2024 parado)</p><p class="task-note">O quê arquivar/encerrar/migrar/manter — Patrícia perguntou, ainda sem critério definido</p></div><span class="owner cliente">Anclivepa</span></div>
+        <div class="task"><div class="task-dot planned"></div><div class="task-body"><p>Migrar os 4 vendedores que atendem por celular pessoal pro RD, depois desativar uso individual</p><p class="task-note">Sem perder histórico nem contatos em andamento</p></div><span class="owner autz">Autz</span></div>
+      </div>
+
+      <!-- Treinamento -->
+      <div class="card">
+        <h3>Treinamento do Time</h3>
+        <p class="card-sub">Pedido da Patrícia (21/08)</p>
+
+        <div class="task"><div class="task-dot confirm"></div><div class="task-body"><p>Compartilhar agenda do treinamento da ferramenta (semana de 24/08)</p><p class="task-note">Patrícia vai fazer treinamento de vendas próprio, mas precisa também do treinamento do RD — agenda ainda não definida</p></div><span class="owner autz">Autz</span></div>
       </div>
 
       <!-- BI -->
@@ -449,12 +461,14 @@
       <li><b>Escopo do fluxo de follow-up</b> — cadência, gatilhos e se varia por vertical.<span class="detail">Ainda não foi detalhado em nenhuma reunião.</span></li>
       <li><b>Escopo dos 3 agentes de IA por vertical</b> — atendimento completo ou só qualificação/triagem?<span class="detail">Pedido chegou sem desenho ainda.</span></li>
       <li><b>Preço real dos 254 cursos</b> — hoje todos com placeholder de R$0,01.</li>
+      <li><b>Critério de limpeza das filas do RD Conversas</b> — o quê arquivar/encerrar/migrar/manter (tem lead de 2024 parado).</li>
+      <li><b>Agenda do treinamento da ferramenta</b> — Patrícia pediu, ainda não montada.</li>
     </ul>
   </div>
 
   <footer>
     <span>Autz Automações — uso interno do projeto Anclivepa/Facive</span>
-    <span>Roadmap vivo — reflete o estado em 19/08/2026, revisar após a próxima reunião</span>
+    <span>Roadmap vivo — atualizado com as dúvidas da Patrícia de 21/08/2026</span>
   </footer>
 
 </div>
