@@ -1,0 +1,736 @@
+<title>Médicos × Procedimentos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F5F7F5;
+    --surface: #FFFFFF;
+    --surface-2: #EEF2EF;
+    --border: #DCE3DF;
+    --ink: #1B2420;
+    --ink-soft: #55635C;
+    --ink-faint: #8B978F;
+    --accent: #2F6F62;
+    --accent-ink: #1F4B41;
+    --accent-soft: #E4EEEA;
+    --tag-consulta: #3B6EA5;
+    --tag-consulta-soft: #E5EDF5;
+    --tag-sessao: #2F6F62;
+    --tag-sessao-soft: #E4EEEA;
+    --tag-retorno: #8A6D2E;
+    --tag-retorno-soft: #F1EADB;
+    --tag-exame: #6B5B95;
+    --tag-exame-soft: #EAE6F2;
+    --tag-outro: #6E6E64;
+    --tag-outro-soft: #EBEBE6;
+    --flag: #A8461F;
+    --flag-soft: #F5E7DF;
+    --flag-border: #E0BBA4;
+    --shadow: 0 1px 2px rgba(27,36,32,0.04), 0 6px 20px rgba(27,36,32,0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101613;
+      --surface: #19211D;
+      --surface-2: #212B25;
+      --border: #2C3832;
+      --ink: #E8EDE9;
+      --ink-soft: #A3B3AB;
+      --ink-faint: #6E7D75;
+      --accent: #6FBFAE;
+      --accent-ink: #BEE8DC;
+      --accent-soft: #1E3A34;
+      --tag-consulta: #7FA9D8;
+      --tag-consulta-soft: #1E2C3B;
+      --tag-sessao: #6FBFAE;
+      --tag-sessao-soft: #1E3A34;
+      --tag-retorno: #D3B570;
+      --tag-retorno-soft: #362E1B;
+      --tag-exame: #B6A6DE;
+      --tag-exame-soft: #2B2540;
+      --tag-outro: #A6A69A;
+      --tag-outro-soft: #2A2A24;
+      --flag: #E39A73;
+      --flag-soft: #33231A;
+      --flag-border: #5A3F2C;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #101613;
+    --surface: #19211D;
+    --surface-2: #212B25;
+    --border: #2C3832;
+    --ink: #E8EDE9;
+    --ink-soft: #A3B3AB;
+    --ink-faint: #6E7D75;
+    --accent: #6FBFAE;
+    --accent-ink: #BEE8DC;
+    --accent-soft: #1E3A34;
+    --tag-consulta: #7FA9D8;
+    --tag-consulta-soft: #1E2C3B;
+    --tag-sessao: #6FBFAE;
+    --tag-sessao-soft: #1E3A34;
+    --tag-retorno: #D3B570;
+    --tag-retorno-soft: #362E1B;
+    --tag-exame: #B6A6DE;
+    --tag-exame-soft: #2B2540;
+    --tag-outro: #A6A69A;
+    --tag-outro-soft: #2A2A24;
+    --flag: #E39A73;
+    --flag-soft: #33231A;
+    --flag-border: #5A3F2C;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+
+  a { color: inherit; }
+
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 6rem;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 2.25rem 1rem 4rem; }
+  }
+
+  header.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 4.2vw, 2.85rem);
+    line-height: 1.12;
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .subtitle {
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .method {
+    margin-top: 0.5rem;
+    padding: 0.95rem 1.15rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    max-width: 68ch;
+  }
+  .method strong { color: var(--ink); font-weight: 600; }
+
+  .stat-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.75rem 0 0;
+  }
+  @media (max-width: 560px) {
+    .stat-bar { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat {
+    background: var(--surface);
+    padding: 0.95rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .stat-num {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  nav.jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 2rem 0 0;
+  }
+  nav.jump a {
+    font-size: 0.79rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  nav.jump a:hover { border-color: var(--accent); color: var(--accent-ink); }
+  nav.jump a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  main { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 2.5rem; }
+
+  .esp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem 1.55rem;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 1.5rem;
+  }
+  @media (max-width: 560px) {
+    .esp-card { padding: 1.15rem 1.05rem 1.3rem; }
+  }
+
+  .esp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.05rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .esp-head h3 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.32rem;
+    margin: 0 0 0.55rem;
+    color: var(--ink);
+  }
+
+  .doc-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .doc-chip {
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .esp-stat { text-align: right; flex-shrink: 0; }
+  .esp-stat-num {
+    display: block;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .esp-stat-label {
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tipo-group + .tipo-group { margin-top: 1.15rem; }
+
+  .tipo-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+  .tipo-label .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .tipo-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  .tag-consulta .dot { background: var(--tag-consulta); }
+  .tag-sessao .dot { background: var(--tag-sessao); }
+  .tag-retorno .dot { background: var(--tag-retorno); }
+  .tag-exame .dot { background: var(--tag-exame); }
+  .tag-outro .dot { background: var(--tag-outro); }
+
+  .proc-table-wrap { overflow-x: auto; }
+  table.proc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+  }
+  .proc-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    font-weight: 500;
+    padding: 0.3rem 0.6rem 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .proc-table td {
+    padding: 0.42rem 0.6rem 0.42rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+    vertical-align: top;
+  }
+  .proc-table tr:last-child td { border-bottom: none; }
+  .col-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent-ink);
+    white-space: nowrap;
+    width: 3.4rem;
+  }
+  .col-cod {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    width: 7rem;
+  }
+
+  .empty-note {
+    font-size: 0.85rem;
+    color: var(--flag);
+    background: var(--flag-soft);
+    border: 1px dashed var(--flag-border);
+    padding: 0.65rem 0.85rem;
+    border-radius: 6px;
+    margin: 0;
+  }
+
+  section.orphans {
+    margin-top: 2.25rem;
+    background: var(--flag-soft);
+    border: 1px solid var(--flag-border);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem 1.55rem;
+  }
+  section.orphans h2 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 0 0 0.4rem;
+    color: var(--flag);
+  }
+  section.orphans p.note {
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 1.1rem;
+  }
+  section.orphans table.proc-table td,
+  section.orphans table.proc-table th { border-bottom-color: var(--flag-border); }
+  section.orphans .col-id { color: var(--flag); }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .esp-card, nav.jump a { transition: box-shadow 0.15s ease, border-color 0.15s ease; }
+  }
+</style>
+
+<div class="page">
+  <header class="hero">
+    <span class="eyebrow">Feegow · Dr. André Balero</span>
+    <h1>Médicos e seus procedimentos</h1>
+    <p class="subtitle">Levantamento de cada profissional cadastrado no Feegow, a especialidade que carrega no sistema, e os procedimentos do catálogo que se encaixam nela — separando com clareza Consulta de Sessão/Tratamento, já que o sistema trata as duas coisas como agendamentos diferentes.</p>
+    <div class="method"><strong>Como isso foi montado:</strong> o Feegow não guarda uma relação direta "médico → procedimento" — só médico → uma única especialidade, e o catálogo de procedimentos não referencia especialidade nem profissional nenhum. Este documento cruza os 25 profissionais/9 especialidades com os 104 procedimentos do catálogo por nome + tipo de agendamento. É um ponto de partida técnico, não a palavra final — a coluna "Sem especialidade correspondente" ao final precisa de confirmação da clínica, e vale revisar se todo médico de uma especialidade realmente faz todos os procedimentos listados nela.</div>
+    <div class="stat-bar">
+      <div class="stat"><span class="stat-num">25</span><span class="stat-label">Profissionais</span></div>
+      <div class="stat"><span class="stat-num">9</span><span class="stat-label">Especialidades</span></div>
+      <div class="stat"><span class="stat-num">64</span><span class="stat-label">Procedimentos classificados</span></div>
+      <div class="stat"><span class="stat-num">40</span><span class="stat-label">Sem especialidade correspondente</span></div>
+    </div>
+    <nav class="jump">
+      <a href="#esp-192">Fisioterapia</a>
+      <a href="#esp-137">Acupuntura</a>
+      <a href="#esp-294">Osteopatia</a>
+      <a href="#esp-167">Nutrição</a>
+      <a href="#esp-104">Endocrinologia</a>
+      <a href="#esp-229">Nutrologia</a>
+      <a href="#esp-293">Quiropraxia</a>
+      <a href="#esp-129">Ortopedia</a>
+      <a href="#esp-296">Terapeuta Complementar</a>
+      <a href="#orphans">Sem especialidade</a>
+    </nav>
+  </header>
+
+  <main>
+    
+  <section class="esp-card" id="esp-192">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Fisioterapia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Ana Karolina Azevedo</span><span class="doc-chip">Dr. Anderson de Carvalho Gomes</span><span class="doc-chip">Dra. Beatriz Sala Rodrigues Martins</span><span class="doc-chip">Dra. Bianca Alves Linhares</span><span class="doc-chip">Dr. Caique Atenca Dias</span><span class="doc-chip">Dra. Gabrielle Viana Lima</span><span class="doc-chip">Dr. Joao Pereira Lazoski Filho</span><span class="doc-chip">Dra. Juliana Fernanda de Lima e Silva</span><span class="doc-chip">Dra. Karoline Souza Rocha</span><span class="doc-chip">Dra. Leticia Buccini Santos</span><span class="doc-chip">Dr. Padua Jose Barizon</span><span class="doc-chip">Dr. Philippe Ribeiro de Moraes</span><span class="doc-chip">Dra. Stephannia Silva Rodrigues Barreto</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">41</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">3</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#16</td><td>Consulta Fisioterapia</td><td class="col-cod">—</td></tr><tr><td class="col-id">#17</td><td>Consulta Fisioterapia ATM</td><td class="col-cod">—</td></tr><tr><td class="col-id">#18</td><td>Consulta Fisioterapia Uroginecológica</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">29</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#320</td><td>Avaliação Inicial Fisioterapia</td><td class="col-cod">99900154</td></tr><tr><td class="col-id">#322</td><td>Avaliação Inicial Fisioterapia Pélvica</td><td class="col-cod">99900372</td></tr><tr><td class="col-id">#323</td><td>Avaliação Inicial RPG</td><td class="col-cod">99900373</td></tr><tr><td class="col-id">#391</td><td>Biofeedback com EMG</td><td class="col-cod">20103131</td></tr><tr><td class="col-id">#310</td><td>Consulta Ambulatorial em Fisioterapia</td><td class="col-cod">50000144</td></tr><tr><td class="col-id">#401</td><td>Eletroestimulação do Assoalho Pélvico E/ou Outra Técnica de Exercícios Perineais</td><td class="col-cod">20203020</td></tr><tr><td class="col-id">#384</td><td>Estimulação do Nervo Vago (env)</td><td class="col-cod">31601014</td></tr><tr><td class="col-id">#402</td><td>Estimulacao Eletrica Transcutanea</td><td class="col-cod">31602185</td></tr><tr><td class="col-id">#313</td><td>Fisioterapia - Alteracao Musculo-esqueletico</td><td class="col-cod">50000160</td></tr><tr><td class="col-id">#304</td><td>Interconsulta com Fisioterapeuta</td><td class="col-cod">500001AS</td></tr><tr><td class="col-id">#252</td><td>Pacote de Fisioterapia Ambulatorial Genito-urinario</td><td class="col-cod">64619753</td></tr><tr><td class="col-id">#327</td><td>Pacote de RPG</td><td class="col-cod">98800432</td></tr><tr><td class="col-id">#325</td><td>Pacote Fisioterapia</td><td class="col-cod">98800429</td></tr><tr><td class="col-id">#324</td><td>Pacote Fisioterapia Pelvica</td><td class="col-cod">98800430</td></tr><tr><td class="col-id">#318</td><td>Patologia Osteomioarticular em Diferentes Segmentos da Coluna</td><td class="col-cod">20103514</td></tr><tr><td class="col-id">#319</td><td>Patologia Osteomioarticular em Dois Ou Mais Membros</td><td class="col-cod">20103492</td></tr><tr><td class="col-id">#409</td><td>Reabilitação Labiríntica (por Sessão)</td><td class="col-cod">20103638</td></tr><tr><td class="col-id">#408</td><td>Reabilitação Perineal com Biofeedback</td><td class="col-cod">20103646</td></tr><tr><td class="col-id">#332</td><td>Recuperação Funcional de Distúrbios Crânio-faciais</td><td class="col-cod">20103654</td></tr><tr><td class="col-id">#314</td><td>Retorno de Fisioterapia</td><td class="col-cod">—</td></tr><tr><td class="col-id">#328</td><td>Retorno Fisioterapia Einstein</td><td class="col-cod">98800429</td></tr><tr><td class="col-id">#311</td><td>Sessão Fisioterapia P/ Inflamacao do Ap. Genito-urinario e Reprodutor</td><td class="col-cod">50000233</td></tr><tr><td class="col-id">#309</td><td>Sessoes RPG</td><td class="col-cod">50000446</td></tr><tr><td class="col-id">#382</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Moles - Acompanhamento 1° Aplicação</td><td class="col-cod">30730120</td></tr><tr><td class="col-id">#383</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Moles - Acompanhamento Reaplicações</td><td class="col-cod">30730139</td></tr><tr><td class="col-id">#425</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Ósseas - Acompanhamento 1° Aplicação</td><td class="col-cod">30732050</td></tr><tr><td class="col-id">#426</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Ósseas - Acompanhamento Reaplicações</td><td class="col-cod">30732069</td></tr><tr><td class="col-id">#231</td><td>Tratamento Fisioterapia Ambulatorial Nas Doencas Cronicas Degenerativas do Sistema Musculo-esqueletico</td><td class="col-cod">64619664</td></tr><tr><td class="col-id">#249</td><td>Tratamento Fisioterapico Ambulatorial Ginecologica</td><td class="col-cod">64619737</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">8</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#22</td><td>Drenagem Linfática</td><td class="col-cod">—</td></tr><tr><td class="col-id">#27</td><td>Fisioterapia ATM</td><td class="col-cod">—</td></tr><tr><td class="col-id">#26</td><td>Fisioterapia Clássica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#28</td><td>Fisioterapia Esportiva</td><td class="col-cod">—</td></tr><tr><td class="col-id">#29</td><td>Fisioterapia Uroginecológica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#31</td><td>Liberação Miofascial</td><td class="col-cod">—</td></tr><tr><td class="col-id">#37</td><td>RPG</td><td class="col-cod">—</td></tr><tr><td class="col-id">#394</td><td>Sessão de Fisioterapia Uroginecológica com Biofeedback</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-outro"><span class="dot"></span>Outro (tipo 0) <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#373</td><td>Consulta RPG</td><td class="col-cod">50000446</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-137">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Acupuntura</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Raphael Aliman Rossi</span><span class="doc-chip">Dra. Viviane Lacerda Lunguinho</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">5</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#14</td><td>Consulta Acupuntura</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">3</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#307</td><td>Acupuntura Por Sessão</td><td class="col-cod">31601014</td></tr><tr><td class="col-id">#321</td><td>Avaliação Inicial Acupuntura</td><td class="col-cod">99900374</td></tr><tr><td class="col-id">#326</td><td>Pacote de Acupuntura</td><td class="col-cod">98800341</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#350</td><td>Acupuntura</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-294">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Osteopatia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Andre Balero Michelman</span><span class="doc-chip">Dra. Maria Otilia do Amaral Maset Luiz</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">5</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">2</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#20</td><td>Consulta Osteopatia</td><td class="col-cod">5000087C</td></tr><tr><td class="col-id">#421</td><td>Consulta Osteopatia Pediátrica - Primeira Vez</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">2</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#432</td><td>Consulta / Sessao Osteopatia Pediatrica</td><td class="col-cod">5000087P</td></tr><tr><td class="col-id">#317</td><td>Sessão de Osteopatia</td><td class="col-cod">5000087C</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#34</td><td>Osteopatia</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-167">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Nutrição</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Leticia Galvão Balero</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">4</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">3</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#396</td><td>Consulta Nutricionista - Rotina</td><td class="col-cod">—</td></tr><tr><td class="col-id">#398</td><td>Consulta Nutricionista + Bioimpendância</td><td class="col-cod">—</td></tr><tr><td class="col-id">#390</td><td>Consulta Nutricionista+ Bioimpedância - Primeira Vez</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#427</td><td>Consulta Por Nutricionista</td><td class="col-cod">50000560</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-104">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Endocrinologia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Beatriz Ruggiero Rossi</span><span class="doc-chip">Wilson Nazario</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">3</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">2</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#386</td><td>Consulta Endocrinologista - Primeira Vez</td><td class="col-cod">10101012</td></tr><tr><td class="col-id">#388</td><td>Consulta Endocrinologista - Rotina</td><td class="col-cod">10101012</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-retorno"><span class="dot"></span>Retorno <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#389</td><td>Endocrinologista - Retorno</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-229">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Nutrologia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Andre Ferreira Xavier</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">3</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">2</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#428</td><td>Consulta Nutrólogo - Primeira Vez</td><td class="col-cod">20101074</td></tr><tr><td class="col-id">#429</td><td>Consulta Nutrólogo - Rotina</td><td class="col-cod">20101074</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-retorno"><span class="dot"></span>Retorno <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#430</td><td>Retorno com Nutrólogo</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-293">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Quiropraxista</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Alexandre Ferreira da Silva</span><span class="doc-chip">Dr. Vinicius Ferreira Macedo</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">2</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#51</td><td>Consulta Quiropraxia</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#36</td><td>Quiropraxia</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-129">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Ortopedia e Traumatologia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Adriano Augusto Gouvea Jaoude</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">1</span>
+        <span class="esp-stat-label">procedimento</span>
+      </div>
+    </div>
+    
+      <div class="tipo-group">
+        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">1</span></h4>
+        <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+          <tbody><tr><td class="col-id">#19</td><td>Consulta Médica Ortopedista</td><td class="col-cod">—</td></tr></tbody>
+        </table>
+        </div>
+      </div>
+  </section>
+  <section class="esp-card" id="esp-296">
+    <div class="esp-head">
+      <div class="esp-head-left">
+        <h3>Terapeuta Complementar</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Eliana dos Santos Adao</span></div>
+      </div>
+      <div class="esp-stat">
+        <span class="esp-stat-num">0</span>
+        <span class="esp-stat-label">procedimentos</span>
+      </div>
+    </div>
+    <p class="empty-note">Nenhum procedimento do catálogo bateu com o nome desta especialidade — confirmar manualmente com a clínica.</p>
+  </section>
+  </main>
+
+  <section class="orphans" id="orphans">
+    <h2>40 procedimentos sem especialidade correspondente</h2>
+    <p class="note">Nenhum dos 9 profissionais tem uma especialidade que bata com estes procedimentos no Feegow — inclui exames (Baropodometria, Bioimpedanciometria, Termografia, Polissonografia), Pilates, Recovery, Massagens, e casos específicos como a consulta pessoal do Dr. André Balero (#355) e a Consulta em Consultório genérica (#315, mesmo código de convênio das consultas de Endocrinologia). Provavelmente precisam ser vinculados manualmente a um profissional ou a uma especialidade nova no Feegow.</p>
+    <div class="proc-table-wrap">
+      <table class="proc-table">
+        <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
+        <tbody>
+          <tr><td class="col-id">#12</td><td>Análise de Pisada</td><td class="col-cod">—</td></tr><tr><td class="col-id">#331</td><td>Atividade Reflexa Ou Aplicacao de Tecnica Cinesioterapica Especifica</td><td class="col-cod">20103115</td></tr><tr><td class="col-id">#362</td><td>Aula Experimental de Pilates</td><td class="col-cod">—</td></tr><tr><td class="col-id">#395</td><td>Avaliação Inicial - SPA</td><td class="col-cod">—</td></tr><tr><td class="col-id">#13</td><td>Baropodometria</td><td class="col-cod">—</td></tr><tr><td class="col-id">#423</td><td>Baropodometria</td><td class="col-cod">—</td></tr><tr><td class="col-id">#387</td><td>Bioimpedanciometria</td><td class="col-cod">41301048</td></tr><tr><td class="col-id">#393</td><td>Bloqueio</td><td class="col-cod">—</td></tr><tr><td class="col-id">#397</td><td>Coach de Saúde</td><td class="col-cod">—</td></tr><tr><td class="col-id">#399</td><td>Consulta Cortesia</td><td class="col-cod">—</td></tr><tr><td class="col-id">#355</td><td>Consulta Dr. Andre Balero</td><td class="col-cod">—</td></tr><tr><td class="col-id">#315</td><td>Consulta em Consultorio</td><td class="col-cod">10101012</td></tr><tr><td class="col-id">#15</td><td>Consulta Fisiologia do Exercício</td><td class="col-cod">—</td></tr><tr><td class="col-id">#306</td><td>Consulta Médica Fisiatrica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#357</td><td>Entrega da Palmilha</td><td class="col-cod">—</td></tr><tr><td class="col-id">#32</td><td>Massagem Desportiva</td><td class="col-cod">—</td></tr><tr><td class="col-id">#33</td><td>Massagem Relaxante</td><td class="col-cod">—</td></tr><tr><td class="col-id">#23</td><td>Neuromodulação</td><td class="col-cod">31601014</td></tr><tr><td class="col-id">#359</td><td>Palmilha Postural</td><td class="col-cod">—</td></tr><tr><td class="col-id">#369</td><td>Pilates</td><td class="col-cod">—</td></tr><tr><td class="col-id">#43</td><td>Pilates Mensal (1x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#44</td><td>Pilates Mensal (2x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#45</td><td>Pilates Mensal (3x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#46</td><td>Pilates Trimestral (1x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#47</td><td>Pilates Trimestral (2x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#48</td><td>Pilates Trimestral (3x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#329</td><td>Polissonografia de Noite Inteira (psg) (inclui Polissonogramas)</td><td class="col-cod">40103528</td></tr><tr><td class="col-id">#330</td><td>Polissonograma com Teste de CPAP Nasal</td><td class="col-cod">40103544</td></tr><tr><td class="col-id">#365</td><td>Preparação Fisica para Esportes</td><td class="col-cod">—</td></tr><tr><td class="col-id">#419</td><td>Protocolo Recovery</td><td class="col-cod">—</td></tr><tr><td class="col-id">#370</td><td>Recovery (banheira de Gelo)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#364</td><td>Recovery (bota de Compressão)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#30</td><td>Recovery (game Ready)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#420</td><td>Recovery (pós-cirúrgico)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#377</td><td>Retorno - Único</td><td class="col-cod">—</td></tr><tr><td class="col-id">#367</td><td>Retorno Consulta Médica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#356</td><td>Retorno de Palmilha</td><td class="col-cod">—</td></tr><tr><td class="col-id">#385</td><td>Termografia</td><td class="col-cod">41501136</td></tr><tr><td class="col-id">#422</td><td>Trata</td><td class="col-cod">—</td></tr><tr><td class="col-id">#232</td><td>Tratamento Fisioterápico Ambulatorial Traumatologia</td><td class="col-cod">64619702</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <span>Fonte: API Feegow (professional/list, procedures/list) · Codificação de convênio cruzada com "Procedimentos + codigos sistema.pdf"</span>
+    <span>Levantamento em 25/08/2026</span>
+  </footer>
+</div>
