@@ -12,19 +12,15 @@
     --accent: #2F6F62;
     --accent-ink: #1F4B41;
     --accent-soft: #E4EEEA;
-    --tag-consulta: #3B6EA5;
-    --tag-consulta-soft: #E5EDF5;
-    --tag-sessao: #2F6F62;
-    --tag-sessao-soft: #E4EEEA;
-    --tag-retorno: #8A6D2E;
-    --tag-retorno-soft: #F1EADB;
-    --tag-exame: #6B5B95;
-    --tag-exame-soft: #EAE6F2;
-    --tag-outro: #6E6E64;
-    --tag-outro-soft: #EBEBE6;
+    --unit-vlo: #2F6F62;
+    --unit-vlo-soft: #E4EEEA;
+    --unit-rep: #3B6EA5;
+    --unit-rep-soft: #E5EDF5;
     --flag: #A8461F;
     --flag-soft: #F5E7DF;
     --flag-border: #E0BBA4;
+    --ok: #2F6F62;
+    --ok-soft: #E4EEEA;
     --shadow: 0 1px 2px rgba(27,36,32,0.04), 0 6px 20px rgba(27,36,32,0.05);
   }
 
@@ -40,19 +36,15 @@
       --accent: #6FBFAE;
       --accent-ink: #BEE8DC;
       --accent-soft: #1E3A34;
-      --tag-consulta: #7FA9D8;
-      --tag-consulta-soft: #1E2C3B;
-      --tag-sessao: #6FBFAE;
-      --tag-sessao-soft: #1E3A34;
-      --tag-retorno: #D3B570;
-      --tag-retorno-soft: #362E1B;
-      --tag-exame: #B6A6DE;
-      --tag-exame-soft: #2B2540;
-      --tag-outro: #A6A69A;
-      --tag-outro-soft: #2A2A24;
+      --unit-vlo: #6FBFAE;
+      --unit-vlo-soft: #1E3A34;
+      --unit-rep: #7FA9D8;
+      --unit-rep-soft: #1E2C3B;
       --flag: #E39A73;
       --flag-soft: #33231A;
       --flag-border: #5A3F2C;
+      --ok: #6FBFAE;
+      --ok-soft: #1E3A34;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
     }
   }
@@ -68,19 +60,15 @@
     --accent: #6FBFAE;
     --accent-ink: #BEE8DC;
     --accent-soft: #1E3A34;
-    --tag-consulta: #7FA9D8;
-    --tag-consulta-soft: #1E2C3B;
-    --tag-sessao: #6FBFAE;
-    --tag-sessao-soft: #1E3A34;
-    --tag-retorno: #D3B570;
-    --tag-retorno-soft: #362E1B;
-    --tag-exame: #B6A6DE;
-    --tag-exame-soft: #2B2540;
-    --tag-outro: #A6A69A;
-    --tag-outro-soft: #2A2A24;
+    --unit-vlo: #6FBFAE;
+    --unit-vlo-soft: #1E3A34;
+    --unit-rep: #7FA9D8;
+    --unit-rep-soft: #1E2C3B;
     --flag: #E39A73;
     --flag-soft: #33231A;
     --flag-border: #5A3F2C;
+    --ok: #6FBFAE;
+    --ok-soft: #1E3A34;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
   }
 
@@ -98,22 +86,10 @@
 
   a { color: inherit; }
 
-  .page {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 3.5rem 1.5rem 6rem;
-  }
+  .page { max-width: 960px; margin: 0 auto; padding: 3.5rem 1.5rem 6rem; }
+  @media (max-width: 640px) { .page { padding: 2.25rem 1rem 4rem; } }
 
-  @media (max-width: 640px) {
-    .page { padding: 2.25rem 1rem 4rem; }
-  }
-
-  header.hero {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    margin-bottom: 2.75rem;
-  }
+  header.hero { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
 
   .eyebrow {
     font-family: 'IBM Plex Mono', monospace;
@@ -125,14 +101,7 @@
     align-items: center;
     gap: 0.5rem;
   }
-  .eyebrow::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: inline-block;
-  }
+  .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
 
   h1 {
     font-family: 'Newsreader', Georgia, serif;
@@ -145,66 +114,28 @@
     color: var(--ink);
   }
 
-  .subtitle {
-    font-size: 1.02rem;
-    color: var(--ink-soft);
-    max-width: 62ch;
-    margin: 0;
-  }
+  .subtitle { font-size: 1.02rem; color: var(--ink-soft); max-width: 64ch; margin: 0; }
 
-  .method {
-    margin-top: 0.5rem;
-    padding: 0.95rem 1.15rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 6px;
-    font-size: 0.88rem;
-    color: var(--ink-soft);
-    max-width: 68ch;
-  }
-  .method strong { color: var(--ink); font-weight: 600; }
-
-  .stat-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+  .revision-box {
+    margin-top: 0.75rem;
+    padding: 1.1rem 1.3rem;
+    background: var(--ok-soft);
+    border: 1px solid var(--ok);
     border-radius: 8px;
-    overflow: hidden;
-    margin: 1.75rem 0 0;
+    max-width: 72ch;
   }
-  @media (max-width: 560px) {
-    .stat-bar { grid-template-columns: repeat(2, 1fr); }
-  }
-  .stat {
-    background: var(--surface);
-    padding: 0.95rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-  .stat-num {
+  .revision-box h2 {
     font-family: 'Newsreader', Georgia, serif;
-    font-size: 1.7rem;
     font-weight: 500;
-    color: var(--ink);
-    font-variant-numeric: tabular-nums;
+    font-size: 1.05rem;
+    margin: 0 0 0.55rem;
+    color: var(--accent-ink);
   }
-  .stat-label {
-    font-size: 0.74rem;
-    color: var(--ink-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  .revision-box ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .revision-box li { font-size: 0.87rem; color: var(--ink-soft); }
+  .revision-box strong { color: var(--ink); font-weight: 600; }
 
-  nav.jump {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 2rem 0 0;
-  }
+  nav.jump { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.75rem 0 0; }
   nav.jump a {
     font-size: 0.79rem;
     text-decoration: none;
@@ -218,37 +149,47 @@
   nav.jump a:hover { border-color: var(--accent); color: var(--accent-ink); }
   nav.jump a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  main { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 2.5rem; }
+  .unit-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    margin: 3rem 0 1.1rem;
+    scroll-margin-top: 1.5rem;
+  }
+  .unit-header h2 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.55rem;
+    margin: 0;
+  }
+  .unit-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .unit-vlo .unit-tag { background: var(--unit-vlo-soft); color: var(--unit-vlo); }
+  .unit-rep .unit-tag { background: var(--unit-rep-soft); color: var(--unit-rep); }
 
-  .esp-card {
+  main { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .doc-card {
     background: var(--surface);
     border: 1px solid var(--border);
+    border-left: 3px solid var(--unit-c, var(--accent));
     border-radius: 10px;
-    padding: 1.4rem 1.5rem 1.55rem;
+    padding: 1.3rem 1.45rem 1.4rem;
     box-shadow: var(--shadow);
     scroll-margin-top: 1.5rem;
   }
-  @media (max-width: 560px) {
-    .esp-card { padding: 1.15rem 1.05rem 1.3rem; }
-  }
+  .unit-vlo-cards .doc-card { --unit-c: var(--unit-vlo); }
+  .unit-rep-cards .doc-card { --unit-c: var(--unit-rep); }
+  @media (max-width: 560px) { .doc-card { padding: 1.1rem 1.05rem 1.2rem; } }
 
-  .esp-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    margin-bottom: 1.05rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .esp-head h3 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-weight: 500;
-    font-size: 1.32rem;
-    margin: 0 0 0.55rem;
-    color: var(--ink);
-  }
+  .doc-head { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.9rem; }
+  .doc-head h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 500; font-size: 1.22rem; margin: 0; color: var(--ink); }
 
   .doc-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
   .doc-chip {
@@ -261,60 +202,18 @@
     white-space: nowrap;
   }
 
-  .esp-stat { text-align: right; flex-shrink: 0; }
-  .esp-stat-num {
-    display: block;
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--accent-ink);
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-  }
-  .esp-stat-label {
-    font-size: 0.68rem;
-    color: var(--ink-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .tipo-group + .tipo-group { margin-top: 1.15rem; }
-
-  .tipo-label {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+  .alias-note {
     font-size: 0.82rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem;
-    color: var(--ink);
+    color: var(--flag);
+    background: var(--flag-soft);
+    border: 1px dashed var(--flag-border);
+    padding: 0.55rem 0.75rem;
+    border-radius: 6px;
+    margin: 0 0 0.9rem;
   }
-  .tipo-label .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .tipo-count {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 400;
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-  }
-
-  .tag-consulta .dot { background: var(--tag-consulta); }
-  .tag-sessao .dot { background: var(--tag-sessao); }
-  .tag-retorno .dot { background: var(--tag-retorno); }
-  .tag-exame .dot { background: var(--tag-exame); }
-  .tag-outro .dot { background: var(--tag-outro); }
 
   .proc-table-wrap { overflow-x: auto; }
-  table.proc-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.86rem;
-  }
+  table.proc-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
   .proc-table th {
     text-align: left;
     font-size: 0.7rem;
@@ -325,61 +224,66 @@
     padding: 0.3rem 0.6rem 0.4rem 0;
     border-bottom: 1px solid var(--border);
   }
-  .proc-table td {
-    padding: 0.42rem 0.6rem 0.42rem 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--ink);
-    vertical-align: top;
-  }
+  .proc-table td { padding: 0.48rem 0.6rem 0.48rem 0; border-bottom: 1px solid var(--border); color: var(--ink); vertical-align: top; }
   .proc-table tr:last-child td { border-bottom: none; }
-  .col-id {
+  .col-idcell { white-space: nowrap; width: 8.5rem; }
+  .col-tempo { white-space: nowrap; width: 4.2rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .id-pill {
+    display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--accent-ink);
-    white-space: nowrap;
-    width: 3.4rem;
+    background: var(--accent-soft);
+    padding: 0.06rem 0.4rem;
+    border-radius: 4px;
+    margin: 0.1rem 0.15rem 0.1rem 0;
   }
-  .col-cod {
+  .id-missing {
+    display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.76rem;
-    color: var(--ink-faint);
-    white-space: nowrap;
-    width: 7rem;
-  }
-
-  .empty-note {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     color: var(--flag);
     background: var(--flag-soft);
-    border: 1px dashed var(--flag-border);
-    padding: 0.65rem 0.85rem;
-    border-radius: 6px;
-    margin: 0;
+    border: 1px solid var(--flag-border);
+    padding: 0.06rem 0.4rem;
+    border-radius: 4px;
   }
+  .row-note { font-size: 0.78rem; color: var(--ink-faint); margin-top: 0.15rem; font-style: italic; }
 
-  section.orphans {
-    margin-top: 2.25rem;
+  section.observacoes {
+    margin-top: 1.5rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem 1.3rem;
+  }
+  section.observacoes h3 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0 0 0.7rem;
+    color: var(--ink);
+  }
+  section.observacoes ul { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  section.observacoes li { font-size: 0.85rem; color: var(--ink-soft); }
+
+  section.gaps {
+    margin-top: 2.5rem;
     background: var(--flag-soft);
     border: 1px solid var(--flag-border);
     border-radius: 10px;
-    padding: 1.4rem 1.5rem 1.55rem;
+    padding: 1.3rem 1.5rem 1.4rem;
   }
-  section.orphans h2 {
+  section.gaps h2 {
     font-family: 'Newsreader', Georgia, serif;
     font-weight: 500;
-    font-size: 1.3rem;
-    margin: 0 0 0.4rem;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
     color: var(--flag);
   }
-  section.orphans p.note {
-    font-size: 0.87rem;
-    color: var(--ink-soft);
-    max-width: 62ch;
-    margin: 0 0 1.1rem;
-  }
-  section.orphans table.proc-table td,
-  section.orphans table.proc-table th { border-bottom-color: var(--flag-border); }
-  section.orphans .col-id { color: var(--flag); }
+  section.gaps p { font-size: 0.87rem; color: var(--ink-soft); max-width: 68ch; margin: 0 0 0.6rem; }
+  section.gaps ul { margin: 0.4rem 0 0; padding-left: 1.15rem; }
+  section.gaps li { font-size: 0.87rem; color: var(--ink-soft); }
 
   footer {
     margin-top: 3rem;
@@ -394,7 +298,7 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .esp-card, nav.jump a { transition: box-shadow 0.15s ease, border-color 0.15s ease; }
+    .doc-card, nav.jump a { transition: box-shadow 0.15s ease, border-color 0.15s ease; }
   }
 </style>
 
@@ -402,335 +306,334 @@
   <header class="hero">
     <span class="eyebrow">Feegow · Dr. André Balero</span>
     <h1>Médicos e seus procedimentos</h1>
-    <p class="subtitle">Levantamento de cada profissional cadastrado no Feegow, a especialidade que carrega no sistema, e os procedimentos do catálogo que se encaixam nela — separando com clareza Consulta de Sessão/Tratamento, já que o sistema trata as duas coisas como agendamentos diferentes.</p>
-    <div class="method"><strong>Como isso foi montado:</strong> o Feegow não guarda uma relação direta "médico → procedimento" — só médico → uma única especialidade, e o catálogo de procedimentos não referencia especialidade nem profissional nenhum. Este documento cruza os 25 profissionais/9 especialidades com os 104 procedimentos do catálogo por nome + tipo de agendamento. É um ponto de partida técnico, não a palavra final — a coluna "Sem especialidade correspondente" ao final precisa de confirmação da clínica, e vale revisar se todo médico de uma especialidade realmente faz todos os procedimentos listados nela.</div>
-    <div class="stat-bar">
-      <div class="stat"><span class="stat-num">25</span><span class="stat-label">Profissionais</span></div>
-      <div class="stat"><span class="stat-num">9</span><span class="stat-label">Especialidades</span></div>
-      <div class="stat"><span class="stat-num">64</span><span class="stat-label">Procedimentos classificados</span></div>
-      <div class="stat"><span class="stat-num">40</span><span class="stat-label">Sem especialidade correspondente</span></div>
+    <p class="subtitle">Organizado por unidade e por médico, na estrutura real usada pela Central de Agendamentos da clínica — cruzado com os IDs de procedimento do Feegow.</p>
+    <div class="revision-box">
+      <h2>Revisão a partir do documento da clínica</h2>
+      <ul>
+        <li>A primeira versão deste levantamento agrupava por especialidade do Feegow (1 por médico) e supunha que todo médico de "Fisioterapia" fazia os ~40 procedimentos daquela especialidade. <strong>Isso estava errado</strong>: cada fisioterapeuta faz um recorte específico — ex. Stephannia e Beatriz Sala só fazem ATM, Juliana/Gabrielle/Leticia Buccini só Pélvica, Caique só Esportiva.</li>
+        <li><strong>João Lazoski e Alexandre</strong> têm especialidade "Fisioterapia" no Feegow mas na prática fazem Osteopatia + Quiropraxia (+ RPG) — não fisioterapia genérica.</li>
+        <li><strong>Eliana dos Santos Adão</strong> (especialidade "Terapeuta Complementar", sem nenhum procedimento identificável antes) na verdade faz SPA/Massagens com Anderson de Carvalho Gomes.</li>
+        <li>Procedimentos que eu tinha deixado "sem especialidade correspondente" — Consulta em Consultório, Retorno-Único, Coach de Saúde, Neuromodulação, Termografia, Análise de Pisada — <strong>são usados de verdade</strong>, só que amarrados a médicos específicos e não a uma especialidade.</li>
+      </ul>
     </div>
     <nav class="jump">
-      <a href="#esp-192">Fisioterapia</a>
-      <a href="#esp-137">Acupuntura</a>
-      <a href="#esp-294">Osteopatia</a>
-      <a href="#esp-167">Nutrição</a>
-      <a href="#esp-104">Endocrinologia</a>
-      <a href="#esp-229">Nutrologia</a>
-      <a href="#esp-293">Quiropraxia</a>
-      <a href="#esp-129">Ortopedia</a>
-      <a href="#esp-296">Terapeuta Complementar</a>
-      <a href="#orphans">Sem especialidade</a>
+      <a href="#unit-vlo">Vila Olímpia (13)</a>
+      <a href="#unit-rep">República (8)</a>
+      <a href="#gaps">Gaps a confirmar</a>
     </nav>
   </header>
 
-  <main>
+  <div class="unit-header unit-vlo" id="unit-vlo">
+    <h2>Vila Olímpia</h2>
+    <span class="unit-tag">unidade_id 0</span>
+  </div>
+  <main class="unit-vlo-cards">
     
-  <section class="esp-card" id="esp-192">
-    <div class="esp-head">
-      <div class="esp-head-left">
-        <h3>Fisioterapia</h3>
-        <div class="doc-chips"><span class="doc-chip">Dra. Ana Karolina Azevedo</span><span class="doc-chip">Dr. Anderson de Carvalho Gomes</span><span class="doc-chip">Dra. Beatriz Sala Rodrigues Martins</span><span class="doc-chip">Dra. Bianca Alves Linhares</span><span class="doc-chip">Dr. Caique Atenca Dias</span><span class="doc-chip">Dra. Gabrielle Viana Lima</span><span class="doc-chip">Dr. Joao Pereira Lazoski Filho</span><span class="doc-chip">Dra. Juliana Fernanda de Lima e Silva</span><span class="doc-chip">Dra. Karoline Souza Rocha</span><span class="doc-chip">Dra. Leticia Buccini Santos</span><span class="doc-chip">Dr. Padua Jose Barizon</span><span class="doc-chip">Dr. Philippe Ribeiro de Moraes</span><span class="doc-chip">Dra. Stephannia Silva Rodrigues Barreto</span></div>
+    <section class="doc-card" id="vlo-0">
+      <div class="doc-head">
+        <h3>Clínica de Dor</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Raphael Aliman Rossi</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">41</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">3</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#16</td><td>Consulta Fisioterapia</td><td class="col-cod">—</td></tr><tr><td class="col-id">#17</td><td>Consulta Fisioterapia ATM</td><td class="col-cod">—</td></tr><tr><td class="col-id">#18</td><td>Consulta Fisioterapia Uroginecológica</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta em Consultório</td><td class="col-idcell"><span class="id-pill">#315</span></td><td class="col-tempo">30 min</td><td>Omint / Amil / SulAmérica / Unimed Seguros</td></tr><tr><td>Estimulação do Nervo Vago (ENV)</td><td class="col-idcell"><span class="id-pill">#384</span></td><td class="col-tempo">30 min</td><td>Particular</td></tr><tr><td>Terapia de Ondas de Choque<div class="row-note">depende de partes moles/ósseas e 1ª aplicação/reaplicação — ver observações</div></td><td class="col-idcell"><span class="id-pill">#382</span> <span class="id-pill">#383</span> <span class="id-pill">#425</span> <span class="id-pill">#426</span></td><td class="col-tempo">30 min</td><td>Particular</td></tr><tr><td>Neuromodulação</td><td class="col-idcell"><span class="id-pill">#23</span></td><td class="col-tempo">30 min</td><td>Particular</td></tr><tr><td>Acupuntura<div class="row-note">consulta — ver Acupuntura por sessão (#307) para sessão</div></td><td class="col-idcell"><span class="id-pill">#14</span></td><td class="col-tempo">30 min</td><td>Omint / Amil / Unimed Seguros / SulAmérica*</td></tr><tr><td>Termografia — Exame</td><td class="col-idcell"><span class="id-pill">#385</span></td><td class="col-tempo">30 min</td><td>Particular</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">29</span></h4>
-        <div class="proc-table-wrap">
+    </section>
+    <section class="doc-card" id="vlo-1">
+      <div class="doc-head">
+        <h3>Consulta de Fisioterapia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Vinicius Ferreira Macedo</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#320</td><td>Avaliação Inicial Fisioterapia</td><td class="col-cod">99900154</td></tr><tr><td class="col-id">#322</td><td>Avaliação Inicial Fisioterapia Pélvica</td><td class="col-cod">99900372</td></tr><tr><td class="col-id">#323</td><td>Avaliação Inicial RPG</td><td class="col-cod">99900373</td></tr><tr><td class="col-id">#391</td><td>Biofeedback com EMG</td><td class="col-cod">20103131</td></tr><tr><td class="col-id">#310</td><td>Consulta Ambulatorial em Fisioterapia</td><td class="col-cod">50000144</td></tr><tr><td class="col-id">#401</td><td>Eletroestimulação do Assoalho Pélvico E/ou Outra Técnica de Exercícios Perineais</td><td class="col-cod">20203020</td></tr><tr><td class="col-id">#384</td><td>Estimulação do Nervo Vago (env)</td><td class="col-cod">31601014</td></tr><tr><td class="col-id">#402</td><td>Estimulacao Eletrica Transcutanea</td><td class="col-cod">31602185</td></tr><tr><td class="col-id">#313</td><td>Fisioterapia - Alteracao Musculo-esqueletico</td><td class="col-cod">50000160</td></tr><tr><td class="col-id">#304</td><td>Interconsulta com Fisioterapeuta</td><td class="col-cod">500001AS</td></tr><tr><td class="col-id">#252</td><td>Pacote de Fisioterapia Ambulatorial Genito-urinario</td><td class="col-cod">64619753</td></tr><tr><td class="col-id">#327</td><td>Pacote de RPG</td><td class="col-cod">98800432</td></tr><tr><td class="col-id">#325</td><td>Pacote Fisioterapia</td><td class="col-cod">98800429</td></tr><tr><td class="col-id">#324</td><td>Pacote Fisioterapia Pelvica</td><td class="col-cod">98800430</td></tr><tr><td class="col-id">#318</td><td>Patologia Osteomioarticular em Diferentes Segmentos da Coluna</td><td class="col-cod">20103514</td></tr><tr><td class="col-id">#319</td><td>Patologia Osteomioarticular em Dois Ou Mais Membros</td><td class="col-cod">20103492</td></tr><tr><td class="col-id">#409</td><td>Reabilitação Labiríntica (por Sessão)</td><td class="col-cod">20103638</td></tr><tr><td class="col-id">#408</td><td>Reabilitação Perineal com Biofeedback</td><td class="col-cod">20103646</td></tr><tr><td class="col-id">#332</td><td>Recuperação Funcional de Distúrbios Crânio-faciais</td><td class="col-cod">20103654</td></tr><tr><td class="col-id">#314</td><td>Retorno de Fisioterapia</td><td class="col-cod">—</td></tr><tr><td class="col-id">#328</td><td>Retorno Fisioterapia Einstein</td><td class="col-cod">98800429</td></tr><tr><td class="col-id">#311</td><td>Sessão Fisioterapia P/ Inflamacao do Ap. Genito-urinario e Reprodutor</td><td class="col-cod">50000233</td></tr><tr><td class="col-id">#309</td><td>Sessoes RPG</td><td class="col-cod">50000446</td></tr><tr><td class="col-id">#382</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Moles - Acompanhamento 1° Aplicação</td><td class="col-cod">30730120</td></tr><tr><td class="col-id">#383</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Moles - Acompanhamento Reaplicações</td><td class="col-cod">30730139</td></tr><tr><td class="col-id">#425</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Ósseas - Acompanhamento 1° Aplicação</td><td class="col-cod">30732050</td></tr><tr><td class="col-id">#426</td><td>Terapia Por Ondas de Choque Extracorporea em Partes Ósseas - Acompanhamento Reaplicações</td><td class="col-cod">30732069</td></tr><tr><td class="col-id">#231</td><td>Tratamento Fisioterapia Ambulatorial Nas Doencas Cronicas Degenerativas do Sistema Musculo-esqueletico</td><td class="col-cod">64619664</td></tr><tr><td class="col-id">#249</td><td>Tratamento Fisioterapico Ambulatorial Ginecologica</td><td class="col-cod">64619737</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Ambulatorial em Fisioterapia</td><td class="col-idcell"><span class="id-pill">#310</span></td><td class="col-tempo">20 min</td><td>Consultar tabela de convênios</td></tr><tr><td>Retorno de Fisioterapia</td><td class="col-idcell"><span class="id-pill">#314</span></td><td class="col-tempo">20 min</td><td>Sem custo</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">8</span></h4>
-        <div class="proc-table-wrap">
+    </section>
+    <section class="doc-card" id="vlo-2">
+      <div class="doc-head">
+        <h3>Quiro / Osteo / Baro</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Vinicius Ferreira Macedo</span><span class="doc-chip">Dr. André Balero Michelman</span><span class="doc-chip">João Pereira Lazoski Filho</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#22</td><td>Drenagem Linfática</td><td class="col-cod">—</td></tr><tr><td class="col-id">#27</td><td>Fisioterapia ATM</td><td class="col-cod">—</td></tr><tr><td class="col-id">#26</td><td>Fisioterapia Clássica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#28</td><td>Fisioterapia Esportiva</td><td class="col-cod">—</td></tr><tr><td class="col-id">#29</td><td>Fisioterapia Uroginecológica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#31</td><td>Liberação Miofascial</td><td class="col-cod">—</td></tr><tr><td class="col-id">#37</td><td>RPG</td><td class="col-cod">—</td></tr><tr><td class="col-id">#394</td><td>Sessão de Fisioterapia Uroginecológica com Biofeedback</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Osteopatia</td><td class="col-idcell"><span class="id-pill">#20</span></td><td class="col-tempo">40 min</td><td>Omint / Particular conforme profissional</td></tr><tr><td>Osteopatia</td><td class="col-idcell"><span class="id-pill">#34</span></td><td class="col-tempo">40 min</td><td>Omint / Particular conforme profissional</td></tr><tr><td>Consulta Quiropraxia</td><td class="col-idcell"><span class="id-pill">#51</span></td><td class="col-tempo">40 min</td><td>Conforme profissional</td></tr><tr><td>Quiropraxia</td><td class="col-idcell"><span class="id-pill">#36</span></td><td class="col-tempo">40 min</td><td>Conforme profissional</td></tr><tr><td>Baropodometria — Avaliação da Pisada<div class="row-note">existe um #423 duplicado no catálogo (registro sem dados — provável lixo a limpar)</div></td><td class="col-idcell"><span class="id-pill">#13</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Palmilha Postural</td><td class="col-idcell"><span class="id-pill">#359</span></td><td class="col-tempo">—</td><td>Encaixe para pagamento no sistema</td></tr><tr><td>Moldagem de Palmilha</td><td class="col-idcell"><span class="id-missing">não encontrado</span></td><td class="col-tempo">20 min</td><td>Verificar se está na clínica</td></tr><tr><td>Retorno de Palmilha</td><td class="col-idcell"><span class="id-pill">#356</span></td><td class="col-tempo">20 min</td><td>Paciente leva a palmilha</td></tr><tr><td>Ajuste de Palmilha</td><td class="col-idcell"><span class="id-missing">não encontrado</span></td><td class="col-tempo">20 min</td><td>Quando necessário / verificar se está na clínica</td></tr><tr><td>Consulta Dr. André Balero<div class="row-note">apenas André Balero Michelman</div></td><td class="col-idcell"><span class="id-pill">#355</span></td><td class="col-tempo">—</td><td>—</td></tr><tr><td>Consulta de Fisioterapia</td><td class="col-idcell"><span class="id-pill">#16</span></td><td class="col-tempo">—</td><td>Somente com autorização do Dr.</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-outro"><span class="dot"></span>Outro (tipo 0) <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
+    </section>
+    <section class="doc-card" id="vlo-3">
+      <div class="doc-head">
+        <h3>RPG / Quiro / Osteo</h3>
+        <div class="doc-chips"><span class="doc-chip">João Pereira Lazoski Filho</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#373</td><td>Consulta RPG</td><td class="col-cod">50000446</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta 1ª vez de Osteopatia<div class="row-note">não existe código específico de "1ª vez" para Osteopatia adulto (diferente da Pediátrica, que tem #421) — provavelmente reusa #20</div></td><td class="col-idcell"><span class="id-pill">#20</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Consulta Osteopatia</td><td class="col-idcell"><span class="id-pill">#20</span></td><td class="col-tempo">40 min</td><td>Omint</td></tr><tr><td>Osteopatia</td><td class="col-idcell"><span class="id-pill">#34</span></td><td class="col-tempo">40 min</td><td>Omint</td></tr><tr><td>Consulta Quiropraxia</td><td class="col-idcell"><span class="id-pill">#51</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Quiropraxia</td><td class="col-idcell"><span class="id-pill">#36</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Consulta de RPG</td><td class="col-idcell"><span class="id-pill">#373</span></td><td class="col-tempo">40 min</td><td>Omint / Amil</td></tr><tr><td>Sessões de RPG</td><td class="col-idcell"><span class="id-pill">#309</span></td><td class="col-tempo">40 min</td><td>Omint / Amil</td></tr></tbody>
         </table>
-        </div>
       </div>
-  </section>
-  <section class="esp-card" id="esp-137">
-    <div class="esp-head">
-      <div class="esp-head-left">
-        <h3>Acupuntura</h3>
-        <div class="doc-chips"><span class="doc-chip">Dr. Raphael Aliman Rossi</span><span class="doc-chip">Dra. Viviane Lacerda Lunguinho</span></div>
+    </section>
+    <section class="doc-card" id="vlo-4">
+      <div class="doc-head">
+        <h3>Ortopedia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Adriano Augusto Gouvea Jaoude</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">5</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#14</td><td>Consulta Acupuntura</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta em Consultório</td><td class="col-idcell"><span class="id-pill">#315</span></td><td class="col-tempo">40 min</td><td>Particular</td></tr><tr><td>Retorno de Consulta</td><td class="col-idcell"><span class="id-pill">#367</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Procedimentos Ortopédicos<div class="row-note">genérico — pedir à clínica quais procedimento_id específicos usar aqui</div></td><td class="col-idcell"><span class="id-missing">não encontrado</span></td><td class="col-tempo">40 min</td><td>—</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">3</span></h4>
-        <div class="proc-table-wrap">
+    </section>
+    <section class="doc-card" id="vlo-5">
+      <div class="doc-head">
+        <h3>Osteopatia Pediátrica</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Maria Otilia do Amaral Maset Luiz</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#307</td><td>Acupuntura Por Sessão</td><td class="col-cod">31601014</td></tr><tr><td class="col-id">#321</td><td>Avaliação Inicial Acupuntura</td><td class="col-cod">99900374</td></tr><tr><td class="col-id">#326</td><td>Pacote de Acupuntura</td><td class="col-cod">98800341</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Osteopatia Pediátrica</td><td class="col-idcell"><span class="id-pill">#421</span></td><td class="col-tempo">80 min</td><td>Omint / Particular</td></tr><tr><td>Consulta Osteopatia Pediátrica — 1ª vez</td><td class="col-idcell"><span class="id-pill">#421</span></td><td class="col-tempo">80 min</td><td>Particular</td></tr><tr><td>Osteopatia Pediátrica</td><td class="col-idcell"><span class="id-pill">#432</span></td><td class="col-tempo">40 min</td><td>Particular</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
-        <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#350</td><td>Acupuntura</td><td class="col-cod">—</td></tr></tbody>
-        </table>
-        </div>
-      </div>
-  </section>
-  <section class="esp-card" id="esp-294">
-    <div class="esp-head">
-      <div class="esp-head-left">
-        <h3>Osteopatia</h3>
-        <div class="doc-chips"><span class="doc-chip">Dr. Andre Balero Michelman</span><span class="doc-chip">Dra. Maria Otilia do Amaral Maset Luiz</span></div>
-      </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">5</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">2</span></h4>
-        <div class="proc-table-wrap">
-        <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#20</td><td>Consulta Osteopatia</td><td class="col-cod">5000087C</td></tr><tr><td class="col-id">#421</td><td>Consulta Osteopatia Pediátrica - Primeira Vez</td><td class="col-cod">—</td></tr></tbody>
-        </table>
-        </div>
-      </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">2</span></h4>
-        <div class="proc-table-wrap">
-        <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#432</td><td>Consulta / Sessao Osteopatia Pediatrica</td><td class="col-cod">5000087P</td></tr><tr><td class="col-id">#317</td><td>Sessão de Osteopatia</td><td class="col-cod">5000087C</td></tr></tbody>
-        </table>
-        </div>
-      </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
-        <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#34</td><td>Osteopatia</td><td class="col-cod">—</td></tr></tbody>
-        </table>
-        </div>
-      </div>
-  </section>
-  <section class="esp-card" id="esp-167">
-    <div class="esp-head">
-      <div class="esp-head-left">
+    </section>
+    <section class="doc-card" id="vlo-6">
+      <div class="doc-head">
         <h3>Nutrição</h3>
         <div class="doc-chips"><span class="doc-chip">Dra. Leticia Galvão Balero</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">4</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">3</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#396</td><td>Consulta Nutricionista - Rotina</td><td class="col-cod">—</td></tr><tr><td class="col-id">#398</td><td>Consulta Nutricionista + Bioimpendância</td><td class="col-cod">—</td></tr><tr><td class="col-id">#390</td><td>Consulta Nutricionista+ Bioimpedância - Primeira Vez</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Nutricionista — 1ª vez</td><td class="col-idcell"><span class="id-pill">#390</span></td><td class="col-tempo">60 min</td><td>Fora dos planos</td></tr><tr><td>Bioimpedância<div class="row-note">não tem código próprio — vem embutida na consulta+bioimpedância</div></td><td class="col-idcell"><span class="id-pill">#390</span></td><td class="col-tempo">Encaixe</td><td>Não é obrigatória</td></tr><tr><td>Consulta Nutricionista — Rotina</td><td class="col-idcell"><span class="id-pill">#396</span></td><td class="col-tempo">30 min</td><td>Fora dos planos</td></tr><tr><td>Retorno — Único (30 dias)</td><td class="col-idcell"><span class="id-pill">#377</span></td><td class="col-tempo">30 min</td><td>Fora dos planos</td></tr><tr><td>Consulta + Bioimpedância — Plano</td><td class="col-idcell"><span class="id-pill">#398</span></td><td class="col-tempo">30 min</td><td>Plano</td></tr><tr><td>Coach de Saúde — Retorno</td><td class="col-idcell"><span class="id-pill">#397</span></td><td class="col-tempo">30 min</td><td>Dentro do plano</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão/tratamento <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
-        <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#427</td><td>Consulta Por Nutricionista</td><td class="col-cod">50000560</td></tr></tbody>
-        </table>
-        </div>
-      </div>
-  </section>
-  <section class="esp-card" id="esp-104">
-    <div class="esp-head">
-      <div class="esp-head-left">
+    </section>
+    <section class="doc-card" id="vlo-7">
+      <div class="doc-head">
         <h3>Endocrinologia</h3>
-        <div class="doc-chips"><span class="doc-chip">Dra. Beatriz Ruggiero Rossi</span><span class="doc-chip">Wilson Nazario</span></div>
+        <div class="doc-chips"><span class="doc-chip">Dra. Beatriz Ruggiero Rossi</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">3</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">2</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#386</td><td>Consulta Endocrinologista - Primeira Vez</td><td class="col-cod">10101012</td></tr><tr><td class="col-id">#388</td><td>Consulta Endocrinologista - Rotina</td><td class="col-cod">10101012</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta em Consultório</td><td class="col-idcell"><span class="id-pill">#315</span></td><td class="col-tempo">20 min</td><td>Unimed / Amil</td></tr><tr><td>Consulta Endocrinologista — 1ª vez</td><td class="col-idcell"><span class="id-pill">#386</span></td><td class="col-tempo">40 min</td><td>Particular</td></tr><tr><td>Consulta Endocrinologista — Rotina</td><td class="col-idcell"><span class="id-pill">#388</span></td><td class="col-tempo">20 min</td><td>—</td></tr><tr><td>Bioimpedância Tetrapolar</td><td class="col-idcell"><span class="id-pill">#387</span></td><td class="col-tempo">20 min</td><td>Particular</td></tr><tr><td>Retorno — 45 dias</td><td class="col-idcell"><span class="id-pill">#389</span></td><td class="col-tempo">20 min</td><td>—</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-retorno"><span class="dot"></span>Retorno <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
-        <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#389</td><td>Endocrinologista - Retorno</td><td class="col-cod">—</td></tr></tbody>
-        </table>
-        </div>
-      </div>
-  </section>
-  <section class="esp-card" id="esp-229">
-    <div class="esp-head">
-      <div class="esp-head-left">
+    </section>
+    <section class="doc-card" id="vlo-8">
+      <div class="doc-head">
         <h3>Nutrologia</h3>
-        <div class="doc-chips"><span class="doc-chip">Dr. Andre Ferreira Xavier</span></div>
+        <div class="doc-chips"><span class="doc-chip">Dr. André Ferreira Xavier</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">3</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">2</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#428</td><td>Consulta Nutrólogo - Primeira Vez</td><td class="col-cod">20101074</td></tr><tr><td class="col-id">#429</td><td>Consulta Nutrólogo - Rotina</td><td class="col-cod">20101074</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta em Consultório</td><td class="col-idcell"><span class="id-pill">#315</span></td><td class="col-tempo">30 min</td><td>Unimed / Amil / Omint</td></tr><tr><td>Consulta — 1ª vez</td><td class="col-idcell"><span class="id-pill">#428</span></td><td class="col-tempo">30 min</td><td>Particular</td></tr><tr><td>Consulta — Rotina</td><td class="col-idcell"><span class="id-pill">#429</span></td><td class="col-tempo">30 min</td><td>Particular</td></tr><tr><td>Retorno</td><td class="col-idcell"><span class="id-pill">#430</span></td><td class="col-tempo">30 min</td><td>—</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-retorno"><span class="dot"></span>Retorno <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
+    </section>
+    <section class="doc-card" id="vlo-9">
+      <div class="doc-head">
+        <h3>SPA</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Eliana dos Santos Adao</span><span class="doc-chip">Dr. Anderson de Carvalho Gomes</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#430</td><td>Retorno com Nutrólogo</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Avaliação Inicial — SPA</td><td class="col-idcell"><span class="id-pill">#395</span></td><td class="col-tempo">40 min</td><td>Pacientes novos</td></tr><tr><td>Massagem Relaxante</td><td class="col-idcell"><span class="id-pill">#33</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Liberação Miofascial</td><td class="col-idcell"><span class="id-pill">#31</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Drenagem Linfática</td><td class="col-idcell"><span class="id-pill">#22</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Massagem Desportiva</td><td class="col-idcell"><span class="id-pill">#32</span></td><td class="col-tempo">40 min</td><td>—</td></tr></tbody>
         </table>
-        </div>
       </div>
-  </section>
-  <section class="esp-card" id="esp-293">
-    <div class="esp-head">
-      <div class="esp-head-left">
-        <h3>Quiropraxista</h3>
-        <div class="doc-chips"><span class="doc-chip">Dr. Alexandre Ferreira da Silva</span><span class="doc-chip">Dr. Vinicius Ferreira Macedo</span></div>
+    </section>
+    <section class="doc-card" id="vlo-10">
+      <div class="doc-head">
+        <h3>Fisioterapia ATM</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Stephannia Silva Rodrigues Barreto</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">2</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#51</td><td>Consulta Quiropraxia</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Fisioterapia ATM</td><td class="col-idcell"><span class="id-pill">#17</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Unimed</td></tr><tr><td>Sessões de Fisioterapia ATM</td><td class="col-idcell"><span class="id-pill">#27</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Unimed</td></tr></tbody>
         </table>
-        </div>
       </div>
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-sessao"><span class="dot"></span>Sessão avulsa <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
+    </section>
+    <section class="doc-card" id="vlo-11">
+      <div class="doc-head">
+        <h3>Fisioterapia Pélvica</h3>
+        <div class="doc-chips"><span class="doc-chip">Juliana Fernanda de Lima e Silva</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#36</td><td>Quiropraxia</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Fisioterapia Pélvica</td><td class="col-idcell"><span class="id-pill">#18</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Unimed</td></tr><tr><td>Sessões de Fisioterapia Pélvica</td><td class="col-idcell"><span class="id-pill">#311</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Unimed</td></tr><tr><td>Biofeedback</td><td class="col-idcell"><span class="id-pill">#391</span></td><td class="col-tempo">—</td><td>Omint / Amil / Unimed</td></tr><tr><td>Retorno de Fisioterapia</td><td class="col-idcell"><span class="id-pill">#314</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Unimed</td></tr></tbody>
         </table>
-        </div>
       </div>
-  </section>
-  <section class="esp-card" id="esp-129">
-    <div class="esp-head">
-      <div class="esp-head-left">
-        <h3>Ortopedia e Traumatologia</h3>
-        <div class="doc-chips"><span class="doc-chip">Dr. Adriano Augusto Gouvea Jaoude</span></div>
+    </section>
+    <section class="doc-card" id="vlo-12">
+      <div class="doc-head">
+        <h3>Fisioterapia — Vila Olímpia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Bianca Alves Linhares — Manhã</span><span class="doc-chip">Dr. Philippe Ribeiro de Moraes — Tarde</span><span class="doc-chip">Dr. Caique Atenca Dias — Manhã e Tarde — Esportiva</span></div>
       </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">1</span>
-        <span class="esp-stat-label">procedimento</span>
-      </div>
-    </div>
-    
-      <div class="tipo-group">
-        <h4 class="tipo-label tag-consulta"><span class="dot"></span>Consulta (1ª vez/avaliação) <span class="tipo-count">1</span></h4>
-        <div class="proc-table-wrap">
+      
+      <div class="proc-table-wrap">
         <table class="proc-table">
-          <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-          <tbody><tr><td class="col-id">#19</td><td>Consulta Médica Ortopedista</td><td class="col-cod">—</td></tr></tbody>
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Fisioterapia — Manhã<div class="row-note">sem nome exato no catálogo — usa a sessão genérica de fisioterapia</div><div class="row-note">Bianca Alves Linhares</div></td><td class="col-idcell"><span class="id-pill">#310</span></td><td class="col-tempo">40 min</td><td>03 fisioterapeutas / 12 vagas por horário</td></tr><tr><td>Fisioterapia — Tarde<div class="row-note">sem nome exato no catálogo — usa a sessão genérica de fisioterapia</div><div class="row-note">Philippe Ribeiro de Moraes</div></td><td class="col-idcell"><span class="id-pill">#310</span></td><td class="col-tempo">40 min</td><td>03 fisioterapeutas / 12 vagas por horário</td></tr><tr><td>Fisioterapia Esportiva — Manhã<div class="row-note">Caique Atenca Dias</div></td><td class="col-idcell"><span class="id-pill">#28</span></td><td class="col-tempo">40 min</td><td>01 fisioterapeuta / 04 vagas por horário</td></tr><tr><td>Fisioterapia Esportiva — Tarde<div class="row-note">Caique Atenca Dias</div></td><td class="col-idcell"><span class="id-pill">#28</span></td><td class="col-tempo">40 min</td><td>01 fisioterapeuta / 04 vagas por horário</td></tr><tr><td>Game Ready<div class="row-note">profissional em atendimento</div></td><td class="col-idcell"><span class="id-pill">#30</span></td><td class="col-tempo">20–30 min</td><td>Realizado após a Fisioterapia</td></tr></tbody>
         </table>
-        </div>
       </div>
-  </section>
-  <section class="esp-card" id="esp-296">
-    <div class="esp-head">
-      <div class="esp-head-left">
-        <h3>Terapeuta Complementar</h3>
-        <div class="doc-chips"><span class="doc-chip">Dra. Eliana dos Santos Adao</span></div>
-      </div>
-      <div class="esp-stat">
-        <span class="esp-stat-num">0</span>
-        <span class="esp-stat-label">procedimentos</span>
-      </div>
-    </div>
-    <p class="empty-note">Nenhum procedimento do catálogo bateu com o nome desta especialidade — confirmar manualmente com a clínica.</p>
-  </section>
+    </section>
   </main>
+  <section class="observacoes">
+    <h3>Observações — Vila Olímpia</h3>
+    <ul>
+      <li>Consultas de cortesia: indicação de procedimento → agendar como CONSULTA CORTESIA (#399) — não tem custo.</li><li>Mais de um procedimento: informar na observação do agendamento qual procedimento será realizado.</li><li>Ondas de Choque: 1ª sessão = 1ª Aplicação (#382 partes moles / #425 partes ósseas). Da segunda em diante = Reaplicação (#383 / #426). Seguir regra do convênio para reembolso.</li><li>Acupuntura — SulAmérica*: verificar disponibilidade para o plano específico do paciente.</li><li>Palmilhas: Palmilha Postural = encaixe para pagamento; Moldagem = verificar se está na clínica; Retorno = paciente leva a palmilha; Ajuste = verificar disponibilidade quando necessário.</li><li>Fisioterapia — Dr. André Balero: consulta somente com autorização do Dr.</li><li>SPA: indicação interna → agendar diretamente o procedimento, sem necessidade de consulta.</li><li>ATM — Dra. Stephannia: agenda em "Equipamentos". A Dra. ainda não possui CREFITO; lançamento da guia SADT em nome do Dr. Balero.</li><li>Game Ready: realizado após a Fisioterapia, 20–30 min. Responsável = profissional em atendimento.</li><li>Planos de Nutrição: Trimestral = 03 consultas com bioimpedância; Semestral (opção 1) = 03 consultas com bioimpedância + 03 consultas de rotina (06 visitas); Semestral (opção 2) = 06 consultas com bioimpedância + 06 Coach de Saúde.</li>
+    </ul>
+  </section>
 
-  <section class="orphans" id="orphans">
-    <h2>40 procedimentos sem especialidade correspondente</h2>
-    <p class="note">Nenhum dos 9 profissionais tem uma especialidade que bata com estes procedimentos no Feegow — inclui exames (Baropodometria, Bioimpedanciometria, Termografia, Polissonografia), Pilates, Recovery, Massagens, e casos específicos como a consulta pessoal do Dr. André Balero (#355) e a Consulta em Consultório genérica (#315, mesmo código de convênio das consultas de Endocrinologia). Provavelmente precisam ser vinculados manualmente a um profissional ou a uma especialidade nova no Feegow.</p>
-    <div class="proc-table-wrap">
-      <table class="proc-table">
-        <thead><tr><th class="col-id">Cód.</th><th>Procedimento</th><th class="col-cod">Cód. convênio</th></tr></thead>
-        <tbody>
-          <tr><td class="col-id">#12</td><td>Análise de Pisada</td><td class="col-cod">—</td></tr><tr><td class="col-id">#331</td><td>Atividade Reflexa Ou Aplicacao de Tecnica Cinesioterapica Especifica</td><td class="col-cod">20103115</td></tr><tr><td class="col-id">#362</td><td>Aula Experimental de Pilates</td><td class="col-cod">—</td></tr><tr><td class="col-id">#395</td><td>Avaliação Inicial - SPA</td><td class="col-cod">—</td></tr><tr><td class="col-id">#13</td><td>Baropodometria</td><td class="col-cod">—</td></tr><tr><td class="col-id">#423</td><td>Baropodometria</td><td class="col-cod">—</td></tr><tr><td class="col-id">#387</td><td>Bioimpedanciometria</td><td class="col-cod">41301048</td></tr><tr><td class="col-id">#393</td><td>Bloqueio</td><td class="col-cod">—</td></tr><tr><td class="col-id">#397</td><td>Coach de Saúde</td><td class="col-cod">—</td></tr><tr><td class="col-id">#399</td><td>Consulta Cortesia</td><td class="col-cod">—</td></tr><tr><td class="col-id">#355</td><td>Consulta Dr. Andre Balero</td><td class="col-cod">—</td></tr><tr><td class="col-id">#315</td><td>Consulta em Consultorio</td><td class="col-cod">10101012</td></tr><tr><td class="col-id">#15</td><td>Consulta Fisiologia do Exercício</td><td class="col-cod">—</td></tr><tr><td class="col-id">#306</td><td>Consulta Médica Fisiatrica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#357</td><td>Entrega da Palmilha</td><td class="col-cod">—</td></tr><tr><td class="col-id">#32</td><td>Massagem Desportiva</td><td class="col-cod">—</td></tr><tr><td class="col-id">#33</td><td>Massagem Relaxante</td><td class="col-cod">—</td></tr><tr><td class="col-id">#23</td><td>Neuromodulação</td><td class="col-cod">31601014</td></tr><tr><td class="col-id">#359</td><td>Palmilha Postural</td><td class="col-cod">—</td></tr><tr><td class="col-id">#369</td><td>Pilates</td><td class="col-cod">—</td></tr><tr><td class="col-id">#43</td><td>Pilates Mensal (1x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#44</td><td>Pilates Mensal (2x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#45</td><td>Pilates Mensal (3x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#46</td><td>Pilates Trimestral (1x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#47</td><td>Pilates Trimestral (2x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#48</td><td>Pilates Trimestral (3x Semana)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#329</td><td>Polissonografia de Noite Inteira (psg) (inclui Polissonogramas)</td><td class="col-cod">40103528</td></tr><tr><td class="col-id">#330</td><td>Polissonograma com Teste de CPAP Nasal</td><td class="col-cod">40103544</td></tr><tr><td class="col-id">#365</td><td>Preparação Fisica para Esportes</td><td class="col-cod">—</td></tr><tr><td class="col-id">#419</td><td>Protocolo Recovery</td><td class="col-cod">—</td></tr><tr><td class="col-id">#370</td><td>Recovery (banheira de Gelo)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#364</td><td>Recovery (bota de Compressão)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#30</td><td>Recovery (game Ready)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#420</td><td>Recovery (pós-cirúrgico)</td><td class="col-cod">—</td></tr><tr><td class="col-id">#377</td><td>Retorno - Único</td><td class="col-cod">—</td></tr><tr><td class="col-id">#367</td><td>Retorno Consulta Médica</td><td class="col-cod">—</td></tr><tr><td class="col-id">#356</td><td>Retorno de Palmilha</td><td class="col-cod">—</td></tr><tr><td class="col-id">#385</td><td>Termografia</td><td class="col-cod">41501136</td></tr><tr><td class="col-id">#422</td><td>Trata</td><td class="col-cod">—</td></tr><tr><td class="col-id">#232</td><td>Tratamento Fisioterápico Ambulatorial Traumatologia</td><td class="col-cod">64619702</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="unit-header unit-rep" id="unit-rep">
+    <h2>República</h2>
+    <span class="unit-tag">unidade_id 1</span>
+  </div>
+  <main class="unit-rep-cards">
+    
+    <section class="doc-card" id="rep-0">
+      <div class="doc-head">
+        <h3>Quiro / Osteo / Baro</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. André Balero Michelman</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Osteopatia</td><td class="col-idcell"><span class="id-pill">#20</span></td><td class="col-tempo">40 min</td><td>Somente Particular / atende bebês</td></tr><tr><td>Osteopatia</td><td class="col-idcell"><span class="id-pill">#34</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Consulta Quiropraxia</td><td class="col-idcell"><span class="id-pill">#51</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Quiropraxia</td><td class="col-idcell"><span class="id-pill">#36</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Análise de Pisada</td><td class="col-idcell"><span class="id-pill">#12</span></td><td class="col-tempo">40 min</td><td>Sem laudo</td></tr><tr><td>Palmilha Postural</td><td class="col-idcell"><span class="id-pill">#359</span></td><td class="col-tempo">—</td><td>Encaixe para pagamento no sistema</td></tr><tr><td>Moldagem de Palmilha</td><td class="col-idcell"><span class="id-missing">não encontrado</span></td><td class="col-tempo">20 min</td><td>Verificar se está na clínica</td></tr><tr><td>Retorno de Palmilha</td><td class="col-idcell"><span class="id-pill">#356</span></td><td class="col-tempo">20 min</td><td>Paciente leva a palmilha</td></tr><tr><td>Ajuste de Palmilha</td><td class="col-idcell"><span class="id-missing">não encontrado</span></td><td class="col-tempo">20 min</td><td>Quando necessário / verificar se está na clínica</td></tr><tr><td>Consulta Dr. André Balero</td><td class="col-idcell"><span class="id-pill">#355</span></td><td class="col-tempo">40 min</td><td>Indicação de tratamento</td></tr><tr><td>Consulta de Fisioterapia</td><td class="col-idcell"><span class="id-pill">#16</span></td><td class="col-tempo">40 min</td><td>Somente com autorização do Dr.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-1">
+      <div class="doc-head">
+        <h3>RPG / Quiro / Osteo / Bota</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Alexandre Ferreira da Silva</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Osteopatia</td><td class="col-idcell"><span class="id-pill">#20</span></td><td class="col-tempo">40 min</td><td>Omint</td></tr><tr><td>Osteopatia</td><td class="col-idcell"><span class="id-pill">#34</span></td><td class="col-tempo">40 min</td><td>Omint</td></tr><tr><td>Consulta Quiropraxia</td><td class="col-idcell"><span class="id-pill">#51</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Quiropraxia</td><td class="col-idcell"><span class="id-pill">#36</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Bota de Compressão</td><td class="col-idcell"><span class="id-pill">#364</span></td><td class="col-tempo">40 min</td><td>—</td></tr><tr><td>Consulta de RPG</td><td class="col-idcell"><span class="id-pill">#373</span></td><td class="col-tempo">40 min</td><td>Omint / Amil / Einstein</td></tr><tr><td>Sessões de RPG</td><td class="col-idcell"><span class="id-pill">#309</span></td><td class="col-tempo">40 min</td><td>Omint / Amil / Einstein</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-2">
+      <div class="doc-head">
+        <h3>ATM</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Beatriz Sala Rodrigues Martins</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Fisioterapia ATM</td><td class="col-idcell"><span class="id-pill">#17</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Einstein</td></tr><tr><td>Sessões de Fisioterapia ATM</td><td class="col-idcell"><span class="id-pill">#27</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Einstein</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-3">
+      <div class="doc-head">
+        <h3>Fisioterapia Pélvica</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Gabrielle Viana Lima</span><span class="doc-chip">Dra. Leticia Buccini Santos</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Fisioterapia Pélvica</td><td class="col-idcell"><span class="id-pill">#18</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Einstein</td></tr><tr><td>Sessões de Fisioterapia Pélvica</td><td class="col-idcell"><span class="id-pill">#311</span></td><td class="col-tempo">40 min</td><td>Conforme profissional</td></tr><tr><td>Biofeedback</td><td class="col-idcell"><span class="id-pill">#391</span></td><td class="col-tempo">—</td><td>Junto com a sessão</td></tr><tr><td>Retorno de Fisioterapia</td><td class="col-idcell"><span class="id-pill">#314</span></td><td class="col-tempo">40 min</td><td>Omint / SulAmérica / Amil / Einstein</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-4">
+      <div class="doc-head">
+        <h3>Acupuntura</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Viviane Lacerda Lunguinho</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta de Acupuntura</td><td class="col-idcell"><span class="id-pill">#14</span></td><td class="col-tempo">40 min</td><td>Omint / Einstein / Amil</td></tr><tr><td>Acupuntura por sessão</td><td class="col-idcell"><span class="id-pill">#307</span></td><td class="col-tempo">40 min</td><td>Omint / Einstein / Amil</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-5">
+      <div class="doc-head">
+        <h3>Consulta de Fisioterapia</h3>
+        <div class="doc-chips"><span class="doc-chip">Dra. Beatriz Sala Rodrigues Martins</span></div>
+      </div>
+      <p class="alias-note">provável referência à mesma Beatriz Sala Rodrigues Martins da seção ATM — confirmar com a clínica se é a mesma pessoa cobrindo os dois tipos de atendimento</p>
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Consulta Ambulatorial em Fisioterapia</td><td class="col-idcell"><span class="id-pill">#310</span></td><td class="col-tempo">20 min</td><td>Einstein / Omint / SulAmérica</td></tr><tr><td>Retorno de Fisioterapia</td><td class="col-idcell"><span class="id-pill">#314</span></td><td class="col-tempo">20 min</td><td>—</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-6">
+      <div class="doc-head">
+        <h3>Exames — Polissonografia</h3>
+        <div class="doc-chips"></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Polissonografia Convencional</td><td class="col-idcell"><span class="id-pill">#329</span></td><td class="col-tempo">15 min</td><td>Biovida / NotreDame</td></tr><tr><td>Polissonografia CPAP</td><td class="col-idcell"><span class="id-pill">#330</span></td><td class="col-tempo">30 min</td><td>Biovida / NotreDame</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="doc-card" id="rep-7">
+      <div class="doc-head">
+        <h3>Fisioterapia — República</h3>
+        <div class="doc-chips"><span class="doc-chip">Dr. Alexandre Ferreira da Silva — Manhã</span><span class="doc-chip">Dra. Karoline Souza Rocha — Tarde</span></div>
+      </div>
+      
+      <div class="proc-table-wrap">
+        <table class="proc-table">
+          <thead><tr><th>Procedimento</th><th class="col-idcell">Feegow</th><th class="col-tempo">Tempo</th><th>Convênios / Regras</th></tr></thead>
+          <tbody><tr><td>Fisioterapia — Manhã<div class="row-note">sem nome exato no catálogo — usa a sessão genérica de fisioterapia</div><div class="row-note">Alexandre Ferreira da Silva</div></td><td class="col-idcell"><span class="id-pill">#310</span></td><td class="col-tempo">40 min</td><td>02 fisioterapeutas / 10 pacientes por horário</td></tr><tr><td>Fisioterapia — Tarde<div class="row-note">sem nome exato no catálogo — usa a sessão genérica de fisioterapia</div><div class="row-note">Karoline Souza Rocha</div></td><td class="col-idcell"><span class="id-pill">#310</span></td><td class="col-tempo">40 min</td><td>02 fisioterapeutas / 10 pacientes por horário</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <section class="observacoes">
+    <h3>Observações — República</h3>
+    <ul>
+      <li>Consultas de cortesia: indicação de procedimento → agendar como CONSULTA CORTESIA (#399) — não tem custo.</li><li>Mais de um procedimento: informar na observação do agendamento qual procedimento será realizado.</li><li>Palmilhas: Palmilha Postural = encaixe para pagamento; Moldagem = verificar se está na clínica; Retorno = paciente leva a palmilha; Ajuste = verificar disponibilidade quando necessário.</li><li>Fisioterapia — Dr. André Balero: consulta somente com autorização do Dr.</li><li>Biofeedback: na Fisioterapia Pélvica, realizado junto com a sessão.</li><li>Acupuntura — SulAmérica: verificar disponibilidade para o plano específico do paciente.</li>
+    </ul>
+  </section>
+
+  <section class="gaps" id="gaps">
+    <h2>Pendências pra confirmar com a clínica</h2>
+    <p><strong>3 médicos do Feegow não aparecem no documento da clínica</strong>: Ana Karolina Azevedo, Padua Jose Barizon, Wilson Nazario. Podem estar inativos, recém-cadastrados ou o documento pode estar desatualizado — vale confirmar antes de remover ou manter no roteamento da Bela.</p>
+    <p><strong>2 nomes de procedimento sem código no Feegow</strong>: "Moldagem de Palmilha" e "Ajuste de Palmilha" (aparecem nas seções Quiro/Osteo/Baro de ambas as unidades). Ou precisam ser cadastrados no Feegow, ou já existem sob outro nome que eu não encontrei.</p>
+    <p><strong>"Procedimentos Ortopédicos"</strong> (Dr. Adriano) é genérico demais pra virar um procedimento_id específico — precisa de uma lista real do que ele agenda.</p>
+    <p><strong>"Dra. Beatriz Rodrigues"</strong> (seção Consulta de Fisioterapia, República) provavelmente é a mesma pessoa que "Dra. Beatriz Sala Rodrigues Martins" (seção ATM) — mesmo profissional_id no Feegow, mas o documento não deixa 100% claro se são a mesma pessoa cobrindo dois tipos de atendimento.</p>
   </section>
 
   <footer>
-    <span>Fonte: API Feegow (professional/list, procedures/list) · Codificação de convênio cruzada com "Procedimentos + codigos sistema.pdf"</span>
-    <span>Levantamento em 25/08/2026</span>
+    <span>Fontes: "Médicos e especialidades - vlo e rep.odt" (clínica) · API Feegow (professional/list, procedures/list)</span>
+    <span>Revisado em 30/08/2026</span>
   </footer>
 </div>
