@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AUTZ &times; Digestive &middot; Diagn&oacute;stico Amigotech &rarr; RD Station</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300272C'/%3E%3Ccircle cx='21' cy='11' r='5' fill='%23E9FF4A'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--card:#00323A;--card2:#003D47;--lime:#E9FF4A;--lime2:#D2E132;--white:#ffffff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--blue:#60a5fa;--amber:#fbbf24;--green:#4ade80;--purple:#a78bfa;--pink:#f472b6;--border:rgba(233,255,74,0.15);--borderw:rgba(255,255,255,0.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* LOGO */
+.autz-logo-img{background-image:url('data:image/png;base64,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');background-size:contain;background-repeat:no-repeat;background-position:center;display:block;}
+.nav-logo .autz-logo-img{width:100px;height:36px;}
+.hero-logo .autz-logo-img{width:133px;height:48px;margin:0 auto;}
+.cta-autz .autz-logo-img{width:116px;height:42px;margin:0 auto;opacity:0.85;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:rgba(0,39,44,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--borderw);display:flex;align-items:center;justify-content:space-between;padding:0 44px;}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-tag{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);border-left:1px solid var(--borderw);padding-left:20px;}
+
+/* PROGRESS DOTS */
+.progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:150;}
+.pd{width:6px;height:6px;border-radius:3px;background:var(--gray2);transition:all 0.3s ease;cursor:pointer;}
+.pd.active{background:var(--lime);height:24px;}
+.pd:hover{background:var(--gray);}
+
+/* SECTIONS */
+section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:column;justify-content:center;max-width:940px;margin:0 auto;}
+
+/* HERO */
+.hero{min-height:100vh;max-width:100%;padding:0;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.hero-orb{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-ring{position:absolute;border-radius:50%;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-r1{width:600px;height:600px;border:1px solid rgba(233,255,74,0.07);}
+.hero-r2{width:820px;height:820px;border:1px solid rgba(233,255,74,0.04);}
+.hero-r3{width:1040px;height:1040px;border:1px solid rgba(233,255,74,0.02);}
+.hero-content{position:relative;z-index:1;padding:40px 52px;max-width:900px;}
+.hero-logo{margin-bottom:32px;margin-top:80px;}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:28px;}
+.hero-title{font-size:clamp(28px,5.2vw,54px);font-weight:900;line-height:1.12;letter-spacing:-2px;margin-bottom:22px;}
+.hero-title em{font-style:normal;color:var(--lime);}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);font-weight:400;color:var(--gray);line-height:1.75;max-width:660px;margin:0 auto 48px;}
+.hero-stats{display:inline-flex;border:1px solid var(--borderw);border-radius:20px;overflow:hidden;margin-bottom:56px;background:rgba(255,255,255,0.02);}
+.hs{padding:22px 34px;text-align:center;border-right:1px solid var(--borderw);}
+.hs:last-child{border-right:none;}
+.hs-num{font-size:28px;font-weight:800;color:var(--lime);line-height:1;}
+.hs-lbl{font-size:11px;color:var(--gray);margin-top:5px;font-weight:500;}
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray2);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;animation:cue 2.4s ease-in-out infinite;}
+.scroll-line{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--lime));}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+
+/* EYEBROWS & TITLES */
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;}
+.stitle{font-size:clamp(28px,4.5vw,46px);font-weight:800;line-height:1.1;letter-spacing:-1.2px;margin-bottom:16px;}
+.stitle em{font-style:normal;color:var(--lime);}
+.ssub{font-size:16px;font-weight:400;color:var(--gray);line-height:1.75;max-width:660px;margin-bottom:40px;}
+.hl{background:var(--lime);color:var(--bg);font-weight:700;padding:1px 8px;border-radius:4px;white-space:nowrap;font-style:normal;}
+.lime{color:var(--lime);font-weight:700;}
+
+/* PROBLEMAS */
+.prob-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;}
+.prob-item{display:flex;align-items:flex-start;gap:18px;background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:22px;transition:border-color 0.25s;}
+.prob-item:hover{border-color:rgba(232,89,60,0.3);}
+.prob-ico{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:rgba(232,89,60,0.1);display:flex;align-items:center;justify-content:center;font-size:19px;}
+.prob-title{font-size:15px;font-weight:700;margin-bottom:5px;}
+.prob-body{font-size:14px;color:var(--gray);line-height:1.6;}
+
+/* FASES (accordion) */
+.fase-wrap{display:flex;flex-direction:column;gap:12px;}
+.fase{background:var(--card);border:1px solid var(--borderw);border-radius:20px;overflow:hidden;transition:border-color 0.3s;cursor:pointer;}
+.fase.open{border-color:var(--border);}
+.fase-head{display:flex;align-items:center;gap:16px;padding:22px 28px;user-select:none;}
+.fase-num{width:48px;height:48px;border-radius:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;}
+.f1 .fase-num{background:rgba(96,165,250,0.15);color:var(--blue);}
+.f2 .fase-num{background:rgba(251,191,36,0.15);color:var(--amber);}
+.f3 .fase-num{background:rgba(74,222,128,0.15);color:var(--green);}
+.fase-info{flex:1;}
+.fase-title{font-size:16px;font-weight:700;}
+.fase-sub{font-size:13px;color:var(--gray);margin-top:3px;font-weight:500;}
+.fase-arrow{color:var(--gray2);transition:transform 0.3s,color 0.3s;flex-shrink:0;}
+.fase-arrow svg{width:22px;height:22px;}
+.fase.open .fase-arrow{transform:rotate(180deg);color:var(--lime);}
+.fase-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);}
+.fase.open .fase-body{max-height:2200px;}
+.fase-inner{padding:0 28px 32px;border-top:1px solid var(--borderw);padding-top:28px;}
+.roadmap{display:flex;flex-direction:column;}
+.rm-item{display:flex;gap:16px;position:relative;}
+.rm-item:not(:last-child)::before{content:'';position:absolute;left:6px;top:22px;bottom:0;width:1px;background:var(--borderw);}
+.rm-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:4px;border:2px solid;}
+.f1 .rm-dot{border-color:var(--blue);background:rgba(96,165,250,0.15);}
+.f2 .rm-dot{border-color:var(--amber);background:rgba(251,191,36,0.15);}
+.f3 .rm-dot{border-color:var(--green);background:rgba(74,222,128,0.15);}
+.rm-text{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.6;padding-bottom:18px;}
+.rm-text strong{color:var(--white);font-weight:600;}
+.fase-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.ftag{font-size:12px;padding:4px 12px;border-radius:99px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid var(--borderw);color:var(--gray);}
+.note-box{background:rgba(233,255,74,0.04);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-top:18px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;}
+.note-box strong{color:var(--lime);}
+
+/* INVESTIMENTO */
+.invest-hero{background:rgba(233,255,74,0.05);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;margin-bottom:24px;}
+.invest-lbl{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;}
+.invest-price{font-size:56px;font-weight:900;color:var(--lime);line-height:1;letter-spacing:-2px;}
+.invest-detail{font-size:13px;color:var(--gray);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.pay-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;}
+.pay-chip{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px 20px;text-align:center;min-width:180px;}
+.pay-chip-lbl{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px;}
+.pay-chip-val{font-size:18px;font-weight:800;color:var(--lime);}
+
+/* CTA */
+.cta-sec{min-height:100vh;max-width:100%;background:linear-gradient(180deg,var(--bg) 0%,#001a1e 50%,var(--bg) 100%);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 52px;position:relative;}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(233,255,74,0.05) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-autz{margin-bottom:24px;position:relative;}
+.cta-title{font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px;position:relative;}
+.cta-title em{font-style:normal;color:var(--lime);}
+.cta-sub{font-size:17px;color:var(--gray);line-height:1.75;max-width:580px;margin:0 auto 44px;position:relative;}
+.cta-box{background:var(--card);border:2px solid var(--lime);border-radius:20px;padding:32px 48px;display:inline-flex;flex-direction:column;gap:8px;position:relative;margin-bottom:20px;}
+.cta-line{font-size:15px;color:rgba(255,255,255,0.7);}
+.cta-line strong{color:var(--white);font-weight:600;}
+.cta-link{color:var(--lime);text-decoration:underline;font-weight:600;}
+.cta-foot{font-size:12px;color:var(--gray2);margin-top:16px;position:relative;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{padding:0 20px;height:56px;}
+.nav-tag{display:none;}
+section{padding:80px 20px 60px;}
+.hero-content{padding:20px 20px;}
+.hero-stats{flex-direction:column;}
+.hs{border-right:none;border-bottom:1px solid var(--borderw);padding:16px 32px;}
+.hs:last-child{border-bottom:none;}
+.fase-head{flex-wrap:wrap;}
+.progress{display:none;}
+.cta-box{padding:24px 28px;}
+}
+
+/* PRINT */
+@media print{
+body{background:#fff;color:#1a1a1a;}
+nav,.progress,.scroll-cue,.scroll-line{display:none!important;}
+section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 32px;}
+.hero{min-height:auto;padding:60px 32px;}
+.card,.prob-item,.fase{border-color:#ccc;}
+.stitle em,.lime,.eyebrow,.hl{color:#1a6b2d!important;}
+.hl{background:#e6f7e0!important;color:#1a6b2d!important;}
+.fase-body{max-height:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><div class="autz-logo-img"></div></div>
+  <div class="nav-right">
+    <div class="nav-tag">AUTZ &middot; Diagn&oacute;stico Amigotech &rarr; RD Station</div>
+    <div class="nav-tag">Digestive &middot; 2026</div>
+  </div>
+</nav>
+
+<div class="progress" id="progressDots"></div>
+
+<!-- 0. HERO -->
+<section class="hero" id="s0">
+  <div class="hero-orb"></div>
+  <div class="hero-ring hero-r1"></div>
+  <div class="hero-ring hero-r2"></div>
+  <div class="hero-ring hero-r3"></div>
+  <div class="hero-content">
+    <div class="hero-logo"><div class="autz-logo-img"></div></div>
+    <div class="hero-eyebrow">AUTZ &times; Digestive</div>
+    <h1 class="hero-title">Da base espalhada no Amigotech<br><em>pra uma jornada de relacionamento de verdade.</em></h1>
+    <p class="hero-sub">Mapeamento t&eacute;cnico de como importar, segmentar e nutrir a base de pacientes da Digestive usando e-mail, SMS e WhatsApp, com clareza sobre o que o RD Station j&aacute; resolve nativo e o que depende de desenvolvimento por fora, j&aacute; que a Amigotech n&atilde;o tem documenta&ccedil;&atilde;o p&uacute;blica de integra&ccedil;&atilde;o.</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">3</div><div class="hs-lbl">Canais de nutri&ccedil;&atilde;o (e-mail, SMS, WhatsApp)</div></div>
+      <div class="hs"><div class="hs-num">5</div><div class="hs-lbl">Etapas da migra&ccedil;&atilde;o</div></div>
+      <div class="hs"><div class="hs-num">LGPD</div><div class="hs-lbl">Dado sens&iacute;vel de sa&uacute;de</div></div>
+    </div>
+    <div class="scroll-cue">
+      <span>Rolar para explorar</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. CENÁRIO ATUAL -->
+<section id="s1">
+  <div class="eyebrow">01. Cen&aacute;rio atual</div>
+  <h2 class="stitle">Amigotech centraliza a cl&iacute;nica,<br><em>mas n&atilde;o nutre a base pra fora da consulta.</em></h2>
+  <p class="ssub">Antes de desenhar a automa&ccedil;&atilde;o, vale registrar onde est&aacute; a base hoje e o que existe (ou n&atilde;o) em documenta&ccedil;&atilde;o p&uacute;blica da ferramenta usada pela Digestive.</p>
+
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-ico">&#127973;</div>
+      <div><div class="prob-title">Amigotech como centro da opera&ccedil;&atilde;o</div><div class="prob-body">Agenda, prontu&aacute;rio eletr&ocirc;nico, CRM e financeiro da Digestive rodam dentro do Amigotech, plataforma feita pra rotina cl&iacute;nica, n&atilde;o pra automa&ccedil;&atilde;o de marketing multicanal.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128274;</div>
+      <div><div class="prob-title">Sem documenta&ccedil;&atilde;o p&uacute;blica de API</div><div class="prob-body">A Amigotech n&atilde;o publica documenta&ccedil;&atilde;o t&eacute;cnica de integra&ccedil;&atilde;o. O ponto de contato conhecido &eacute; o Amigo Bot, que j&aacute; conecta WhatsApp, Instagram e Messenger pro agendamento, sinal de que existe alguma superf&iacute;cie de API, mas sem acesso aberto pra confirmar formato e limites.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128193;</div>
+      <div><div class="prob-title">Base sem segmenta&ccedil;&atilde;o de marketing</div><div class="prob-body">O paciente existe no Amigotech como registro cl&iacute;nico e financeiro, n&atilde;o como contato segment&aacute;vel por especialidade, status de tratamento ou tempo desde a &uacute;ltima consulta.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128231;</div>
+      <div><div class="prob-title">Zero automa&ccedil;&atilde;o de nutri&ccedil;&atilde;o hoje</div><div class="prob-body">Lembrete de retorno, reativa&ccedil;&atilde;o de paciente inativo e pesquisa de satisfa&ccedil;&atilde;o dependem de a&ccedil;&atilde;o manual da recep&ccedil;&atilde;o, sem fluxo autom&aacute;tico por e-mail, SMS ou WhatsApp.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#9878;&#65039;</div>
+      <div><div class="prob-title">Dado sens&iacute;vel de sa&uacute;de exige cuidado extra</div><div class="prob-body">Informa&ccedil;&atilde;o de paciente &eacute; dado sens&iacute;vel pela LGPD. Qualquer importa&ccedil;&atilde;o e disparo em massa precisa nascer com consentimento, finalidade e base legal registrados, n&atilde;o s&oacute; com o contato salvo.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. O QUE DÁ PRA FAZER -->
+<section id="s2">
+  <div class="eyebrow">02. O que d&aacute; pra fazer</div>
+  <h2 class="stitle">Nativo de um lado,<br><em>desenvolvimento por fora do outro.</em></h2>
+  <p class="ssub">Separamos em dois blocos: o que o RD Station j&aacute; resolve sem nenhum desenvolvimento extra, e o que precisa de integra&ccedil;&atilde;o ou automa&ccedil;&atilde;o por fora pra cobrir os tr&ecirc;s canais (e-mail, SMS e WhatsApp) e a ponte com o Amigotech.</p>
+
+  <div class="fase-wrap">
+
+    <div class="fase f1" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">1</div>
+        <div class="fase-info"><div class="fase-title">Nativo no RD Station</div><div class="fase-sub">Sem nenhum desenvolvimento extra</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Importa&ccedil;&atilde;o de base via planilha</strong> exportada do Amigotech (nome, telefone, e-mail, especialidade, data da &uacute;ltima consulta), direto pro RD Station Marketing</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Segmenta&ccedil;&otilde;es inteligentes</strong> por especialidade, status do paciente (ativo, inativo, em tratamento) e procedimento de interesse</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Campos personalizados ilimitados</strong> no contato, incluindo campo de consentimento e finalidade de uso do dado, pra manter o registro de LGPD dentro da pr&oacute;pria ferramenta</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Fluxos de automa&ccedil;&atilde;o de e-mail</strong> prontos: nutri&ccedil;&atilde;o por especialidade, lembrete pr&eacute;-consulta, pesquisa de satisfa&ccedil;&atilde;o p&oacute;s-consulta e reativa&ccedil;&atilde;o de paciente inativo</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Lead scoring por engajamento</strong> (abriu, clicou, agendou), priorizando quem est&aacute; mais perto de voltar a marcar consulta</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Pop-ups e landing pages</strong> pra captar novo contato a partir de conte&uacute;do de sa&uacute;de (blog, campanha, evento)</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Integra&ccedil;&atilde;o nativa com WhatsApp Oficial via RD Conversas</strong>, cobrindo lembrete e confirma&ccedil;&atilde;o de consulta dentro do mesmo ecossistema RD</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Relat&oacute;rios padr&atilde;o de campanha e funil de convers&atilde;o</strong>, sem precisar de ferramenta externa de BI pra acompanhar o b&aacute;sico</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">Importa&ccedil;&atilde;o via planilha</span><span class="ftag">Segmenta&ccedil;&atilde;o por especialidade</span><span class="ftag">Nutri&ccedil;&atilde;o por e-mail</span><span class="ftag">WhatsApp via RD Conversas</span><span class="ftag">Lead scoring</span></div>
+      </div></div>
+    </div>
+
+    <div class="fase f2" onclick="toggleFase(this)">
+      <div class="fase-head">
+        <div class="fase-num">2</div>
+        <div class="fase-info"><div class="fase-title">Desenvolvimento por fora</div><div class="fase-sub">Integra&ccedil;&atilde;o com Amigotech + canais que o RD Station n&atilde;o cobre nativo</div></div>
+        <div class="fase-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="fase-body"><div class="fase-inner">
+        <div class="roadmap">
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Integra&ccedil;&atilde;o Amigotech &rarr; RD Station:</strong> como n&atilde;o existe API p&uacute;blica documentada, o caminho seguro pra come&ccedil;ar &eacute; exporta&ccedil;&atilde;o peri&oacute;dica de planilha, evoluindo pra integra&ccedil;&atilde;o direta (API ou webhook) assim que a Amigotech confirmar acesso t&eacute;cnico real. Esse &eacute; o ponto que mais precisa de uma fase de diagn&oacute;stico dedicada antes de qualquer prazo</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>SMS via gateway terceiro</strong> (Zenvia, Twilio, Infobip): o RD Station Marketing n&atilde;o tem canal de SMS nativo, ent&atilde;o o disparo entra por automa&ccedil;&atilde;o customizada, usando os mesmos gatilhos de fluxo do RD Marketing</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Chatbot de qualifica&ccedil;&atilde;o e confirma&ccedil;&atilde;o no WhatsApp</strong> (RD Conversas), sincronizado com o funil de nutri&ccedil;&atilde;o por e-mail pra n&atilde;o mandar mensagem duplicada nos dois canais ao mesmo tempo</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Sincroniza&ccedil;&atilde;o de status de agenda</strong> (consulta confirmada, realizada, remarcada) entre Amigotech e RD Station, dependendo da mesma integra&ccedil;&atilde;o do primeiro ponto</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Camada de consentimento audit&aacute;vel</strong>, registrando origem e finalidade de cada contato importado, pensada junto com o jur&iacute;dico da Digestive antes do primeiro disparo em massa</div></div>
+        </div>
+        <div class="fase-tags"><span class="ftag">Integra&ccedil;&atilde;o Amigotech</span><span class="ftag">SMS via gateway</span><span class="ftag">Chatbot WhatsApp</span><span class="ftag">Sincroniza&ccedil;&atilde;o de agenda</span><span class="ftag">Consentimento LGPD</span></div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="note-box">&#128206; O bloco 1 j&aacute; cobre a base de nutri&ccedil;&atilde;o por e-mail sozinho. O bloco 2 &eacute; o que transforma isso numa estrat&eacute;gia de verdade multicanal (e-mail, SMS e WhatsApp) conectada &agrave; opera&ccedil;&atilde;o real da cl&iacute;nica no Amigotech.</div>
+</section>
+
+<!-- 3. O QUE NÃO DÁ PRA FAZER -->
+<section id="s3">
+  <div class="eyebrow">03. O que n&atilde;o d&aacute; pra fazer</div>
+  <h2 class="stitle">Onde o canal ou o dado<br><em>imp&otilde;e um limite real.</em></h2>
+  <p class="ssub">Isso aqui n&atilde;o &eacute; falta de esfor&ccedil;o, &eacute; limite t&eacute;cnico ou de risco que preferimos deixar claro antes de prometer algo que n&atilde;o se sustenta depois.</p>
+
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-ico">&#128245;</div>
+      <div><div class="prob-title">SMS nativo dentro do RD Station</div><div class="prob-body">N&atilde;o existe e n&atilde;o &eacute; algo que a ferramenta pretende adicionar. Todo envio de SMS sempre vai depender de um gateway terceiro contratado &agrave; parte, com custo por mensagem.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128268;</div>
+      <div><div class="prob-title">Integra&ccedil;&atilde;o em tempo real com Amigotech garantida de cara</div><div class="prob-body">Sem documenta&ccedil;&atilde;o p&uacute;blica, n&atilde;o d&aacute; pra prometer webhook ou API funcionando desde o primeiro dia. O que d&aacute; pra afirmar hoje &eacute; o caminho: exporta&ccedil;&atilde;o peri&oacute;dica primeiro, integra&ccedil;&atilde;o direta depois de validar acesso t&eacute;cnico real com a Amigotech.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#129502;</div>
+      <div><div class="prob-title">Dado cl&iacute;nico sens&iacute;vel dentro do fluxo de marketing</div><div class="prob-body">Diagn&oacute;stico, prontu&aacute;rio e qualquer informa&ccedil;&atilde;o de sa&uacute;de propriamente dita n&atilde;o entram nos disparos de nutri&ccedil;&atilde;o, mesmo que existam dentro do Amigotech. O canal de marketing trabalha s&oacute; com dado de relacionamento (nome, contato, especialidade, status).</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#9997;&#65039;</div>
+      <div><div class="prob-title">Consentimento retroativo autom&aacute;tico</div><div class="prob-body">Paciente importado sem opt-in expl&iacute;cito n&atilde;o pode entrar direto em disparo em massa. Validar a base legal de cada contato &eacute; passo manual e jur&iacute;dico, n&atilde;o algo que a automa&ccedil;&atilde;o resolve sozinha.</div></div>
+    </div>
+  </div>
+
+  <div class="note-box">&#9878;&#65039; <strong>Postura recomendada:</strong> a estrat&eacute;gia de nutri&ccedil;&atilde;o multicanal (bloco 2) s&oacute; entra em produ&ccedil;&atilde;o depois da base legal de consentimento estar mapeada. Isso protege a Digestive de risco de LGPD e evita retrabalho de segmenta&ccedil;&atilde;o mais pra frente.</div>
+</section>
+
+<!-- 4. CTA -->
+<section class="cta-sec" id="s4" style="max-width:100%;">
+  <div class="cta-autz"><div class="autz-logo-img"></div></div>
+  <div class="eyebrow" style="margin-bottom:18px;">04. Pr&oacute;ximos passos</div>
+  <h2 class="cta-title">Vamos <em>validar o Amigotech primeiro?</em></h2>
+  <p class="cta-sub">Como n&atilde;o existe documenta&ccedil;&atilde;o p&uacute;blica da API, o primeiro passo real &eacute; um diagn&oacute;stico t&eacute;cnico: confirmar com a Amigotech o que d&aacute; pra exportar hoje e o que precisa de integra&ccedil;&atilde;o direta, antes de fechar cronograma e investimento da estrat&eacute;gia completa.</p>
+  <div class="cta-box">
+    <div class="cta-line"><strong>&#128222;</strong> (16) 99289-6549</div>
+    <div class="cta-line"><strong>&#9993;&#65039;</strong> mk@autz.com.br</div>
+    <div class="cta-line"><a class="cta-link" href="https://autz.com.br/agenda-online-mika/">&#128197; Agende uma reuni&atilde;o aqui</a></div>
+  </div>
+  <div class="cta-foot">&copy; 2026 AUTZ Solu&ccedil;&otilde;es Digitais Integradas &middot; CNPJ 54.489.785/0001-37</div>
+</section>
+
+<script>
+var sids = ['s0','s1','s2','s3','s4'];
+var dotsWrap = document.getElementById('progressDots');
+sids.forEach(function(id, i){
+  var d = document.createElement('div');
+  d.className = 'pd' + (i === 0 ? ' active' : '');
+  d.onclick = function(){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); };
+  dotsWrap.appendChild(d);
+});
+var dots = dotsWrap.querySelectorAll('.pd');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var idx = sids.indexOf(entry.target.id);
+      if(idx >= 0) dots.forEach(function(d,j){ d.classList.toggle('active', j === idx); });
+    }
+  });
+}, {threshold: 0.35});
+sids.forEach(function(id){ var el = document.getElementById(id); if(el) observer.observe(el); });
+
+function toggleFase(el){
+  var open = el.classList.contains('open');
+  document.querySelectorAll('.fase').forEach(function(f){ f.classList.remove('open'); });
+  if(!open){ el.classList.add('open'); }
+}
+</script>
+</body>
+</html>
