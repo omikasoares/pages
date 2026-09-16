@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste IA Anclivepa</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#00272C;
+    --bg2:#001e23;
+    --surface:#00323A;
+    --surface2:#003D47;
+    --lime:#E9FF4A;
+    --lime2:#D2E132;
+    --white:#ffffff;
+    --gray:#7a9fa8;
+    --gray2:#4a7078;
+    --border:rgba(233,255,74,0.15);
+    --border-white:rgba(255,255,255,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(1200px 600px at 15% -10%, var(--surface2) 0%, var(--bg) 55%), var(--bg);
+    color:var(--white);
+    font-family:'Poppins',-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100vh;
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:32px 24px 80px;
+  }
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:800;
+    font-size:15px;
+    letter-spacing:0.06em;
+    color:var(--white);
+  }
+  .brand .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--lime);
+    box-shadow:0 0 12px var(--lime);
+  }
+  .pill{
+    font-size:12px;
+    font-weight:600;
+    color:var(--gray);
+    background:var(--surface);
+    border:1px solid var(--border-white);
+    padding:6px 14px;
+    border-radius:999px;
+    letter-spacing:0.02em;
+  }
+  .hero{
+    margin-bottom:48px;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--lime);
+    margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(28px,4.4vw,44px);
+    font-weight:800;
+    line-height:1.12;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  h1 span{color:var(--lime);}
+  .lead{
+    font-size:17px;
+    color:var(--gray);
+    max-width:620px;
+    margin:0;
+  }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin:40px 0 8px;
+  }
+  .step{
+    background:var(--surface);
+    border:1px solid var(--border-white);
+    border-radius:16px;
+    padding:22px 20px;
+  }
+  .step .num{
+    width:30px;height:30px;
+    border-radius:50%;
+    background:rgba(233,255,74,0.12);
+    color:var(--lime);
+    font-weight:700;
+    font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+  }
+  .step h3{
+    font-size:15px;
+    font-weight:700;
+    margin:0 0 6px;
+    color:var(--white);
+  }
+  .step p{
+    font-size:13.5px;
+    color:var(--gray);
+    margin:0;
+  }
+  .card{
+    background:var(--white);
+    color:#1a1a1a;
+    border-radius:20px;
+    padding:36px 32px 28px;
+    margin-top:48px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .card-head{
+    margin-bottom:22px;
+  }
+  .card-head h2{
+    font-size:20px;
+    font-weight:700;
+    margin:0 0 6px;
+    color:#0d1f22;
+  }
+  .card-head p{
+    font-size:13.5px;
+    color:#5c7278;
+    margin:0;
+  }
+  #form-teste-coordenacao-ia-f0f607fe1345c4ec8820{
+    font-family:'Poppins',sans-serif;
+  }
+  .note{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:rgba(233,255,74,0.06);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-top:32px;
+    font-size:13.5px;
+    color:var(--gray);
+  }
+  .note b{color:var(--white);}
+  footer{
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid var(--border-white);
+    font-size:12.5px;
+    color:var(--gray2);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  @media (max-width:640px){
+    .steps{grid-template-columns:1fr;}
+    .card{padding:26px 20px 22px;}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><span class="dot"></span>AUTZ</div>
+      <div class="pill">Ferramenta interna &middot; Anclivepa</div>
+    </header>
+
+    <div class="hero">
+      <span class="eyebrow">Teste da Assistente Virtual</span>
+      <h1>Ajude a testar a <span>IA da Anclivepa</span></h1>
+      <p class="lead">Essa página é pra você, coordenador(a) de curso, simular a chegada de um lead interessado num curso específico. Preencha com seus próprios dados e escolha um curso &mdash; em poucos minutos você recebe uma mensagem no WhatsApp e pode conversar com a assistente virtual exatamente como um aluno em potencial faria.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Preencha o formulário</h3>
+        <p>Seu nome, e-mail, celular e o curso que você quer simular.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Receba a mensagem</h3>
+        <p>Em poucos minutos, a Anclivepa te chama no WhatsApp perguntando sobre o curso escolhido.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Converse com a IA</h3>
+        <p>Responda normalmente e teste como a assistente se comporta. Qualquer estranheza, registre pra gente ajustar.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2>Simular um lead</h2>
+        <p>Todos os campos abaixo são necessários pra mensagem chegar certinho no seu WhatsApp.</p>
+      </div>
+      <div role="main" id="form-teste-coordenacao-ia-f0f607fe1345c4ec8820"></div>
+    </div>
+
+    <div class="note">
+      <span>&#9888;&#65039;</span>
+      <span><b>Isso é um ambiente de teste real</b> &mdash; a mensagem chega de verdade no seu WhatsApp e o contato entra na base do Conversas. Use um número que você acesse, e à vontade pra testar quantas vezes quiser com cursos diferentes.</span>
+    </div>
+
+    <footer>
+      <span>Anclivepa &middot; Teste interno de IA</span>
+      <span>Desenvolvido por AUTZ</span>
+    </footer>
+  </div>
+
+  <script type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+  <script type="text/javascript">
+    new RDStationForms('form-teste-coordenacao-ia-f0f607fe1345c4ec8820', 'UA-209784160-1').createForm();
+  </script>
+</body>
+</html>
