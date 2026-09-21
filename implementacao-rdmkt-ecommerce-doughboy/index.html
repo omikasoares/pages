@@ -102,6 +102,18 @@ section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:col
 .note-box{background:rgba(233,255,74,0.04);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-top:18px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;}
 .note-box strong{color:var(--lime);}
 
+/* PASSOS E DIFERENCIAIS */
+.step-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;}
+.step-item{display:flex;align-items:flex-start;gap:18px;background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:22px;transition:border-color 0.25s;}
+.step-item:hover{border-color:var(--border);}
+.step-num{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:rgba(233,255,74,0.12);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;}
+.step-content{flex:1;min-width:0;}
+.step-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:5px;}
+.step-title{font-size:15px;font-weight:700;margin-bottom:5px;}
+.step-head .step-title{margin-bottom:0;}
+.step-days{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--lime);}
+.step-body{font-size:14px;color:var(--gray);line-height:1.6;}
+
 /* INVESTIMENTO */
 .invest-hero{background:rgba(233,255,74,0.05);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;margin-bottom:24px;}
 .invest-lbl{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;}
@@ -175,7 +187,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
     <div class="hero-logo"><div class="autz-logo-img"></div></div>
     <div class="hero-eyebrow">AUTZ &times; Doughboy</div>
     <h1 class="hero-title">Nova loja no Magazord,<br><em>com o RD Station trabalhando pela venda.</em></h1>
-    <p class="hero-sub">Integra&ccedil;&atilde;o do Magazord com o RD Station Marketing para E-commerce e fluxos de recupera&ccedil;&atilde;o de venda, pra transformar em pedido a m&iacute;dia que voc&ecirc;s j&aacute; pagam.</p>
+    <p class="hero-sub">Integra&ccedil;&atilde;o do Magazord com o RD Station Marketing para E-commerce e fluxos de recupera&ccedil;&atilde;o de venda por e-mail e WhatsApp, pra transformar em pedido a m&iacute;dia que voc&ecirc;s j&aacute; pagam.</p>
     <div class="hero-stats">
       <div class="hs"><div class="hs-num">R$ 12 mil</div><div class="hs-lbl">de m&iacute;dia paga por m&ecirc;s</div></div>
       <div class="hs"><div class="hs-num">~170</div><div class="hs-lbl">vendas por m&ecirc;s hoje</div></div>
@@ -256,9 +268,10 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
           <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Avise-me e alerta de pre&ccedil;o</strong>: campanha autom&aacute;tica quando o produto volta ao estoque ou o pre&ccedil;o cai, direto pro link do produto</div></div>
           <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>P&oacute;s-compra</strong>: agradecimento, pedido de avalia&ccedil;&atilde;o e sugest&atilde;o de pe&ccedil;a complementar, puxando o cliente pra pr&oacute;xima compra</div></div>
           <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Reativa&ccedil;&atilde;o</strong>: quem sumiu recebe novidades e combos pra voltar ao site</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>WhatsApp como segundo canal</strong>: nos fluxos de carrinho abandonado e avise-me, um toque por WhatsApp depois do e-mail, usando o add-on de mensagens (sugest&atilde;o de 500 pra come&ccedil;ar), pra n&atilde;o ficar s&oacute; no e-mail</div></div>
           <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Links com UTM padronizada por fluxo</strong>, pra medir no GA4 e no RD quanto cada fluxo devolveu de venda</div></div>
         </div>
-        <div class="fase-tags"><span class="ftag">Carrinho abandonado</span><span class="ftag">Boas-vindas</span><span class="ftag">Avise-me</span><span class="ftag">P&oacute;s-compra</span><span class="ftag">Reativa&ccedil;&atilde;o</span></div>
+        <div class="fase-tags"><span class="ftag">Carrinho abandonado</span><span class="ftag">Boas-vindas</span><span class="ftag">Avise-me</span><span class="ftag">P&oacute;s-compra</span><span class="ftag">Reativa&ccedil;&atilde;o</span><span class="ftag">WhatsApp</span></div>
       </div></div>
     </div>
 
@@ -285,9 +298,76 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   <div class="note-box">&#128206; Tudo isso roda dentro do RD Station Marketing para E-commerce (plano Pro), que j&aacute; libera os fluxos de carrinho abandonado.</div>
 </section>
 
-<!-- 3. PONTOS DE ATENÇÃO -->
+<!-- 3. PASSO A PASSO -->
 <section id="s3">
-  <div class="eyebrow">03. Pontos de aten&ccedil;&atilde;o</div>
+  <div class="eyebrow">03. Passo a passo</div>
+  <h2 class="stitle">Tr&ecirc;s passos,<br><em>25 dias at&eacute; tudo funcionando.</em></h2>
+  <p class="ssub">Cada passo tem prazo e entrega definidos, pra voc&ecirc;s acompanharem o andamento sem surpresa.</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-head"><div class="step-title">Base t&eacute;cnica</div><div class="step-days">Dias 1 a 5</div></div>
+        <div class="step-body">Kickoff, confer&ecirc;ncia da conta do RD, ativa&ccedil;&atilde;o do plugin oficial do Magazord e do c&oacute;digo de monitoramento, e valida&ccedil;&atilde;o dos dados que a API de carrinho do Magazord devolve.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-head"><div class="step-title">Constru&ccedil;&atilde;o</div><div class="step-days">Dias 6 a 18</div></div>
+        <div class="step-body">Ponte de carrinho abandonado, fluxos de venda (carrinho, boas-vindas, avise-me, p&oacute;s-compra e reativa&ccedil;&atilde;o), e-mails com design profissional e segmenta&ccedil;&otilde;es, com aprova&ccedil;&atilde;o de voc&ecirc;s ao longo do caminho.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-head"><div class="step-title">Testes e entrada no ar</div><div class="step-days">Dias 19 a 25</div></div>
+        <div class="step-body">Teste de ponta a ponta (do carrinho ao e-mail e &agrave; sa&iacute;da por pedido pago), ajustes finais, treinamento da equipe e ativa&ccedil;&atilde;o dos fluxos.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">&#129517; Depois dos 25 dias, mais 30 dias de acompanhamento pra ajustar cada fluxo com o resultado real.</div>
+</section>
+
+<!-- 4. DIFERENCIAIS -->
+<section id="s4">
+  <div class="eyebrow">04. Diferenciais</div>
+  <h2 class="stitle">N&atilde;o &eacute; s&oacute; configurar a ferramenta,<br><em>&eacute; entregar a venda funcionando.</em></h2>
+  <p class="ssub">O que a Autz entrega pra deixar o RD vendendo de verdade, indo al&eacute;m da configura&ccedil;&atilde;o padr&atilde;o da ferramenta.</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">&#128736;&#65039;</div>
+      <div class="step-content"><div class="step-title">Implementa&ccedil;&atilde;o hands-on</div><div class="step-body">A Autz executa tudo: conta, fluxos, e-mails, integra&ccedil;&atilde;o e testes. A equipe da Doughboy aprova e acompanha, sem precisar montar nada.</div></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">&#128268;</div>
+      <div class="step-content"><div class="step-title">Integra&ccedil;&atilde;o que a ferramenta n&atilde;o entrega sozinha</div><div class="step-body">O plugin do Magazord n&atilde;o envia carrinho abandonado. A ponte customizada &eacute; o que faz o principal fluxo de recupera&ccedil;&atilde;o de venda existir.</div></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">&#127912;</div>
+      <div class="step-content"><div class="step-title">E-mails com design profissional</div><div class="step-body">Na identidade visual da Doughboy, responsivos e com os produtos do carrinho, n&atilde;o modelos gen&eacute;ricos.</div></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">&#128172;</div>
+      <div class="step-content"><div class="step-title">E-mail e WhatsApp juntos</div><div class="step-body">O WhatsApp entra como segundo canal nos momentos certos, sem depender s&oacute; do e-mail.</div></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">&#128200;</div>
+      <div class="step-content"><div class="step-title">Receita medida por fluxo</div><div class="step-body">UTM padronizada e sa&iacute;da por pedido pago, pra saber quanto cada automa&ccedil;&atilde;o devolveu de venda.</div></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">&#127891;</div>
+      <div class="step-content"><div class="step-title">Treinamento e acompanhamento</div><div class="step-body">Depois de no ar, 30 dias de ajuste com o resultado real e treinamento pra equipe tocar sozinha.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PONTOS DE ATENÇÃO -->
+<section id="s5">
+  <div class="eyebrow">05. Pontos de aten&ccedil;&atilde;o</div>
   <h2 class="stitle">O que precisa ficar<br><em>combinado desde o in&iacute;cio.</em></h2>
   <p class="ssub">Sendo direto: nada disso trava o projeto, mas afeta prazo ou depende de algo do lado de voc&ecirc;s.</p>
 
@@ -306,16 +386,20 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
     </div>
     <div class="prob-item">
       <div class="prob-ico">&#128176;</div>
-      <div><div class="prob-title">A licen&ccedil;a do RD Station n&atilde;o est&aacute; inclusa</div><div class="prob-body">Esse investimento &eacute; de implementa&ccedil;&atilde;o e integra&ccedil;&atilde;o. O plano do RD Station Marketing para E-commerce (Pro) &eacute; contratado &agrave; parte.</div></div>
+      <div><div class="prob-title">A licen&ccedil;a do RD e o add-on de WhatsApp ficam &agrave; parte</div><div class="prob-body">Esse investimento &eacute; de implementa&ccedil;&atilde;o e integra&ccedil;&atilde;o. O plano do RD Station Marketing para E-commerce (Pro) e o add-on de mensagens de WhatsApp (sugest&atilde;o de 500 pra come&ccedil;ar) s&atilde;o contratados &agrave; parte com a RD.</div></div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128241;</div>
+      <div><div class="prob-title">WhatsApp exige telefone e consentimento</div><div class="prob-body">Pra usar o WhatsApp como segundo canal, o telefone e o aceite de receber mensagens precisam ser coletados no cadastro ou no checkout. Na primeira etapa a gente confere o que o Magazord j&aacute; captura e ajusta o que faltar.</div></div>
     </div>
   </div>
 
   <div class="note-box">&#9878;&#65039; <strong>Postura recomendada:</strong> come&ccedil;ar pelo fluxo de carrinho abandonado e pelas boas-vindas, que costumam dar retorno mais r&aacute;pido, e s&oacute; depois afinar p&oacute;s-compra e reativa&ccedil;&atilde;o com os primeiros dados reais.</div>
 </section>
 
-<!-- 4. INVESTIMENTO -->
-<section id="s4">
-  <div class="eyebrow">04. Investimento e prazo</div>
+<!-- 6. INVESTIMENTO -->
+<section id="s6">
+  <div class="eyebrow">06. Investimento e prazo</div>
   <h2 class="stitle">Um valor, um prazo,<br><em>tudo pronto e funcionando.</em></h2>
   <p class="ssub">Cobre a integra&ccedil;&atilde;o Magazord e RD Station (incluindo a ponte de carrinho abandonado) e a implementa&ccedil;&atilde;o completa dos fluxos, feita pela equipe da Autz, em 25 dias.</p>
 
@@ -333,10 +417,10 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   <div class="note-box">&#128179; No cart&atilde;o, o parcelamento em at&eacute; 12x est&aacute; sujeito &agrave; taxa do banco.</div>
 </section>
 
-<!-- 5. CTA -->
-<section class="cta-sec" id="s5" style="max-width:100%;">
+<!-- 7. CTA -->
+<section class="cta-sec" id="s7" style="max-width:100%;">
   <div class="cta-autz"><div class="autz-logo-img"></div></div>
-  <div class="eyebrow" style="margin-bottom:18px;">05. Pr&oacute;ximos passos</div>
+  <div class="eyebrow" style="margin-bottom:18px;">07. Pr&oacute;ximos passos</div>
   <h2 class="cta-title">Vamos <em>colocar o RD pra vender?</em></h2>
   <p class="cta-sub">Pra come&ccedil;ar, precisamos do acesso admin ao Magazord (plugin e credenciais de API), acesso ao RD Station e o material de marca. Com os acessos liberados, o prazo de 25 dias come&ccedil;a a contar e a gente alinha o cronograma com a data da virada pra loja nova.</p>
   <div class="cta-box">
@@ -348,7 +432,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
 </section>
 
 <script>
-var sids = ['s0','s1','s2','s3','s4','s5'];
+var sids = ['s0','s1','s2','s3','s4','s5','s6','s7'];
 var dotsWrap = document.getElementById('progressDots');
 sids.forEach(function(id, i){
   var d = document.createElement('div');
