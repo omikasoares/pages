@@ -123,6 +123,15 @@ section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:col
 .done-title{font-size:15px;font-weight:700;margin-bottom:4px;}
 .done-body{font-size:14px;color:var(--gray);line-height:1.6;}
 
+/* CHECKLIST EM IMPLEMENTAÇÃO */
+.wip-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;}
+.wip-item{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:20px 22px;transition:border-color 0.25s;}
+.wip-item:hover{border-color:rgba(251,191,36,0.3);}
+.wip-ico{width:40px;height:40px;flex-shrink:0;border-radius:12px;background:rgba(251,191,36,0.15);color:var(--amber);display:flex;align-items:center;justify-content:center;}
+.wip-ico svg{width:20px;height:20px;}
+.wip-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.wip-body{font-size:14px;color:var(--gray);line-height:1.6;}
+
 /* INVESTIMENTO */
 .invest-hero{background:rgba(233,255,74,0.05);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;margin-bottom:24px;}
 .invest-lbl{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;}
@@ -196,7 +205,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
     <div class="hero-logo"><div class="autz-logo-img"></div></div>
     <div class="hero-eyebrow">AUTZ &times; Stargen</div>
     <h1 class="hero-title">Implementa&ccedil;&atilde;o entregue,<br><em>RD Conversas, Marketing e CRM no ar.</em></h1>
-    <p class="hero-sub">Fechamento do escopo de implementa&ccedil;&atilde;o combinado: o que j&aacute; foi entregue e est&aacute; funcionando, a visita presencial que fecha o ciclo, e o que fica pra uma pr&oacute;xima etapa.</p>
+    <p class="hero-sub">Fechamento do escopo de implementa&ccedil;&atilde;o combinado: o que j&aacute; foi entregue e est&aacute; funcionando, a visita presencial que fecha o ciclo, e o que ainda est&aacute; em implementa&ccedil;&atilde;o, j&aacute; incluso.</p>
     <div class="hero-stats">
       <div class="hs"><div class="hs-num">R$ 3.500</div><div class="hs-lbl">implementa&ccedil;&atilde;o RD Conversas, Marketing e CRM</div></div>
       <div class="hs"><div class="hs-num">R$ 1.500</div><div class="hs-lbl">visita presencial de 1 dia e meio</div></div>
@@ -266,28 +275,28 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   <div class="note-box">&#128205; Investimento de <strong>R$ 1.500</strong> pela visita presencial de 1 dia e meio.</div>
 </section>
 
-<!-- 3. O QUE FALTA -->
+<!-- 3. EM IMPLEMENTAÇÃO -->
 <section id="s3">
-  <div class="eyebrow">03. O que fica pra pr&oacute;xima etapa</div>
-  <h2 class="stitle">Fora deste fechamento,<br><em>combinado como pr&oacute;ximo passo.</em></h2>
-  <p class="ssub">Esses itens n&atilde;o fazem parte do escopo j&aacute; entregue nem do investimento deste fechamento. S&atilde;o uma etapa nova, a ser desenhada e orçada em separado quando fizer sentido pra Stargen.</p>
+  <div class="eyebrow">03. J&aacute; incluso, em implementa&ccedil;&atilde;o</div>
+  <h2 class="stitle">Dentro do mesmo investimento,<br><em>seguindo em constru&ccedil;&atilde;o.</em></h2>
+  <p class="ssub">Esses itens j&aacute; fazem parte do escopo contratado e do investimento deste fechamento. N&atilde;o &eacute; cobran&ccedil;a nova, &eacute; a implementa&ccedil;&atilde;o que a equipe da Autz continua tocando.</p>
 
-  <div class="prob-list">
-    <div class="prob-item">
-      <div class="prob-ico">&#129302;</div>
-      <div><div class="prob-title">Constru&ccedil;&atilde;o da IA</div><div class="prob-body">Agente de intelig&ecirc;ncia artificial pro atendimento no RD Station Conversas, pra qualifica&ccedil;&atilde;o e primeiras respostas automáticas.</div></div>
+  <div class="wip-list">
+    <div class="wip-item">
+      <div class="wip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></div>
+      <div><div class="wip-title">Constru&ccedil;&atilde;o da IA</div><div class="wip-body">Agente de intelig&ecirc;ncia artificial pro atendimento no RD Station Conversas, em constru&ccedil;&atilde;o, pra qualifica&ccedil;&atilde;o e primeiras respostas autom&aacute;ticas.</div></div>
     </div>
-    <div class="prob-item">
-      <div class="prob-ico">&#128257;</div>
-      <div><div class="prob-title">Follows autom&aacute;ticos</div><div class="prob-body">Cad&ecirc;ncias de mensagem e e-mail pra lead que n&atilde;o responde, seguindo o rod&iacute;zio e os prazos j&aacute; combinados com a Stargen.</div></div>
+    <div class="wip-item">
+      <div class="wip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></div>
+      <div><div class="wip-title">Follows autom&aacute;ticos</div><div class="wip-body">Cad&ecirc;ncias de mensagem e e-mail pra lead que n&atilde;o responde, seguindo o rod&iacute;zio e os prazos j&aacute; combinados com a Stargen, em implementa&ccedil;&atilde;o.</div></div>
     </div>
-    <div class="prob-item">
-      <div class="prob-ico">&#128260;</div>
-      <div><div class="prob-title">Migra&ccedil;&atilde;o do funil</div><div class="prob-body">Passagem do funil antigo pro funil Comercial novo, com decis&atilde;o sobre o que fica ativo e o que &eacute; arquivado.</div></div>
+    <div class="wip-item">
+      <div class="wip-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></div>
+      <div><div class="wip-title">Migra&ccedil;&atilde;o do funil</div><div class="wip-body">Passagem do funil antigo pro funil Comercial novo, com decis&atilde;o sobre o que fica ativo e o que &eacute; arquivado, em andamento.</div></div>
     </div>
   </div>
 
-  <div class="note-box">&#128161; Assim que fizer sentido avan&ccedil;ar, a Autz apresenta um escopo e um valor pr&oacute;prios pra essa etapa, separados do que j&aacute; foi fechado aqui.</div>
+  <div class="note-box">&#128295; Esses tr&ecirc;s itens j&aacute; est&atilde;o inclusos no investimento deste fechamento e seguem em implementa&ccedil;&atilde;o pela equipe da Autz, sem custo adicional.</div>
 </section>
 
 <!-- 4. ACOMPANHAMENTO -->
@@ -312,7 +321,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
 <section id="s5">
   <div class="eyebrow">05. Investimento</div>
   <h2 class="stitle">Implementa&ccedil;&atilde;o e visita presencial,<br><em>fechamento deste ciclo.</em></h2>
-  <p class="ssub">Cobre a implementa&ccedil;&atilde;o de RD Station Conversas, Marketing e CRM (com os 30 dias de acompanhamento inclusos) e a visita presencial de 1 dia e meio.</p>
+  <p class="ssub">Cobre a implementa&ccedil;&atilde;o de RD Station Conversas, Marketing e CRM (com os 30 dias de acompanhamento inclusos), a visita presencial de 1 dia e meio, e os itens ainda em implementa&ccedil;&atilde;o (IA, follows autom&aacute;ticos e migra&ccedil;&atilde;o do funil).</p>
 
   <div class="invest-hero">
     <div class="invest-lbl">Investimento deste fechamento</div>
@@ -331,7 +340,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   <div class="cta-autz"><div class="autz-logo-img"></div></div>
   <div class="eyebrow" style="margin-bottom:18px;">06. Fechamento</div>
   <h2 class="cta-title">Implementa&ccedil;&atilde;o <em>entregue e funcionando.</em></h2>
-  <p class="cta-sub">Qualquer d&uacute;vida sobre o escopo entregue, a visita presencial ou o pr&oacute;ximo passo (IA, follows autom&aacute;ticos e migra&ccedil;&atilde;o do funil), &eacute; s&oacute; chamar.</p>
+  <p class="cta-sub">Qualquer d&uacute;vida sobre o escopo entregue, a visita presencial ou os itens que seguem em implementa&ccedil;&atilde;o (IA, follows autom&aacute;ticos e migra&ccedil;&atilde;o do funil), &eacute; s&oacute; chamar.</p>
   <div class="cta-box">
     <div class="cta-line"><strong>&#128222;</strong> (16) 99289-6549</div>
     <div class="cta-line"><strong>&#9993;&#65039;</strong> mk@autz.com.br</div>
