@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Como vai funcionar o atendimento e a venda da Companhia Athletica em Ribeirão Preto: funil, Bia, agendamento, prazos e regras da equipe.">
+<title>Playbook Ribeirão Preto · Companhia Athletica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#3B2327; --bg2:#450E17; --card:#4a1720; --card2:#5c2029;
+  --line:rgba(255,255,255,0.10); --line-red:rgba(255,28,42,0.4);
+  --red:#C3202A; --red2:#FF1C2A; --gold:#D9A441; --green:#8fcb9b;
+  --ink:#ffffff; --ink-soft:#e9d3d5; --ink-mute:#b98f92;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'Lexend','Poppins',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  background-image:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 45%,var(--bg) 100%);
+  background-attachment:fixed;
+  color:var(--ink-soft);font-family:var(--sans);-webkit-font-smoothing:antialiased;
+  padding-inline:20px;padding-block:0 56px;
+}
+img{max-width:100%;}
+i{font-style:normal;}
+a{color:var(--gold);}
+a:focus-visible,.navlinks a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px;}
+b,strong{color:var(--ink);font-weight:600;}
+.wrap{max-width:860px;margin:0 auto;}
+
+/* NAV */
+.topbar{position:sticky;top:0;z-index:20;margin-inline:-20px;padding:10px 20px;background:rgba(59,35,39,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:16px;}
+.logo{height:26px;width:auto;flex-shrink:0;display:block;}
+.navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+.navlinks::-webkit-scrollbar{display:none;}
+.navlinks a{flex-shrink:0;font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ink-mute);text-decoration:none;padding:7px 10px;border-radius:99px;white-space:nowrap;letter-spacing:.02em;}
+.navlinks a:hover{color:var(--ink);background:rgba(255,255,255,0.07);}
+
+/* HERO */
+.hero{padding:52px 0 8px;}
+.kicker{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;}
+h1{font-size:clamp(28px,5.5vw,42px);font-weight:800;line-height:1.12;letter-spacing:-.02em;color:var(--ink);text-wrap:balance;margin-bottom:18px;}
+.lede{font-size:16px;line-height:1.7;max-width:62ch;margin-bottom:26px;}
+.note{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line-red);border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.note .ic{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--red2);flex-shrink:0;padding-top:1px;}
+.note p{font-size:13.5px;line-height:1.65;}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;font-size:12.5px;color:var(--ink-mute);margin-bottom:56px;}
+.legend span{display:inline-flex;align-items:center;gap:7px;}
+
+/* PILLS */
+.pill{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:99px;white-space:nowrap;border:1px solid;}
+.pill.live{color:var(--green);border-color:rgba(143,203,155,.4);background:rgba(143,203,155,.10);}
+.pill.wip{color:var(--gold);border-color:rgba(217,164,65,.45);background:rgba(217,164,65,.10);}
+.pill.todo{color:var(--ink-soft);border-color:var(--line);background:rgba(255,255,255,.05);}
+.pill.tbd{color:var(--ink-mute);border-color:var(--line);border-style:dashed;}
+
+/* SECTIONS */
+section{padding:54px 0;border-top:1px solid var(--line);scroll-margin-top:56px;}
+section.first{border-top:none;padding-top:8px;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
+h2{font-size:clamp(21px,3.4vw,27px);font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-bottom:10px;text-wrap:balance;}
+h3{font-size:14.5px;font-weight:700;color:var(--ink);}
+.intro{font-size:14.5px;line-height:1.7;max-width:64ch;margin-bottom:28px;}
+.sub{font-size:12px;font-family:var(--mono);font-weight:600;color:var(--ink-mute);letter-spacing:.06em;text-transform:uppercase;margin:34px 0 14px;}
+.small{font-size:12.5px;line-height:1.65;color:var(--ink-mute);}
+
+/* JORNADA */
+.journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;list-style:none;}
+.jn{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;}
+.jn .n{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--red2);display:block;margin-bottom:6px;}
+.jn b{display:block;font-size:13.5px;line-height:1.3;margin-bottom:3px;}
+.jn span.s{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);}
+
+/* FUNIL */
+.funil{display:flex;gap:12px;overflow-x:auto;padding:2px 20px 12px;margin-inline:-20px;scroll-snap-type:x proximity;}
+.funil::-webkit-scrollbar{height:6px;}
+.funil::-webkit-scrollbar-thumb{background:var(--card2);border-radius:99px;}
+.fcard{flex:0 0 206px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;}
+.fcard.final{border-color:var(--line-red);background:linear-gradient(160deg,var(--card2),var(--card));}
+.fnum{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--red2);}
+.fname{font-size:15px;font-weight:700;color:var(--ink);line-height:1.25;}
+.fdesc{font-size:12.5px;line-height:1.55;color:var(--ink-mute);}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:640px){.grid,.grid.three{grid-template-columns:1fr;}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+.card h3{margin-bottom:6px;}
+.card p{font-size:13px;line-height:1.6;color:var(--ink-mute);}
+.card .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;}
+
+/* NOMENCLATURA */
+.naming{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-family:var(--mono);font-size:12px;line-height:1.75;overflow-wrap:anywhere;}
+.naming div+div{margin-top:8px;}
+.naming .k{color:var(--gold);display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{font-size:12.5px;border:1px solid var(--line);border-radius:99px;padding:7px 14px;background:var(--card);color:var(--ink-soft);}
+
+/* BIA */
+.bia{background:linear-gradient(155deg,var(--card2),var(--card));border:1px solid var(--line-red);border-radius:18px;padding:26px 24px;}
+.bia-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--ink);font-size:15px;flex-shrink:0;}
+.bia-head b{font-size:16px;}
+.bia-head span.s{display:block;font-size:12px;color:var(--ink-mute);}
+.bia-head .pill{margin-left:auto;}
+.bia-rules{display:flex;flex-direction:column;gap:14px;}
+.bia-rule{display:flex;gap:14px;align-items:flex-start;}
+.bia-rule .k{font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase;flex:0 0 112px;padding-top:3px;}
+.bia-rule p{font-size:13.5px;line-height:1.65;}
+@media(max-width:520px){.bia-rule{flex-direction:column;gap:4px;}.bia-rule .k{flex:none;}}
+.price{display:inline-flex;gap:6px;align-items:baseline;font-family:var(--mono);background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:8px;padding:3px 9px;margin:2px 4px 2px 0;font-size:12px;color:var(--ink);}
+.price b{color:var(--gold);}
+
+/* LISTAS DE REGRA */
+.rules{display:flex;flex-direction:column;}
+.rule{display:flex;gap:14px;padding:15px 0;border-top:1px solid var(--line);}
+.rule:first-child{border-top:none;padding-top:0;}
+.rule:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red2);flex-shrink:0;margin-top:6px;}
+.rule h3{margin-bottom:3px;}
+.rule p{font-size:13px;line-height:1.65;color:var(--ink-mute);}
+
+/* PRAZOS */
+.trow{display:grid;grid-template-columns:210px 1fr;gap:6px 24px;padding:15px 0;border-top:1px solid var(--line);}
+.trow:first-child{border-top:none;padding-top:0;}
+.trow .when{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--gold);line-height:1.5;}
+.trow p{font-size:13.5px;line-height:1.65;}
+@media(max-width:600px){.trow{grid-template-columns:1fr;}}
+
+/* AGENDA */
+.sched{display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
+.sched-visual{flex:1 1 250px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;}
+.sched-visual .lbl{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.slot{font-family:var(--mono);font-size:10.5px;text-align:center;padding:6px 2px;border-radius:6px;background:rgba(255,255,255,.05);color:var(--ink-mute);}
+.slot.edge{color:var(--gold);background:rgba(217,164,65,.12);font-weight:600;}
+.sched-body{flex:1 1 320px;}
+.sched-body ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.sched-body li{font-size:13.5px;line-height:1.65;padding-left:18px;position:relative;}
+.sched-body li:before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--red2);}
+
+/* CADENCIA */
+.cad{display:flex;align-items:center;overflow-x:auto;margin-inline:-20px;padding:6px 20px 14px;margin-bottom:8px;}
+.cad-day{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;padding:0 22px;}
+.cad-day:not(:last-child):after{content:'';position:absolute;right:-22px;top:15px;width:44px;height:2px;background:var(--line-red);}
+.dot{width:30px;height:30px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink);}
+.cad-day.brk .dot{background:var(--card2);border:1px dashed var(--ink-mute);color:var(--ink-mute);}
+.cad-day .l{font-size:11px;color:var(--ink-mute);white-space:nowrap;}
+
+/* META */
+.ev{display:flex;flex-direction:column;gap:6px;}
+.ev .p{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);}
+
+/* PASSAGEM */
+.handoff{display:flex;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.handoff>div{flex:1;padding:20px;}
+.handoff .a{background:var(--card);border-right:1px solid var(--line);}
+.handoff .b{background:rgba(0,0,0,.2);}
+.handoff .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px;}
+.handoff h3{margin-bottom:6px;}
+.handoff p{font-size:12.5px;line-height:1.6;color:var(--ink-mute);}
+@media(max-width:560px){.handoff{flex-direction:column;}.handoff .a{border-right:none;border-bottom:1px solid var(--line);}}
+
+/* LISTA DE ACOES DA EQUIPE */
+.todo-list{display:flex;flex-direction:column;gap:10px;}
+.todo-item{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+.todo-item:before{content:'';width:8px;height:8px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;margin-top:7px;}
+.todo-item p{font-size:13.5px;line-height:1.6;}
+
+/* SITUACAO */
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;gap:8px 16px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line);}
+.mrow:first-child{border-top:none;padding-top:0;}
+.mrow .t{flex:1 1 300px;}
+.mrow .t p{font-size:12.5px;line-height:1.6;color:var(--ink-mute);margin-top:3px;}
+.mrow h3{font-size:14px;}
+
+/* CRONOGRAMA */
+.timeline{display:flex;flex-direction:column;}
+.tl{display:flex;gap:18px;position:relative;padding-bottom:28px;}
+.tl:last-child{padding-bottom:0;}
+.tl:before{content:'';position:absolute;left:9px;top:22px;bottom:0;width:1.5px;background:var(--line-red);}
+.tl:last-child:before{display:none;}
+.tl-dot{width:20px;height:20px;border-radius:50%;background:var(--red);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.tl-dot:after{content:'';width:7px;height:7px;border-radius:50%;background:var(--ink);}
+.tl.now .tl-dot{background:var(--gold);}
+.tl.now .tl-dot:after{background:var(--bg);}
+.tl .when{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.03em;margin-bottom:3px;}
+.tl h3{margin-bottom:4px;}
+.tl p{font-size:13px;line-height:1.6;color:var(--ink-mute);}
+
+footer{padding-top:44px;text-align:center;border-top:1px solid var(--line);}
+footer p{font-size:12px;line-height:1.7;color:var(--ink-mute);}
+footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <img class="logo" src="/assets/ciaathletica/logo-white.png" alt="Companhia Athletica">
+    <nav class="navlinks" aria-label="Seções do guia">
+      <a href="#panorama">Panorama</a>
+      <a href="#origem">Origem</a>
+      <a href="#bia">Bia</a>
+      <a href="#carteira">Carteira</a>
+      <a href="#prazos">Prazos</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#cadencia">Cadência</a>
+      <a href="#meta">Meta</a>
+      <a href="#posvenda">Pós-venda</a>
+      <a href="#sistemas">Sistemas</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#situacao">Situação</a>
+      <a href="#cronograma">Cronograma</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker"><i></i>Piloto Ribeirão Preto · versão de 25/09/2026</div>
+    <h1>Como vai funcionar o atendimento e a venda em Ribeirão Preto</h1>
+    <p class="lede">Este guia junta, num lugar só, tudo o que combinamos nas reuniões de 21/08, 27/08 e 16/09: do anúncio até o aluno matriculado. Serve de material de estudo antes do treinamento presencial e de consulta no dia a dia depois dele.</p>
+    <div class="note">
+      <div class="ic">!</div>
+      <p><b>Vale só para Ribeirão Preto (RAO)</b>, a unidade piloto. As outras unidades entram uma de cada vez, depois de validar tudo aqui, e só acompanham quando tiverem a própria base de conhecimento revisada por quem conhece a unidade.</p>
+    </div>
+    <div class="legend">
+      <span>Situação de cada item:</span>
+      <span><i class="pill live">No ar</i> já funcionando</span>
+      <span><i class="pill wip">Em finalização</i> construído, falta um passo</span>
+      <span><i class="pill todo">A construir</i> decidido, ainda não feito</span>
+      <span><i class="pill tbd">A definir</i> falta decisão</span>
+    </div>
+  </header>
+
+  <section id="panorama" class="first">
+    <div class="eyebrow">Panorama</div>
+    <h2>A jornada do lead, do anúncio à matrícula</h2>
+    <p class="intro">Cada pessoa que demonstra interesse percorre o mesmo caminho. O que muda de uma etapa para outra é quem age: sistema, Bia ou consultor.</p>
+    <ol class="journey">
+      <li class="jn"><span class="n">1</span><b>Anúncio</b><span class="s">Meta Ads · GS2</span></li>
+      <li class="jn"><span class="n">2</span><b>Formulário nativo</b><span class="s">Instagram e Facebook</span></li>
+      <li class="jn"><span class="n">3</span><b>Contato no CRM</b><span class="s">RD CRM · Novo Contato</span></li>
+      <li class="jn"><span class="n">4</span><b>Primeiro papo</b><span class="s">Bia · RD Conversas</span></li>
+      <li class="jn"><span class="n">5</span><b>Visita marcada</b><span class="s">Página de agendamento</span></li>
+      <li class="jn"><span class="n">6</span><b>Consultor fecha</b><span class="s">Visita ou aula experimental</span></li>
+      <li class="jn"><span class="n">7</span><b>Matrícula</b><span class="s">Ciasoft</span></li>
+    </ol>
+
+    <div class="sub">O funil comercial, em 8 etapas</div>
+    <div class="funil">
+      <div class="fcard"><div class="fnum">01</div><div class="fname">Novo Contato</div><div class="fdesc">Lead acabou de chegar, por campanha, site ou WhatsApp. Notificação e tarefa nascem na hora.</div></div>
+      <div class="fcard"><div class="fnum">02</div><div class="fname">Tentando Contato</div><div class="fdesc">A cadência de mensagens roda até o dia 30 enquanto o time tenta engajar.</div></div>
+      <div class="fcard"><div class="fnum">03</div><div class="fname">Qualificado</div><div class="fdesc">Já entendemos necessidade, perfil, objetivo, modalidade e potencial da pessoa.</div></div>
+      <div class="fcard"><div class="fnum">04</div><div class="fname">Em Negociação</div><div class="fdesc">Conversa sobre plano, condição e quebra de objeção em andamento.</div></div>
+      <div class="fcard"><div class="fnum">05</div><div class="fname">Visita Agendada</div><div class="fdesc">Visita ou aula experimental marcada. A data entra sozinha no CRM.</div></div>
+      <div class="fcard"><div class="fnum">06</div><div class="fname">Show / No Show</div><div class="fdesc">Registra se a pessoa veio ou faltou. No Show tem sequência própria de reengajamento.</div></div>
+      <div class="fcard final"><div class="fnum">07</div><div class="fname">Fechado</div><div class="fdesc">Matriculou. Daqui em diante quem cuida é o Ciasoft.</div></div>
+      <div class="fcard"><div class="fnum">08</div><div class="fname">Contato p/ Reativação</div><div class="fdesc">Esfriou em qualquer etapa, não só no dia 30. Entra em reengajamento.</div></div>
+    </div>
+    <p class="small" style="margin-top:14px;">Etapa e etiqueta são coisas diferentes. A <b>etapa</b> diz onde a pessoa está no funil. A <b>etiqueta</b> diz uma característica: origem, produto, campanha, motivo de perda. O <b>Wellhub/Gympass</b> não passa por esse funil: tem funil próprio, marcado como vendido automaticamente ao entrar, para não misturar métrica com a venda direta.</p>
+  </section>
+
+  <section id="origem">
+    <div class="eyebrow">Origem do lead</div>
+    <h2>De onde vem cada contato</h2>
+    <p class="intro">A porta de entrada principal é a campanha de Meta Ads gerida pela GS2, com nomes padronizados para que cada lead chegue sabendo qual anúncio o trouxe.</p>
+    <div class="grid three">
+      <div class="card"><span class="tag">Campanha</span><h3>Meta Ads [HALL RIBEIRÃO]</h3><p>Formulário nativo do Instagram e do Facebook, com um formulário por modalidade. Hoje em teste: Kids.</p></div>
+      <div class="card"><span class="tag">Página pública</span><h3>ciaathletica.autz.com.br</h3><p>O link de agendamento também funciona como porta de entrada, divulgado só nas campanhas de Ribeirão.</p></div>
+      <div class="card"><span class="tag">WhatsApp</span><h3>Conversa direta</h3><p>Quem chama no WhatsApp é atendido pela Bia no RD Conversas, do mesmo jeito.</p></div>
+    </div>
+
+    <div class="sub">Como os nomes são escritos</div>
+    <div class="naming">
+      <div><span class="k">Campanha</span>[HALL RIBEIRÃO] MODALIDADES | FORMULÁRIO NATIVO | LEADS | TESTE V1 | GS2</div>
+      <div><span class="k">Conjunto de anúncios</span>CJ01 - [HALL RIBEIRÃO] KIDS | RAIO UNIDADE | P. PAIS | 30+ | H - M | FB/IG</div>
+      <div><span class="k">Anúncio</span>AD01 - [HALL RIBEIRÃO] - vídeo - Na Companhia Athletica, a nossa Escola de Esportes</div>
+      <div><span class="k">Formulário</span>[HALL RIBEIRÃO] KIDS | FORMULÁRIO NATIVO | LEADS | TESTE V1 | GS2</div>
+    </div>
+    <p class="small" style="margin-top:12px;">O nome do conjunto e do anúncio viaja com o lead (junto das UTMs de origem, meio e campanha). Assim dá para saber qual criativo trouxe cada pessoa e qual modalidade ela procurava.</p>
+
+    <div class="sub">O que a pessoa informa</div>
+    <p class="small" style="margin-bottom:12px;">Nome, telefone e e-mail. Nos formulários de tráfego pago, o objetivo entra numa destas seis opções:</p>
+    <div class="chips">
+      <span class="chip">Ganho de massa muscular</span><span class="chip">Emagrecimento</span><span class="chip">Condicionamento físico</span><span class="chip">Performance esportiva</span><span class="chip">Envelhecimento saudável</span><span class="chip">Atividades para crianças</span>
+    </div>
+
+    <div class="sub">Do formulário até o CRM</div>
+    <div class="rules">
+      <div class="rule"><div><h3>A GS2 recebe o lead numa planilha, uma aba por modalidade <i class="pill todo" style="margin-left:6px;">A construir</i></h3><p>Com campanha, conjunto, anúncio, UTMs e o ID do lead. O plano é ligar essa planilha ao CRM, para todo lead de Ribeirão nascer em Novo Contato já com a origem completa.</p></div></div>
+      <div class="rule"><div><h3>Mensagem de boas-vindas automática ao entrar em Novo Contato <i class="pill wip" style="margin-left:6px;">Em finalização</i></h3><p>É o primeiro passo da cadência (D1) e já usa o nome da pessoa e a unidade de interesse.</p></div></div>
+    </div>
+  </section>
+
+  <section id="bia">
+    <div class="eyebrow">Atendimento automático</div>
+    <h2>A Bia</h2>
+    <p class="intro">Bia é a assistente de IA que atende primeiro os leads de Ribeirão pelo WhatsApp. Ela não substitui o consultor: prepara o terreno para ele.</p>
+    <div class="bia">
+      <div class="bia-head">
+        <div class="avatar">B</div>
+        <div><b>Bia</b><span class="s">RD Conversas · WhatsApp · Ribeirão Preto</span></div>
+        <i class="pill wip">Em finalização</i>
+      </div>
+      <div class="bia-rules">
+        <div class="bia-rule"><div class="k">Posicionamento</div><p><b>Formato clube.</b> Mesmo quando a pessoa procura só natação ou só musculação, a Bia reconhece o interesse e apresenta a Cia Athletica como clube completo, não como fornecedor de uma modalidade só.</p></div>
+        <div class="bia-rule"><div class="k">Unidade</div><p>Usa apenas dados de Ribeirão Preto. Se a unidade não estiver clara, pergunta antes de falar de preço, horário ou regra.</p></div>
+        <div class="bia-rule"><div class="k">Preço</div><p>Nunca oferece valor sem ser perguntada e nunca manda tabela completa. Só o valor de entrada: <span class="price">academia <b>a partir de R$468/mês</b></span><span class="price">natação Kids Wellhub <b>a partir de R$91/mês</b></span> Tabela e condição completas ficam sempre com o consultor, na visita.</p></div>
+        <div class="bia-rule"><div class="k">Condução</div><p>Conversa por etapas: pergunta, entende, responde, pergunta de novo. Adapta a descoberta ao perfil (adulto, Kids por faixa de idade, família, Wellhub) e nunca despeja tudo de uma vez.</p></div>
+        <div class="bia-rule"><div class="k">Saída</div><p>Encaminha para agendamento de visita ou aula experimental, ou transfere para o consultor quando a conversa pede uma pessoa. Também registra etapa e etiquetas no CRM.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="carteira">
+    <div class="eyebrow">Regras da equipe</div>
+    <h2>Carteira, distribuição e reciclagem</h2>
+    <p class="intro">A automação decide quem fica com cada lead segundo regras fixas. Conhecer essas regras muda o comportamento certo no dia a dia.</p>
+    <div class="rules">
+      <div class="rule"><div><h3>Quem responde primeiro, assume</h3><p>O lead novo espera num perfil central. A primeira resposta no RD Conversas passa o lead para o consultor que estiver online naquele momento. Por isso ficar online importa de verdade.</p></div></div>
+      <div class="rule"><div><h3>Lead que já tem dono volta para ele</h3><p>Antes de atribuir, o sistema consulta se o telefone já pertence à carteira de algum consultor. Vale também para agendamentos feitos pela página.</p></div></div>
+      <div class="rule"><div><h3>Vendido fica com quem fechou</h3><p>Sem redistribuição depois da venda.</p></div></div>
+      <div class="rule"><div><h3>Perdido por motivo recuperável pode voltar</h3><p>Preço, horário, "queria uma modalidade que não tinha": esses motivos liberam o lead para reciclagem com outro consultor. Hoje ninguém tira perdido da carteira, e isso passa a ter regra.</p></div></div>
+      <div class="rule"><div><h3>Só se descarta de vez o que é spam ou totalmente fora do perfil</h3><p>Ex.: quem procurava algo que a Cia Athletica não oferece.</p></div></div>
+      <div class="rule"><div><h3>Consultor de férias</h3><p>Desativar o usuário no CRM redistribui a carteira dele automaticamente para o resto da equipe.</p></div></div>
+      <div class="rule"><div><h3>Chat encerrado não tira o lead do CRM</h3><p>O lead continua no CRM mesmo depois que a conversa fecha no RD Conversas.</p></div></div>
+    </div>
+  </section>
+
+  <section id="prazos">
+    <div class="eyebrow">Prazos e alertas</div>
+    <h2>O que acontece quando o tempo passa</h2>
+    <p class="intro">Regras combinadas para nenhum lead ficar esquecido. A situação de cada automação está na seção Situação, mais abaixo.</p>
+    <div>
+      <div class="trow"><div class="when">Lead entra no funil</div><p>Notificação e tarefa de primeiro contato para o consultor. <b>Meta: primeiro atendimento em até 30 minutos.</b></p></div>
+      <div class="trow"><div class="when">Qualificação</div><p>Tarefa de ligação obrigatória, com registro do que aconteceu. Não basta marcar a tarefa como feita.</p></div>
+      <div class="trow"><div class="when">24h parado em Novo Contato (dia útil)</div><p>Lembretes 2h e 6h antes; depois o lead passa para outro consultor da unidade.</p></div>
+      <div class="trow"><div class="when">24h parado em Qualificado</div><p>E-mail de alerta para a gestão (Jeanne Macedo).</p></div>
+      <div class="trow"><div class="when">48h parado em Em Negociação</div><p>E-mail de alerta para a gestão.</p></div>
+      <div class="trow"><div class="when">Tarefa sem conclusão por 72h</div><p>Sobe para o gestor da equipe.</p></div>
+      <div class="trow"><div class="when">Conversa sem resposta por 99 horas (4 dias)</div><p>O RD Conversas encerra a conversa automaticamente (Ribeirão primeiro). O lead continua no CRM.</p></div>
+      <div class="trow"><div class="when">Lead frio, de 7 a 15 dias</div><p>Entra em reativação, em qualquer etapa do funil.</p></div>
+    </div>
+  </section>
+
+  <section id="agenda">
+    <div class="eyebrow">Sistema de agendamento</div>
+    <h2>Marcar visita sem precisar ligar</h2>
+    <p class="intro">Além de agendar em conversa com a Bia ou com o consultor, a pessoa pode marcar direto numa página própria, sempre batendo com o que está livre na agenda da unidade.</p>
+    <div class="sched">
+      <div class="sched-visual">
+        <div class="lbl">Grade de horários</div>
+        <div class="slots"><div class="slot edge">08:00</div><div class="slot">08:30</div><div class="slot">...</div><div class="slot edge">20:30</div></div>
+        <p class="small" style="margin-top:12px;">Das 8h às 21h, todos os dias, janelas de 30 minutos, uma pessoa por horário. Só Ribeirão Preto aparece.</p>
+      </div>
+      <div class="sched-body">
+        <ul>
+          <li>A pessoa entra em <b>ciaathletica.autz.com.br</b> e escolhe dia e horário livre.</li>
+          <li>O sistema cria o evento na agenda da unidade.</li>
+          <li>Se o telefone já é um lead conhecido, o negócio existente vai para <b>Visita Agendada</b>. Se não, um novo é criado.</li>
+          <li>Uma tarefa de visita é criada para o consultor responsável.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">Detalhes que valem combinar</div>
+    <div class="rules">
+      <div class="rule"><div><h3>Visita e aula experimental são coisas diferentes</h3><p>Cada uma tem script próprio. A regra do Maxi: evitar sobrecarga de agendamento em dias de pico e fim de semana.</p></div></div>
+      <div class="rule"><div><h3>Agenda própria de Ribeirão <i class="pill wip" style="margin-left:6px;">Em finalização</i></h3><p>Cada unidade tem seu Gmail de agenda. O de Ribeirão já está pronto e é conectado ao sistema junto com o Maxi. Depois, o mesmo passo se repete unidade por unidade.</p></div></div>
+      <div class="rule"><div><h3>Lembrete no dia da visita <i class="pill todo" style="margin-left:6px;">A construir</i></h3><p>Mensagem automática "hoje é o dia da sua visita". O texto é da Fernanda; o envio é feito pela automação.</p></div></div>
+      <div class="rule"><div><h3>Resumo diário por e-mail <i class="pill wip" style="margin-left:6px;">Em finalização</i></h3><p>Todo dia às 8h, a lista de visitas do dia com nome, telefone e botão para chamar no WhatsApp. Falta definir qual e-mail recebe.</p></div></div>
+    </div>
+  </section>
+
+  <section id="cadencia">
+    <div class="eyebrow">Follow-up</div>
+    <h2>A cadência de 30 dias</h2>
+    <p class="intro">Enquanto o lead está em <b>Tentando Contato</b>, esta é a régua de contato: mensagem de WhatsApp e tarefa de ligação para o consultor, no mesmo dia.</p>
+    <div class="cad">
+      <div class="cad-day"><div class="dot">D1</div><div class="l">1º dia</div></div>
+      <div class="cad-day"><div class="dot">D3</div><div class="l">dia 3</div></div>
+      <div class="cad-day"><div class="dot">D5</div><div class="l">dia 5</div></div>
+      <div class="cad-day"><div class="dot">D10</div><div class="l">dia 10</div></div>
+      <div class="cad-day"><div class="dot">D20</div><div class="l">dia 20</div></div>
+      <div class="cad-day"><div class="dot">D28</div><div class="l">dia 28</div></div>
+      <div class="cad-day brk"><div class="dot">D30</div><div class="l">break</div></div>
+    </div>
+    <p class="small">No D30 vai a mensagem de break. Quem faltou à visita entra numa sequência própria de No Show, e quem esfriou em qualquer etapa entra em reativação. As mensagens palavra por palavra de cada dia estão no <a href="https://pages.autz.com.br/cia-athletica-scripts/" target="_blank" rel="noopener">playbook de scripts</a> (em atualização para as 8 etapas).</p>
+  </section>
+
+  <section id="meta">
+    <div class="eyebrow">Devolução para a Meta</div>
+    <h2>Ensinar a Meta quem é o lead bom</h2>
+    <p class="intro">Quando o CRM avisa a Meta o que aconteceu com cada lead, os anúncios passam a buscar pessoas parecidas com quem realmente agenda e compra. Combinamos devolver estes eventos, do mais importante para o menos:</p>
+    <div class="grid three">
+      <div class="card ev"><span class="p">Essencial</span><h3>Lead</h3><p>Cadastro feito no formulário.</p></div>
+      <div class="card ev"><span class="p">Essencial</span><h3>Contato</h3><p>Consultor conversando com a pessoa no WhatsApp. É o de maior volume.</p></div>
+      <div class="card ev"><span class="p">Muito alta</span><h3>Agendamento</h3><p>Visita marcada. A GS2 vai usar bastante.</p></div>
+      <div class="card ev"><span class="p">Muito alta</span><h3>Compra</h3><p>Venda fechada.</p></div>
+      <div class="card ev"><span class="p">Alta</span><h3>Cadastro completo</h3><p>Ficha com os dados todos preenchidos.</p></div>
+    </div>
+    <div class="rules" style="margin-top:22px;">
+      <div class="rule"><div><h3>O que precisa voltar junto <i class="pill todo" style="margin-left:6px;">A construir</i></h3><p>ID do lead (obrigatório), nome, e-mail, telefone, UTMs, modalidade e o que mais tiver sido captado. O ideal é enviar direto para a Meta em tempo real; a GS2 confirma o caminho técnico. A Meta precisa de pelo menos 50 eventos de um tipo para sair da fase de aprendizado.</p></div></div>
+      <div class="rule"><div><h3>"Desqualificado" é só o que veio totalmente fora do perfil</h3><p>Ex.: quem procurava aposentadoria. Perder por preço não conta como desqualificado, mas a GS2 quer saber quantas perdas por preço houve, para ajustar o perfil de renda do público. Por isso o motivo de perda "fora do perfil" fica separado de preço e horário.</p></div></div>
+    </div>
+  </section>
+
+  <section id="posvenda">
+    <div class="eyebrow">Depois da venda</div>
+    <h2>Onde a automação da Autz para</h2>
+    <p class="intro">Quando o lead vira matrícula, a responsabilidade muda de sistema, sem duplicar nada que já existe.</p>
+    <div class="handoff">
+      <div class="a"><div class="lbl">Autz cuida até aqui</div><h3>Funil comercial e agendamento</h3><p>Captação, qualificação, cadência de follow-up e visita. Termina em <b>Fechado</b>.</p></div>
+      <div class="b"><div class="lbl">Sistemas da Cia cuidam daqui</div><h3>Ciasoft e Medalha</h3><p><b>Ciasoft</b> controla contrato, renovação e os alertas. <b>Medalha</b> faz a pesquisa de satisfação automática (NPS aos 30, 90 e 180 dias).</p></div>
+    </div>
+    <div class="rules" style="margin-top:22px;">
+      <div class="rule"><div><h3>Primeira mensagem depois de fechar <i class="pill tbd" style="margin-left:6px;">A definir</i></h3><p>Ideia viva: um "fechamos, conta comigo" logo após a venda. O resto do pós-venda e a renovação seguem com Ciasoft e Medalha.</p></div></div>
+      <div class="rule"><div><h3>Wellhub e reposição de aula</h3><p>Dúvidas desse tipo vão para o usuário de recepção no RD Conversas.</p></div></div>
+      <div class="rule"><div><h3>Vender de novo</h3><p>Quem chegou por Kids pode querer academia, e o contrário. O consultor registra os dois interesses por etiqueta ou campo, para desenharmos fluxos de nova venda.</p></div></div>
+      <div class="rule"><div><h3>Quem pede para sair das comunicações <i class="pill tbd" style="margin-left:6px;">A definir</i></h3><p>Precisa valer no Conversas, no CRM e no Marketing. As etiquetas "deseja sair" e "não aceita comunicações" já existem; falta decidir quem executa e como propagar.</p></div></div>
+    </div>
+  </section>
+
+  <section id="sistemas">
+    <div class="eyebrow">Bastidores</div>
+    <h2>Quem faz o quê</h2>
+    <p class="intro">Glossário rápido, para quando alguém perguntar "isso mora em qual sistema?".</p>
+    <div class="grid three">
+      <div class="card"><h3>RD Marketing</h3><p>Registra de onde veio cada lead: campanha, anúncio, UTM.</p></div>
+      <div class="card"><h3>RD CRM</h3><p>Funil, carteira de cada consultor, tarefas e etiquetas.</p></div>
+      <div class="card"><h3>RD Conversas e Bia</h3><p>Atendimento por WhatsApp, humano e automático.</p></div>
+      <div class="card"><h3>Agenda de visitas</h3><p>Página pública de agendamento e o calendário Google da unidade.</p></div>
+      <div class="card"><h3>Ciasoft</h3><p>Contrato, matrícula, renovação e alertas.</p></div>
+      <div class="card"><h3>Medalha</h3><p>Pesquisa de satisfação e NPS do aluno.</p></div>
+    </div>
+  </section>
+
+  <section id="equipe">
+    <div class="eyebrow">Papel humano</div>
+    <h2>O que a equipe precisa fazer</h2>
+    <p class="intro">A automação cuida da parte repetitiva. Estas ações continuam dependendo de gente, e são o que faz o resto funcionar direito.</p>
+    <div class="todo-list">
+      <div class="todo-item"><p><b>Ficar online no RD Conversas</b> em horário de atendimento. É isso que decide quem puxa a carteira.</p></div>
+      <div class="todo-item"><p><b>Ligar de verdade</b> na qualificação e registrar o que aconteceu, em vez de só marcar a tarefa como feita.</p></div>
+      <div class="todo-item"><p><b>Escolher o motivo certo ao perder um lead.</b> Preço e horário liberam reciclagem; "fora do perfil" só quando for mesmo o caso.</p></div>
+      <div class="todo-item"><p><b>Confirmar Show ou No Show</b> depois de cada visita agendada.</p></div>
+      <div class="todo-item"><p><b>Registrar todos os interesses</b> do lead (por exemplo Kids e academia) por etiqueta ou campo.</p></div>
+      <div class="todo-item"><p><b>Marcar na hora</b> a etiqueta de quem pediu para sair das comunicações.</p></div>
+      <div class="todo-item"><p><b>Consultor de férias:</b> avisar a gestão para desativar o usuário no CRM.</p></div>
+      <div class="todo-item"><p><b>Depois de fechar,</b> lançar só no Ciasoft. Não é preciso registrar a venda de novo em outro lugar.</p></div>
+    </div>
+  </section>
+
+  <section id="situacao">
+    <div class="eyebrow">Situação em 25/09/2026</div>
+    <h2>O que já está no ar e o que falta</h2>
+    <p class="intro">Um retrato honesto do projeto hoje. Esta lista muda conforme os itens forem fechando.</p>
+    <div>
+      <div class="mrow"><div class="t"><h3>Agendamento pela página, com negócio e tarefa de visita no CRM</h3></div><i class="pill live">No ar</i></div>
+      <div class="mrow"><div class="t"><h3>Funil Wellhub com venda marcada automaticamente</h3></div><i class="pill live">No ar</i></div>
+      <div class="mrow"><div class="t"><h3>Grade das 8h às 21h e só Ribeirão visível na página</h3><p>Decidido em 16/09. A regra já vale no sistema; a publicação da página está em andamento.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>Agenda própria de Ribeirão (Gmail da unidade)</h3><p>Conta conectada; falta ligar ao sistema de agendamento e testar.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>Bia: prompt e base de conhecimento de Ribeirão</h3><p>Conteúdo pronto. Falta configurar e testar no RD Conversas.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>Mensagem de boas-vindas (D1) ao entrar em Novo Contato</h3><p>Falta a última conexão com o RD Marketing e um teste real de envio.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>Resumo diário de agendamentos por e-mail</h3><p>Falta definir o e-mail de destino.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>Leads do formulário Meta entrando no CRM</h3><p>A planilha da GS2 já recebe leads reais; falta a ligação com o CRM.</p></div><i class="pill todo">A construir</i></div>
+      <div class="mrow"><div class="t"><h3>Alertas de estagnação por e-mail</h3><p>24h em Qualificado e 48h em Em Negociação.</p></div><i class="pill todo">A construir</i></div>
+      <div class="mrow"><div class="t"><h3>Encerramento automático de conversas em 99h</h3><p>Configuração no próprio RD Conversas, Ribeirão primeiro.</p></div><i class="pill todo">A construir</i></div>
+      <div class="mrow"><div class="t"><h3>Devolução de eventos para a Meta</h3><p>Depende de confirmar o caminho técnico com a GS2.</p></div><i class="pill todo">A construir</i></div>
+      <div class="mrow"><div class="t"><h3>Lembrete automático do dia da visita</h3><p>Texto pela Fernanda; envio pela automação.</p></div><i class="pill todo">A construir</i></div>
+      <div class="mrow"><div class="t"><h3>Opt-out valendo em todos os sistemas</h3></div><i class="pill tbd">A definir</i></div>
+    </div>
+  </section>
+
+  <section id="cronograma">
+    <div class="eyebrow">Linha do tempo</div>
+    <h2>Do piloto ao resto da rede</h2>
+    <div class="timeline">
+      <div class="tl now"><div class="tl-dot"></div><div><div class="when">Agora</div><h3>Piloto em Ribeirão Preto</h3><p>Fechando os itens em finalização e testando o fluxo de ponta a ponta.</p></div></div>
+      <div class="tl"><div class="tl-dot"></div><div><div class="when">Antes de 03/10</div><h3>Estudo e aprovação deste material</h3><p>A equipe lê o guia e o playbook é aprovado antes do treinamento.</p></div></div>
+      <div class="tl"><div class="tl-dot"></div><div><div class="when">Sábado 03/10 · 9h às 12h</div><h3>Treinamento presencial da equipe de vendas</h3><p>Em Ribeirão Preto, com este guia como base.</p></div></div>
+      <div class="tl"><div class="tl-dot"></div><div><div class="when">Dia 13 (mês a confirmar)</div><h3>Início da Lista VIP de Ribeirão</h3><p>Data citada pela Monica; falta confirmar o mês.</p></div></div>
+      <div class="tl"><div class="tl-dot"></div><div><div class="when">Black Friday</div><h3>Acompanhamento de perto</h3><p>Ajustes finos no período de maior volume do ano.</p></div></div>
+      <div class="tl"><div class="tl-dot"></div><div><div class="when">Depois</div><h3>Próximas unidades</h3><p>Uma de cada vez, só depois de validar o piloto.</p></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="h">Companhia Athletica · Ribeirão Preto</p>
+    <p>Documento vivo, atualizado conforme o piloto evolui. Construído pela Autz com base nas reuniões de 21/08, 27/08 e 16/09.</p>
+  </footer>
+
+</div>
+</body>
+</html>
