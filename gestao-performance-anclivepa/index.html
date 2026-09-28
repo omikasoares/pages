@@ -102,6 +102,14 @@ section{min-height:100vh;padding:100px 52px 80px;display:flex;flex-direction:col
 .note-box{background:rgba(233,255,74,0.04);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-top:18px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;}
 .note-box strong{color:var(--lime);}
 
+/* ENTREGÁVEIS */
+.deliv-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;}
+.deliv-item{display:flex;align-items:flex-start;gap:18px;background:var(--card);border:1px solid var(--borderw);border-radius:18px;padding:22px;transition:border-color 0.25s;}
+.deliv-item:hover{border-color:var(--border);}
+.deliv-ico{width:44px;height:44px;flex-shrink:0;border-radius:14px;background:rgba(233,255,74,0.12);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:19px;}
+.deliv-title{font-size:15px;font-weight:700;margin-bottom:5px;}
+.deliv-body{font-size:14px;color:var(--gray);line-height:1.6;}
+
 /* INVESTIMENTO */
 .invest-hero{background:rgba(233,255,74,0.05);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;margin-bottom:24px;}
 .invest-lbl{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;}
@@ -175,10 +183,10 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
     <div class="hero-logo"><div class="autz-logo-img"></div></div>
     <div class="hero-eyebrow">AUTZ Performance &times; Anclivepa</div>
     <h1 class="hero-title">Multiproduto rodando redondo,<br><em>sem virar mais um projeto pra voc&ecirc;s tocarem sozinhos.</em></h1>
-    <p class="hero-sub">Acompanhamento cont&iacute;nuo de RD Marketing, RD CRM e RD Conversas rodando juntos: e-mail marketing ativo, organiza&ccedil;&atilde;o das contas e dashboard de resultados, revisado com voc&ecirc;s toda semana.</p>
+    <p class="hero-sub">Acompanhamento cont&iacute;nuo de RD Marketing, RD CRM e RD Conversas rodando juntos: e-mail marketing ativo, organiza&ccedil;&atilde;o das contas e dashboard de resultados, revisado com voc&ecirc;s tr&ecirc;s vezes por semana.</p>
     <div class="hero-stats">
       <div class="hs"><div class="hs-num">3</div><div class="hs-lbl">Produtos RD gerenciados juntos</div></div>
-      <div class="hs"><div class="hs-num">1x</div><div class="hs-lbl">Reuni&atilde;o de acompanhamento por semana</div></div>
+      <div class="hs"><div class="hs-num">3x</div><div class="hs-lbl">Reuni&otilde;es de acompanhamento por semana</div></div>
       <div class="hs"><div class="hs-num">360&deg;</div><div class="hs-lbl">Marketing + CRM + Conversas</div></div>
     </div>
     <div class="scroll-cue">
@@ -214,11 +222,29 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   </div>
 </section>
 
-<!-- 2. O QUE DÁ PRA FAZER -->
+<!-- 2. NOSSOS ENTREGÁVEIS -->
 <section id="s2">
-  <div class="eyebrow">02. O que entra na gest&atilde;o</div>
+  <div class="eyebrow">02. Nossos entreg&aacute;veis</div>
+  <h2 class="stitle">Tudo o que fica <em>com a Autz</em></h2>
+  <p class="ssub">Gest&atilde;o cont&iacute;nua nas tr&ecirc;s ferramentas, com apoio t&eacute;cnico completo e ritmo semanal de acompanhamento.</p>
+
+  <div class="deliv-list">
+    <div class="deliv-item"><div class="deliv-ico">&#9993;&#65039;</div><div><div class="deliv-title">Gest&atilde;o de e-mails marketing</div><div class="deliv-body">Fluxos e campanhas de e-mail acompanhados e otimizados toda semana, n&atilde;o s&oacute; configurados uma vez e esquecidos.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#128257;</div><div><div class="deliv-title">Fluxos de automa&ccedil;&atilde;o</div><div class="deliv-body">Curadoria dos fluxos existentes e cria&ccedil;&atilde;o de fluxos novos no RD Marketing e no RD CRM, por vertical.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#128193;</div><div><div class="deliv-title">Organiza&ccedil;&atilde;o de base</div><div class="deliv-body">Padroniza&ccedil;&atilde;o de campos, segmenta&ccedil;&otilde;es e estrutura de dados nas tr&ecirc;s ferramentas, sem duplicidade nem lixo de campanha antiga.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#127919;</div><div><div class="deliv-title">Estrat&eacute;gia de inbound</div><div class="deliv-body">Plano de capta&ccedil;&atilde;o org&acirc;nica por conte&uacute;do, formul&aacute;rio e landing page, alinhado com as verticais e o que cada n&uacute;cleo precisa.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#129529;</div><div><div class="deliv-title">Limpeza de base</div><div class="deliv-body">Remo&ccedil;&atilde;o de contato inativo, duplicado e lead sem pr&oacute;xima a&ccedil;&atilde;o, mantendo o CRM e o Conversas saud&aacute;veis pra equipe trabalhar.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#127891;</div><div><div class="deliv-title">Treinamento de novos colaboradores</div><div class="deliv-body">Onboarding na ferramenta pra cada vendedor ou colaborador novo que entrar na equipe, sem depender de quem j&aacute; usa h&aacute; tempo.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#128295;</div><div><div class="deliv-title">Apoio completo em integra&ccedil;&otilde;es e tecnologia</div><div class="deliv-body">Suporte t&eacute;cnico nas automa&ccedil;&otilde;es que j&aacute; rodam e nas integra&ccedil;&otilde;es com sistemas externos, como Mentor Web e Viver de IA.</div></div></div>
+    <div class="deliv-item"><div class="deliv-ico">&#128197;</div><div><div class="deliv-title">3 reuni&otilde;es por semana</div><div class="deliv-body">Alinhamento constante com o time, n&atilde;o s&oacute; mensal, pra ajustar prioridade e destravar bloqueio r&aacute;pido.</div></div></div>
+  </div>
+</section>
+
+<!-- 3. O QUE ENTRA NA GESTÃO -->
+<section id="s3">
+  <div class="eyebrow">03. O que entra na gest&atilde;o</div>
   <h2 class="stitle">Tr&ecirc;s frentes,<br><em>uma cad&ecirc;ncia s&oacute;.</em></h2>
-  <p class="ssub">E-mail marketing ativo, organiza&ccedil;&atilde;o das contas e um dashboard cruzando os tr&ecirc;s produtos, tudo acompanhado na mesma reuni&atilde;o semanal.</p>
+  <p class="ssub">E-mail marketing ativo, organiza&ccedil;&atilde;o das contas e um dashboard cruzando os tr&ecirc;s produtos, tudo acompanhado nas mesmas 3 reuni&otilde;es por semana.</p>
 
   <div class="fase-wrap">
 
@@ -264,10 +290,10 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
       <div class="fase-body"><div class="fase-inner">
         <div class="roadmap">
           <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Relat&oacute;rio semanal consolidado</strong>, cruzando visitas, leads, convers&otilde;es e funil comercial dos tr&ecirc;s produtos</div></div>
-          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Reuni&atilde;o semanal de acompanhamento</strong>, com recomenda&ccedil;&otilde;es baseadas no que os n&uacute;meros mostraram na semana</div></div>
+          <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>3 reuni&otilde;es de acompanhamento por semana</strong>, com recomenda&ccedil;&otilde;es baseadas no que os n&uacute;meros mostraram nos &uacute;ltimos dias</div></div>
           <div class="rm-item"><div class="rm-dot"></div><div class="rm-text"><strong>Ajustes t&eacute;cnicos cont&iacute;nuos</strong> em fluxos, segmenta&ccedil;&otilde;es e automa&ccedil;&otilde;es, sem precisar abrir um projeto novo pra cada mudan&ccedil;a pequena</div></div>
         </div>
-        <div class="fase-tags"><span class="ftag">Relat&oacute;rio semanal</span><span class="ftag">Reuni&atilde;o de acompanhamento</span><span class="ftag">Ajustes cont&iacute;nuos</span></div>
+        <div class="fase-tags"><span class="ftag">Relat&oacute;rio semanal</span><span class="ftag">3 reuni&otilde;es por semana</span><span class="ftag">Ajustes cont&iacute;nuos</span></div>
       </div></div>
     </div>
 
@@ -276,9 +302,9 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   <div class="note-box">&#128206; Isso substitui a l&oacute;gica de "abrir chamado quando algo quebra" por uma rotina fixa: toda semana algu&eacute;m est&aacute; olhando os tr&ecirc;s produtos juntos, n&atilde;o s&oacute; reagindo quando algo para de funcionar.</div>
 </section>
 
-<!-- 3. O QUE NÃO DÁ PRA FAZER -->
-<section id="s3">
-  <div class="eyebrow">03. Pontos de aten&ccedil;&atilde;o</div>
+<!-- 4. O QUE NÃO DÁ PRA FAZER -->
+<section id="s4">
+  <div class="eyebrow">04. Pontos de aten&ccedil;&atilde;o</div>
   <h2 class="stitle">Gest&atilde;o cont&iacute;nua<br><em>n&atilde;o &eacute; projeto novo.</em></h2>
   <p class="ssub">Pra n&atilde;o misturar expectativa, vale separar o que j&aacute; est&aacute; em constru&ccedil;&atilde;o do que entra nessa cad&ecirc;ncia semanal.</p>
 
@@ -295,30 +321,34 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
       <div class="prob-ico">&#128268;</div>
       <div><div class="prob-title">Integra&ccedil;&otilde;es externas (Mentor Web, Viver de IA) t&ecirc;m ritmo pr&oacute;prio</div><div class="prob-body">Dependem de acesso t&eacute;cnico e chave de API do lado do cliente. A gest&atilde;o acompanha e sinaliza, mas n&atilde;o resolve bloqueio que est&aacute; fora do RD Station.</div></div>
     </div>
+    <div class="prob-item">
+      <div class="prob-ico">&#128421;&#65039;</div>
+      <div><div class="prob-title">VPS dedicada &eacute; pr&eacute;-requisito t&eacute;cnico</div><div class="prob-body">Pra rodar as automa&ccedil;&otilde;es e integra&ccedil;&otilde;es com estabilidade, &eacute; necess&aacute;ria a contrata&ccedil;&atilde;o de uma VPS KVM 8, Debian 11 LTS, pela Hostinger, do lado da Anclivepa (mesma configura&ccedil;&atilde;o j&aacute; alinhada por e-mail). Sem isso, as automa&ccedil;&otilde;es seguem dependendo de infraestrutura compartilhada.</div></div>
+    </div>
   </div>
 
-  <div class="note-box">&#9878;&#65039; <strong>Postura recomendada:</strong> a reuni&atilde;o semanal serve exatamente pra deixar claro, toda semana, o que est&aacute; em cad&ecirc;ncia normal e o que virou bloqueio esperando a&ccedil;&atilde;o de outro lado.</div>
+  <div class="note-box">&#9878;&#65039; <strong>Postura recomendada:</strong> as 3 reuni&otilde;es semanais servem exatamente pra deixar claro, o que est&aacute; em cad&ecirc;ncia normal e o que virou bloqueio esperando a&ccedil;&atilde;o de outro lado.</div>
 </section>
 
-<!-- 4. INVESTIMENTO -->
-<section id="s4">
-  <div class="eyebrow">04. Investimento</div>
+<!-- 5. INVESTIMENTO -->
+<section id="s5">
+  <div class="eyebrow">05. Investimento</div>
   <h2 class="stitle">Um valor fixo,<br><em>recorrente todo m&ecirc;s.</em></h2>
-  <p class="ssub">Cobre as tr&ecirc;s frentes descritas acima: e-mail marketing, organiza&ccedil;&atilde;o das contas e dashboard de resultados, com reuni&atilde;o semanal inclusa.</p>
+  <p class="ssub">Cobre as tr&ecirc;s frentes descritas acima: e-mail marketing, organiza&ccedil;&atilde;o das contas e dashboard de resultados, com 3 reuni&otilde;es de acompanhamento por semana inclusas.</p>
 
   <div class="invest-hero">
     <div class="invest-lbl">Gest&atilde;o Autz Performance</div>
     <div class="invest-price">R$ 3.000/m&ecirc;s</div>
-    <div class="invest-detail">E-mail marketing, organiza&ccedil;&atilde;o das contas (Marketing + CRM + Conversas), dashboard de resultados e reuni&atilde;o semanal de acompanhamento.</div>
+    <div class="invest-detail">E-mail marketing, organiza&ccedil;&atilde;o das contas (Marketing + CRM + Conversas), dashboard de resultados e 3 reuni&otilde;es de acompanhamento por semana.</div>
   </div>
 </section>
 
-<!-- 5. CTA -->
-<section class="cta-sec" id="s5" style="max-width:100%;">
+<!-- 6. CTA -->
+<section class="cta-sec" id="s6" style="max-width:100%;">
   <div class="cta-autz"><div class="autz-logo-img"></div></div>
-  <div class="eyebrow" style="margin-bottom:18px;">05. Pr&oacute;ximos passos</div>
+  <div class="eyebrow" style="margin-bottom:18px;">06. Pr&oacute;ximos passos</div>
   <h2 class="cta-title">Vamos <em>colocar a cad&ecirc;ncia pra rodar?</em></h2>
-  <p class="cta-sub">Assim que a implementa&ccedil;&atilde;o atual estabilizar, a gest&atilde;o Autz Performance j&aacute; entra rodando, com a primeira reuni&atilde;o semanal marcada pra alinhar prioridade e as m&eacute;tricas que v&atilde;o pro dashboard.</p>
+  <p class="cta-sub">Assim que a implementa&ccedil;&atilde;o atual estabilizar, a gest&atilde;o Autz Performance j&aacute; entra rodando, com a primeira rodada de reuni&otilde;es da semana marcada pra alinhar prioridade e as m&eacute;tricas que v&atilde;o pro dashboard.</p>
   <div class="cta-box">
     <div class="cta-line"><strong>&#128222;</strong> (16) 99289-6549</div>
     <div class="cta-line"><strong>&#9993;&#65039;</strong> mk@autz.com.br</div>
@@ -328,7 +358,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
 </section>
 
 <script>
-var sids = ['s0','s1','s2','s3','s4','s5'];
+var sids = ['s0','s1','s2','s3','s4','s5','s6'];
 var dotsWrap = document.getElementById('progressDots');
 sids.forEach(function(id, i){
   var d = document.createElement('div');
