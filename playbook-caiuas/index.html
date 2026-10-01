@@ -53,6 +53,10 @@
   .note{font-size:12.5px;color:var(--gray);line-height:1.6;}
   .nk{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;margin-right:8px;color:var(--gray);}
   .nk.lime{color:var(--lime);}
+  .msg.info{background:transparent;border-style:dashed;padding:14px 20px;}
+  .msg.info .meta{margin-top:6px;}
+  .subject{margin-top:14px;font-size:12.5px;font-weight:700;color:var(--gray);}
+  .subject b{color:var(--white);font-weight:700;}
 
   @media(max-width:640px){
     .top-in{padding:10px 16px;}
@@ -86,9 +90,9 @@
 <script>
 var SECTIONS = [
   {
-    id:'ec', label:'Entrando em Contato', title:'Entrando em Contato',
+    id:'ec', label:'Nova Oportunidade', title:'Nova Oportunidade',
     msgs:[
-      {code:'EC-D0', title:'Mensagem inicial', when:'D0, assim que o lead chega', channel:'WhatsApp',
+      {code:'EC-D0', title:'Mensagem inicial', when:'Até 10 minutos após a chegada do lead', channel:'WhatsApp',
        text:`Olá, {{contact-name}}! Tudo bem?
 Meu nome é {{user-name}}, sou Consultora de Consórcio Honda.
 Recebi seu interesse e estou à disposição para apresentar as melhores opções do consórcio, de acordo com o veículo e o valor de crédito que você procura.
@@ -98,19 +102,10 @@ Posso preparar uma simulação personalizada, sem compromisso, para você avalia
   {
     id:'tc', label:'Tentativa de Contato', title:'Tentativa de Contato',
     msgs:[
-      {code:'TC-D0b', title:'Segundo contato do dia', when:'D0, à tarde ou por volta das 18h30', channel:'WhatsApp',
-       text:`Olá, {{contact-name}}! Tudo bem? 😊
-Aqui é {{user-name}}, Consultora de Consórcio Honda.
+      {code:'TC-D0', title:'Primeira ligação', when:'D0', channel:'Ligação', info:true,
+       note:'Só ligação, sem mensagem de WhatsApp.'},
 
-Mais cedo te enviei uma mensagem sobre o seu interesse em consórcio. Sei que o dia costuma ser corrido, então me diga o melhor horário e eu te ligo, ou continuamos por aqui mesmo.`},
-
-      {code:'TC-D1', title:'Tentei te ligar', when:'D+1. Ligue 2 ou 3 vezes; se não atender, envie esta mensagem', channel:'Ligação + WhatsApp',
-       text:`Olá, {{contact-name}}! Tudo bem?
-Aqui é {{user-name}}, Consultora de Consórcio Honda. Tentei falar com você por telefone sobre o seu interesse no consórcio.
-
-Prefere conversar por aqui? Se sim, me diga o veículo que você tem em mente e eu já te mando uma simulação.`},
-
-      {code:'TC-D3', title:'Prova social', when:'D+3', channel:'WhatsApp',
+      {code:'TC-D3', title:'Prova social', when:'D+3, ligação e WhatsApp', channel:'Ligação + WhatsApp',
        text:`Olá, {{contact-name}}! Tudo bem? Aqui é {{user-name}}, da Honda Caiuás Consórcio 🚗
 
 Separei uma foto de um cliente que retirou o veículo pelo consórcio aqui com a gente.
@@ -118,12 +113,10 @@ Separei uma foto de um cliente que retirou o veículo pelo consórcio aqui com a
 Se quiser entender como funciona e quanto ficaria a parcela para o veículo que você procura, me chama que eu preparo uma simulação sem compromisso.`,
        notes:[{k:'Anexar', c:'lime', t:'Foto de cliente contemplado retirando o veículo.'}]},
 
-      {code:'TC-D5', title:'Simulação por aqui', when:'D+5. Ligue; se não atender, envie esta mensagem', channel:'Ligação + WhatsApp',
-       text:`Olá, {{contact-name}}! Tudo bem? {{user-name}}, Consultora de Consórcio Honda.
+      {code:'TC-D7', title:'Segunda ligação', when:'D+7', channel:'Ligação', info:true,
+       note:'Só ligação, sem mensagem de WhatsApp.'},
 
-Tentei te ligar novamente, mas não consegui falar com você. Posso te enviar a simulação por aqui mesmo, sem precisar de ligação. É só me dizer o modelo ou o valor de crédito que você procura 🚗🏍️`},
-
-      {code:'TC-D7', title:'Consórcio x financiamento', when:'D+7', channel:'WhatsApp',
+      {code:'TC-D10', title:'Consórcio x financiamento', when:'D+10', channel:'WhatsApp',
        text:`Olá, {{contact-name}}! Tudo bem?
 
 Preparei um comparativo rápido entre consórcio e financiamento para te ajudar a decidir com calma.
@@ -133,27 +126,17 @@ No financiamento você paga juros sobre o valor do veículo. No consórcio não 
 Se quiser, faço uma simulação para o modelo que você procura.`,
        notes:[{k:'Anexar', c:'lime', t:'Imagem comparativa consórcio x financiamento.'}]},
 
-      {code:'TC-D10', title:'Data da assembleia', when:'D+10. Ligue; se não atender, envie esta mensagem', channel:'Ligação + WhatsApp',
-       text:`Olá, {{contact-name}}! Tudo bem? {{user-name}}, da Honda Caiuás Consórcio.
+      {code:'TC-D14', title:'Último recado', when:'D+14', channel:'E-mail',
+       subject:'Sua simulação de consórcio Honda ainda está disponível',
+       text:`Olá, {{contact-name}}, tudo bem?
 
-Tentei te ligar hoje. A próxima assembleia é dia [DATA DA ASSEMBLEIA] e, para participar dela, a adesão precisa ser feita até [DATA DE CORTE].
+Meu nome é {{user-name}}, Consultora de Consórcio Honda. Tentei contato algumas vezes nos últimos dias e não quero deixar de te avisar: sua simulação ainda está disponível.
 
-Quer que eu deixe a sua simulação pronta antes dessa data?`},
+Se ainda fizer sentido para você, basta responder este e-mail ou chamar no WhatsApp que eu retomo o atendimento. Se não for o momento, sem problemas, ficamos à disposição quando precisar.`,
+       notes:[{k:'Depois', t:'Sem resposta, no D+15 o sistema marca como Perdido com o motivo "Não retornou após tentativas".'}]},
 
-      {code:'TC-D14', title:'Último recado', when:'D+14', channel:'WhatsApp',
-       text:`Olá, {{contact-name}}! Tudo bem? {{user-name}}, Consultora de Consórcio Honda.
-
-Tentei contato algumas vezes e não quero te incomodar, então este é o meu último recado por enquanto.
-
-Se ainda faz sentido conversarmos sobre consórcio, responda aqui com um "sim" que eu retomo com você. Se não for o momento, sem problemas, fico à disposição quando precisar 🚗`,
-       notes:[{k:'Depois', t:'Sem resposta, no D+15 marque como Perdido com o motivo "Não retornou após tentativas".'}]},
-
-      {code:'TC-ALT', title:'Retomando o atendimento', when:'Quando não houver foto ou imagem para o D+3 ou o D+7', channel:'WhatsApp',
-       text:`Olá, {{contact-name}}! Tudo bem?
-Aqui é {{user-name}}, Consultora de Consórcio Honda.
-Estou retornando o nosso atendimento para saber se você ainda tem interesse em realizar sua simulação de consórcio.
-Posso verificar as melhores opções de crédito, prazo e parcelas de acordo com o que você procura.
-Fico à disposição 🚗🏍️`}
+      {code:'TC-D15', title:'Tarefa automática de perda', when:'D+15', channel:'Automático', info:true,
+       note:'O sistema marca como Perdido sozinho, motivo "Não retornou após tentativas". Nenhuma mensagem a enviar.'}
     ]
   },
   {
@@ -166,12 +149,15 @@ Passando para saber qual das opções que te apresentei fez mais sentido para vo
 
 Qual seria o ideal para você?`},
 
-      {code:'AP-D4', title:'Veículo como lance', when:'Se o AP-D2 não tiver resposta, ou quando o lead comentar que tem um veículo', channel:'WhatsApp',
+      {code:'AP-D4', title:'Veículo como lance', when:'D+4, ligação e WhatsApp', channel:'Ligação + WhatsApp',
        text:`Olá, {{contact-name}}! Tudo bem?
 
 Uma dúvida comum: dependendo da avaliação, é possível usar um veículo que você já tem como lance no consórcio.
 
-Se esse for o seu caso, me passa o modelo e o ano do seu veículo que eu verifico como ficaria.`}
+Se esse for o seu caso, me passa o modelo e o ano do seu veículo que eu verifico como ficaria.`},
+
+      {code:'AP-D5', title:'Tarefa automática de perda', when:'D+5', channel:'Automático', info:true,
+       note:'O sistema marca como Perdido sozinho, motivo "Desistiu da compra". Nenhuma mensagem a enviar.'}
     ]
   },
   {
@@ -215,7 +201,7 @@ Qual você prefere? Para Pix e cartão, me avise antes para eu enviar na hora ce
 
 O boleto da sua 1ª parcela vence amanhã. Se já pagou, me envie o comprovante por aqui para eu dar andamento. Se preferir pagar por Pix ou cartão, é só me avisar que eu gero na hora.`},
 
-      {code:'BOL-D2', title:'Vence hoje', when:'D+2, dia do vencimento', channel:'Ligação + WhatsApp',
+      {code:'BOL-D2', title:'Vence hoje', when:'D+2, dia do vencimento, ligação e WhatsApp', channel:'Ligação + WhatsApp',
        text:`Olá, {{contact-name}}! Tudo bem?
 
 O seu boleto vence hoje. Se você já pagou, pode ignorar este lembrete e só me enviar o comprovante por aqui para eu dar andamento. Se precisar de outra forma de pagamento, me avise que eu resolvo agora.`,
@@ -232,7 +218,7 @@ Vi que o boleto da sua 1ª parcela venceu e ainda não recebi a confirmação. A
 
 Se for questão de data ou de forma de pagamento, posso gerar um novo pagamento por Pix ou cartão para você ainda hoje.`},
 
-      {code:'RET-D5', title:'Último contato', when:'D+5', channel:'WhatsApp',
+      {code:'RET-D5', title:'Último contato', when:'D+5, ligação e WhatsApp', channel:'Ligação + WhatsApp',
        text:`Olá, {{contact-name}}! Tudo bem?
 
 Este é o meu último contato sobre o pagamento da sua 1ª parcela. Se algo te impediu de seguir, pode me contar? Pode ser o valor da parcela, o prazo, ter optado por outro caminho, qualquer motivo.
@@ -304,7 +290,7 @@ function copyMessage(text, btn, bubble){
 }
 
 function buildCard(m){
-  var card = el('article', 'msg');
+  var card = el('article', 'msg' + (m.info ? ' info' : ''));
   card.id = m.code.toLowerCase();
 
   var top = el('div', 'msg-top');
@@ -315,15 +301,30 @@ function buildCard(m){
   left.appendChild(el('span', 'pill', m.channel));
   top.appendChild(left);
 
-  var bubble = el('div', 'bubble');
-  fillBubble(bubble, m.text);
+  if (!m.info) {
+    var bubble = el('div', 'bubble');
+    fillBubble(bubble, m.text);
 
-  var btn = el('button', 'copy', 'Copiar');
-  btn.type = 'button';
-  btn.addEventListener('click', function(){ copyMessage(m.text, btn, bubble); });
-  top.appendChild(btn);
+    var btn = el('button', 'copy', 'Copiar');
+    btn.type = 'button';
+    btn.addEventListener('click', function(){ copyMessage(m.text, btn, bubble); });
+    top.appendChild(btn);
+  }
 
   card.appendChild(top);
+
+  if (m.info) {
+    card.appendChild(el('p', 'meta', m.note));
+    return card;
+  }
+
+  if (m.subject) {
+    var subj = el('div', 'subject');
+    subj.appendChild(document.createTextNode('Assunto: '));
+    subj.appendChild(el('b', null, m.subject));
+    card.appendChild(subj);
+  }
+
   card.appendChild(bubble);
 
   if (m.notes && m.notes.length) {
