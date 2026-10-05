@@ -231,7 +231,7 @@ footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
 <div class="wrap">
 
   <header class="hero">
-    <div class="kicker"><i></i>Piloto Ribeirão Preto · versão de 02/10/2026</div>
+    <div class="kicker"><i></i>Piloto Ribeirão Preto · versão de 05/10/2026</div>
     <h1>Como vai funcionar o atendimento e a venda em Ribeirão Preto</h1>
     <p class="lede">Este guia junta, num lugar só, tudo o que combinamos nas reuniões de 21/08, 27/08 e 16/09: do anúncio até o aluno matriculado. Serve de material de estudo antes do treinamento presencial e de consulta no dia a dia depois dele.</p>
     <div class="note">
@@ -300,10 +300,18 @@ footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
       <span class="chip">Ganho de massa muscular</span><span class="chip">Emagrecimento</span><span class="chip">Condicionamento físico</span><span class="chip">Performance esportiva</span><span class="chip">Envelhecimento saudável</span><span class="chip">Atividades para crianças</span>
     </div>
 
-    <div class="sub">Do formulário até o CRM</div>
+    <div class="sub">Do anúncio até a primeira mensagem</div>
     <div class="rules">
-      <div class="rule"><div><h3>A GS2 recebe o lead numa planilha, uma aba por modalidade <i class="pill todo" style="margin-left:6px;">A construir</i></h3><p>Com campanha, conjunto, anúncio, UTMs e o ID do lead. O plano é ligar essa planilha ao CRM, para todo lead de Ribeirão nascer em Novo Contato já com a origem completa.</p></div></div>
-      <div class="rule"><div><h3>Mensagem de boas-vindas automática ao entrar em Novo Contato <i class="pill wip" style="margin-left:6px;">Em finalização</i></h3><p>É o primeiro passo da cadência (D1) e já usa o nome da pessoa e a unidade de interesse.</p></div></div>
+      <div class="rule"><div><h3>1. Lead novo chega pela Meta Ads</h3><p>A pessoa preenche o formulário nativo do Instagram ou do Facebook.</p></div></div>
+      <div class="rule"><div><h3>2. Cai numa planilha da GS2</h3><p>Cada lead vira uma linha, com campanha, conjunto, anúncio, UTMs e o ID do lead.</p></div></div>
+      <div class="rule"><div><h3>3. Atualiza no RD Marketing <i class="pill wip" style="margin-left:6px;">Em finalização</i></h3><p>Uma automação lê a planilha a cada poucos minutos e manda o lead pro RD Marketing, já com a unidade de interesse e os dados de origem. Falta garantir que todo lead nasça no funil certo, sem cair num funil antigo por engano.</p></div></div>
+      <div class="rule"><div><h3>4. Dispara a primeira mensagem e entra em Tentando Contato <i class="pill wip" style="margin-left:6px;">Em finalização</i></h3><p>A Bia manda a mensagem de boas-vindas (o Follow 1 da cadência) pelo WhatsApp, e o lead já nasce na etapa <b>Tentando Contato</b> do funil.</p></div></div>
+    </div>
+
+    <div class="sub" style="margin-top:34px;">A partir da primeira mensagem, dois caminhos</div>
+    <div class="rules">
+      <div class="rule"><div><h3>Se o lead responde</h3><p>A conversa vai pra fila do time de Ribeirão Preto, e o negócio no CRM passa a ter como dono o mesmo consultor que respondeu no RD Conversas. É a mesma <a href="#carteira">regra de carteira</a>: quem responde primeiro, assume.</p></div></div>
+      <div class="rule"><div><h3>Se o lead não responde</h3><p>Segue a <a href="#cadencia">régua de follow-up</a>: Follow 2 no dia 3, e assim por diante até o encerramento no dia 30.</p></div></div>
     </div>
   </section>
 
@@ -361,7 +369,7 @@ footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
     <h2>O que acontece quando o tempo passa</h2>
     <p class="intro">Regras combinadas para nenhum lead ficar esquecido. A situação de cada automação está na seção Situação, mais abaixo.</p>
     <div>
-      <div class="trow"><div class="when">Lead entra no funil</div><p>Notificação e tarefa de primeiro contato para o consultor. <b>Meta: primeiro atendimento em até 30 minutos.</b></p></div>
+      <div class="trow"><div class="when">Lead entra no funil <i class="pill todo" style="margin-left:6px;">A construir</i></div><p>Abrem 3 tarefas para o consultor: primeiro contato, enviar mensagem e ligar. <b>Prazo de 24 horas</b> para cumprir as três (a meta de resposta continua sendo até 30 minutos). O plano é o n8n criar essas tarefas sozinho, direto no RD CRM.</p></div>
       <div class="trow"><div class="when">Qualificação</div><p>Tarefa de ligação obrigatória, com registro do que aconteceu. Não basta marcar a tarefa como feita.</p></div>
       <div class="trow"><div class="when">24h parado em Novo Contato (dia útil)</div><p>Lembretes 2h e 6h antes; depois o lead passa para outro consultor da unidade.</p></div>
       <div class="trow"><div class="when">24h parado em Qualificado</div><p>E-mail de alerta para a gestão (Jeanne Macedo).</p></div>
@@ -417,6 +425,18 @@ footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
       <div class="cad-day brk"><div class="dot">D30</div><div class="l">break</div></div>
     </div>
     <p class="small">No D30 vai a mensagem de break. Quem faltou à visita entra numa sequência própria de No Show, e quem esfriou em qualquer etapa entra em reativação. As mensagens palavra por palavra de cada dia estão no <a href="https://pages.autz.com.br/cia-athletica-scripts/" target="_blank" rel="noopener">playbook de scripts</a> (em atualização para as 8 etapas).</p>
+
+    <div class="sub" style="margin-top:34px;">Quanto tempo entre uma mensagem e a outra</div>
+    <div>
+      <div class="trow"><div class="when">Follow 1 · dia 1</div><p>Mensagem de boas-vindas, assim que o lead entra no funil. É a primeira mensagem, disparada pela Bia.</p></div>
+      <div class="trow"><div class="when">Follow 2 · dia 3</div><p>2 dias depois do Follow 1.</p></div>
+      <div class="trow"><div class="when">Follow 3 · dia 5</div><p>2 dias depois do Follow 2.</p></div>
+      <div class="trow"><div class="when">Follow 4 · dia 10</div><p>5 dias depois do Follow 3.</p></div>
+      <div class="trow"><div class="when">Follow 5 · dia 20</div><p>10 dias depois do Follow 4.</p></div>
+      <div class="trow"><div class="when">Follow 6 · dia 28</div><p>8 dias depois do Follow 5.</p></div>
+      <div class="trow"><div class="when">Encerramento · dia 30</div><p>2 dias depois do Follow 6. Mensagem de break: fecha a tentativa e manda o lead pra reativação.</p></div>
+    </div>
+    <p class="small" style="margin-top:14px;">Cada Follow da tabela acima também abre uma tarefa de ligação para o consultor, no mesmo dia. Não é só mensagem: o consultor precisa ligar também.</p>
 
     <div class="sub" style="margin-top:34px;">Depois da visita ou aula experimental <i class="pill todo" style="margin-left:6px;">A construir</i></div>
     <p class="small" style="margin-bottom:14px;">Quando a matrícula não acontece na hora, começa um follow-up à parte, feito pelo consultor, mais curto e mais pontual que a régua de 30 dias, porque a pessoa já conhece a unidade.</p>
@@ -496,7 +516,7 @@ footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
   </section>
 
   <section id="situacao">
-    <div class="eyebrow">Situação em 02/10/2026</div>
+    <div class="eyebrow">Situação em 05/10/2026</div>
     <h2>O que já está no ar e o que falta</h2>
     <p class="intro">Um retrato honesto do projeto hoje. Esta lista muda conforme os itens forem fechando.</p>
     <div>
@@ -505,9 +525,10 @@ footer .h{color:var(--ink-soft);font-weight:600;margin-bottom:4px;}
       <div class="mrow"><div class="t"><h3>Grade das 8h às 21h e só Ribeirão visível na página</h3><p>Decidido em 16/09. A regra já vale no sistema; a publicação da página está em andamento.</p></div><i class="pill wip">Em finalização</i></div>
       <div class="mrow"><div class="t"><h3>Agenda própria de Ribeirão (Gmail da unidade)</h3><p>Conta conectada; falta ligar ao sistema de agendamento e testar.</p></div><i class="pill wip">Em finalização</i></div>
       <div class="mrow"><div class="t"><h3>Bia: prompt e base de conhecimento de Ribeirão</h3><p>Conteúdo pronto. Falta configurar e testar no RD Conversas.</p></div><i class="pill wip">Em finalização</i></div>
-      <div class="mrow"><div class="t"><h3>Mensagem de boas-vindas (D1) ao entrar em Novo Contato</h3><p>Falta a última conexão com o RD Marketing e um teste real de envio.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>Mensagem de boas-vindas (Follow 1) ao entrar no funil</h3><p>Conectada ao RD Marketing e testada com leads reais. Falta só a aprovação do novo texto pela Meta (até lá, continua valendo o texto antigo).</p></div><i class="pill wip">Em finalização</i></div>
       <div class="mrow"><div class="t"><h3>Resumo diário de agendamentos por e-mail</h3><p>Falta definir o e-mail de destino.</p></div><i class="pill wip">Em finalização</i></div>
-      <div class="mrow"><div class="t"><h3>Leads do formulário Meta entrando no CRM</h3><p>A planilha da GS2 já recebe leads reais; falta a ligação com o CRM.</p></div><i class="pill todo">A construir</i></div>
+      <div class="mrow"><div class="t"><h3>Leads do formulário Meta atualizando o RD Marketing</h3><p>Testado com leads reais. Falta garantir que todo lead nasça no funil certo, sem cair num funil antigo por engano.</p></div><i class="pill wip">Em finalização</i></div>
+      <div class="mrow"><div class="t"><h3>As 3 tarefas do consultor (contato, mensagem e ligação) abrindo sozinhas no RD CRM</h3><p>A credencial do RD CRM já está conectada e testada. Falta construir a automação no n8n que cria as 3 tarefas com o prazo de 24h.</p></div><i class="pill todo">A construir</i></div>
       <div class="mrow"><div class="t"><h3>Alertas de estagnação por e-mail</h3><p>24h em Qualificado e 48h em Em Negociação.</p></div><i class="pill todo">A construir</i></div>
       <div class="mrow"><div class="t"><h3>Encerramento automático de conversas em 99h</h3><p>Configuração no próprio RD Conversas, Ribeirão primeiro.</p></div><i class="pill todo">A construir</i></div>
       <div class="mrow"><div class="t"><h3>Devolução de eventos para a Meta</h3><p>Depende de confirmar o caminho técnico com a GS2.</p></div><i class="pill todo">A construir</i></div>
