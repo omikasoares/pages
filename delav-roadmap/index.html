@@ -191,6 +191,36 @@
   .note-box p { font-size: 14px; color: var(--gray); margin: 0; }
   .note-box p + p { margin-top: 8px; }
   .note-box b { color: var(--white); }
+  .note-box.alert { background: rgba(232,89,60,0.12); border-color: rgba(232,89,60,0.35); }
+  .note-box.alert b { color: var(--red); }
+
+  table.reps { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  table.reps th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 0 12px 10px;
+    border-bottom: 1px solid var(--border-white);
+  }
+  table.reps td {
+    font-size: 14px;
+    padding: 12px;
+    border-bottom: 1px solid var(--border-white);
+  }
+  table.reps tr:last-child td { border-bottom: none; }
+  table.reps td.email { color: var(--gray); font-size: 13px; }
+  .status-ok, .status-no {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .status-ok { color: var(--green); }
+  .status-no { color: var(--red); }
 
   .checklist { list-style: none; margin: 0; padding: 0; }
   .checklist li {
@@ -287,6 +317,10 @@
     </div>
   </header>
 
+  <div class="note-box alert">
+    <p><b>Atenção, certificado SSL vencido:</b> o certificado do middleware do Protheus (middleware-protheus.weloze.com.br) expirou em 12/10/2026 e ainda não foi renovado. Enquanto isso não for corrigido pelo time que administra o Protheus, nenhuma consulta de preço funciona em produção, mesmo pros representantes habilitados abaixo.</p>
+  </div>
+
   <section>
     <h2><span class="num">1</span>O fluxo, passo a passo</h2>
 
@@ -361,6 +395,34 @@
       <li>Preencha <b>Entrada</b> e <b>Parcelas</b>, mova pra <b>Simular Financiamento</b> e marque <b>Atualizar Simulação = Sim</b>.</li>
       <li>Confira a anotação com o valor calculado, e que o campo "Atualizar Simulação" voltou pra "Não" sozinho.</li>
     </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Quem já consulta preço hoje</h2>
+    <p class="lead" style="margin-top:0;">Testado direto na tabela do Protheus, por e-mail de login (o mesmo usado no RD CRM). Assim que o certificado for renovado, essa lista volta a valer na prática.</p>
+    <table class="reps">
+      <thead>
+        <tr><th>Representante</th><th>Time</th><th>E-mail</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ariane</td><td>Máquinas</td><td class="email">comercialmaquinas2@delav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Deise dos Santos</td><td>Máquinas</td><td class="email">comercialmaquinas5@delav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Luca da Silveira Framarim</td><td>Máquinas</td><td class="email">comercialmaquinas4@delav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Raíra</td><td>Máquinas</td><td class="email">comercialmaquinas1@delav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Edinara Witt</td><td>Consumíveis</td><td class="email">comercialconsumivel2@delav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Thiago Missaglia</td><td>Consumíveis</td><td class="email">comercialconsumivel3@delav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Roberta</td><td>Consumíveis</td><td class="email">comercialconsumivel1@delav.com.br</td><td><span class="status-no">✗ Não reconhecida</span></td></tr>
+        <tr><td>Ademar Galafassi</td><td>Externo</td><td class="email">ademar.galafassi@gmail.com</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Sandro Dallacosta</td><td>Externo</td><td class="email">emg.sandro@gmail.com</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Marta Lodi</td><td>Externo</td><td class="email">mlodi65@gmail.com</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Piremio</td><td>Externo</td><td class="email">contato@condolav.com.br</td><td><span class="status-ok">✓ Consulta preço</span></td></tr>
+        <tr><td>Alexandre</td><td>Gestor</td><td class="email">alexandre@delav.com.br</td><td><span class="status-no">✗ Não reconhecido</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:20px;">
+      <p><b>Roberta precisa de atenção</b>: diferente do Alexandre (que não monta proposta e por isso não precisa de acesso), a Roberta é vendedora ativa do time de Consumíveis e deveria estar habilitada. Vale confirmar o cadastro dela no Protheus.</p>
+      <p>Ainda faltam testar 7 representantes externos sem e-mail confirmado nesta lista: Christiane Moraes, Cláudio Kodama, Dimas da Silva, Jucier Lourenço Silva, Lucy Silva, Rui Celestino e Ruy Solino.</p>
+    </div>
   </section>
 
   <footer>
