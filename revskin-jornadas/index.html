@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jornada Comercial RevSkin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F4;
+    --paper-raised:#FFFFFF;
+    --ink:#211E1A;
+    --ink-soft:#6B6459;
+    --ink-faint:#9A9284;
+    --line:#E0D9CC;
+    --line-strong:#C9BFAC;
+    --accent:#4F6F62;
+    --accent-ink:#2E463C;
+    --accent-soft:#E7EEE9;
+    --accent2:#BE6440;
+    --accent2-ink:#8C4A2E;
+    --accent2-soft:#F6E6DB;
+    --warn:#A87B2E;
+    --warn-ink:#7A5A1F;
+    --warn-soft:#F2E8D4;
+    --mono-bg:#F1ECE1;
+    --shadow: 0 1px 2px rgba(33,30,26,0.06), 0 6px 20px rgba(33,30,26,0.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1A1815;
+      --paper-raised:#221F1B;
+      --ink:#EDE7DC;
+      --ink-soft:#B2A99B;
+      --ink-faint:#80776A;
+      --line:#38332B;
+      --line-strong:#4A433A;
+      --accent:#86A796;
+      --accent-ink:#BFD6C8;
+      --accent-soft:#223029;
+      --accent2:#E08E68;
+      --accent2-ink:#F0BB9D;
+      --accent2-soft:#352620;
+      --warn:#D4AC5C;
+      --warn-ink:#E9CD92;
+      --warn-soft:#332B1A;
+      --mono-bg:#272319;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1A1815;
+    --paper-raised:#221F1B;
+    --ink:#EDE7DC;
+    --ink-soft:#B2A99B;
+    --ink-faint:#80776A;
+    --line:#38332B;
+    --line-strong:#4A433A;
+    --accent:#86A796;
+    --accent-ink:#BFD6C8;
+    --accent-soft:#223029;
+    --accent2:#E08E68;
+    --accent2-ink:#F0BB9D;
+    --accent2-soft:#352620;
+    --warn:#D4AC5C;
+    --warn-ink:#E9CD92;
+    --warn-soft:#332B1A;
+    --mono-bg:#272319;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Public Sans", system-ui, sans-serif;
+    line-height:1.55;
+    padding-block:48px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding-inline:20px}
+
+  h1,h2,h3{font-family:"Fraunces", Georgia, serif;text-wrap:balance;margin:0}
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Header ---------- */
+  header.page{padding-block:8px 36px;border-bottom:1px solid var(--line);margin-bottom:40px}
+  header.page h1{font-size:clamp(28px,5vw,40px);font-weight:600;color:var(--ink);margin-top:10px}
+  header.page .sub{color:var(--ink-soft);font-size:16px;max-width:640px;margin-top:10px}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .toc a{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:0.01em;
+    padding:6px 11px;border-radius:100px;border:1px solid var(--line);
+    color:var(--ink-soft);background:var(--paper-raised);text-decoration:none;
+  }
+  .toc a:hover{border-color:var(--line-strong);color:var(--ink)}
+
+  /* ---------- Flow section headers ---------- */
+  .flow-head{display:flex;align-items:baseline;gap:14px;margin:56px 0 22px}
+  .flow-head:first-of-type{margin-top:0}
+  .flow-num{
+    font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--ink-faint);
+    border:1px solid var(--line-strong);border-radius:50%;width:30px;height:30px;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .flow-head h2{font-size:24px;font-weight:600}
+  .flow-head .paren{font-family:"Public Sans",sans-serif;font-weight:400;font-size:15px;color:var(--ink-soft)}
+  .flow-intro{color:var(--ink-soft);font-size:15px;margin:-10px 0 20px;max-width:620px}
+
+  /* ---------- Spine / sections ---------- */
+  .spine{position:relative;padding-left:28px}
+  .spine::before{
+    content:"";position:absolute;left:7px;top:4px;bottom:4px;width:2px;
+    background:var(--line-strong);
+  }
+  .node{position:relative;margin-bottom:22px}
+  .node::before{
+    content:"";position:absolute;left:-28px;top:6px;width:16px;height:16px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--line-strong);
+  }
+  .node.is-gate::before{border-color:var(--ink-faint)}
+  .node.is-accent::before{border-color:var(--accent);background:var(--accent-soft)}
+  .node.is-accent2::before{border-color:var(--accent2);background:var(--accent2-soft)}
+  .node.is-warn::before{border-color:var(--warn);background:var(--warn-soft)}
+
+  .card{
+    background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px;box-shadow:var(--shadow);
+  }
+  .card.gate{background:var(--paper);border-style:dashed}
+  .card h3{font-size:18px;font-weight:600;margin-bottom:6px}
+  .card .meta{color:var(--ink-soft);font-size:14.5px}
+  .card .meta code, .tag-mono{
+    font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--mono-bg);
+    padding:1.5px 6px;border-radius:5px;color:var(--ink);
+  }
+
+  .stage-label{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
+    color:var(--accent-ink);background:var(--accent-soft);
+    padding:3px 9px;border-radius:7px;display:inline-block;margin-bottom:10px;
+  }
+  .stage-label.c2{color:var(--accent2-ink);background:var(--accent2-soft)}
+  .stage-label.cw{color:var(--warn-ink);background:var(--warn-soft)}
+
+  /* ---------- Message cards (details) ---------- */
+  .msg{
+    background:var(--paper-raised);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:10px;margin-bottom:10px;overflow:hidden;
+  }
+  .msg.track-pos{border-left-color:var(--accent2)}
+  .msg.track-nut{border-left-color:var(--warn)}
+  .msg summary{
+    cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:12px;
+    padding:13px 16px;font-size:15px;
+  }
+  .msg summary::-webkit-details-marker{display:none}
+  .msg summary::before{
+    content:"+";font-family:"IBM Plex Mono",monospace;color:var(--ink-faint);
+    width:14px;flex:none;
+  }
+  .msg[open] summary::before{content:"–"}
+  .msg summary .when{
+    font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft);
+    min-width:54px;flex:none;
+  }
+  .msg summary .name{font-weight:600;flex:1 1 auto}
+  .msg summary .varcount{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);flex:none}
+  .msg-body{padding:0 16px 16px 42px}
+  .msg-text{
+    white-space:pre-line;font-size:14.5px;color:var(--ink);
+    background:var(--mono-bg);border-radius:8px;padding:12px 14px;margin:0 0 10px 0;
+  }
+  .msg-text mark{
+    background:var(--accent-soft);color:var(--accent-ink);
+    padding:0 3px;border-radius:4px;font-family:"IBM Plex Mono",monospace;font-size:0.9em;
+    box-decoration-break:clone;
+  }
+  .track-pos .msg-text mark{background:var(--accent2-soft);color:var(--accent2-ink)}
+  .track-nut .msg-text mark{background:var(--warn-soft);color:var(--warn-ink)}
+  .vars-row{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--ink-soft)}
+  .vars-row span{font-family:"IBM Plex Mono",monospace;background:var(--paper);border:1px solid var(--line);padding:2px 7px;border-radius:6px}
+
+  .note{
+    font-size:13.5px;color:var(--ink-soft);border-left:2px solid var(--line-strong);
+    padding-left:10px;margin-top:10px;
+  }
+
+  .branch-note{
+    display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:14px 16px;
+    border:1px dashed var(--line-strong);border-radius:12px;font-size:14px;color:var(--ink-soft);
+  }
+  .branch-note b{color:var(--ink);font-weight:600}
+  .branch-note .arrow{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint);flex:none}
+
+  @media (max-width:640px){
+    body{padding-block:28px}
+    .msg-body{padding-left:16px}
+    .flow-head{margin-top:44px}
+  }
+
+  footer.page{
+    margin-top:48px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--ink-faint);font-size:13px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <div class="eyebrow">RevSkin · Automação Comercial</div>
+    <h1>Jornada Comercial RevSkin</h1>
+    <p class="sub">Do lead novo na equipe CW3 até a recompra: as 5 jornadas que compõem a automação — texto e variáveis reais de cada mensagem.</p>
+    <div class="toc">
+      <a href="#f1">1 · Receita</a>
+      <a href="#f2">2 · Primeira Compra</a>
+      <a href="#f3">3 · Recompra</a>
+      <a href="#f4">4 · Segunda Compra</a>
+      <a href="#f5">5 · Recuperação de Recompra</a>
+    </div>
+  </header>
+
+  <!-- ============ 1. RECEITA ============ -->
+  <div class="flow-head" id="f1">
+    <span class="flow-num">1</span>
+    <h2>Receita <span class="paren">(Tentativa de Contato)</span></h2>
+  </div>
+  <p class="flow-intro">Do lead novo distribuído pra equipe CW3 até a entrega do orçamento. Roda enquanto o deal estiver em <code>Novo Lead</code> ou <code>Tentativa de Contato</code>.</p>
+
+  <div class="spine">
+    <div class="node is-gate">
+      <div class="card gate">
+        <div class="stage-label">gatilho</div>
+        <h3>Novo Lead Criado (CW3)</h3>
+        <p class="meta">Workflow <code>RevSkin - RDCRM &lt;&gt; Distribuir para Equipe</code>. Ao entrar um novo deal, o sistema primeiro tenta casar o telefone do contato com uma conversa já existente no RD Conversas (tag <code>patricia</code> ou <code>mara</code>); se não achar, distribui em <strong>rodízio</strong> entre a equipe CW3 — "Nova Receita" (2 pessoas). O dono é então sincronizado também no lado da organização.</p>
+      </div>
+    </div>
+
+    <div class="node is-gate">
+      <div class="card gate">
+        <div class="stage-label">regra</div>
+        <h3>Regra do Horário</h3>
+        <p class="meta">Mensagem D0 só sai <strong>Seg–Sex, 08:00–17:30</strong> (horário de Brasília). Fora dessa janela, o envio não é descartado: fica guardado na tabela <code>agendamento_revskin</code> e é retomado automaticamente pelo cron das <strong>08:35</strong> do próximo dia útil.</p>
+      </div>
+    </div>
+
+    <div class="node is-gate">
+      <div class="card gate">
+        <div class="stage-label">regra</div>
+        <h3>Regra de Carteira (Responsável)</h3>
+        <p class="meta">Resolve quem é <code>var_atendente</code> para as mensagens: casa o contato por tag no RD Conversas (Tallos) com <strong>Patrícia</strong> ou <strong>Mara</strong>; sem tag, usa o mesmo dono já sorteado no rodízio da CW3. Esse nome entra como <code>{{2}}</code> nas mensagens abaixo.</p>
+      </div>
+    </div>
+
+    <div class="node is-accent">
+      <div class="card">
+        <div class="stage-label">D0</div>
+        <h3>Mensagem D0 — boas-vindas</h3>
+        <p class="meta" style="margin-bottom:12px">Template Tallos <code>1c_0_new</code>. Dispara assim que as duas regras acima liberam o envio.</p>
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Seja bem-vindo à Revskin
+
+Sou a <mark>{{2}}</mark>, recebemos a prescrição enviada por seu médico <mark>{{3}}</mark>. A revolução saudável da sua pele começa agora!
+
+Podemos conversar por aqui?</p>
+        <div class="vars-row">
+          <span>{{1}} = cliente</span><span>{{2}} = atendente</span><span>{{3}} = médico</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="node is-accent">
+      <div class="card">
+        <div class="stage-label">follow-ups</div>
+        <h3>Demais mensagens da cadência</h3>
+        <p class="meta" style="margin-bottom:14px">5 lembretes automáticos enquanto o deal não sai de <code>Novo Lead</code> / <code>Tentativa de Contato</code>. Nas duas últimas etapas a variável <strong>atendente</strong> é removida do texto (sobram só cliente e médico) — ajuste feito de propósito no conteúdo, não um bug.</p>
+
+        <details class="msg">
+          <summary><span class="when">+2h</span><span class="name">1c_2h_new</span><span class="varcount">3 vars</span></summary>
+          <div class="msg-body">
+            <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem?
+
+Aqui é a <mark>{{2}}</mark>.
+
+Conheça um pouco mais sobre a Revskin no Instagram: @revskin_
+
+Seu protocolo prescrito pelo Dr. <mark>{{3}}</mark> já está preparado.
+
+Posso apresentar para você os próximos passos do seu atendimento?</p>
+            <div class="vars-row"><span>{{1}} cliente</span><span>{{2}} atendente</span><span>{{3}} médico</span></div>
+          </div>
+        </details>
+
+        <details class="msg">
+          <summary><span class="when">+26h</span><span class="name">1c_d02_new</span><span class="varcount">3 vars</span></summary>
+          <div class="msg-body">
+            <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem?
+
+As informações do tratamento prescrito pelo Dr(a). <mark>{{3}}</mark> estão prontas para serem enviadas a você.
+
+Está disponível para receber agora?
+
+<mark>{{2}}</mark>, | Revskin</p>
+            <div class="vars-row"><span>{{1}} cliente</span><span>{{2}} atendente</span><span>{{3}} médico</span></div>
+          </div>
+        </details>
+
+        <details class="msg">
+          <summary><span class="when">+50h</span><span class="name">1c_d03_new</span><span class="varcount">3 vars</span></summary>
+          <div class="msg-body">
+            <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem?
+
+Aqui é a <mark>{{2}}</mark> da Revskin
+
+Passando novamente para lembrar que o protocolo prescrito por seu medico <mark>{{3}}</mark> está disponível.
+
+Podemos te enviar agora?</p>
+            <div class="vars-row"><span>{{1}} cliente</span><span>{{2}} atendente</span><span>{{3}} médico</span></div>
+          </div>
+        </details>
+
+        <details class="msg">
+          <summary><span class="when">+74h</span><span class="name">1c_d4_new</span><span class="varcount">2 vars</span></summary>
+          <div class="msg-body">
+            <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem?
+
+O protocolo Revskin prescrito pelo(a) Dr(a). <mark>{{2}}</mark> foi desenvolvido dentro de uma proposta de tratamento contínuo da sua pele.
+
+Quando puder, seguiremos com as orientações iniciais do seu atendimento.</p>
+            <div class="vars-row"><span>{{1}} cliente</span><span>{{2}} médico</span></div>
+            <p class="note">A partir daqui o texto deixa de citar o atendente pelo nome.</p>
+          </div>
+        </details>
+
+        <details class="msg">
+          <summary><span class="when">+98h</span><span class="name">1c_d05_new</span><span class="varcount">2 vars</span></summary>
+          <div class="msg-body">
+            <p class="msg-text">Oi, <mark>{{1}}</mark>! Tudo bem?
+
+Vamos finalizar seu atendimento por aqui por enquanto.
+
+Seu protocolo prescrito por seu medico <mark>{{2}}</mark> continuara disponível com a equipe Revskin caso queira iniciar seu tratamento futuramente.
+
+Ficaremos à disposição sempre que precisar.</p>
+            <div class="vars-row"><span>{{1}} cliente</span><span>{{2}} médico</span></div>
+            <p class="note">Última etapa — mensagem de encerramento da cadência.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="node is-gate">
+      <div class="card gate">
+        <div class="stage-label">regra de saída</div>
+        <h3>Comprou (ou mudou de estágio) sai da Receita</h3>
+        <p class="meta">A cada tentativa, o workflow confere o estágio atual do deal. Só segue enviando se o estágio ainda for <code>Novo Lead</code> ou <code>Tentativa de Contato</code>. Qualquer outro estágio — <strong>inclusive "Contato feito"</strong>, que fica entre os dois no funil — cancela de uma vez todas as etapas pendentes (a automação entende que um humano já assumiu a conversa).</p>
+        <div class="branch-note"><span class="arrow">↳</span><span><b>Comprou</b> ("Venda Realizada") → segue pra <a href="#f2">2 · Primeira Compra</a>.<br><b>Esgotou sem comprar</b> (chegou em +98h sem avançar) → entra num nurture de baixa frequência só pra quem não tem outro fluxo nomeado hoje (templates <code>nut_d15/d30/d45/d60_new</code> e <code>nut_fim_new</code>, mesmo formato de mensagem acima, D15 a D60 até encerrar) — fora do escopo dos 5 fluxos desta página, citado aqui só pra não deixar pendência sem destino.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2. PRIMEIRA COMPRA ============ -->
+  <div class="flow-head" id="f2">
+    <span class="flow-num">2</span>
+    <h2>Primeira Compra <span class="paren">(Pós Compra)</span></h2>
+  </div>
+  <p class="flow-intro">Começa quando o deal chega em "Venda Realizada" pela primeira vez. Foco em adesão ao tratamento, não em venda.</p>
+
+  <div class="spine">
+    <details class="msg track-pos" open>
+      <summary><span class="when">D1</span><span class="name">pc_d01_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Parabéns por sua compra!
+
+Seu tratamento Revskin já está em preparação.🌿
+
+Antes de começar, queremos te dar uma orientação muito importante: se possível, tire uma foto do seu rosto sob iluminação natural sem maquiagem, de frente e dos dois lados.
+
+Esse registro ajuda muito na percepção da evolução do tratamento ao longo das semanas, porque muitas mudanças acontecem de forma progressiva e, no dia a dia, nem sempre conseguimos perceber todos os detalhes.
+
+Além disso, você também receberá a Apostila do Paciente Revskin, com orientações de uso dos produtos do seu protocolo, sequência correta de aplicação e cuidados importantes para essa fase inicial do tratamento 🌿
+
+Assim que seu pedido for enviado, encaminharemos o código de rastreio para acompanhamento.
+
+Qualquer dúvida sobre a rotina ou forma correta de aplicação dos produtos, seguimos à disposição.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+
+    <details class="msg track-pos">
+      <summary><span class="when">D7</span><span class="name">pc_dia7_new</span><span class="varcount">1 var + anexo</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Para ajudar você a iniciar da forma correta, preparamos um material explicando como organizar sua rotina de uso e a sequência ideal de aplicação dos produtos.
+
+Nos primeiros dias, é comum a pele passar por um processo inicial de adaptação aos ativos dermatológicos, principalmente em protocolos com renovação celular.
+
+Incluído no seu protocolo, você está recebendo gratuitamente o Creme Introdutório, produto essencial para a adaptação segura da sua pele ao nosso tratamento. Ele deve ser utilizado no primeiro mês, conforme orientações contido no manual do paciente, preparando a pele para o uso contínuo do Creme da Noite Neodeline, minimizando possíveis sensibilidades.
+
+Recomendamos fortemente evitar o uso de cosméticos comerciais, pois prejudicam absorção dos ativos Revskin, podendo alterar resposta clínica do tratamento.
+
+Qualquer dúvida durante essa fase inicial, seguimos à disposição para orientar você.
+
+[botão: Apostila RevSkin]</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+        <p class="note">Existe uma segunda versão quase idêntica no Tallos (<code>pc_d07_new</code>, sem o botão/anexo da apostila) — provável resquício de revisão, vale os dois serem conferidos e um deles arquivado.</p>
+      </div>
+    </details>
+
+    <details class="msg track-pos">
+      <summary><span class="when">D10</span><span class="name">pc_10_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>. Tudo bem? 😊
+
+Você deve ter recebido seus produtos, esta tudo em ordem?
+
+Nesse momento, o mais importante é manter a constância e seguir corretamente as orientações de uso 🌿
+
+Resultados profundos acontecem de forma progressiva, conforme a pele completa seus ciclos naturais de renovação.
+
+Qualquer dúvida pode nos contatar.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+
+    <details class="msg track-pos">
+      <summary><span class="when">D20</span><span class="name">pcdia20new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>. Tudo bem? 😊
+
+Como está se sentindo com o tratamento Revskin?
+
+Queremos saber como tem sido sua experiência e se podemos te ajudar com alguma coisa. Seu feedback é muito importante para nós, pois queremos garantir que você tenha o melhor resultado possível.
+
+A Revskin trabalha respeitando o processo natural de renovação da pele. Os resultados mais profundos acontecem de forma progressiva e cumulativa, mas você já pode sentir diferença no viço e na luminosidade nesta fase do tratamento. 🌿</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+
+    <details class="msg track-pos">
+      <summary><span class="when">D40</span><span class="name">pc_d40_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Como aproximadamente 30 dias do seu tratamento, chegamos ao primeiro ciclo completo de renovação da pele.
+
+Nesse período, muitas pessoas começam a perceber mudanças mais visíveis na uniformidade, textura, luminosidade e qualidade geral da pele.
+
+A constância no tratamento é o que permite que os ativos atuem de forma profunda e integrada 🌿
+
+Esperamos que você tenha registrado uma foto do início do tratamento para acompanhar sua evolução ao longo do processo.
+
+Como você sente sua pele hoje? Já consegue perceber diferença em relação ao início?</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+        <p class="note">Rotulado "D40" no sistema, mas o texto fala em "~30 dias" — pequena inconsistência de nomenclatura, não muda o funcionamento.</p>
+      </div>
+    </details>
+
+    <details class="msg track-pos">
+      <summary><span class="when">D60</span><span class="name">pc_d60_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>. Tudo bem? 😊
+
+Seu tratamento está entrando na fase de manutenção e potencialização dos resultados conquistados até aqui.
+
+Na Revskin, acreditamos que resultados consistentes vêm do cuidado contínuo e da associação correta dos ativos ao longo do tempo.
+
+Por isso, é muito importante evitar interrupções na rotina e manter a regularidade do tratamento 🌿
+
+Inclusive, está chegando o momento ideal de programar um novo pedido para garantir a continuidade do seu protocolo sem pausas, permitindo que sua pele continue evoluindo de forma progressiva e consistente.
+
+Se estiver satisfeito com os resultados, podemos utilizar a mesma prescrição inicial para seu novo pedido.
+
+Caso necessite de algum ajuste no seu tratamento, procure seu médico.
+
+Nossa equipe segue à disposição para orientar você sobre os próximos passos e continuidade do tratamento.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+        <p class="note">É a ponte: já planta a ideia de recompra antes de entrar formalmente no fluxo de Recompra.</p>
+      </div>
+    </details>
+
+    <div class="card gate" style="margin-top:4px">
+      <div class="stage-label c2">matrícula automática</div>
+      <h3 style="font-size:16px">Entrada no fluxo de Recompra</h3>
+      <p class="meta">No RD Marketing (RDSM), o deal ganho é cruzado com o histórico Olist pelo telefone normalizado (tabela <code>RevSkin - Historico Pedidos Olist</code>). O contato é então inscrito no automation <code>Jornada de Recompra</code> via <code>POST /platform/workflows/{id}/leads</code>, com deduplicação pela coluna <code>ultimo_deal_matriculado</code> — segue pra <a href="#f3">3 · Recompra</a>.</p>
+    </div>
+  </div>
+
+  <!-- ============ 3. RECOMPRA ============ -->
+  <div class="flow-head" id="f3">
+    <span class="flow-num">3</span>
+    <h2>Recompra <span class="paren">(após o fluxo de Pós Compra)</span></h2>
+  </div>
+  <p class="flow-intro">Automation nativo do RD Marketing <code>Jornada de Recompra</code> (6 envios via webhook). Foco: trazer o cliente de volta pra reposição no período certo.</p>
+
+  <div class="spine">
+    <details class="msg track-pos" open>
+      <summary><span class="when">D15</span><span class="name">rec_d15_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Quando o tratamento é mantido de forma contínua, os ativos conseguem atuar de maneira cada vez mais profunda e integrada, favorecendo melhora progressiva da textura, luminosidade, uniformidade e qualidade geral da pele.
+
+Na Revskin, acreditamos em resultados construídos com consistência e cuidado contínuo, não em soluções temporárias.
+
+Seguimos à disposição para qualquer orientação.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-pos">
+      <summary><span class="when">D30</span><span class="name">rec_d30_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Os protocolos Revskin incluem tratamentos para melasma, acne, rosácea, rejuvenescimento e prevenção do envelhecimento, sempre com produtos que atuam em sinergia para tratar a pele de forma completa e progressiva. 🌿
+
+Por isso, manter o uso regular e realizar a recompra no período correto é essencial para não interromper a evolução do tratamento e preservar os resultados conquistados
+
+Como você sente sua pele atualmente?</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-pos">
+      <summary><span class="when">D50</span><span class="name">rec_d50_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem?
+
+As redes sociais estão cheias de tendências de skincare, mas a pele não responde bem ao excesso de estímulos nem a fórmulas criadas para o marketing.
+
+Muitos produtos comerciais utilizam ingredientes agressivos que sensibilizam a pele ao longo do tempo, prejudicando a barreira cutânea e a absorção dos ativos do tratamento.
+
+Na Revskin, acreditamos em um cuidado mais inteligente e consistente.
+
+Nossos produtos atuam em sinergia dentro de um protocolo dermatológico contínuo, respeitando o funcionamento natural da pele e potencializando os resultados de forma progressiva e previsível.
+
+Por isso, durante o tratamento, evite introduzir produtos sem orientação. A constância e o uso correto do protocolo fazem toda a diferença.
+
+Nossa equipe segue à disposição para te orientar!</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-pos">
+      <summary><span class="when">D65</span><span class="name">rec_d65_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Como seu protocolo já está avançando bem, esse costuma ser um bom momento para começar a programar sua próxima reposição 🌿
+
+Manter a continuidade do tratamento ajuda a preservar toda a evolução conquistada até aqui e permite que os ativos continuem atuando de forma progressiva na saúde da pele.
+
+Se precisar de ajuda com a renovação ou tiver qualquer dúvida sobre os próximos passos do tratamento, seguimos à disposição.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-pos">
+      <summary><span class="when">D80</span><span class="name">prec_d80_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Passando para reforçar a importância de manter seu protocolo Revskin sem interrupções.🌿
+
+Os melhores resultados costumam acontecer justamente quando a pele recebe estímulo contínuo e regular ao longo dos ciclos de renovação.
+
+Se seus produtos estiverem próximos do fim, nossa equipe pode ajudar você a organizar a continuidade do tratamento.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+        <p class="note">Existe um template antigo duplicado (<code>rec_d80_new</code>) com placeholder literal "[Nome da Cliente]" não substituído — parece rascunho esquecido na conta; quem está ativo é este, <code>prec_d80_new</code>.</p>
+      </div>
+    </details>
+
+    <div class="card gate" style="margin-top:4px">
+      <div class="stage-label">ramos a partir daqui</div>
+      <div class="branch-note" style="margin-top:0;border:none;padding:0">
+        <span class="arrow">↳</span><span><b>Recomprou</b> → novo "Venda Realizada", entra num Pós-compra específico pra quem já é cliente: <a href="#f4">4 · Segunda Compra</a>.<br><b>Não recomprou</b> dentro do fluxo → <a href="#f5">5 · Recuperação de Recompra</a>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4. SEGUNDA COMPRA ============ -->
+  <div class="flow-head" id="f4">
+    <span class="flow-num">4</span>
+    <h2>Segunda Compra <span class="paren">(Pós Compra depois da 2ª venda)</span></h2>
+  </div>
+  <p class="flow-intro">Dispara quando o cliente recompra pela primeira vez (2ª venda no total). O tom muda: não é mais onboarding, é continuidade.</p>
+
+  <div class="spine">
+    <details class="msg track-pos" open>
+      <summary><span class="when">D0</span><span class="name">recdia0new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Recebemos seu novo pedido e queremos parabenizar pela confiança em continuar seu tratamento🌿
+
+A continuidade do tratamento é um dos pontos mais importantes para alcançar resultados cada vez mais consistentes e duradouros.
+
+Como você já conhece sua rotina e modo de uso, o foco agora é manter regularidade e constância para potencializar toda a evolução conquistada até aqui.
+
+Seu novo pedido já está seguindo para preparação, e em breve encaminharemos o código rastreio.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <p class="note" style="margin-left:4px">Esse foi o único passo que consegui confirmar com texto próprio e certeza de que é exclusivo de recompra (fala "já conhece sua rotina", "novo pedido", nunca "parabéns pela primeira compra"). Não achei, entre os templates do Tallos, uma sequência D7/D10/D40/D60 claramente rotulada só pra 2ª compra — o mais provável é que a jornada reaproveite os checkpoints mais genéricos de <a href="#f2">Primeira Compra</a> (D10, D20, D60, que não citam "primeira vez") depois desse D0 específico, mas não tenho como confirmar isso 100% sem olhar a automação em produção. Vale validar com quem desenhou esse fluxo.</p>
+  </div>
+
+  <!-- ============ 5. RECUPERACAO DE RECOMPRA ============ -->
+  <div class="flow-head" id="f5">
+    <span class="flow-num">5</span>
+    <h2>Recuperação de Recompra <span class="paren">(passou pelo Pós Compra e não comprou)</span></h2>
+  </div>
+  <p class="flow-intro">Automation nativo do RD Marketing <code>Jornada de Nutrição Recompra</code> (4 envios via webhook). Cadência mais espaçada, até encerrar o acompanhamento ativo.</p>
+
+  <div class="spine">
+    <details class="msg track-nut" open>
+      <summary><span class="when">D15</span><span class="name">nutrec_d015_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem?
+
+Lembra daquela foto que você tirou no início do tratamento? Você já reparou que sua pele deve estar bem melhor agora?
+
+A constância é uma das partes mais importantes para manter os resultados, então queremos te ajudar a não interromper essa evolução.
+
+Normalmente, por volta de 60 dias de uso contínuo, muitos pacientes já estão próximos da reposição dos produtos, principalmente quando o tratamento está sendo seguido de forma regular.
+
+Lembre que podemos fazer o novo pedido utilizando a sua prescrição mais recente.
+
+Se quiser, posso verificar e te auxiliar com o próximo pedido.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-nut">
+      <summary><span class="when">D30</span><span class="name">nutrec_d30_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Aqui é da equipe Revskin.
+
+Mudanças ainda mais consistentes após os primeiros ciclos completos da pele principalmente quando conseguem manter regularidade no protocolo 🌿
+
+Se quiser dar continuidade ao seu tratamento sem interrupções, nossa equipe pode te ajudar com a renovação do pedido e orientações necessárias.</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-nut">
+      <summary><span class="when">D45</span><span class="name">nutrec_d45_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>. Tudo bem? 😊
+
+Seu tratamento Revskin faz parte de um protocolo dermatológico contínuo, pensado para gerar resultados progressivos e duradouros ao longo do tempo.
+
+Interrupções podem reduzir a evolução conquistada até aqui.
+
+Se precisar de ajuda para retomar ou continuar seu protocolo, seguimos à disposição para orientar você 🌿</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+      </div>
+    </details>
+    <details class="msg track-nut">
+      <summary><span class="when">D60</span><span class="name">nutrec_d60_new</span><span class="varcount">1 var</span></summary>
+      <div class="msg-body">
+        <p class="msg-text">Olá, <mark>{{1}}</mark>! Tudo bem? 😊
+
+Como não tivemos retorno nas últimas mensagens, vamos encerrar por enquanto nosso acompanhamento ativo do seu protocolo.
+
+Mas fique tranquila: seu histórico permanece registrado conosco e, sempre que quiser retomar seus cuidados, tirar dúvidas ou continuar seu tratamento Revskin, nossa equipe estará à disposição 🌿</p>
+        <div class="vars-row"><span>{{1}} cliente</span></div>
+        <p class="note">Encerramento — fim da linha para quem não reagiu a nenhuma etapa.</p>
+      </div>
+    </details>
+  </div>
+
+  <footer class="page">
+    Fontes: workflow n8n <code>1ª Compra - Revskin</code> (horário, carteira, motor de envio da Receita) e <code>RevSkin - RDCRM &lt;&gt; Distribuir para Equipe</code> (roteamento CW3); API Tallos <code>/v2/template/all</code> (texto real de cada mensagem, 68 templates na conta); automations RD Marketing <code>Jornada de Recompra</code>, <code>Jornada de Nutrição Recompra</code> e <code>Jornada Pós Compra</code> (matrícula via histórico Olist). O passo 4 (Segunda Compra) tem confirmação parcial — ver nota na seção. Levantado em 16/10/2026.
+  </footer>
+
+</div>
+</body>
+</html>
