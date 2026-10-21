@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anclivepa &ndash; Volume e Hor&aacute;rio de Leads</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #00272C;
+  --bg2: #001e23;
+  --surface: #00323A;
+  --surface2: #003D47;
+  --lime: #E9FF4A;
+  --lime2: #D2E132;
+  --white: #ffffff;
+  --gray: #7a9fa8;
+  --gray2: #4a7078;
+  --red: #E8593C;
+  --blue: #60a5fa;
+  --amber: #fbbf24;
+  --green: #4ade80;
+  --border: rgba(233,255,74,0.15);
+  --border-white: rgba(255,255,255,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
+
+header { display: flex; align-items: flex-start; justify-content: space-between; padding: 36px 0 28px; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid var(--border-white); margin-bottom: 32px; }
+.header-left { display: flex; flex-direction: column; gap: 6px; }
+.logo { height: 32px; width: auto; object-fit: contain; align-self: flex-start; flex: none; }
+.header-title { font-size: 1.9rem; font-weight: 700; margin-top: 10px; }
+.header-sub { color: var(--gray); font-size: 0.92rem; font-weight: 300; }
+.header-badge { background: rgba(233,255,74,.08); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--lime2); font-weight: 500; white-space: nowrap; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 36px; }
+.stat { background: var(--surface); border: 1px solid var(--border-white); border-radius: 14px; padding: 20px 22px; }
+.stat-label { font-size: 0.68rem; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.stat-value { font-size: 1.8rem; font-weight: 700; color: var(--white); }
+.stat-sub { font-size: 0.72rem; color: var(--gray2); margin-top: 2px; }
+.stat-value.accent { color: var(--lime); }
+.stat-value.warn { color: var(--amber); }
+
+.section { margin-bottom: 40px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+.section-title { font-size: 0.68rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: .1em; }
+.section-note { font-size: 0.75rem; color: var(--gray2); }
+
+.panel { background: var(--surface); border: 1px solid var(--border-white); border-radius: 16px; padding: 24px; }
+
+.note-box { background: rgba(232,89,60,0.08); border: 1px solid rgba(232,89,60,0.3); border-left: 3px solid var(--red); border-radius: 10px; padding: 16px 20px; font-size: 0.82rem; color: #f2cfc6; line-height: 1.6; margin-bottom: 14px; }
+.note-box b { color: var(--white); }
+.note-box:last-child { margin-bottom: 0; }
+
+.daychart { display: flex; align-items: flex-end; gap: 3px; height: 180px; overflow-x: auto; padding-bottom: 8px; }
+.daybar-wrap { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 13px; height: 100%; flex: 1; }
+.daybar { width: 8px; border-radius: 3px 3px 0 0; background: var(--gray2); min-height: 2px; }
+.daybar.bar-ok { background: var(--lime2); opacity: .85; }
+.daybar.bar-anom { background: var(--red); }
+.daybar.bar-hoje { background: var(--blue); }
+.daybar-label { display: none; }
+.daychart-legend { display: flex; gap: 20px; margin-top: 14px; font-size: 0.72rem; color: var(--gray); flex-wrap: wrap; }
+.legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+.hourchart { display: flex; align-items: flex-end; gap: 6px; height: 160px; }
+.hourbar-wrap { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; height: 100%; }
+.hourbar { width: 100%; max-width: 22px; border-radius: 4px 4px 0 0; background: var(--lime); min-height: 2px; }
+.hourbar-label { font-size: 0.6rem; color: var(--gray2); margin-top: 6px; }
+
+.rcard-bar-row { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.rcard-bar-row:first-child { margin-top: 0; }
+.bar-label { width: 210px; flex-shrink: 0; font-size: 0.78rem; color: var(--white); }
+.bar-track { flex: 1; background: var(--bg2); border-radius: 100px; height: 9px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 100px; background: var(--lime2); }
+.bar-fill-accent { background: var(--lime); }
+.bar-num { width: 55px; flex-shrink: 0; text-align: right; font-size: 0.78rem; font-weight: 600; color: var(--gray); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } .bar-label { width: 150px; font-size: 0.7rem; } }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; }
+th { text-align: left; padding: 10px 12px; color: var(--gray); font-size: 0.65rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border-white); font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-white); color: var(--white); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: none; }
+
+footer { text-align: center; padding: 30px 0 10px; font-size: 0.72rem; color: var(--gray2); border-top: 1px solid var(--border-white); margin-top: 20px; }
+footer span { color: var(--lime2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="header-left">
+    <img class="logo" src="../assets/autz-logo-white.png" alt="AUTZ">
+    <div class="header-title">Volume e Hor&aacute;rio de Leads &mdash; Anclivepa</div>
+    <div class="header-sub">RD Station Marketing &middot; 01/09 a 21/10/2026 (51 dias)</div>
+  </div>
+  <div class="header-badge">Snapshot gerado em 21/10/2026</div>
+</header>
+
+<div class="stats-grid">
+  <div class="stat">
+    <div class="stat-label">Total bruto no per&iacute;odo</div>
+    <div class="stat-value">29,697</div>
+    <div class="stat-sub">leads &uacute;nicos (1 por lead, &uacute;ltima convers&atilde;o)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Leads org&acirc;nicos (limpo)</div>
+    <div class="stat-value accent">9,265</div>
+    <div class="stat-sub">excluindo importa&ccedil;&otilde;es e hoje (parcial)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Dias de importa&ccedil;&atilde;o em massa</div>
+    <div class="stat-value warn">8</div>
+    <div class="stat-sub">20,432 leads, confirmados via amostragem</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Origem dominante (amostra)</div>
+    <div class="stat-value accent">31%</div>
+    <div class="stat-sub">Meta Ads (sync autom&aacute;tico)</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="note-box">
+    <b>Sobre a metodologia.</b> Contei 1 registro por lead (&uacute;ltima convers&atilde;o no per&iacute;odo, sem duplicar quem converteu mais de uma vez). Ao cruzar com os eventos reais de convers&atilde;o, encontrei <b>8 dias com picos extremos e concentrados em poucos minutos</b> (ex: 20/10 teve 6.233 registros, quase todos entre 20h13 e 20h19) &mdash; isso &eacute; assinatura de importa&ccedil;&atilde;o/sincroniza&ccedil;&atilde;o em lote, n&atilde;o lead chegando organicamente. Os gr&aacute;ficos de hor&aacute;rio/dia da semana abaixo <b>excluem esses 8 dias e o dia de hoje</b> (parcial), pra mostrar o padr&atilde;o real.
+  </div>
+  <div class="note-box">
+    <b>Sobre a origem.</b> O campo que uso pra contar volume (&uacute;ltima convers&atilde;o) &agrave;s vezes &eacute; atualizado sem um evento de convers&atilde;o real por tr&aacute;s &mdash; numa amostra de 2.250 leads org&acirc;nicos, <b>209 (9%) n&atilde;o tinham nenhuma convers&atilde;o registrada</b>. O ranking de origem abaixo usa s&oacute; os 2,041 que tinham evento real, e &eacute; uma <b>amostra representativa</b> (2.250 de 9,265 org&acirc;nicos), n&atilde;o a base inteira &mdash; a varredura completa levaria muitas horas.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="section-title">Volume di&aacute;rio &mdash; vis&atilde;o completa</span>
+    <span class="section-note">verde = org&acirc;nico &middot; vermelho = importa&ccedil;&atilde;o em massa &middot; azul = hoje (parcial)</span>
+  </div>
+  <div class="panel">
+    <div class="daychart"><div class="daybar-wrap" title="01/09: 403 leads"><div class="daybar bar-ok" style="height:6%"></div><span class="daybar-label">01/09</span></div><div class="daybar-wrap" title="02/09: 175 leads"><div class="daybar bar-ok" style="height:3%"></div><span class="daybar-label">02/09</span></div><div class="daybar-wrap" title="03/09: 397 leads"><div class="daybar bar-ok" style="height:6%"></div><span class="daybar-label">03/09</span></div><div class="daybar-wrap" title="04/09: 58 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">04/09</span></div><div class="daybar-wrap" title="05/09: 197 leads"><div class="daybar bar-ok" style="height:3%"></div><span class="daybar-label">05/09</span></div><div class="daybar-wrap" title="06/09: 59 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">06/09</span></div><div class="daybar-wrap" title="07/09: 45 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">07/09</span></div><div class="daybar-wrap" title="08/09: 60 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">08/09</span></div><div class="daybar-wrap" title="09/09: 61 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">09/09</span></div><div class="daybar-wrap" title="10/09: 89 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">10/09</span></div><div class="daybar-wrap" title="11/09: 147 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">11/09</span></div><div class="daybar-wrap" title="12/09: 171 leads"><div class="daybar bar-ok" style="height:3%"></div><span class="daybar-label">12/09</span></div><div class="daybar-wrap" title="13/09: 41 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">13/09</span></div><div class="daybar-wrap" title="14/09: 638 leads"><div class="daybar bar-ok" style="height:10%"></div><span class="daybar-label">14/09</span></div><div class="daybar-wrap" title="15/09: 1469 leads (importação)"><div class="daybar bar-anom" style="height:24%"></div><span class="daybar-label">15/09</span></div><div class="daybar-wrap" title="16/09: 680 leads"><div class="daybar bar-ok" style="height:11%"></div><span class="daybar-label">16/09</span></div><div class="daybar-wrap" title="17/09: 78 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">17/09</span></div><div class="daybar-wrap" title="18/09: 627 leads"><div class="daybar bar-ok" style="height:10%"></div><span class="daybar-label">18/09</span></div><div class="daybar-wrap" title="19/09: 50 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">19/09</span></div><div class="daybar-wrap" title="20/09: 33 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">20/09</span></div><div class="daybar-wrap" title="21/09: 302 leads"><div class="daybar bar-ok" style="height:5%"></div><span class="daybar-label">21/09</span></div><div class="daybar-wrap" title="22/09: 1126 leads (importação)"><div class="daybar bar-anom" style="height:18%"></div><span class="daybar-label">22/09</span></div><div class="daybar-wrap" title="23/09: 54 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">23/09</span></div><div class="daybar-wrap" title="24/09: 41 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">24/09</span></div><div class="daybar-wrap" title="25/09: 605 leads"><div class="daybar bar-ok" style="height:10%"></div><span class="daybar-label">25/09</span></div><div class="daybar-wrap" title="26/09: 55 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">26/09</span></div><div class="daybar-wrap" title="27/09: 20 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">27/09</span></div><div class="daybar-wrap" title="28/09: 2542 leads (importação)"><div class="daybar bar-anom" style="height:41%"></div><span class="daybar-label">28/09</span></div><div class="daybar-wrap" title="29/09: 2070 leads (importação)"><div class="daybar bar-anom" style="height:33%"></div><span class="daybar-label">29/09</span></div><div class="daybar-wrap" title="30/09: 150 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">30/09</span></div><div class="daybar-wrap" title="01/10: 587 leads"><div class="daybar bar-ok" style="height:9%"></div><span class="daybar-label">01/10</span></div><div class="daybar-wrap" title="02/10: 197 leads"><div class="daybar bar-ok" style="height:3%"></div><span class="daybar-label">02/10</span></div><div class="daybar-wrap" title="03/10: 89 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">03/10</span></div><div class="daybar-wrap" title="04/10: 19 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">04/10</span></div><div class="daybar-wrap" title="05/10: 181 leads"><div class="daybar bar-ok" style="height:3%"></div><span class="daybar-label">05/10</span></div><div class="daybar-wrap" title="06/10: 2824 leads (importação)"><div class="daybar bar-anom" style="height:45%"></div><span class="daybar-label">06/10</span></div><div class="daybar-wrap" title="07/10: 413 leads"><div class="daybar bar-ok" style="height:7%"></div><span class="daybar-label">07/10</span></div><div class="daybar-wrap" title="08/10: 337 leads"><div class="daybar bar-ok" style="height:5%"></div><span class="daybar-label">08/10</span></div><div class="daybar-wrap" title="09/10: 171 leads"><div class="daybar bar-ok" style="height:3%"></div><span class="daybar-label">09/10</span></div><div class="daybar-wrap" title="10/10: 38 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">10/10</span></div><div class="daybar-wrap" title="11/10: 26 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">11/10</span></div><div class="daybar-wrap" title="12/10: 1449 leads (importação)"><div class="daybar bar-anom" style="height:23%"></div><span class="daybar-label">12/10</span></div><div class="daybar-wrap" title="13/10: 527 leads"><div class="daybar bar-ok" style="height:8%"></div><span class="daybar-label">13/10</span></div><div class="daybar-wrap" title="14/10: 149 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">14/10</span></div><div class="daybar-wrap" title="15/10: 974 leads (importação)"><div class="daybar bar-anom" style="height:16%"></div><span class="daybar-label">15/10</span></div><div class="daybar-wrap" title="16/10: 595 leads"><div class="daybar bar-ok" style="height:10%"></div><span class="daybar-label">16/10</span></div><div class="daybar-wrap" title="17/10: 270 leads"><div class="daybar bar-ok" style="height:4%"></div><span class="daybar-label">17/10</span></div><div class="daybar-wrap" title="18/10: 44 leads"><div class="daybar bar-ok" style="height:2%"></div><span class="daybar-label">18/10</span></div><div class="daybar-wrap" title="19/10: 386 leads"><div class="daybar bar-ok" style="height:6%"></div><span class="daybar-label">19/10</span></div><div class="daybar-wrap" title="20/10: 6234 leads (importação)"><div class="daybar bar-anom" style="height:100%"></div><span class="daybar-label">20/10</span></div><div class="daybar-wrap" title="21/10: 1744 leads (parcial)"><div class="daybar bar-hoje" style="height:28%"></div><span class="daybar-label">21/10</span></div></div>
+    <div class="daychart-legend">
+      <span><span class="legend-dot" style="background:var(--lime2)"></span>Dia org&acirc;nico</span>
+      <span><span class="legend-dot" style="background:var(--red)"></span>Importa&ccedil;&atilde;o em massa (8 dias)</span>
+      <span><span class="legend-dot" style="background:var(--blue)"></span>Hoje (parcial)</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="section-title">Hor&aacute;rio de chegada &mdash; leads org&acirc;nicos</span>
+    <span class="section-note">pico &agrave;s 13h &middot; 9,265 leads, 42 dias</span>
+  </div>
+  <div class="panel">
+    <div class="hourchart"><div class="hourbar-wrap" title="00h: 43 leads"><div class="hourbar" style="height:3%"></div><span class="hourbar-label">0</span></div><div class="hourbar-wrap" title="01h: 27 leads"><div class="hourbar" style="height:2%"></div><span class="hourbar-label">1</span></div><div class="hourbar-wrap" title="02h: 16 leads"><div class="hourbar" style="height:2%"></div><span class="hourbar-label">2</span></div><div class="hourbar-wrap" title="03h: 8 leads"><div class="hourbar" style="height:2%"></div><span class="hourbar-label">3</span></div><div class="hourbar-wrap" title="04h: 6 leads"><div class="hourbar" style="height:2%"></div><span class="hourbar-label">4</span></div><div class="hourbar-wrap" title="05h: 19 leads"><div class="hourbar" style="height:2%"></div><span class="hourbar-label">5</span></div><div class="hourbar-wrap" title="06h: 21 leads"><div class="hourbar" style="height:2%"></div><span class="hourbar-label">6</span></div><div class="hourbar-wrap" title="07h: 222 leads"><div class="hourbar" style="height:15%"></div><span class="hourbar-label">7</span></div><div class="hourbar-wrap" title="08h: 196 leads"><div class="hourbar" style="height:13%"></div><span class="hourbar-label">8</span></div><div class="hourbar-wrap" title="09h: 343 leads"><div class="hourbar" style="height:23%"></div><span class="hourbar-label">9</span></div><div class="hourbar-wrap" title="10h: 1017 leads"><div class="hourbar" style="height:67%"></div><span class="hourbar-label">10</span></div><div class="hourbar-wrap" title="11h: 1123 leads"><div class="hourbar" style="height:74%"></div><span class="hourbar-label">11</span></div><div class="hourbar-wrap" title="12h: 439 leads"><div class="hourbar" style="height:29%"></div><span class="hourbar-label">12</span></div><div class="hourbar-wrap" title="13h: 1509 leads"><div class="hourbar" style="height:100%"></div><span class="hourbar-label">13</span></div><div class="hourbar-wrap" title="14h: 1139 leads"><div class="hourbar" style="height:75%"></div><span class="hourbar-label">14</span></div><div class="hourbar-wrap" title="15h: 1091 leads"><div class="hourbar" style="height:72%"></div><span class="hourbar-label">15</span></div><div class="hourbar-wrap" title="16h: 514 leads"><div class="hourbar" style="height:34%"></div><span class="hourbar-label">16</span></div><div class="hourbar-wrap" title="17h: 258 leads"><div class="hourbar" style="height:17%"></div><span class="hourbar-label">17</span></div><div class="hourbar-wrap" title="18h: 196 leads"><div class="hourbar" style="height:13%"></div><span class="hourbar-label">18</span></div><div class="hourbar-wrap" title="19h: 196 leads"><div class="hourbar" style="height:13%"></div><span class="hourbar-label">19</span></div><div class="hourbar-wrap" title="20h: 273 leads"><div class="hourbar" style="height:18%"></div><span class="hourbar-label">20</span></div><div class="hourbar-wrap" title="21h: 219 leads"><div class="hourbar" style="height:15%"></div><span class="hourbar-label">21</span></div><div class="hourbar-wrap" title="22h: 275 leads"><div class="hourbar" style="height:18%"></div><span class="hourbar-label">22</span></div><div class="hourbar-wrap" title="23h: 115 leads"><div class="hourbar" style="height:8%"></div><span class="hourbar-label">23</span></div></div>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-title">Dia da semana &mdash; org&acirc;nico</span>
+    </div>
+    <div class="panel"><div class="rcard-bar-row"><span class="bar-label">Segunda</span><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div><span class="bar-num">1.552</span></div><div class="rcard-bar-row"><span class="bar-label">Terça</span><div class="bar-track"><div class="bar-fill" style="width:41%"></div></div><span class="bar-num">990</span></div><div class="rcard-bar-row"><span class="bar-label">Quarta</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="bar-num">1.682</span></div><div class="rcard-bar-row"><span class="bar-label">Quinta</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="bar-num">1.529</span></div><div class="rcard-bar-row"><span class="bar-label">Sexta</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-num">2.400</span></div><div class="rcard-bar-row"><span class="bar-label">Sábado</span><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div><span class="bar-num">870</span></div><div class="rcard-bar-row"><span class="bar-label">Domingo</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="bar-num">242</span></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-title">Origem da &uacute;ltima convers&atilde;o</span>
+    </div>
+    <div class="panel"><div class="rcard-bar-row"><span class="bar-label">Meta Ads (sync automático)</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:100%"></div></div><span class="bar-num">31.4%</span></div><div class="rcard-bar-row"><span class="bar-label">Listas/bases importadas</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:78%"></div></div><span class="bar-num">24.4%</span></div><div class="rcard-bar-row"><span class="bar-label">Outros canais</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:48%"></div></div><span class="bar-num">15.0%</span></div><div class="rcard-bar-row"><span class="bar-label">Formulário de curso específico</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:46%"></div></div><span class="bar-num">14.3%</span></div><div class="rcard-bar-row"><span class="bar-label">Lista de espera / pré-inscrição</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:21%"></div></div><span class="bar-num">6.7%</span></div><div class="rcard-bar-row"><span class="bar-label">Evento/congresso/live</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:8%"></div></div><span class="bar-num">2.6%</span></div><div class="rcard-bar-row"><span class="bar-label">Compra confirmada (ECOM Pay)</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:8%"></div></div><span class="bar-num">2.5%</span></div><div class="rcard-bar-row"><span class="bar-label">WhatsApp / RD Conversas</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:7%"></div></div><span class="bar-num">2.1%</span></div><div class="rcard-bar-row"><span class="bar-label">Integração CRM/Sistema</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:3%"></div></div><span class="bar-num">0.9%</span></div><div class="rcard-bar-row"><span class="bar-label">Carrinho abandonado</span><div class="bar-track"><div class="bar-fill bar-fill-accent" style="width:0%"></div></div><span class="bar-num">0.1%</span></div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="section-title">Top 12 origens individuais</span>
+    <span class="section-note">amostra de 2,250 leads org&acirc;nicos</span>
+  </div>
+  <div class="panel" style="padding: 8px 24px 20px;">
+    <table>
+      <thead><tr><th>Identificador de convers&atilde;o</th><th class="num">Leads</th><th class="num">% da amostra</th></tr></thead>
+      <tbody><tr><td>atualiza-meta-leads</td><td class="num">640</td><td class="num">31.4%</td></tr><tr><td>MAILING INSCRITOS CBCV 2026 (1)</td><td class="num">151</td><td class="num">7.4%</td></tr><tr><td>imersao-gestao-mercado-pet-ago-25</td><td class="num">129</td><td class="num">6.3%</td></tr><tr><td>AASOCIADOS 18 DE SETEMBRO</td><td class="num">119</td><td class="num">5.8%</td></tr><tr><td>backfill-leads</td><td class="num">118</td><td class="num">5.8%</td></tr><tr><td>[ECOM] [FORM] Bolsa de Excelência Anclivepa-SP - 2026.2</td><td class="num">108</td><td class="num">5.3%</td></tr><tr><td>CVDL 2026</td><td class="num">96</td><td class="num">4.7%</td></tr><tr><td>Matrícula imersão > Realizou a pré-inscrição</td><td class="num">65</td><td class="num">3.2%</td></tr><tr><td>whatsapp-anclivepa-anclivepa-sp-org-br</td><td class="num">42</td><td class="num">2.1%</td></tr><tr><td>Lista de espera</td><td class="num">40</td><td class="num">2.0%</td></tr><tr><td>compra-ecompay</td><td class="num">37</td><td class="num">1.8%</td></tr><tr><td>[PORTAL] Lista de Espera</td><td class="num">31</td><td class="num">1.5%</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>Feito com <span>&#9825;</span> por <span>AUTZ</span> &middot; dados RD Station Marketing, cruzados via n8n</footer>
+
+</div>
+</body>
+</html>
