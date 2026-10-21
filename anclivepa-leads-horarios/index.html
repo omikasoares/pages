@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Horários de Chegada dos Leads — Anclivepa</title>
+<style>
+  :root {
+    --bg: #f3f5f7;
+    --surface: #ffffff;
+    --border: #e1e6eb;
+    --fg: #15191f;
+    --muted: #5b6472;
+    --accent: #0e7c7b;
+    --accent-soft: #e4f3f2;
+    --warn: #c2650a;
+    --warn-soft: #fbead9;
+    --grid: #e7eaee;
+    --bar: #0e7c7b;
+    --bar-soft: #bfe0df;
+    --shade: rgba(14, 124, 123, 0.08);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10151c;
+      --surface: #161d26;
+      --border: #263040;
+      --fg: #e9edf2;
+      --muted: #8c99a8;
+      --accent: #3fd4c9;
+      --accent-soft: #15302e;
+      --warn: #f0a858;
+      --warn-soft: #332516;
+      --grid: #232d3a;
+      --bar: #3fd4c9;
+      --bar-soft: #234241;
+      --shade: rgba(63, 212, 201, 0.10);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10151c;
+    --surface: #161d26;
+    --border: #263040;
+    --fg: #e9edf2;
+    --muted: #8c99a8;
+    --accent: #3fd4c9;
+    --accent-soft: #15302e;
+    --warn: #f0a858;
+    --warn-soft: #332516;
+    --grid: #232d3a;
+    --bar: #3fd4c9;
+    --bar-soft: #234241;
+    --shade: rgba(63, 212, 201, 0.10);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 32px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px 0;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .subtitle { color: var(--muted); font-size: 15px; line-height: 1.5; margin: 0; max-width: 62ch; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .stat.warn { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 35%, var(--border)); }
+  .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(22px, 3.4vw, 30px);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .stat.warn .stat-value { color: var(--warn); }
+  .stat-sub { font-size: 12px; color: var(--muted); }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .card h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+  }
+  .card p.desc { margin: 0 0 18px 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+
+  .chart-scroll { overflow-x: auto; }
+  svg { display: block; font-family: 'IBM Plex Mono', monospace; }
+  .axis-label { fill: var(--muted); font-size: 10.5px; }
+  .grid-line { stroke: var(--grid); stroke-width: 1; }
+  .bar-coverage { fill: var(--shade); }
+  .bar-fill { fill: var(--bar); }
+  .bar-fill.off { fill: var(--bar-soft); }
+  .bar-fill:hover { fill: var(--accent); }
+  .line-path { fill: none; stroke: var(--bar); stroke-width: 2.5; }
+  .area-path { fill: var(--shade); }
+  .dot { fill: var(--bar); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 12px; color: var(--muted); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+  .callout {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--warn-soft);
+    border: 1px solid color-mix(in srgb, var(--warn) 35%, var(--border));
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-top: 16px;
+  }
+  .callout b { color: var(--warn); }
+
+  footer { color: var(--muted); font-size: 12px; text-align: center; padding-top: 8px; }
+
+  @media (max-width: 560px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Anclivepa &middot; Tráfego pago (Meta Ads)</p>
+    <h1>Quando os leads chegam</h1>
+    <p class="subtitle">
+      4.705 leads de formulários de anúncio, de 09/09 a 21/10 (43 dias), por horário de chegada — horário de Brasília.
+      Visão pra calibrar a cobertura da Roleta de distribuição comercial.
+    </p>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-label">Total de leads</span>
+      <span class="stat-value" id="statTotal">—</span>
+      <span class="stat-sub">09/09 a 21/10/2026</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Média por dia</span>
+      <span class="stat-value" id="statAvg">—</span>
+      <span class="stat-sub">pico diário: <span id="statMaxDay">—</span></span>
+    </div>
+    <div class="stat warn">
+      <span class="stat-label">Fora do horário comercial (9h–18h)</span>
+      <span class="stat-value" id="statOutside">—</span>
+      <span class="stat-sub"><span id="statOutsidePct">—</span> do total chega sem equipe escalada hoje</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Leads por hora do dia</h2>
+    <p class="desc">Soma das 43 datas, por hora de chegada. A faixa clara marca a janela 9h–18h, quando a escala comercial atual cobre a maior parte dos dias.</p>
+    <div class="chart-scroll"><svg id="hourChart" width="820" height="280" viewBox="0 0 820 280"></svg></div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--bar)"></span>Dentro de 9h–18h</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--bar-soft)"></span>Fora da janela comercial atual</span>
+    </div>
+    <div class="callout">
+      <span>⚠</span>
+      <span><b>53,4% dos leads (2.513 de 4.705)</b> chegam fora da janela 9h–18h — boa parte à noite (20h–23h) e de madrugada. É o volume que hoje fica sem ninguém escalado até a escala abrir de novo.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Leads por dia da semana</h2>
+    <p class="desc">Soma de todas as horas, agrupada por dia da semana.</p>
+    <div class="chart-scroll"><svg id="dowChart" width="820" height="220" viewBox="0 0 820 220"></svg></div>
+  </div>
+
+  <div class="card">
+    <h2>Acumulado no período</h2>
+    <p class="desc">Soma corrida de leads, dia a dia, desde 09/09.</p>
+    <div class="chart-scroll"><svg id="cumChart" width="820" height="240" viewBox="0 0 820 240"></svg></div>
+  </div>
+
+  <footer>Fonte: planilha de leads Meta Ads (82 abas) · processado via Multi-Aba Anclivepa · gerado em 21/10/2026</footer>
+</div>
+
+<script>
+(function () {
+  function formatK(n) {
+    if (n >= 1000) {
+      var v = n / 1000;
+      return (Math.round(v * 10) / 10).toString().replace('.0', '') + 'k';
+    }
+    return String(n);
+  }
+
+  var byHour = [156,71,48,35,26,49,108,160,203,190,211,268,256,249,305,271,215,227,207,255,299,310,281,305];
+  var dowOrder = ['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
+  var byDow = {"Segunda":711,"Terça":691,"Quarta":581,"Quinta":633,"Sexta":809,"Sábado":593,"Domingo":687};
+  var daily = [{"date":"2026-09-09","count":9,"cumulative":9},{"date":"2026-09-10","count":55,"cumulative":64},{"date":"2026-09-11","count":126,"cumulative":190},{"date":"2026-09-12","count":123,"cumulative":313},{"date":"2026-09-13","count":125,"cumulative":438},{"date":"2026-09-14","count":114,"cumulative":552},{"date":"2026-09-15","count":95,"cumulative":647},{"date":"2026-09-16","count":99,"cumulative":746},{"date":"2026-09-17","count":87,"cumulative":833},{"date":"2026-09-18","count":97,"cumulative":930},{"date":"2026-09-19","count":76,"cumulative":1006},{"date":"2026-09-20","count":93,"cumulative":1099},{"date":"2026-09-21","count":82,"cumulative":1181},{"date":"2026-09-22","count":108,"cumulative":1289},{"date":"2026-09-23","count":97,"cumulative":1386},{"date":"2026-09-24","count":92,"cumulative":1478},{"date":"2026-09-25","count":118,"cumulative":1596},{"date":"2026-09-26","count":91,"cumulative":1687},{"date":"2026-09-27","count":94,"cumulative":1781},{"date":"2026-09-28","count":155,"cumulative":1936},{"date":"2026-09-29","count":185,"cumulative":2121},{"date":"2026-09-30","count":150,"cumulative":2271},{"date":"2026-10-01","count":145,"cumulative":2416},{"date":"2026-10-02","count":120,"cumulative":2536},{"date":"2026-10-03","count":118,"cumulative":2654},{"date":"2026-10-04","count":136,"cumulative":2790},{"date":"2026-10-05","count":89,"cumulative":2879},{"date":"2026-10-06","count":65,"cumulative":2944},{"date":"2026-10-07","count":93,"cumulative":3037},{"date":"2026-10-08","count":107,"cumulative":3144},{"date":"2026-10-09","count":137,"cumulative":3281},{"date":"2026-10-10","count":84,"cumulative":3365},{"date":"2026-10-11","count":114,"cumulative":3479},{"date":"2026-10-12","count":127,"cumulative":3606},{"date":"2026-10-13","count":148,"cumulative":3754},{"date":"2026-10-14","count":122,"cumulative":3876},{"date":"2026-10-15","count":147,"cumulative":4023},{"date":"2026-10-16","count":211,"cumulative":4234},{"date":"2026-10-17","count":101,"cumulative":4335},{"date":"2026-10-18","count":125,"cumulative":4460},{"date":"2026-10-19","count":144,"cumulative":4604},{"date":"2026-10-20","count":90,"cumulative":4694},{"date":"2026-10-21","count":11,"cumulative":4705}];
+
+  var total = byHour.reduce(function (a, b) { return a + b; }, 0);
+  var outside = 0;
+  for (var h = 0; h < 24; h++) { if (h < 9 || h >= 18) outside += byHour[h]; }
+
+  document.getElementById('statTotal').textContent = formatK(total);
+  document.getElementById('statAvg').textContent = Math.round(total / daily.length);
+  document.getElementById('statMaxDay').textContent = Math.max.apply(null, daily.map(function (d) { return d.count; })) + ' leads';
+  document.getElementById('statOutside').textContent = formatK(outside);
+  document.getElementById('statOutsidePct').textContent = Math.round(outside / total * 1000) / 10 + '%';
+
+  function svgEl(tag, attrs) {
+    var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+
+  function drawBarChart(svg, data, labels, opts) {
+    opts = opts || {};
+    var W = 820, H = parseFloat(svg.getAttribute('height'));
+    var padL = 42, padR = 12, padT = 14, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxVal = Math.max.apply(null, data);
+    var niceMax = maxVal <= 10 ? 10 : Math.ceil(maxVal / Math.pow(10, String(Math.floor(maxVal)).length - 1)) * Math.pow(10, String(Math.floor(maxVal)).length - 1);
+    var steps = 4;
+    for (var s = 0; s <= steps; s++) {
+      var val = niceMax * s / steps;
+      var y = padT + plotH - (val / niceMax) * plotH;
+      svg.appendChild(svgEl('line', { x1: padL, x2: W - padR, y1: y, y2: y, class: 'grid-line' }));
+      var t = svgEl('text', { x: padL - 8, y: y + 3, 'text-anchor': 'end', class: 'axis-label' });
+      t.textContent = formatK(Math.round(val));
+      svg.appendChild(t);
+    }
+
+    var n = data.length;
+    var gap = n > 15 ? 2 : 6;
+    var barW = (plotW / n) - gap;
+
+    if (opts.coverage) {
+      var x0 = padL + opts.coverage[0] * (plotW / n);
+      var x1 = padL + opts.coverage[1] * (plotW / n);
+      svg.appendChild(svgEl('rect', { x: x0, y: padT, width: x1 - x0, height: plotH, class: 'bar-coverage' }));
+    }
+
+    for (var i = 0; i < n; i++) {
+      var v = data[i];
+      var bh = (v / niceMax) * plotH;
+      var x = padL + i * (plotW / n) + gap / 2;
+      var y2 = padT + plotH - bh;
+      var isOff = opts.coverage && (i < opts.coverage[0] || i >= opts.coverage[1]);
+      svg.appendChild(svgEl('rect', {
+        x: x, y: y2, width: barW, height: Math.max(bh, 1), rx: 2,
+        class: 'bar-fill' + (isOff ? ' off' : '')
+      }));
+      if (!opts.skipLabel || i % opts.skipLabel === 0) {
+        var lbl = svgEl('text', { x: x + barW / 2, y: H - padB + 16, 'text-anchor': 'middle', class: 'axis-label' });
+        lbl.textContent = labels[i];
+        svg.appendChild(lbl);
+      }
+    }
+  }
+
+  var hourLabels = [];
+  for (var h2 = 0; h2 < 24; h2++) hourLabels.push(h2 % 3 === 0 ? (h2 < 10 ? '0' + h2 : h2) + 'h' : '');
+  drawBarChart(document.getElementById('hourChart'), byHour, hourLabels, { coverage: [9, 18] });
+
+  drawBarChart(document.getElementById('dowChart'), dowOrder.map(function (d) { return byDow[d]; }), dowOrder.map(function (d) { return d.slice(0, 3); }));
+
+  function drawCumulative(svg, series) {
+    var W = 820, H = 240;
+    var padL = 42, padR = 12, padT = 14, padB = 30;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxVal = series[series.length - 1].cumulative;
+    var niceMax = Math.ceil(maxVal / 1000) * 1000;
+    var steps = niceMax / 1000;
+    for (var s = 0; s <= steps; s++) {
+      var val = (niceMax / steps) * s;
+      var y = padT + plotH - (val / niceMax) * plotH;
+      svg.appendChild(svgEl('line', { x1: padL, x2: W - padR, y1: y, y2: y, class: 'grid-line' }));
+      var t = svgEl('text', { x: padL - 8, y: y + 3, 'text-anchor': 'end', class: 'axis-label' });
+      t.textContent = formatK(Math.round(val));
+      svg.appendChild(t);
+    }
+    var n = series.length;
+    var pts = series.map(function (d, i) {
+      var x = padL + (i / (n - 1)) * plotW;
+      var y = padT + plotH - (d.cumulative / niceMax) * plotH;
+      return [x, y];
+    });
+    var areaPath = 'M ' + pts[0][0] + ' ' + (padT + plotH) + ' ' + pts.map(function (p) { return 'L ' + p[0] + ' ' + p[1]; }).join(' ') + ' L ' + pts[n - 1][0] + ' ' + (padT + plotH) + ' Z';
+    svg.appendChild(svgEl('path', { d: areaPath, class: 'area-path' }));
+    var linePath = 'M ' + pts.map(function (p) { return p[0] + ' ' + p[1]; }).join(' L ');
+    svg.appendChild(svgEl('path', { d: linePath, class: 'line-path' }));
+
+    var labelEvery = Math.ceil(n / 7);
+    for (var i2 = 0; i2 < n; i2++) {
+      if (i2 % labelEvery === 0 || i2 === n - 1) {
+        var lbl = svgEl('text', { x: pts[i2][0], y: H - padB + 16, 'text-anchor': 'middle', class: 'axis-label' });
+        var dt = series[i2].date.split('-');
+        lbl.textContent = dt[2] + '/' + dt[1];
+        svg.appendChild(lbl);
+      }
+    }
+  }
+  drawCumulative(document.getElementById('cumChart'), daily);
+})();
+</script>
+</body>
+</html>
