@@ -160,7 +160,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
       <span>Cliente: <strong>Oximag</strong></span>
       <span>Preparado por: <strong>Autz</strong></span>
       <span>Data: <strong>23 de outubro de 2026</strong></span>
-      <span>Versão: <strong>3.1</strong></span>
+      <span>Versão: <strong>3.2</strong></span>
     </div>
   </header>
 
@@ -339,6 +339,23 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
             </ul>
           </div>
         </div>
+        <div class="dir">
+          <div class="dir-box">
+            <div class="dir-title">Se a Omie recusar o pedido</div>
+            <ul>
+              <li>Recusa temporária da Omie (excesso de chamadas, sistema ocupado): a integração espera 1 minuto e tenta de novo, até 3 vezes</li>
+              <li>Recusa definitiva, ou cliente sem cadastro na Omie: a negociação volta para Ganho - Produto a Definir</li>
+              <li>O vendedor recebe a tarefa "Pedido NÃO criado na Omie", com o motivo exato informado pela Omie</li>
+            </ul>
+          </div>
+          <div class="dir-box">
+            <div class="dir-title">Proteção contra duplicidade</div>
+            <ul>
+              <li>O RD envia vários avisos para uma mesma movimentação. A integração processa só o primeiro, e os outros são ignorados</li>
+              <li>Se a Omie disser que o pedido já existe, a integração só busca o número dele, sem criar outro</li>
+            </ul>
+          </div>
+        </div>
         <p class="stage-rule"><strong>Regras:</strong> se a negociação já tem número de pedido, nada é criado de novo (não duplica). Sem Tipo de Frete preenchido, a negociação volta para a etapa anterior. O pedido só é criado se a empresa tiver CNPJ e o cliente já existir na Omie com esse CNPJ. Produto com preço zerado na negociação vai para a Omie com R$ 0,01, porque a Omie não aceita item sem valor. Cada pedido leva um código de integração que liga ele à negociação de origem, e é esse código que permite trazer o cancelamento de volta.</p>
       </div>
 
@@ -420,9 +437,38 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
       <ul>
         <li><strong>Condição de pagamento:</strong> não é escolhida no RD (são mais de 300 opções na Omie). A equipe ajusta direto no pedido da Omie, e a Oximag vai padronizar esse cadastro.</li>
         <li><strong>Funil de pós-venda:</strong> por enquanto o faturamento gera só a tarefa para o vendedor. Um funil próprio de pós-venda fica como opção para depois.</li>
-        <li><strong>Cliente fora da Omie:</strong> se a empresa ainda não tem cadastro na Omie com o mesmo CNPJ, o pedido não é criado. O cliente precisa ser cadastrado na Omie antes de a negociação ir para Produto Confirmado.</li>
+        <li><strong>Cliente fora da Omie:</strong> o pedido só é criado se a empresa já tiver cadastro na Omie com o mesmo CNPJ. Se não tiver, a negociação volta para Ganho - Produto a Definir e o vendedor recebe uma tarefa avisando. Depois de cadastrar o cliente na Omie, basta mover para Produto Confirmado de novo.</li>
+        <li><strong>Estoque negativo:</strong> alguns produtos aparecem com saldo negativo, porque a Omie tem mais reservado do que físico. O RD mostra o mesmo número da Omie, então vale conferir esses casos lá.</li>
         <li><strong>Alertas de inatividade e de valor</strong> (180 dias sem interação, negociação acima de R$ 10 mil parada, proposta acima de R$ 1 mil parada há 72h) serão configurados no RD Marketing e no próprio RD CRM, fora desta integração. Dependem do acesso de gestor ao RD Marketing.</li>
       </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Monitoramento</p>
+    <h2 class="section-title">Como a integração se protege</h2>
+    <div class="card-grid">
+      <div class="entity-card solved">
+        <div class="entity-head">
+          <span class="entity-name">Limite de uso da Omie</span>
+          <span class="status-pill solved">Ativo</span>
+        </div>
+        <ul class="rules">
+          <li>A Omie bloqueia a API por alguns minutos quando recebe chamadas em excesso ou fora do padrão</li>
+          <li>As rotinas pedem só os dados que existem, com intervalo entre as chamadas, e a carga pesada de estoque roda fora do expediente</li>
+          <li>Se a Omie avisar bloqueio, a carga de estoque para na hora e retoma na rodada seguinte</li>
+        </ul>
+      </div>
+      <div class="entity-card solved">
+        <div class="entity-head">
+          <span class="entity-name">Alerta para a Autz</span>
+          <span class="status-pill solved">Ativo</span>
+        </div>
+        <ul class="rules">
+          <li>Qualquer erro em uma rotina da integração, ou bloqueio da Omie, gera um e-mail automático para a equipe da Autz</li>
+          <li>Toda falha na criação de pedido também gera esse aviso, além da tarefa para o vendedor</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -436,7 +482,8 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Cancelamento para Pedido Cancelado <span class="phase-status done">Concluído</span></div><p class="phase-desc">Testado ponta a ponta em 23 de outubro.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Catálogo e sincronização de produtos <span class="phase-status done">Concluído</span></div><p class="phase-desc">5.813 Produtos Acabados carregados e entrada automática de produtos novos.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Validação com a Oximag <span class="phase-status done">23 de outubro</span></div><p class="phase-desc">Fluxo aprovado, com os ajustes de frete, status do pedido, pós-venda, nome da negociação e estoque.</p></div></div>
-      <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Ajustes da validação <span class="phase-status done">Concluído</span></div><p class="phase-desc">Frete, nome com número do pedido, etapa do pedido e tarefa de pós-venda testados em 23 de outubro. Estoque roda a partir de 24 de outubro.</p></div></div>
+      <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Ajustes da validação <span class="phase-status done">Concluído</span></div><p class="phase-desc">Frete, nome com número do pedido, etapa do pedido e tarefa de pós-venda testados em 23 de outubro. Primeira carga de estoque feita no mesmo dia, com atualização às 6h e às 12h a partir de 24 de outubro.</p></div></div>
+      <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Proteções e alertas <span class="phase-status done">Concluído</span></div><p class="phase-desc">Nova tentativa automática, aviso ao vendedor quando o pedido não é criado, proteção contra duplicidade e alerta por e-mail para a Autz.</p></div></div>
       <div class="phase"><div class="phase-num todo">6</div><div class="phase-body"><div class="phase-title">Reunião de acompanhamento</div><p class="phase-desc">Terça-feira, 27 de outubro, às 9h: conferir estoque, status dos pedidos e criação de pedido.</p></div></div>
       <div class="phase"><div class="phase-num todo">7</div><div class="phase-body"><div class="phase-title">Limpeza dos testes e treinamento</div><p class="phase-desc">Remoção das negociações e pedidos de teste, depois treinamento de CRM e playbook com as equipes.</p></div></div>
     </div>
