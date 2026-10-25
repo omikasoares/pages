@@ -160,7 +160,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
       <span>Cliente: <strong>Oximag</strong></span>
       <span>Preparado por: <strong>Autz</strong></span>
       <span>Data: <strong>23 de outubro de 2026</strong></span>
-      <span>Versão: <strong>3.2</strong></span>
+      <span>Versão: <strong>3.3</strong></span>
     </div>
   </header>
 
@@ -334,6 +334,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
             <div class="dir-title">Quando o pedido é faturado</div>
             <ul>
               <li>Cria uma tarefa para o vendedor da negociação: "Pós-venda: pedido 032139 faturado"</li>
+              <li>Quando a negociação volta para Ganho - Produto a Definir (sem frete, produto genérico ou recusa da Omie), o motivo fica registrado como anotação na própria negociação</li>
               <li>Prazo de 20 dias, para confirmar com o cliente o recebimento e se precisa de suporte</li>
               <li>A tarefa é criada uma única vez por pedido</li>
             </ul>
@@ -392,9 +393,9 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
         <tbody>
           <tr><td class="label">Enriquecimento</td><td>Na hora, ao entrar em Qualificação</td><td>Receita Federal completa a empresa no RD e o cliente na Omie</td></tr>
           <tr><td class="label">Pedido de venda</td><td>Na hora, ao entrar em Produto Confirmado</td><td>Cria o pedido na Omie ou devolve para Ganho - Produto a Definir</td></tr>
-          <tr><td class="label">Status do pedido</td><td>A cada 1 minuto</td><td>Atualiza a Etapa do Pedido Omie na negociação, move cancelado para Pedido Cancelado e cria a tarefa de pós-venda quando fatura</td></tr>
+          <tr><td class="label">Status do pedido</td><td>Em horário comercial (seg a sex, 7h às 19h), a cada 1 a 2 minutos. Fora do horário, a cada 15 minutos</td><td>Atualiza a Etapa do Pedido Omie na negociação, move cancelado para Pedido Cancelado (inclusive pedido antigo) e cria a tarefa de pós-venda quando fatura</td></tr>
           <tr><td class="label">Estoque</td><td>Todo dia às 6h e às 12h</td><td>Atualiza o campo Estoque dos produtos do RD com o saldo da Omie (só os que mudaram)</td></tr>
-          <tr><td class="label">Produtos novos</td><td>A cada 2 minutos, só se houver negociação em Ganho - Produto a Definir</td><td>Traz Produtos Acabados novos da Omie para o catálogo do RD</td></tr>
+          <tr><td class="label">Produtos novos</td><td>A cada 5 minutos, em horário comercial, só se houver negociação em Ganho - Produto a Definir</td><td>Traz Produtos Acabados novos da Omie para o catálogo do RD</td></tr>
           <tr><td class="label">Impacto periódico</td><td>Uma vez por dia</td><td>Cria negociação de contato para empresas com Curva definida: A a cada 30 dias, B a cada 90, C e D a cada 180</td></tr>
         </tbody>
       </table>
@@ -470,6 +471,26 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
         </ul>
       </div>
     </div>
+  </section>
+
+  <section>
+    <p class="section-label">Testes de volume</p>
+    <h2 class="section-title">Validação de 25 de outubro</h2>
+    <p class="lede">Com a operação parada no domingo, a integração foi testada de ponta a ponta com volume, simulando picos de vendas no mesmo minuto e todas as rotinas rodando ao mesmo tempo.</p>
+    <div class="table-scroll">
+      <table class="rule-table">
+        <thead><tr><th>Teste</th><th>Resultado</th></tr></thead>
+        <tbody>
+          <tr><td class="label">10 vendas no mesmo minuto</td><td>6 pedidos criados, 4 devolvidas pelo motivo certo (sem frete, produto genérico, código inválido)</td></tr>
+          <tr><td class="label">20 vendas no mesmo minuto</td><td>16 pedidos criados, 4 devolvidas pelo motivo certo, com anotação</td></tr>
+          <tr><td class="label">16 vendas no mesmo minuto (após ajustes)</td><td>15 pedidos criados, 1 devolvida sem frete, nenhuma recusa da Omie e nenhum limite do RD atingido</td></tr>
+          <tr><td class="label">Cancelamento em massa (42 pedidos)</td><td>Todas as negociações foram para Pedido Cancelado, inclusive pedidos criados dias antes</td></tr>
+          <tr><td class="label">Pedidos duplicados</td><td>Nenhum. Cada negociação gerou exatamente um pedido</td></tr>
+          <tr><td class="label">Carga de estoque junto com as vendas</td><td>24.297 posições lidas (100%), sem interferir na criação de pedidos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mini" style="margin-top:12px;">Os testes encontraram e corrigiram seis pontos fracos antes da operação real, entre eles o limite de chamadas simultâneas da Omie, o limite por minuto do RD e a detecção de cancelamento de pedidos antigos.</p>
   </section>
 
   <section>
