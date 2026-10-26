@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Distribuição de Leads Pós-Graduação Anclivepa</title>
+<meta name="description" content="Como os leads de Pós-graduação da Anclivepa chegam à equipe certa: turnos, equipes e cenários. Apresentação AUTZ.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#001218;color:#F4F8F7;font-family:'Poppins',Arial,sans-serif;overflow:hidden}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1920px;height:1080px;transform-origin:center center;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+section{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .35s ease}
+section.active{opacity:1;visibility:visible}
+section h1,section h2,section h3,section p,section ul,section ol,section li{margin:0}
+section h1,section h2,section h3{font-weight:600}
+section ul,section ol{padding-left:1.1em}
+section li{padding-left:.15em}
+section img{display:block}
+section table{border-collapse:collapse}
+section th,section td{padding:12px 20px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.12)}
+section th{font-weight:600}
+section hr{border:none}
+.logo{background:url(../assets/autz-logo-white.png) center/contain no-repeat}
+.arrow{flex:none;display:flex;align-items:center}
+#hud{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:10px 18px;font-size:13px;color:#7a9fa8;background:linear-gradient(to top,rgba(0,18,24,.9),rgba(0,18,24,0));pointer-events:none}
+#hud button{pointer-events:auto;background:transparent;border:1px solid rgba(122,159,168,.5);color:#9FBFC6;border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer;margin-left:8px}
+#hud button:hover{border-color:#E9FF4A;color:#E9FF4A}
+#notes{position:fixed;right:24px;top:24px;width:420px;max-height:70vh;overflow:auto;background:rgba(0,50,58,.96);border:1px solid rgba(233,255,74,.35);border-radius:16px;padding:20px 22px;font-size:15px;line-height:1.5;color:#DCE8EA;display:none;z-index:5}
+#notes.show{display:block}
+#notes b{color:#E9FF4A}
+#progress{position:fixed;left:0;top:0;height:3px;background:#E9FF4A;width:0;transition:width .3s;z-index:6}
+@media print{html,body{overflow:visible;background:#001E23}#stage{position:static;display:block}#deck{transform:none!important;width:1920px;height:auto;box-shadow:none}section{position:relative;opacity:1;visibility:visible;page-break-after:always;break-after:page}#hud,#notes,#progress{display:none!important}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="stage"><div id="deck">
+<section data-index="1" id="cover" style="background:#001E23;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<div class="logo" role="img" aria-label="AUTZ" style="position:absolute;left:128px;top:128px;width:216px;height:80px"></div>
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E9FF4A">Anclivepa · Pós-graduação</p>
+<h1 style="font-size:112px;font-weight:700;line-height:1.05;width:1560px">Como um lead vira negociação na equipe certa</h1>
+<p style="font-size:34px;font-weight:400;line-height:1.4;color:#9FBFC6;width:1300px">Distribuição automática por turno: do anúncio no Meta até a negociação no RD CRM, já com dono, em cerca de 1 minuto.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<p style="font-size:24px;color:#7a9fa8">AUTZ · outubro de 2026</p>
+<p style="font-size:24px;color:#7a9fa8">Guia de funcionamento</p>
+</div>
+</section>
+<section data-index="2" id="caminho" style="background:#00272C;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">O caminho do lead em 5 passos</h2>
+<div style="display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:44px;font-weight:700;color:#E9FF4A;line-height:1.1">01</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Anúncio</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">A pessoa preenche o formulário do Meta Ads.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:44px;font-weight:700;color:#E9FF4A;line-height:1.1">02</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">RD Marketing</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">O contato é criado e enviado para a fila da AUTZ.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:44px;font-weight:700;color:#E9FF4A;line-height:1.1">03</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Fila AUTZ</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Confere se já existe negociação aberta e calcula o turno.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:44px;font-weight:700;color:#E9FF4A;line-height:1.1">04</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Tag de turno</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">O contato recebe a tag do turno, por exemplo tersex_9_14.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:44px;font-weight:700;color:#E9FF4A;line-height:1.1">05</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Fluxo da equipe</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">O fluxo da RD cria a negociação no CRM com dono e remove a tag.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:40px">
+<p style="font-size:72px;font-weight:700;color:#E9FF4A;line-height:1.1;white-space:nowrap">≈ 1 min</p>
+<p style="font-size:30px;line-height:1.4;color:#DCE8EA;width:1200px">do envio do formulário até a negociação com dono no CRM. A pessoa cai na equipe do turno, não em quem estiver livre.</p>
+</div>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">2</p>
+</div>
+</section>
+<section data-index="3" id="turnos" style="background:#001E23;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Quem atende em cada turno</h2>
+<p style="font-size:26px;line-height:1.4;color:#9FBFC6;width:1500px">Horário de Brasília. Fora desses horários ninguém está em turno, e o lead vai para a equipe do próximo turno que abre.</p>
+<table style="font-size:28px;color:#F4F8F7;width:1664px">
+<tr style="background:#00323A"><th style="width:22%;text-align:left">Dia</th><th style="width:18%;text-align:left">Horário</th><th style="width:14%;text-align:left">Equipe</th><th style="width:46%;text-align:left">Quem recebe os leads</th></tr>
+<tr><td>Segunda</td><td>9h às 14h</td><td style="color:#60a5fa;font-weight:600">Equipe 1</td><td>Lucas, Paloma e Júlia</td></tr>
+<tr><td>Segunda</td><td>14h às 18h</td><td style="color:#a78bfa;font-weight:600">Equipe 2</td><td>Lucas, Paloma, Júlia e Estrella</td></tr>
+<tr><td>Terça a sexta</td><td>9h às 14h</td><td style="color:#60a5fa;font-weight:600">Equipe 1</td><td>Lucas, Paloma e Júlia</td></tr>
+<tr><td>Terça a sexta</td><td>14h às 18h</td><td style="color:#f472b6;font-weight:600">Equipe 3</td><td>Lucas, Paloma, Júlia, Estrella e Layla</td></tr>
+<tr><td>Sábado</td><td>9h às 10h</td><td style="color:#60a5fa;font-weight:600">Equipe 1</td><td>Lucas, Paloma e Júlia</td></tr>
+<tr><td>Sábado</td><td>10h às 13h</td><td style="color:#4ade80;font-weight:600">Equipe 5</td><td>Lucas, Paloma, Júlia, Estrella e Layla</td></tr>
+<tr><td>Sábado</td><td>13h às 18h</td><td style="color:#fbbf24;font-weight:600">Equipe 4</td><td>Layla</td></tr>
+<tr><td>Domingo</td><td>10h às 14h</td><td style="color:#fbbf24;font-weight:600">Equipe 4</td><td>Layla</td></tr>
+</table>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">3</p>
+</div>
+</section>
+<section data-index="4" id="equipes" style="background:#00272C;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">As 5 equipes</h2>
+<div style="display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border-top:6px solid #60a5fa;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;color:#60a5fa;line-height:1.2">Equipe 1</h3>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quem</p>
+<p style="font-size:26px;line-height:1.35">Lucas, Paloma e Júlia</p>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quando</p>
+<p style="font-size:26px;line-height:1.35;color:#DCE8EA">Seg a sex, 9h às 14h. Sáb, 9h às 10h</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border-top:6px solid #a78bfa;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;color:#a78bfa;line-height:1.2">Equipe 2</h3>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quem</p>
+<p style="font-size:26px;line-height:1.35">Lucas, Paloma, Júlia e Estrella</p>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quando</p>
+<p style="font-size:26px;line-height:1.35;color:#DCE8EA">Segunda, 14h às 18h</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border-top:6px solid #f472b6;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;color:#f472b6;line-height:1.2">Equipe 3</h3>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quem</p>
+<p style="font-size:26px;line-height:1.35">Lucas, Paloma, Júlia, Estrella e Layla</p>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quando</p>
+<p style="font-size:26px;line-height:1.35;color:#DCE8EA">Terça a sexta, 14h às 18h</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border-top:6px solid #fbbf24;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;color:#fbbf24;line-height:1.2">Equipe 4</h3>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quem</p>
+<p style="font-size:26px;line-height:1.35">Layla</p>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quando</p>
+<p style="font-size:26px;line-height:1.35;color:#DCE8EA">Sáb, 13h às 18h. Dom, 10h às 14h</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border-top:6px solid #4ade80;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;color:#4ade80;line-height:1.2">Equipe 5</h3>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quem</p>
+<p style="font-size:26px;line-height:1.35">Lucas, Paloma, Júlia, Estrella e Layla</p>
+<p style="font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7a9fa8">Quando</p>
+<p style="font-size:26px;line-height:1.35;color:#DCE8EA">Sábado, 10h às 13h</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.45;color:#DCE8EA;width:1600px">Cada equipe é um fluxo no RD Marketing, alimentado por uma segmentação com as tags de turno dela. A escala vive em dois lugares, na fila da AUTZ e nas segmentações da RD, e uma mudança de horário ou de pessoa precisa ser feita nos dois.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">4</p>
+</div>
+</section>
+<section data-index="5" id="dono" style="background:#001E23;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Como o dono da negociação é escolhido</h2>
+<div style="display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">Passo 1 · fila AUTZ</p>
+<h3 style="font-size:34px;font-weight:700;line-height:1.2">A equipe vem do turno</h3>
+<p style="font-size:26px;line-height:1.45;color:#DCE8EA">O dia e a hora de Brasília em que o lead é processado definem a tag de turno e, com ela, a equipe.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">Passo 2 · fluxo da RD</p>
+<h3 style="font-size:34px;font-weight:700;line-height:1.2">A pessoa vem do rodízio</h3>
+<p style="font-size:26px;line-height:1.45;color:#DCE8EA">Dentro da equipe do turno, o fluxo da RD distribui em rodízio: cada lead novo vai para o próximo consultor da lista.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">Regra</p>
+<h3 style="font-size:34px;font-weight:700;line-height:1.2">Ninguém fora do turno recebe lead</h3>
+<p style="font-size:26px;line-height:1.45;color:#DCE8EA">Quem não está na equipe daquele horário não entra no rodízio, mesmo que esteja online no CRM.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:40px">
+<p style="font-size:64px;font-weight:700;color:#E9FF4A;line-height:1.1;white-space:nowrap">19 leads</p>
+<p style="font-size:28px;line-height:1.4;color:#DCE8EA;width:1250px">de um mesmo turno da Equipe 1, no teste de 25/10, foram divididos entre Lucas, Paloma e Júlia. Ninguém de fora da equipe recebeu lead.</p>
+</div>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">5</p>
+</div>
+</section>
+<section data-index="6" id="cenario-dentro" style="background:#00272C;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E9FF4A">Cenário 1</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Lead chega dentro do turno</h2>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">Terça, 10h02</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Formulário enviado</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">A pessoa pede informações sobre Cirurgia de Cães e Gatos.</p>
+</div>
+<div class="arrow" aria-hidden="true"><svg width="40" height="22" viewBox="0 0 40 22"><path d="M0 7h24V0l16 11-16 11v-7H0z" fill="#4a7078"/></svg></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">10h02</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Fila confere</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Nenhuma negociação aberta para esse e-mail ou telefone.</p>
+</div>
+<div class="arrow" aria-hidden="true"><svg width="40" height="22" viewBox="0 0 40 22"><path d="M0 7h24V0l16 11-16 11v-7H0z" fill="#4a7078"/></svg></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">10h02</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Tag tersex_9_14</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Terça de manhã é turno da Equipe 1.</p>
+</div>
+<div class="arrow" aria-hidden="true"><svg width="40" height="22" viewBox="0 0 40 22"><path d="M0 7h24V0l16 11-16 11v-7H0z" fill="#4a7078"/></svg></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">10h03</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Negociação criada</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Para a Paloma, próxima do rodízio da Equipe 1.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#00323A;border-left:8px solid #E9FF4A;border-radius:16px;padding:28px 36px">
+<p style="font-size:30px;font-weight:600;line-height:1.4">Resultado: a consultora vê o lead no CRM em cerca de 1 minuto, já com nome, telefone, curso e campanha.</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">O turno é calculado na hora em que a fila processa o lead, e isso acontece segundos depois do formulário.</p>
+</div>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">6</p>
+</div>
+</section>
+<section data-index="7" id="cenario-fora" style="background:#001E23;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E9FF4A">Cenário 2</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Lead chega fora do turno</h2>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">Segunda, 20h15</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Formulário enviado</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Segunda à noite. Nenhum turno aberto neste horário.</p>
+</div>
+<div class="arrow" aria-hidden="true"><svg width="40" height="22" viewBox="0 0 40 22"><path d="M0 7h24V0l16 11-16 11v-7H0z" fill="#4a7078"/></svg></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">20h15</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Fila acha o próximo turno</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Terça, 9h às 14h: Equipe 1.</p>
+</div>
+<div class="arrow" aria-hidden="true"><svg width="40" height="22" viewBox="0 0 40 22"><path d="M0 7h24V0l16 11-16 11v-7H0z" fill="#4a7078"/></svg></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">20h15</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Tag tersex_9_14</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">A equipe é definida agora, não quando o turno abrir.</p>
+</div>
+<div class="arrow" aria-hidden="true"><svg width="40" height="22" viewBox="0 0 40 22"><path d="M0 7h24V0l16 11-16 11v-7H0z" fill="#4a7078"/></svg></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:32px;font-weight:700;color:#E9FF4A;line-height:1.1">20h16</p>
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Negociação criada</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Para o Lucas, próximo do rodízio. Ele vê o lead ao começar o turno.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#00323A;border-left:8px solid #E9FF4A;border-radius:16px;padding:28px 36px">
+<p style="font-size:30px;font-weight:600;line-height:1.4">Resultado: a negociação nasce na hora, com dono. Nada fica parado esperando o turno abrir.</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Outros exemplos: domingo 16h vai para segunda 9h (Equipe 1). Sábado 19h vai para domingo 10h (Layla).</p>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="font-size:56px;font-weight:700;color:#E9FF4A;line-height:1.1;white-space:nowrap">13 leads</p>
+<p style="font-size:26px;line-height:1.4;color:#DCE8EA;width:1300px">entraram entre 19h de sábado e 2h40 de domingo (25/10) e foram todos para a Layla, dona do turno de domingo. Já estavam no CRM quando ela começou.</p>
+</div>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">7</p>
+</div>
+</section>
+<section data-index="8" id="cenario-duplicado" style="background:#00272C;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E9FF4A">Cenário 3</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Lead já tem negociação em andamento</h2>
+<div style="display:flex;flex-direction:row;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:row;gap:24px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:40px;font-weight:700;color:#E9FF4A;line-height:1.1;white-space:nowrap">1</p>
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Formulário enviado de novo</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">A mesma pessoa converte em outro anúncio ou em outro curso.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:40px;font-weight:700;color:#E9FF4A;line-height:1.1;white-space:nowrap">2</p>
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Fila encontra o contato no CRM</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Busca por e-mail ou telefone e acha uma negociação em andamento no funil de Pós.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px">
+<p style="font-size:40px;font-weight:700;color:#E9FF4A;line-height:1.1;white-space:nowrap">3</p>
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:26px;font-weight:600;line-height:1.2">Nenhuma negociação nova</h3>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">A fila registra uma nota “Nova conversão” na negociação existente. O dono continua o mesmo.</p>
+</div>
+</div>
+</div>
+<div style="width:720px;display:flex;flex-direction:column;gap:6px;background:#003D47;border:1px solid rgba(233,255,74,0.35);border-radius:20px;padding:32px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">Nota registrada na negociação</p>
+<p style="font-size:28px;font-weight:700;line-height:1.3">Nova conversão</p>
+<p style="font-size:24px;line-height:1.4;color:#DCE8EA">Data/hora da conversão: 27/10/2026, 10h02</p>
+<p style="font-size:24px;line-height:1.4;color:#DCE8EA">Nome: [nome do lead]</p>
+<p style="font-size:24px;line-height:1.4;color:#DCE8EA">E-mail: [e-mail] · Telefone: [telefone]</p>
+<p style="font-size:24px;line-height:1.4;color:#DCE8EA">Vertical: PÓS</p>
+<p style="font-size:24px;line-height:1.4;color:#DCE8EA">Curso: Especialização em Cirurgia de Cães e Gatos</p>
+<p style="font-size:24px;line-height:1.4;color:#DCE8EA">Campanha: [campanha do Meta Ads]</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">Lead já tinha negociação em andamento; nenhuma negociação nova foi criada.</p>
+</div>
+</div>
+<p style="font-size:28px;font-weight:600;line-height:1.4;width:1600px">O consultor dono vê a nota na negociação e sabe que o lead voltou, com qual curso e por qual anúncio.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">8</p>
+</div>
+</section>
+<section data-index="9" id="cenario-reentrada" style="background:#001E23;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E9FF4A">Cenário 4</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Negociação anterior já ganha ou perdida</h2>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#00323A;border-top:6px solid #60a5fa;border-radius:20px;padding:40px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#60a5fa">Se a negociação está em andamento</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">O lead volta para a mesma negociação</h3>
+<ul style="font-size:28px;line-height:1.5;color:#DCE8EA">
+<li>Nenhuma negociação nova é criada</li>
+<li>Nota “Nova conversão” na negociação existente</li>
+<li>O dono continua o mesmo</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#00323A;border-top:6px solid #E9FF4A;border-radius:20px;padding:40px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">Se a negociação foi ganha ou perdida</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">O lead entra como novo</h3>
+<ul style="font-size:28px;line-height:1.5;color:#DCE8EA">
+<li>O turno do momento define a equipe</li>
+<li>O rodízio define o dono, que pode ser outro</li>
+<li>A negociação antiga fica no histórico do contato</li>
+</ul>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.45;color:#9FBFC6;width:1600px">A conferência considera só negociações com status em andamento no funil de Pós-graduação. Negociações de outros funis não entram na conta.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">9</p>
+</div>
+</section>
+<section data-index="10" id="cenario-pico" style="background:#00272C;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#E9FF4A">Cenário 5</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Pico de leads ao mesmo tempo</h2>
+<div style="display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:72px;font-weight:700;color:#E9FF4A;line-height:1.1">20</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">leads enviados em 3 segundos no teste de 25/10</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:72px;font-weight:700;color:#E9FF4A;line-height:1.1">1 por vez</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">a fila processa em ordem de chegada, cerca de 40 leads por minuto</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:72px;font-weight:700;color:#E9FF4A;line-height:1.1">30</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">negociações no CRM em menos de 2 minutos, cada uma com dono</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px">
+<p style="font-size:72px;font-weight:700;color:#E9FF4A;line-height:1.1">0</p>
+<p style="font-size:24px;line-height:1.4;color:#9FBFC6">erros, leads perdidos ou negociações duplicadas</p>
+</div>
+</div>
+<ul style="font-size:28px;line-height:1.55;color:#DCE8EA;width:1600px">
+<li>Se a RD ou o CRM falhar no meio, o lead fica na fila e tenta de novo sozinho no ciclo seguinte.</li>
+<li>Erro de verdade, como contato inexistente, marca o lead e manda alerta por e-mail para a AUTZ.</li>
+<li>O limite da RD para tags é de 15.000 por dia. O volume atual de Pós fica entre 20 e 60 leads por dia.</li>
+</ul>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">10</p>
+</div>
+</section>
+<section data-index="11" id="equipe-faz" style="background:#001E23;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">O que a equipe vê e o que precisa fazer</h2>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:40px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">O que vocês veem no CRM</p>
+<ul style="font-size:28px;line-height:1.55;color:#DCE8EA">
+<li>Negociação já com dono, na etapa inicial do funil de Pós</li>
+<li>Nome, telefone, e-mail, curso de interesse e campanha</li>
+<li>Nota “Nova conversão” quando um lead seu volta a converter</li>
+<li>Leads fora do horário já esperando quando o turno abre</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#00323A;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:40px">
+<p style="font-size:22px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#E9FF4A">O que vocês precisam fazer</p>
+<ul style="font-size:28px;line-height:1.55;color:#DCE8EA">
+<li>Atender normalmente, nada muda na rotina do CRM</li>
+<li>Não mexer nas tags de turno dos contatos no RD Marketing</li>
+<li>Não pausar os 5 fluxos “Enviar Lead para Equipe” nem as segmentações</li>
+<li>Mudou a escala, uma pessoa ou um horário? Avisar a AUTZ antes</li>
+</ul>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.45;color:#9FBFC6;width:1600px">A escala está gravada na automação e nas 5 segmentações. Mudar só na RD ou só na AUTZ faz lead cair na equipe errada.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">11</p>
+</div>
+</section>
+<section data-index="12" id="limites" style="background:#00272C;color:#F4F8F7;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.1">Limites conhecidos</h2>
+<table style="font-size:26px;color:#F4F8F7;width:1664px">
+<tr style="background:#00323A"><th style="width:30%;text-align:left">Situação</th><th style="width:40%;text-align:left">O que acontece</th><th style="width:30%;text-align:left">Como tratamos</th></tr>
+<tr><td>Pico muito grande de leads</td><td>Os últimos leads de uma rajada podem esperar até 15 minutos pelo ciclo seguinte</td><td style="color:#DCE8EA">Melhoria em estudo: redisparo automático no fim do lote</td></tr>
+<tr><td>Lead sem e-mail e sem telefone</td><td>Não há como conferir se já existe negociação</td><td style="color:#DCE8EA">Entra como lead novo</td></tr>
+<tr><td>Tempo entre a tag e a negociação</td><td>De 35 segundos a pouco menos de 2 minutos, pelo processamento da segmentação na RD</td><td style="color:#DCE8EA">Normal, não precisa de ação</td></tr>
+<tr><td>Lead na virada de turno</td><td>Quem chega às 13h59 e é processado às 14h01 vai para o turno das 14h</td><td style="color:#DCE8EA">Raro, diferença de segundos</td></tr>
+<tr><td>RD ou CRM instável</td><td>A chamada falha e o lead fica na fila</td><td style="color:#DCE8EA">Tenta de novo sozinho; erro real gera alerta para a AUTZ</td></tr>
+</table>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><div class="logo" role="img" aria-label="AUTZ" style="width:97px;height:36px"></div><p style="font-size:24px;color:#7a9fa8">Anclivepa · Distribuição de leads Pós-graduação</p></div>
+<p style="font-size:24px;color:#7a9fa8">12</p>
+</div>
+</section>
+<section data-index="13" id="fecho" style="background:#E9FF4A;color:#00272C;font-family:'Poppins', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#00323A">Validado em 25 de outubro de 2026</p>
+<h2 style="font-size:88px;font-weight:700;line-height:1.05;width:1600px">8 turnos, 2 fora de turno, 20 leads em rajada, 30 negociações, 0 erros.</h2>
+<p style="font-size:32px;line-height:1.4;color:#00323A;width:1400px">Dúvidas, mudança de escala ou de pessoas na equipe: falar com a AUTZ antes de alterar qualquer coisa na RD.</p>
+<div style="position:absolute;left:128px;right:128px;bottom:64px;display:flex;flex-direction:row;justify-content:space-between">
+<p style="font-size:24px;color:#00323A">AUTZ · Anclivepa</p>
+<p style="font-size:24px;color:#00323A">13</p>
+</div>
+</section>
+</div></div>
+<div id="notes"></div>
+<div id="hud"><span id="counter"></span><span>Setas ou espaço para avançar · N mostra as notas · F tela cheia <button id="btnPrev">Anterior</button><button id="btnNext">Próximo</button></span></div>
+<script>
+(function(){
+  var NOTES = ["Objetivo desta apresentação: alinhar com a equipe comercial da Anclivepa como os leads de Pós-graduação chegam ao CRM, quem recebe cada lead e o que acontece nas exceções. Tudo que está aqui foi validado em teste real em 25 de outubro de 2026.", "Os passos 1 e 2 já existiam. A novidade está nos passos 3 a 5: a fila da AUTZ, que faz a conferência de duplicidade e calcula o turno, e a tag de turno, que faz o lead entrar no fluxo da equipe certa dentro do RD Marketing. O tempo total medido em teste ficou entre 35 segundos e 1 minuto e 40 segundos.", "Esta é a escala combinada com a Anclivepa e configurada na fila da AUTZ. Cada linha vira uma tag de turno (seg_9_14, seg_14_18, tersex_9_14, tersex_14_18, sab_9_10, sab_10_13, sab_13_18, dom_10_14). Observar que o mesmo nome de equipe pode cobrir mais de um horário: a Equipe 1 atende segunda e terça a sexta de manhã e sábado das 9 às 10. Se a escala mudar, a AUTZ precisa ser avisada antes, porque a tabela vive na automação e nas segmentações da RD.", "As Equipes 3 e 5 têm as mesmas cinco pessoas, mas são fluxos separados porque atendem horários diferentes (tarde de terça a sexta e sábado das 10 às 13). Isso permite ajustar uma sem mexer na outra. A Equipe 4 é só a Layla, nos fins de semana.", "Importante deixar claro que a AUTZ não escolhe pessoa, escolhe equipe. Quem escolhe a pessoa é o rodízio nativo do fluxo da RD Marketing, o mesmo mecanismo que a equipe já conhece. Isso evita duas lógicas concorrentes de distribuição.", "Este é o caso mais comum. A conferência de duplicidade é feita no CRM, pelo e-mail ou pelo telefone do lead, antes de qualquer distribuição. Como o lead ainda não existia, ele segue o caminho normal: tag de turno, fluxo da equipe, negociação no CRM.", "Decisão de desenho: o lead fora de turno não espera. Ele é entregue já para a equipe do próximo turno, e o consultor encontra a negociação pronta quando começar. Se a Anclivepa preferir segurar o lead até o turno abrir, isso é uma mudança simples na fila, mas precisa ser decidida de forma explícita.", "Este cenário evita a negociação duplicada, que era uma das queixas. A conferência usa e-mail ou telefone, então o lead que converte com o mesmo telefone e outro e-mail também é reconhecido. A nota traz a data, o curso de interesse e a campanha para o consultor saber o que mudou.", "Ponto de atenção para a gestão: se a equipe quiser que um lead reconvertido volte sempre para o consultor anterior, mesmo com a negociação perdida, isso hoje não acontece. O lead perdido que volta é tratado como novo e entra no rodízio do turno. É uma decisão de regra comercial, não técnica.", "Os números são do teste de stress feito em 25 de outubro: 20 leads de teste disparados ao mesmo tempo no webhook de produção, mais 10 leads com horários simulados cobrindo todos os turnos, e um lead repetido de propósito. Tudo foi depois apagado do CRM e do RD Marketing.", "O pedido mais importante para a equipe é o último: qualquer mudança de escala passa pela AUTZ antes, porque os horários estão em dois lugares que precisam ser alterados juntos. Pausar um fluxo da RD interrompe a criação de negociações daquela equipe sem nenhum aviso.", "Nenhum destes limites perde lead. O primeiro é o único que afeta a velocidade de verdade, e só em picos como o de sábado 24/10 de manhã, com 42 leads em 3 minutos. A melhoria de redisparo automático é pequena e pode ser feita assim que a Anclivepa aprovar.", "Fechar com os números do teste e com o único pedido operacional: mudanças de escala passam pela AUTZ. Abrir para perguntas."];
+  var slides = Array.prototype.slice.call(document.querySelectorAll('#deck > section'));
+  var deck = document.getElementById('deck'), counter = document.getElementById('counter'), notes = document.getElementById('notes'), progress = document.getElementById('progress');
+  var i = Math.min(Math.max(parseInt(location.hash.replace('#',''),10)||1,1),slides.length)-1;
+  function fit(){ var s = Math.min(window.innerWidth/1920, window.innerHeight/1080); deck.style.transform = 'scale('+s+')'; }
+  function show(n){ i = Math.min(Math.max(n,0),slides.length-1); slides.forEach(function(el,k){ el.classList.toggle('active',k===i); }); counter.textContent = (i+1)+' / '+slides.length; history.replaceState(null,'','#'+(i+1)); progress.style.width = ((i+1)/slides.length*100)+'%'; notes.innerHTML = '<b>Notas do slide '+(i+1)+'</b><br>'+(NOTES[i]||'Sem notas.'); }
+  function next(){ show(i+1); } function prev(){ show(i-1); }
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); next(); }
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); prev(); }
+    else if(e.key==='Home'){ show(0); } else if(e.key==='End'){ show(slides.length-1); }
+    else if(e.key==='n'||e.key==='N'){ notes.classList.toggle('show'); }
+    else if(e.key==='f'||e.key==='F'){ if(document.fullscreenElement){document.exitFullscreen();}else{document.documentElement.requestFullscreen();} }
+  });
+  document.getElementById('btnNext').addEventListener('click',next);
+  document.getElementById('btnPrev').addEventListener('click',prev);
+  deck.addEventListener('click',function(e){ if(e.target.closest('a')) return; (e.clientX > window.innerWidth/2) ? next() : prev(); });
+  var tx=null; document.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+  document.addEventListener('touchend',function(e){ if(tx===null) return; var dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){ dx<0?next():prev(); } tx=null; });
+  window.addEventListener('resize',fit); window.addEventListener('hashchange',function(){ show((parseInt(location.hash.replace('#',''),10)||1)-1); });
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>
