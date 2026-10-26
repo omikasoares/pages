@@ -174,7 +174,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
         <li>O pedido de venda só é criado na Omie quando a negociação chega em <strong>Produto Confirmado</strong>, uma única vez e já com o produto real. Não existe mais pedido com item genérico na Omie.</li>
         <li>Se a negociação entra em Produto Confirmado com o produto ainda genérico ("Item a Definir"), ela volta sozinha para <strong>Ganho - Produto a Definir</strong>.</li>
         <li>O número do pedido gravado no RD agora tem só os 6 últimos dígitos (ex.: 032107).</li>
-        <li>Pedido cancelado na Omie move a negociação para a etapa <strong>Pedido Cancelado</strong>. Ela não é mais marcada como perdida.</li>
+        <li>Pedido cancelado na Omie move a negociação para a etapa <strong>Pedido Cancelado</strong> e a marca como perdida, com o motivo <strong>Pedido Cancelado na Omie</strong>.</li>
         <li>Catálogo de produtos do RD recarregado com os Produtos Acabados da Omie, e produtos novos entram sozinhos no catálogo.</li>
       </ul>
     </div>
@@ -182,7 +182,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
       <div class="callout-title">✓ Decisões da validação de 23 de outubro, já em produção</div>
       <ul>
         <li><strong>Tipo de Frete</strong> (FOB ou CIF) é obrigatório para criar o pedido e vai para a Omie junto com ele.</li>
-        <li>Ao criar o pedido, o nome da negociação passa a começar pelo número do pedido (ex.: "Pedido 032139 - Nome da empresa").</li>
+        <li>Ao criar o pedido, o nome da negociação passa a ser o número do pedido seguido do nome da empresa (ex.: "032195 - Nome da empresa").</li>
         <li>A etapa do pedido na Omie aparece na negociação, no campo <strong>Etapa do Pedido Omie</strong>.</li>
         <li>Pedido faturado gera uma tarefa de pós-venda para o vendedor, com prazo de 20 dias.</li>
         <li>O estoque dos produtos no RD é atualizado duas vezes por dia, às 6h e às 12h.</li>
@@ -317,7 +317,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
             <div class="dir-title">Omie → RD CRM</div>
             <ul>
               <li>Campo "Número Pedido Venda Omie" na negociação</li>
-              <li>Nome da negociação: "Pedido 032139 - Nome da empresa"</li>
+              <li>Nome da negociação: "032139 - Nome da empresa"</li>
               <li>Campo "Data da Última Compra" na empresa</li>
             </ul>
           </div>
@@ -376,7 +376,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
           <span class="tag red">Omie → RD em até 1 min</span>
         </div>
         <p>Quando um pedido de venda criado pela integração é <strong>cancelado na Omie</strong>, a negociação de origem vai sozinha para a etapa <strong>Pedido Cancelado</strong>, no mesmo funil, em até 1 minuto.</p>
-        <p class="stage-rule"><strong>Regras:</strong> a negociação não é marcada como perdida, porque são situações diferentes: perdido é desistência antes do pedido, cancelado é pedido que já existia e foi cancelado depois. Funciona para qualquer pedido criado pela integração, mesmo que tenha sido criado há meses. Se a negociação já está em Pedido Cancelado, nada é alterado. O campo Etapa do Pedido Omie passa para "Cancelado". <strong>Testado em 23/10:</strong> pedido cancelado na Omie e negociação movida no ciclo seguinte.</p>
+        <p class="stage-rule"><strong>Regras:</strong> a negociação é marcada como perdida com o motivo <strong>Pedido Cancelado na Omie</strong> e fica na etapa Pedido Cancelado, separada das perdas comuns (desistência antes do pedido). Se a venda já estava como ganha, ela é reaberta e marcada como perdida, para não contar como venda no relatório. Funciona para qualquer pedido criado pela integração, mesmo que tenha sido criado há meses. Se a negociação já está em Pedido Cancelado, nada é alterado. O campo Etapa do Pedido Omie passa para "Cancelado". <strong>Testado em 23/10:</strong> pedido cancelado na Omie e negociação movida no ciclo seguinte.</p>
       </div>
 
     </div>
@@ -393,7 +393,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
         <tbody>
           <tr><td class="label">Enriquecimento</td><td>Na hora, ao entrar em Qualificação</td><td>Receita Federal completa a empresa no RD e o cliente na Omie</td></tr>
           <tr><td class="label">Pedido de venda</td><td>Na hora, ao entrar em Produto Confirmado</td><td>Cria o pedido na Omie ou devolve para Ganho - Produto a Definir</td></tr>
-          <tr><td class="label">Status do pedido</td><td>Em horário comercial (seg a sex, 7h às 19h), a cada 1 a 2 minutos. Fora do horário, a cada 15 minutos</td><td>Atualiza a Etapa do Pedido Omie na negociação, move cancelado para Pedido Cancelado (inclusive pedido antigo) e cria a tarefa de pós-venda quando fatura</td></tr>
+          <tr><td class="label">Status do pedido</td><td>Em horário comercial (seg a sex, 7h às 19h), a cada 1 a 2 minutos. Fora do horário, a cada 15 minutos</td><td>Atualiza a Etapa do Pedido Omie na negociação, move cancelado para Pedido Cancelado e marca como perdido (inclusive pedido antigo) e cria a tarefa de pós-venda quando fatura</td></tr>
           <tr><td class="label">Estoque</td><td>Todo dia às 6h e às 12h</td><td>Atualiza o campo Estoque dos produtos do RD com o saldo da Omie (só os que mudaram)</td></tr>
           <tr><td class="label">Produtos novos</td><td>A cada 5 minutos, em horário comercial, só se houver negociação em Ganho - Produto a Definir</td><td>Traz Produtos Acabados novos da Omie para o catálogo do RD</td></tr>
           <tr><td class="label">Impacto periódico</td><td>Uma vez por dia</td><td>Cria negociação de contato para empresas com Curva definida: A a cada 30 dias, B a cada 90, C e D a cada 180</td></tr>
@@ -490,6 +490,18 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
         </tbody>
       </table>
     </div>
+    <h2 class="section-title">Validação de 26 de outubro</h2>
+    <p class="lede">Ajustes pedidos depois da validação de domingo, testados com pedidos reais de teste na Omie.</p>
+    <div class="table-scroll">
+      <table class="rule-table">
+        <thead><tr><th>Teste</th><th>Resultado</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Nome da negociação</td><td>Ao criar o pedido 032195, a negociação passou a se chamar "032195 - Nome da empresa"</td></tr>
+          <tr><td class="label">Etapas do pedido na Omie</td><td>O pedido passou por Aguardando Projeto / Estoque, Separar Estoque e Pedido Programado, e o campo Etapa do Pedido Omie acompanhou cada mudança no RD em 11 segundos a 1 minuto</td></tr>
+          <tr><td class="label">Venda ganha com pedido cancelado</td><td>Pedido 032196 cancelado na Omie: a negociação foi reaberta, marcada como perdida com o motivo Pedido Cancelado na Omie e ficou na etapa Pedido Cancelado</td></tr>
+        </tbody>
+      </table>
+    </div>
     <p class="mini" style="margin-top:12px;">Os testes encontraram e corrigiram seis pontos fracos antes da operação real, entre eles o limite de chamadas simultâneas da Omie, o limite por minuto do RD e a detecção de cancelamento de pedidos antigos.</p>
   </section>
 
@@ -500,7 +512,7 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Diagnóstico e desenho da arquitetura <span class="phase-status done">Concluído</span></div><p class="phase-desc">Conexão com a Omie, reuniões de 28 de setembro e 21 de outubro.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Dados cadastrais via Receita Federal <span class="phase-status done">Concluído</span></div><p class="phase-desc">Enriquecimento ao entrar em Qualificação, no RD e na Omie.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Pedido de venda em Produto Confirmado <span class="phase-status done">Concluído</span></div><p class="phase-desc">Criação única com produto real e devolução automática quando o produto ainda é genérico.</p></div></div>
-      <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Cancelamento para Pedido Cancelado <span class="phase-status done">Concluído</span></div><p class="phase-desc">Testado ponta a ponta em 23 de outubro.</p></div></div>
+      <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Cancelamento para Pedido Cancelado <span class="phase-status done">Concluído</span></div><p class="phase-desc">Testado ponta a ponta em 23 de outubro. Em 26 de outubro passou a marcar a negociação como perdida, com o motivo Pedido Cancelado na Omie.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Catálogo e sincronização de produtos <span class="phase-status done">Concluído</span></div><p class="phase-desc">5.813 Produtos Acabados carregados e entrada automática de produtos novos.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Validação com a Oximag <span class="phase-status done">23 de outubro</span></div><p class="phase-desc">Fluxo aprovado, com os ajustes de frete, status do pedido, pós-venda, nome da negociação e estoque.</p></div></div>
       <div class="phase"><div class="phase-num done">✓</div><div class="phase-body"><div class="phase-title">Ajustes da validação <span class="phase-status done">Concluído</span></div><p class="phase-desc">Frete, nome com número do pedido, etapa do pedido e tarefa de pós-venda testados em 23 de outubro. Primeira carga de estoque feita no mesmo dia, com atualização às 6h e às 12h a partir de 24 de outubro.</p></div></div>
@@ -510,6 +522,6 @@ footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-whit
     </div>
   </section>
 
-  <footer>Autz · Integração RD CRM e Omie preparada para Oximag · v3.0</footer>
+  <footer>Autz · Integração RD CRM e Omie preparada para Oximag · v3.4</footer>
 
 </div>
