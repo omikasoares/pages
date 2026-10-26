@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico Uniplast — RD Marketing + CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --red:#E8593C; --blue:#60a5fa; --amber:#fbbf24; --green:#4ade80;
+  --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--white);
+  font-family:'Poppins',system-ui,sans-serif; font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{ max-width:960px; margin:0 auto; padding:56px 24px 80px; }
+
+header.page-head{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:24px;
+  padding-bottom:32px; margin-bottom:40px; border-bottom:1px solid var(--border-white);
+  flex-wrap:wrap;
+}
+.logo{ height:32px; width:auto; align-self:flex-start; flex:none; max-width:120px; object-fit:contain; }
+.head-meta{ text-align:right; }
+.eyebrow{ font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--lime); margin:0 0 10px; }
+h1{ font-weight:800; font-size:clamp(28px,5vw,42px); margin:0 0 6px; letter-spacing:-.01em; }
+.subtitle{ color:var(--gray); font-size:14px; margin:0; max-width:60ch; line-height:1.55; }
+.meta-line{ color:var(--gray2); font-size:12px; margin-top:14px; }
+
+section{ margin:0 0 52px; }
+h2.section-title{
+  font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--gray); margin:0 0 20px; display:flex; align-items:center; gap:10px;
+}
+h2.section-title::after{ content:''; flex:1; height:1px; background:var(--border-white); }
+
+.finding{ background:var(--surface); border:1px solid var(--border-white); border-radius:10px; padding:20px 22px; margin-bottom:14px; position:relative; padding-left:26px; }
+.finding::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:10px 0 0 10px; }
+.finding.risk::before{ background:var(--red); }
+.finding.warn::before{ background:var(--amber); }
+.finding.info::before{ background:var(--blue); }
+.finding-tag{ font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; display:block; }
+.finding.risk .finding-tag{ color:var(--red); }
+.finding.warn .finding-tag{ color:var(--amber); }
+.finding.info .finding-tag{ color:var(--blue); }
+.finding h3{ font-size:16px; font-weight:600; margin:0 0 8px; }
+.finding p{ font-size:13.5px; color:var(--gray); line-height:1.6; margin:0; }
+.finding b{ color:var(--white); font-weight:600; }
+
+.kpi-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
+.kpi{ background:var(--surface); border:1px solid var(--border-white); border-radius:10px; padding:16px; }
+.kpi .n{ font-size:24px; font-weight:800; color:var(--lime); font-variant-numeric:tabular-nums; line-height:1.1; }
+.kpi .l{ font-size:10.5px; color:var(--gray); margin-top:6px; }
+
+.funnel-bars{ display:flex; flex-direction:column; gap:10px; }
+.fbar-row{ display:grid; grid-template-columns:90px 1fr 170px; align-items:center; gap:12px; }
+.fbar-row .fl{ font-size:12px; color:var(--gray); }
+.fbar-track{ height:20px; background:var(--bg2); border-radius:6px; overflow:hidden; }
+.fbar-fill{ height:100%; border-radius:6px; }
+.fbar-fill.open{ background:var(--blue); }
+.fbar-fill.won{ background:var(--green); }
+.fbar-fill.lost{ background:var(--red); }
+.fbar-row .fv{ font-size:11.5px; color:var(--gray); text-align:right; font-variant-numeric:tabular-nums; }
+
+.reason-bars{ display:flex; flex-direction:column; gap:9px; }
+.rbar-row{ display:grid; grid-template-columns:200px 1fr 50px; align-items:center; gap:10px; }
+.rbar-row .rl{ font-size:12px; color:var(--gray); }
+.rbar-track{ height:9px; background:var(--bg2); border-radius:99px; overflow:hidden; }
+.rbar-fill{ height:100%; background:linear-gradient(90deg,var(--lime2),var(--lime)); border-radius:99px; }
+.rbar-row .rv{ font-size:11.5px; color:var(--gray); text-align:right; }
+
+.asset-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
+.asset-card{ background:var(--surface); border:1px solid var(--border-white); border-radius:10px; padding:18px; }
+.asset-card .name{ font-size:13px; font-weight:600; margin-bottom:10px; }
+.asset-card .stat-row{ display:flex; justify-content:space-between; font-size:12px; color:var(--gray); margin-bottom:4px; }
+.asset-card .stat-row b{ color:var(--white); font-variant-numeric:tabular-nums; }
+.pill{ font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 8px; border-radius:99px; display:inline-block; margin-top:8px; }
+.pill.on{ background:rgba(74,222,128,.14); color:var(--green); }
+.pill.off{ background:rgba(232,89,60,.14); color:var(--red); }
+
+ol.steps{ list-style:none; margin:0; padding:0; counter-reset:step; display:flex; flex-direction:column; gap:12px; }
+ol.steps li{ counter-increment:step; display:flex; gap:16px; align-items:flex-start; background:var(--surface); border:1px solid var(--border-white); border-radius:10px; padding:16px 18px; }
+ol.steps li::before{
+  content:counter(step); font-weight:800; font-size:13px; color:var(--bg); background:var(--lime);
+  width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none;
+}
+ol.steps li div h4{ margin:0 0 4px; font-size:14px; font-weight:600; }
+ol.steps li div p{ margin:0; font-size:13px; color:var(--gray); line-height:1.55; }
+
+footer{ margin-top:60px; padding-top:22px; border-top:1px solid var(--border-white); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+footer span{ font-size:11px; color:var(--gray2); }
+
+@media (max-width:640px){
+  .wrap{ padding:36px 16px 60px; }
+  header.page-head{ flex-direction:column; }
+  .head-meta{ text-align:left; }
+  .fbar-row{ grid-template-columns:70px 1fr; }
+  .fbar-row .fv{ grid-column:2; text-align:left; }
+  .rbar-row{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page-head">
+  <img class="logo" src="../assets/autz-logo-white.png" alt="AUTZ">
+  <div class="head-meta">
+    <p class="eyebrow">Diagnóstico RD Marketing + CRM</p>
+    <h1>Uniplast</h1>
+    <p class="meta-line">Gerado em 26/10/2026 · RD Marketing (12/09–26/10) · Pipedrive (histórico completo, 1.735 negócios)</p>
+  </div>
+</header>
+
+<section>
+  <h2 class="section-title">Achados críticos</h2>
+
+  <div class="finding risk">
+    <span class="finding-tag">Causa nº1 de perda</span>
+    <h3>47% dos negócios perdidos são por "sem resposta do cliente"</h3>
+    <p>Numa amostra dos 500 negócios perdidos mais recentes: <b>235 (47%) marcados "sem resposta"</b>, somando <b>R$ 7,86 milhões</b> em valor perdido (57% do total da amostra). Não é preço (6% dos casos) nem produto fora do mix (20%): é abandono de follow-up. A infraestrutura pra agir sobre isso já existe (segmentação "Perdido - Sem Resposta" na RD, campo <b>cf_motivo_de_perda_pipedrive</b> já sincronizado automaticamente a cada perda), mas nenhum fluxo de reengajamento consome esse dado hoje.</p>
+  </div>
+
+  <div class="finding warn">
+    <span class="finding-tag">Captação quase zerada</span>
+    <h3>10 visitas e 1 conversão no Formulário Comercial em 6 semanas</h3>
+    <p>Desde a publicação: Formulário Comercial com 10 visitas → 1 conversão (10%). Landing Page "Cadastro de Leads" com 10 visitas → <b>0 conversões</b>. O pipeline técnico RD→Pipedrive funciona (testado e validado ponta a ponta), mas está recebendo volume insignificante de tráfego.</p>
+  </div>
+
+  <div class="finding warn">
+    <span class="finding-tag">Automação dormente</span>
+    <h3>Os 3 fluxos de nutrição (Hospitalar, Construção Civil, Reengajamento) tiveram zero novas entradas em 44 dias</h3>
+    <p>Nenhum contato novo entrou nos fluxos B, C ou E desde 12/09. Em paralelo, <b>2 pop-ups</b> (incluindo o que substituiria os botões de WhatsApp do site, decidido em reunião) seguem <b>não publicados</b>, e <b>5 e-mails de campanha</b> estão em rascunho desde agosto, nenhum disparado.</p>
+  </div>
+
+  <div class="finding info">
+    <span class="finding-tag">Backlog operacional</span>
+    <h3>Mais de 100 leads parados na Caixa de Entrada do Pipedrive</h3>
+    <p>Registros nunca convertidos em negociação — volume relevante de oportunidade represada por inércia operacional, não por falta de captação.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Panorama comercial (Pipedrive, histórico completo)</h2>
+  <div class="kpi-row" style="margin-bottom:24px;">
+    <div class="kpi"><div class="n">1.735</div><div class="l">negócios no total</div></div>
+    <div class="kpi"><div class="n">717</div><div class="l">em aberto (R$ 3,37 mi)</div></div>
+    <div class="kpi"><div class="n">394</div><div class="l">ganhos (R$ 3,79 mi)</div></div>
+    <div class="kpi"><div class="n">624</div><div class="l">perdidos (R$ 16,96 mi)</div></div>
+    <div class="kpi"><div class="n">39%</div><div class="l">taxa de vitória (ganhos/fechados)</div></div>
+    <div class="kpi"><div class="n">100+</div><div class="l">leads parados na caixa de entrada</div></div>
+  </div>
+
+  <div class="funnel-bars">
+    <div class="fbar-row"><span class="fl">Em aberto</span><div class="fbar-track"><div class="fbar-fill open" style="width:20%"></div></div><span class="fv">717 · R$ 3,37 mi</span></div>
+    <div class="fbar-row"><span class="fl">Ganhos</span><div class="fbar-track"><div class="fbar-fill won" style="width:22%"></div></div><span class="fv">394 · R$ 3,79 mi</span></div>
+    <div class="fbar-row"><span class="fl">Perdidos</span><div class="fbar-track"><div class="fbar-fill lost" style="width:100%"></div></div><span class="fv">624 · R$ 16,96 mi</span></div>
+  </div>
+  <p style="font-size:11.5px;color:var(--gray2);margin-top:12px;">Barras proporcionais ao valor. O ticket médio perdido (R$ 27,2 mil) é quase 3x o ticket médio ganho (R$ 9,6 mil) — os negócios grandes são os que mais escapam.</p>
+</section>
+
+<section>
+  <h2 class="section-title">Motivos de perda (amostra dos 500 mais recentes)</h2>
+  <div class="reason-bars">
+    <div class="rbar-row"><span class="rl">Sem resposta do cliente</span><div class="rbar-track"><div class="rbar-fill" style="width:100%"></div></div><span class="rv">235</span></div>
+    <div class="rbar-row"><span class="rl">Fora do Mix de Produtos</span><div class="rbar-track"><div class="rbar-fill" style="width:43%"></div></div><span class="rv">101</span></div>
+    <div class="rbar-row"><span class="rl">Preço</span><div class="rbar-track"><div class="rbar-fill" style="width:13%"></div></div><span class="rv">31</span></div>
+    <div class="rbar-row"><span class="rl">Cancelamento do Projeto</span><div class="rbar-track"><div class="rbar-fill" style="width:9%"></div></div><span class="rv">21</span></div>
+    <div class="rbar-row"><span class="rl">Revenda perdeu o negócio</span><div class="rbar-track"><div class="rbar-fill" style="width:9%"></div></div><span class="rv">21</span></div>
+    <div class="rbar-row"><span class="rl">Condição de Pagamento</span><div class="rbar-track"><div class="rbar-fill" style="width:7%"></div></div><span class="rv">16</span></div>
+  </div>
+  <p style="font-size:11.5px;color:var(--gray2);margin-top:12px;">O campo de motivo é texto livre, não lista fechada — dezenas de variações isoladas da mesma causa (ex. "Licitação"/"licitação"/"LICITAÇÃO NAO CONTEMPLADA") não entraram nesse recorte por aparecerem só 1x cada. Padronizar o campo melhoraria a precisão desse tipo de leitura no futuro.</p>
+</section>
+
+<section>
+  <h2 class="section-title">Ativos digitais na RD Marketing</h2>
+  <div class="asset-grid">
+    <div class="asset-card">
+      <div class="name">Formulário Comercial</div>
+      <div class="stat-row"><span>Visitas</span><b>10</b></div>
+      <div class="stat-row"><span>Conversões</span><b>1</b></div>
+      <div class="stat-row"><span>Taxa</span><b>10%</b></div>
+      <span class="pill on">Publicado</span>
+    </div>
+    <div class="asset-card">
+      <div class="name">LP Cadastro de Leads</div>
+      <div class="stat-row"><span>Visitas</span><b>10</b></div>
+      <div class="stat-row"><span>Conversões</span><b>0</b></div>
+      <div class="stat-row"><span>Taxa</span><b>0%</b></div>
+      <span class="pill on">Publicado</span>
+    </div>
+    <div class="asset-card">
+      <div class="name">Botão - Site (pop-up)</div>
+      <div class="stat-row"><span>Status</span><b>Não publicado</b></div>
+      <span class="pill off">Parado</span>
+    </div>
+    <div class="asset-card">
+      <div class="name">Pop-up - Site</div>
+      <div class="stat-row"><span>Status</span><b>Não publicado</b></div>
+      <span class="pill off">Parado</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Estratégia de inbound — próximos passos</h2>
+  <ol class="steps">
+    <li><div><h4>Fechar o ciclo de "sem resposta"</h4><p>Criar fluxo de reengajamento na RD Marketing disparado por entrada na segmentação "Perdido - Sem Resposta" (dado já chega automaticamente via <b>cf_motivo_de_perda_pipedrive</b>), com 2-3 e-mails ao longo de 2-3 semanas. Maior alavanca identificada: R$ 7,86 milhões em negócios perdidos só por falta de retomada de contato.</p></div></li>
+    <li><div><h4>Destravar o que já está pronto</h4><p>Publicar os 2 pop-ups parados (inclusive o que substitui os botões de WhatsApp do site) e decidir o destino das 5 campanhas EMKT em rascunho desde agosto: enviar, reagendar ou descartar.</p></div></li>
+    <li><div><h4>Gerar tráfego de verdade pro formulário/LP</h4><p>10 visitas em 6 semanas não sustenta conclusão estatística. Conectar os pop-ups e os links do site a essas páginas, e usar a LP da feira de outubro se ainda não foi divulgada.</p></div></li>
+    <li><div><h4>Trabalhar o backlog de Leads</h4><p>Mais de 100 leads parados na Caixa de Entrada do Pipedrive são oportunidade represada por inércia operacional — fazer uma varredura pra qualificar ou descartar.</p></div></li>
+    <li><div><h4>Padronizar o motivo de perda</h4><p>Trocar (ou complementar) o campo de texto livre por lista fechada no Pipedrive, pra não perder sinal nos próximos diagnósticos.</p></div></li>
+  </ol>
+</section>
+
+<footer>
+  <span>AUTZ — Diagnóstico cruzado RD Station Marketing + Pipedrive</span>
+  <span>Uniplast · 26/10/2026</span>
+</footer>
+
+</div>
+</body>
+</html>
