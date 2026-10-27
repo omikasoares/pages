@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uniplast - Cadência de E-mail</title>
+<style>
+  :root { --dark:#1A252B; --dark2:#22323A; --problem:#D9622A; --probleml:#F0B38E; --solution:#4F8A72; --solutionl:#BFDBD0; --mutedl:#8A969A; --border:#CCCCCC; --rowalt:#F2F2F2; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--dark); background:#fff; }
+  h1,h2,h3 { font-family: Georgia, "Times New Roman", serif; margin:0; }
+  section { padding: 60px 8vw; max-width: 1200px; margin: 0 auto; }
+  .cover { background: var(--dark); color:#fff; min-height: 60vh; display:flex; flex-direction:column; justify-content:center; max-width:none; }
+  .cover .inner { max-width: 1200px; margin: 0 auto; width:100%; }
+  .label { letter-spacing: 3px; font-size: 13px; font-weight:bold; color: var(--solutionl); text-transform:uppercase; margin-bottom: 22px;}
+  .cover h1 { font-size: 46px; color:#fff; margin-bottom: 22px; line-height:1.15; }
+  .cover p { font-size: 19px; color: var(--mutedl); max-width: 720px; line-height:1.55; }
+  .footnote { font-size: 13px; color: var(--mutedl); margin-top: 44px; }
+  h2.section-title { font-size: 30px; margin-bottom: 8px; }
+  .subtitle { font-size:15px; color:var(--mutedl); margin-bottom: 30px; }
+  .cards-2 { display:flex; gap:24px; flex-wrap:wrap; }
+  .card { border-radius: 10px; padding: 28px; flex: 1 1 320px; }
+  .card.solution { background: var(--solutionl); }
+  .card.problem { background: var(--probleml); }
+  .tag { font-size:13px; font-weight:bold; letter-spacing:2px; margin-bottom:10px; }
+  .tag.solution-tag { color: var(--solution); }
+  .tag.problem-tag { color: var(--problem); }
+  .card h3 { font-size:22px; margin-bottom:14px; }
+  .card p { line-height:1.6; font-size:14.5px; margin: 10px 0; }
+  .card strong { font-weight:bold; }
+  .process-row { display:flex; align-items:center; gap:14px; margin-bottom: 40px; flex-wrap:wrap; }
+  .process-box { border-radius:8px; padding:18px 20px; font-size:14px; }
+  .process-box.dark2 { background: var(--dark2); color:#fff; }
+  .process-box.solution-bg { background: var(--solution); color:#fff; font-weight:bold; }
+  .arrow { color: var(--solution); font-size: 26px; font-weight:bold; }
+  .variant-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+  .variant-card { background: var(--rowalt); border:1px solid var(--border); border-radius:8px; padding:18px; }
+  .variant-card h4 { color: var(--solution); font-size:17px; margin-bottom:10px; }
+  .label-small { font-size:11px; font-weight:bold; color: var(--mutedl); margin-bottom:6px; text-transform:uppercase; }
+  .subject { font-style:italic; font-size:13.5px; line-height:1.45; }
+  .timeline-row { display:flex; gap:22px; flex-wrap:wrap; }
+  .timeline-col { flex:1 1 260px; text-align:center; position:relative; }
+  .circle { width:64px; height:64px; border-radius:50%; background: var(--problem); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; margin: 0 auto; font-family: Georgia, serif; }
+  .timeline-when { color: var(--problem); font-weight:bold; margin: 10px 0 14px; font-size:14px; }
+  .timeline-card { background: var(--rowalt); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:left; }
+  .timeline-card .subject { margin-bottom:10px; }
+  .timeline-card .purpose { font-size:13px; line-height:1.55; }
+  table { width:100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+  th, td { border:1px solid var(--border); padding: 10px 12px; text-align:left; }
+  th { background: var(--dark2); color:#fff; }
+  tr:nth-child(even) td { background: var(--rowalt); }
+  .pendencia { display:flex; gap:18px; margin-bottom: 30px; align-items:flex-start; }
+  .num-circle { width:40px; height:40px; border-radius:50%; background: var(--problem); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:bold; font-family: Georgia, serif; flex-shrink:0; }
+  .pendencia h4 { font-size:18px; margin-bottom:6px; }
+  .pendencia p { font-size:14.5px; line-height:1.6; margin:0; }
+  @media (max-width: 700px) {
+    .cover h1 { font-size: 30px; }
+    section { padding: 40px 6vw; }
+    .process-row { flex-direction: column; align-items: stretch; }
+    .arrow { transform: rotate(90deg); align-self:center; }
+  }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="inner">
+    <div class="label">Uniplast</div>
+    <h1>Cadência de E-mail</h1>
+    <p>Boas-vindas por linha de produto e Reconexão de leads sem resposta: quando cada e-mail entra, por quê e com qual gatilho.</p>
+    <div class="footnote">Documento interno: planejamento de automação de e-mail no RD Marketing</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Dois fluxos, dois momentos diferentes</h2>
+  <div class="cards-2">
+    <div class="card solution">
+      <div class="tag solution-tag">FLUXO A</div>
+      <h3>Boas-vindas por linha de produto</h3>
+      <p><strong>Etapa do funil:</strong> Primeiro contato</p>
+      <p><strong>Gatilho:</strong> lead entra com produto definido, na conversão da LP ou formulário.</p>
+      <p><strong>Quando:</strong> imediato, sem delay.</p>
+      <p><strong>Variantes:</strong> Hospitalar, Construção Civil, Rodapés e Customizados (uma por linha de produto).</p>
+    </div>
+    <div class="card problem">
+      <div class="tag problem-tag">FLUXO B</div>
+      <h3>Reconexão de leads sem resposta</h3>
+      <p><strong>Etapa do funil:</strong> Sem resposta</p>
+      <p><strong>Gatilho:</strong> negócio marcado como perdido no Pipedrive, motivo "Sem resposta do cliente" (evento já chega ao RD pelo workflow [Uniplast] Lead Perdido).</p>
+      <p><strong>Quando:</strong> 3 envios por negócio perdido: D0, D5 e D12.</p>
+    </div>
+  </div>
+  <div class="footnote">Nenhum dos dois fluxos existe hoje no RD Marketing: só o gatilho (lado Pipedrive) já está pronto.</div>
+</section>
+
+<section>
+  <h2 class="section-title">Fluxo A: Boas-vindas por produto</h2>
+  <div class="subtitle">Etapa Primeiro contato &middot; envio imediato, sem delay</div>
+  <div class="process-row">
+    <div class="process-box dark2">Lead converte na LP ou formulário, com produto definido</div>
+    <div class="arrow">&rarr;</div>
+    <div class="process-box solution-bg">E-mail da linha de produto correspondente envia na hora</div>
+  </div>
+  <div class="variant-grid">
+    <div class="variant-card">
+      <h4>Hospitalar</h4>
+      <div class="label-small">Assunto</div>
+      <div class="subject">Recebemos seu contato sobre soluções para área hospitalar</div>
+    </div>
+    <div class="variant-card">
+      <h4>Construção Civil</h4>
+      <div class="label-small">Assunto</div>
+      <div class="subject">Recebemos seu contato sobre produtos para construção civil</div>
+    </div>
+    <div class="variant-card">
+      <h4>Rodapés</h4>
+      <div class="label-small">Assunto</div>
+      <div class="subject">Recebemos seu contato sobre rodapés Uniplast</div>
+    </div>
+    <div class="variant-card">
+      <h4>Customizados</h4>
+      <div class="label-small">Assunto</div>
+      <div class="subject">Recebemos seu contato sobre um projeto customizado</div>
+    </div>
+  </div>
+  <div class="footnote">Mesma estrutura nas 4 variantes: agradecimento, benefício específico do produto, aviso do consultor e pedido de detalhes.</div>
+</section>
+
+<section>
+  <h2 class="section-title">Fluxo B: Reconexão de leads sem resposta</h2>
+  <div class="subtitle">Negócio perdido no Pipedrive com motivo "Sem resposta do cliente"</div>
+  <div class="timeline-row">
+    <div class="timeline-col">
+      <div class="circle">D0</div>
+      <div class="timeline-when">Imediato</div>
+      <div class="timeline-card">
+        <div class="label-small">Assunto</div>
+        <div class="subject">Ainda faz sentido pra você?</div>
+        <div class="purpose">Reabre o contato e confirma se o assunto ainda é de interesse, sem pressão.</div>
+      </div>
+    </div>
+    <div class="timeline-col">
+      <div class="circle">D5</div>
+      <div class="timeline-when">D0 + 5 dias</div>
+      <div class="timeline-card">
+        <div class="label-small">Assunto</div>
+        <div class="subject">Um material que pode ajudar no seu projeto</div>
+        <div class="purpose">Oferece conteúdo de apoio, baixa fricção, sem pedir resposta imediata.</div>
+      </div>
+    </div>
+    <div class="timeline-col">
+      <div class="circle">D12</div>
+      <div class="timeline-when">D5 + 7 dias</div>
+      <div class="timeline-card">
+        <div class="label-small">Assunto</div>
+        <div class="subject">Fechando por aqui</div>
+        <div class="purpose">Encerra o contato ativo, mas deixa a porta aberta para o lead retomar quando quiser.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footnote">D12 contado a partir do D5: do início ao fim da sequência passam cerca de 12 dias.</div>
+</section>
+
+<section>
+  <h2 class="section-title">Quadro-resumo: os 7 e-mails</h2>
+  <table>
+    <thead>
+      <tr><th>E-mail</th><th>Etapa</th><th>Quando</th><th>Gatilho</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Boas-vindas &middot; Hospitalar</td><td>Primeiro contato</td><td>Imediato</td><td>Produto = Hospitalar</td></tr>
+      <tr><td>Boas-vindas &middot; Construção Civil</td><td>Primeiro contato</td><td>Imediato</td><td>Produto = Construção Civil</td></tr>
+      <tr><td>Boas-vindas &middot; Rodapés</td><td>Primeiro contato</td><td>Imediato</td><td>Produto = Rodapés</td></tr>
+      <tr><td>Boas-vindas &middot; Customizados</td><td>Primeiro contato</td><td>Imediato</td><td>Produto = Customizados</td></tr>
+      <tr><td>Reconexão &middot; D0</td><td>Sem resposta</td><td>Imediato (D0)</td><td>Perdido, motivo Sem resposta do cliente</td></tr>
+      <tr><td>Reconexão &middot; D5</td><td>Sem resposta</td><td>D0 + 5 dias</td><td>Sem retorno ao e-mail D0</td></tr>
+      <tr><td>Reconexão &middot; D12</td><td>Sem resposta</td><td>D5 + 7 dias</td><td>Sem retorno ao e-mail D5</td></tr>
+    </tbody>
+  </table>
+  <div class="footnote">Nenhum destes 7 e-mails existe hoje no RD Marketing: a copy está pronta, falta construir os fluxos.</div>
+</section>
+
+<section style="padding-bottom:90px;">
+  <h2 class="section-title">Antes de ativar: 3 pendências</h2>
+  <div style="margin-top:30px;">
+    <div class="pendencia">
+      <div class="num-circle">1</div>
+      <div>
+        <h4>Link do material de apoio (e-mail D5)</h4>
+        <p>O e-mail de reconexão D5 ainda tem um placeholder no lugar do link ou case que vai ser enviado. Precisa de um conteúdo real antes de ir ao ar.</p>
+      </div>
+    </div>
+    <div class="pendencia">
+      <div class="num-circle">2</div>
+      <div>
+        <h4>Construir os 2 fluxos no RD Marketing</h4>
+        <p>A copy dos 7 e-mails está pronta. Falta decidir se já construímos os fluxos de Boas-vindas e Reconexão, ligados aos eventos que já existem ([Uniplast] Lead Perdido e Lead Vencido).</p>
+      </div>
+    </div>
+    <div class="pendencia">
+      <div class="num-circle">3</div>
+      <div>
+        <h4>Checar gatilho dos fluxos B e C</h4>
+        <p>Os fluxos de boas-vindas de Hospitalar e Construção Civil já existem no RD Marketing, mas estão há 44 dias sem nenhuma entrada nova. Vale revisar o gatilho antes de ativar o novo fluxo por cima.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footnote">Copy completa em: Uniplast - Copy de E-mail Boas-vindas e Reconexao 2026-10-27.md</div>
+</section>
+
+</body>
+</html>
