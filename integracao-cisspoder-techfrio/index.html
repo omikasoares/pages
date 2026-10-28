@@ -187,6 +187,13 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
 .step-num{font-size:12px;font-weight:800;color:var(--lime);margin-bottom:8px;}
 .step-body{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;}
 
+
+/* ICONS (svg) */
+.flow-ico svg,.prob-ico svg{width:22px;height:22px;}
+.ctitle svg{width:16px;height:16px;vertical-align:-3px;margin-right:4px;}
+.hbox-text svg{width:16px;height:16px;vertical-align:-3px;margin-right:4px;}
+.cta-line svg{width:16px;height:16px;vertical-align:-3px;}
+.cta-link svg{width:14px;height:14px;vertical-align:-2px;margin-right:4px;}
 </style>
 </head>
 
@@ -217,7 +224,7 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
     </div>
     <div class="hero-tagline">AUTZ &times; TechFrio<span class="dot-lime">.</span></div>
     <h1 class="hero-title">O vendedor fecha o pedido<br><em>sem sair do CRM.</em></h1>
-    <p class="hero-sub">Integra&ccedil;&atilde;o entre o CISS Poder e o RD Station (CRM, Marketing e Conversas): o pedido de venda &eacute; criado direto no CRM, e as vendas de balc&atilde;o voltam automaticamente como neg&oacute;cio ganho.</p>
+    <p class="hero-sub">Integra&ccedil;&atilde;o entre o CISS Poder e o RD Station (CRM e Conversas): o pedido de venda &eacute; criado direto no CRM, e as vendas de balc&atilde;o voltam automaticamente como neg&oacute;cio ganho.</p>
     <div class="hero-stats">
       <div class="hs"><div class="hs-num">3 pra&ccedil;as</div><div class="hs-lbl">Boa Vista, Macap&aacute; e Manaus</div></div>
       <div class="hs"><div class="hs-num">4 semanas</div><div class="hs-lbl">Cronograma de implementa&ccedil;&atilde;o</div></div>
@@ -287,112 +294,134 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   </div>
 </section>
 
-<!-- 3. A DOR -->
+<!-- 3. ROTEAMENTO POR DDD -->
 <section id="s3">
-  <div class="eyebrow">03. O objetivo central</div>
+  <div class="eyebrow">03. Roteamento por DDD</div>
+  <h2 class="stitle">O lead cai<br><em>na carteira certa.</em></h2>
+  <p class="ssub">O telefone do lead j&aacute; diz de onde ele &eacute;. A gente usa isso pra rotear automaticamente pra carteira da regi&atilde;o certa.</p>
+
+  <div class="g2">
+    <div class="card">
+      <div class="ctitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Filtro autom&aacute;tico por DDD</div>
+      <div class="cbody">Assim que o lead entra (WhatsApp, formul&aacute;rio ou indica&ccedil;&atilde;o), o DDD do telefone &eacute; identificado e associado &agrave; pra&ccedil;a correspondente: Boa Vista, Macap&aacute; ou Manaus.</div>
+    </div>
+    <div class="card">
+      <div class="ctitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Carteira regional certa</div>
+      <div class="cbody">O lead cai direto na fila de vendedores da regi&atilde;o certa, sem precisar de triagem manual pra saber de onde ele &eacute;.</div>
+    </div>
+  </div>
+
+  <div class="hbox" style="margin-top:20px;">
+    <div class="hbox-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Mesmo princ&iacute;pio que j&aacute; funciona hoje pro WhatsApp: DDD 95 vira Boa Vista, DDD 96 vira Macap&aacute;, DDD 92 vira Manaus. A gente leva essa mesma regra pro RD CRM e Conversas.</div>
+  </div>
+</section>
+
+<!-- 4. O OBJETIVO CENTRAL -->
+<section id="s4">
+  <div class="eyebrow">04. O objetivo central</div>
   <h2 class="stitle">Parar de alternar<br><em>entre sistemas.</em></h2>
   <p class="ssub">O vendedor hoje precisa abrir o CISS Poder pra fechar o pedido, mesmo atendendo pelo CRM. Isso confunde o time e perde tempo.</p>
 
   <div class="prob-list">
     <div class="prob-item">
-      <div class="prob-ico">&#128257;</div>
+      <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
       <div><div class="prob-title">Troca constante de janela</div><div class="prob-body">Vendedor atende no RD, mas precisa abrir o CISS Poder pra criar o pedido, aprender dois sistemas diferentes ao mesmo tempo.</div></div>
     </div>
     <div class="prob-item">
-      <div class="prob-ico">&#127970;</div>
+      <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M9 21v-6h6v6"/><path d="M3 9h18"/></svg></div>
       <div><div class="prob-title">Venda presencial fora do radar</div><div class="prob-body">Vendas de balc&atilde;o feitas direto no CISS Poder n&atilde;o aparecem no CRM, sem relat&oacute;rio nem hist&oacute;rico do cliente.</div></div>
     </div>
     <div class="prob-item">
-      <div class="prob-ico">&#128230;</div>
+      <div class="prob-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3.3 8.5l8.7 5 8.7-5"/><line x1="12" y1="21.5" x2="12" y2="13.5"/></svg></div>
       <div><div class="prob-title">Estoque cruzado entre lojas</div><div class="prob-body">Venda fechada numa loja, retirada em outra por falta de estoque, sem perder a comiss&atilde;o do vendedor original.</div></div>
     </div>
   </div>
 </section>
 
-<!-- 4. CRM → SIS PODER -->
-<section id="s4">
-  <div class="eyebrow">04. RD CRM &rarr; CISS Poder</div>
+<!-- 5. CRM → CISS PODER -->
+<section id="s5">
+  <div class="eyebrow">05. RD CRM &rarr; CISS Poder</div>
   <h2 class="stitle">O pedido nasce<br><em>dentro do CRM.</em></h2>
   <p class="ssub">Validamos a documenta&ccedil;&atilde;o oficial da API do CISS Poder (MIMP): &eacute; poss&iacute;vel criar o pedido de venda direto do CRM, sem o vendedor tocar no CISS Poder.</p>
 
   <div class="flow-grid">
     <div class="flow-card">
-      <div class="flow-ico" style="background:rgba(74,222,128,0.15);">&#128222;</div>
+      <div class="flow-ico" style="background:rgba(74,222,128,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
       <div class="flow-name">Loja autom&aacute;tica</div>
       <div class="flow-desc">A loja do pedido &eacute; definida pelo cadastro do vendedor no CRM, sem ele precisar escolher.</div>
     </div>
     <div class="flow-card">
-      <div class="flow-ico" style="background:rgba(96,165,250,0.15);">&#128230;</div>
+      <div class="flow-ico" style="background:rgba(96,165,250,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3.3 8.5l8.7 5 8.7-5"/><line x1="12" y1="21.5" x2="12" y2="13.5"/></svg></div>
       <div class="flow-name">Itens e forma de pagamento</div>
       <div class="flow-desc">Produto, quantidade, valor e forma de pagamento (boleto, Pix ou cart&atilde;o) preenchidos direto na negocia&ccedil;&atilde;o.</div>
     </div>
     <div class="flow-card">
-      <div class="flow-ico" style="background:rgba(167,139,250,0.15);">&#9989;</div>
+      <div class="flow-ico" style="background:rgba(167,139,250,0.15);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
       <div class="flow-name">Campos obrigat&oacute;rios no funil</div>
       <div class="flow-desc">Tipo de entrega (retirada ou entrega) e demais campos exigidos pelo CISS Poder, travados antes de avan&ccedil;ar etapa.</div>
     </div>
     <div class="flow-card">
-      <div class="flow-ico" style="background:rgba(233,255,74,0.12);">&#128230;</div>
+      <div class="flow-ico" style="background:rgba(233,255,74,0.12);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3.3 8.5l8.7 5 8.7-5"/><line x1="12" y1="21.5" x2="12" y2="13.5"/></svg></div>
       <div class="flow-name">Pedido criado automaticamente</div>
       <div class="flow-desc">Ao fechar a negocia&ccedil;&atilde;o, o pedido de venda &eacute; gerado no CISS Poder sem interven&ccedil;&atilde;o manual do vendedor.</div>
     </div>
   </div>
 </section>
 
-<!-- 5. SIS PODER → CRM -->
-<section id="s5">
-  <div class="eyebrow">05. CISS Poder &rarr; RD CRM</div>
+<!-- 6. CISS PODER → CRM -->
+<section id="s6">
+  <div class="eyebrow">06. CISS Poder &rarr; RD CRM</div>
   <h2 class="stitle">A venda de balc&atilde;o<br><em>tamb&eacute;m entra no CRM.</em></h2>
   <p class="ssub">Venda feita direto no CISS Poder (presencial) volta pro CRM como neg&oacute;cio ganho, com a origem identificada.</p>
 
   <div class="g2">
     <div class="card">
-      <div class="ctitle">&#128260; Rotina de consulta ou webhook</div>
+      <div class="ctitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Rotina de consulta ou webhook</div>
       <div class="cbody">Captura novos pedidos do CISS Poder automaticamente, por consulta peri&oacute;dica ou notifica&ccedil;&atilde;o em tempo real, conforme o que o sistema permitir.</div>
     </div>
     <div class="card">
-      <div class="ctitle">&#127919; Origem identificada</div>
+      <div class="ctitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Origem identificada</div>
       <div class="cbody">Cada venda chega marcada com a origem (balc&atilde;o, busca paga etc.), pra relat&oacute;rio de desempenho por canal e por vendedor.</div>
     </div>
   </div>
 
   <div class="hbox" style="margin-top:20px;">
-    <div class="hbox-text">&#128202; Mesmo modelo que j&aacute; aplicamos em outro cliente nosso (ERP diferente): pedidos de balc&atilde;o entram automaticamente como neg&oacute;cio ganho, segmentados por origem pra an&aacute;lise de resultado.</div>
+    <div class="hbox-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Mesmo modelo que j&aacute; aplicamos em outro cliente nosso (ERP diferente): pedidos de balc&atilde;o entram automaticamente como neg&oacute;cio ganho, segmentados por origem pra an&aacute;lise de resultado.</div>
   </div>
 </section>
 
-<!-- 6. ESTOQUE CRUZADO -->
-<section id="s6">
-  <div class="eyebrow">06. Venda numa loja, retirada em outra</div>
+<!-- 7. ESTOQUE CRUZADO -->
+<section id="s7">
+  <div class="eyebrow">07. Venda numa loja, retirada em outra</div>
   <h2 class="stitle">O vendedor original<br><em>n&atilde;o perde a venda.</em></h2>
   <p class="ssub">Quando o produto n&atilde;o tem estoque na loja onde a venda foi fechada, a retirada acontece em outra, mas a comiss&atilde;o continua com quem vendeu.</p>
 
   <div class="hbox">
-    <div class="hbox-text">&#128204; Criamos um <strong>campo personalizado no CRM</strong> indicando se a retirada &eacute; na mesma loja ou em outra, sem trocar o vendedor respons&aacute;vel pela negocia&ccedil;&atilde;o. &Eacute; uma trava de processo, n&atilde;o uma regra do CISS Poder.</div>
+    <div class="hbox-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Criamos um <strong>campo personalizado no CRM</strong> indicando se a retirada &eacute; na mesma loja ou em outra, sem trocar o vendedor respons&aacute;vel pela negocia&ccedil;&atilde;o. &Eacute; uma trava de processo, n&atilde;o uma regra do CISS Poder.</div>
   </div>
 </section>
 
-<!-- 7. LIMITAÇÃO CONHECIDA -->
-<section id="s7">
-  <div class="eyebrow">07. O que a documenta&ccedil;&atilde;o n&atilde;o cobre</div>
+<!-- 8. LIMITAÇÃO CONHECIDA -->
+<section id="s8">
+  <div class="eyebrow">08. O que a documenta&ccedil;&atilde;o n&atilde;o cobre</div>
   <h2 class="stitle">Sem consulta de estoque,<br><em>sem gera&ccedil;&atilde;o de nota.</em></h2>
   <p class="ssub">Transpar&ecirc;ncia t&eacute;cnica: a documenta&ccedil;&atilde;o oficial do CISS Poder (MIMP) n&atilde;o traz endpoint de estoque nem de emiss&atilde;o de nota fiscal.</p>
 
   <div class="g2">
     <div class="card2">
-      <div class="ctitle">&#128230; Pedido sem valida&ccedil;&atilde;o pr&eacute;via de estoque</div>
+      <div class="ctitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3.3 8.5l8.7 5 8.7-5"/><line x1="12" y1="21.5" x2="12" y2="13.5"/></svg> Pedido sem valida&ccedil;&atilde;o pr&eacute;via de estoque</div>
       <div class="cbody">O pedido &eacute; criado mesmo sem confirma&ccedil;&atilde;o de estoque, do mesmo jeito que funciona hoje. Se precisar bloquear por falta de produto, isso depende de uma libera&ccedil;&atilde;o espec&iacute;fica da CISS.</div>
     </div>
     <div class="card2">
-      <div class="ctitle">&#129534; Baixa de estoque no faturamento</div>
+      <div class="ctitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg> Baixa de estoque no faturamento</div>
       <div class="cbody">A baixa acontece quando a nota &eacute; emitida pelo pr&oacute;prio CISS Poder, n&atilde;o pela integra&ccedil;&atilde;o. O CRM cuida do pedido, o faturamento continua no ERP.</div>
     </div>
   </div>
 </section>
 
-<!-- 8. CRONOGRAMA -->
-<section id="s8">
-  <div class="eyebrow">08. Escopo e cronograma</div>
+<!-- 9. CRONOGRAMA -->
+<section id="s9">
+  <div class="eyebrow">09. Escopo e cronograma</div>
   <h2 class="stitle">4 semanas,<br><em>pra pra&ccedil;a piloto no ar.</em></h2>
   <p class="ssub">Implementa&ccedil;&atilde;o em Boa Vista primeiro, com Macap&aacute; e Manaus entrando depois da estabiliza&ccedil;&atilde;o.</p>
 
@@ -416,13 +445,13 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   </div>
 
   <div class="hbox" style="margin-top:20px;">
-    <div class="hbox-text">&#9201;&#65039; <strong>Total estimado: 52 horas</strong>, distribu&iacute;das em 4 semanas.</div>
+    <div class="hbox-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <strong>Total estimado: 52 horas</strong>, distribu&iacute;das em 4 semanas.</div>
   </div>
 </section>
 
-<!-- 9. INVESTIMENTO -->
-<section id="s9">
-  <div class="eyebrow">09. Investimento</div>
+<!-- 10. INVESTIMENTO -->
+<section id="s10">
+  <div class="eyebrow">10. Investimento</div>
   <h2 class="stitle">Dois valores,<br><em>sem letra mi&uacute;da.</em></h2>
   <p class="ssub">Setup da integra&ccedil;&atilde;o e sustenta&ccedil;&atilde;o mensal, separados e claros.</p>
 
@@ -435,24 +464,25 @@ section{min-height:auto;page-break-inside:avoid;break-inside:avoid;padding:40px 
   </div>
 
   <div class="hbox" style="margin-top:20px;">
-    <div class="hbox-text">&#128179; O Setup pode ser pago em <strong>3x sem juros no boleto</strong> ou <strong>12x no cart&atilde;o</strong> (parcelamento no cart&atilde;o sujeito a altera&ccedil;&atilde;o de valores pelos juros da operadora).</div>
+    <div class="hbox-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> O Setup pode ser pago em <strong>3x sem juros no boleto</strong> ou <strong>12x no cart&atilde;o</strong> (parcelamento no cart&atilde;o sujeito a altera&ccedil;&atilde;o de valores pelos juros da operadora).</div>
   </div>
   <div class="hbox" style="margin-top:14px;">
-    <div class="hbox-text">&#128197; A <strong>sustenta&ccedil;&atilde;o mensal</strong> s&oacute; come&ccedil;a a ser cobrada <strong>30 dias ap&oacute;s a solu&ccedil;&atilde;o aprovada e rodando</strong>, n&atilde;o a partir do fechamento do contrato.</div>
+    <div class="hbox-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> A <strong>sustenta&ccedil;&atilde;o mensal</strong> s&oacute; come&ccedil;a a ser cobrada <strong>30 dias ap&oacute;s a solu&ccedil;&atilde;o aprovada e rodando</strong>, n&atilde;o a partir do fechamento do contrato.</div>
   </div>
 </section>
 
-<section class="cta-sec" id="s10" style="max-width:100%;">
+<!-- 11. CTA -->
+<section class="cta-sec" id="s11" style="max-width:100%;">
   <div class="cta-autz">
     <div class="autz-logo-img"></div>
   </div>
-  <div class="eyebrow" style="margin-bottom:18px;">10. Pr&oacute;ximos passos</div>
+  <div class="eyebrow" style="margin-bottom:18px;">11. Pr&oacute;ximos passos</div>
   <h2 class="cta-title">Vamos <em>fechar a tempo?</em></h2>
   <p class="cta-sub">A/C Fernando: o or&ccedil;amento da RD Station &eacute; v&aacute;lido at&eacute; dia 30. Confirmando at&eacute; l&aacute;, os testes come&ccedil;am em novembro e a opera&ccedil;&atilde;o roda cheia em dezembro.</p>
   <div class="cta-box">
-    <div class="cta-line"><strong>&#128222;</strong> (16) 99289-6549</div>
-    <div class="cta-line"><strong>&#9993;&#65039;</strong> mk@autz.com.br</div>
-    <div class="cta-line"><a class="cta-link" href="https://autz.com.br/agenda-online-mika/">&#128197; Agende uma reuni&atilde;o aqui</a></div>
+    <div class="cta-line"><strong><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></strong> (16) 99289-6549</div>
+    <div class="cta-line"><strong><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></strong> mk@autz.com.br</div>
+    <div class="cta-line"><a class="cta-link" href="https://autz.com.br/agenda-online-mika/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agende uma reuni&atilde;o aqui</a></div>
   </div>
   <div class="cta-foot">&copy; 2026 AUTZ Solu&ccedil;&otilde;es Digitais Integradas &middot; CNPJ 54.489.785/0001-37</div>
 </section>
