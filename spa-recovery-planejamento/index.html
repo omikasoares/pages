@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Spa Recovery | Planejamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--surface:#00323A;--surface2:#003D47;--lime:#E9FF4A;--white:#fff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--amber:#fbbf24;--green:#4ade80;--blue:#60a5fa;--border:rgba(233,255,74,.15);--bw:rgba(255,255,255,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:Poppins,system-ui,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--bw)}
+header.top img{height:28px}
+header.top span{color:var(--gray);font-size:13px}
+.hero{padding:72px 0 56px}
+.eyebrow{color:var(--lime);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(32px,5.5vw,54px);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:14px 0 18px}
+h1 em{font-style:normal;color:var(--lime)}
+.lead{color:var(--gray);font-size:17px;max-width:720px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{border:1px solid var(--bw);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:13px;color:#cfe0e3}
+section{padding:56px 0;border-top:1px solid var(--bw)}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.01em;margin:8px 0 10px}
+.sub{color:var(--gray);max-width:760px;margin-bottom:28px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:28px}
+.kpi{background:var(--surface);border:1px solid var(--bw);border-radius:16px;padding:20px}
+.kpi b{display:block;font-size:30px;font-weight:800;color:var(--lime);line-height:1.1}
+.kpi span{color:var(--gray);font-size:13px}
+.tbl{width:100%;border-collapse:collapse;background:var(--surface);border-radius:16px;overflow:hidden;font-size:14px}
+.tbl th{text-align:left;background:var(--surface2);color:var(--gray);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px}
+.tbl td{padding:13px 16px;border-top:1px solid var(--bw);vertical-align:top}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+.scroll{overflow-x:auto;border-radius:16px}
+.thesis{background:linear-gradient(135deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:20px;padding:28px;margin-top:28px;font-size:18px;font-weight:500}
+.thesis strong{color:var(--lime)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:24px}
+.card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.card p{color:var(--gray);font-size:14px}
+.card ul{list-style:none;margin-top:12px}
+.card li{padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--bw);font-size:14px}
+.card li:first-child{border-top:0}
+.card li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.funnel{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:24px;margin-bottom:16px}
+.funnel h3{font-size:18px;font-weight:700}
+.funnel .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--lime);border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:middle}
+.funnel p{color:var(--gray);font-size:14px;margin:4px 0 16px}
+.stages{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.stage{background:var(--surface2);border:1px solid var(--bw);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:500}
+.stage.win{border-color:rgba(74,222,128,.4);color:var(--green)}
+.stage.lost{border-color:rgba(232,89,60,.4);color:var(--red)}
+.arrow{color:var(--gray2);font-size:14px}
+.steps{counter-reset:s;display:grid;gap:10px}
+.step{counter-increment:s;display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:16px 18px}
+.step::before{content:counter(s);flex:0 0 32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);color:var(--lime);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.step b{display:block;font-size:15px}
+.step span{color:var(--gray);font-size:14px}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+.route div{border-radius:14px;padding:16px 18px;border:1px solid var(--bw);background:var(--surface2)}
+.route b{color:var(--lime)}
+.note{border-left:3px solid var(--amber);background:rgba(251,191,36,.06);border-radius:0 12px 12px 0;padding:14px 18px;margin-top:14px;font-size:14px;color:#e8dcc0}
+.note b{color:var(--amber)}
+.timeline{display:grid;gap:10px}
+.week{display:grid;grid-template-columns:110px 1fr;gap:16px;background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:16px 18px}
+.week .w{font-weight:700}
+.week .w small{display:block;color:var(--gray);font-weight:400;font-size:12px}
+.week.now{border-color:var(--border)}
+.week.now .w{color:var(--lime)}
+.todo{list-style:none}
+.todo li{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--bw);font-size:14px}
+.todo li:first-child{border-top:0}
+.todo .who{flex:0 0 92px;color:var(--lime);font-weight:600}
+.q{list-style:none;counter-reset:q;display:grid;gap:10px}
+.q li{counter-increment:q;background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:14px 18px 14px 56px;position:relative;font-size:15px}
+.q li::before{content:counter(q,decimal-leading-zero);position:absolute;left:18px;top:14px;color:var(--lime);font-weight:700}
+footer{padding:40px 0 56px;border-top:1px solid var(--bw);color:var(--gray);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer img{height:22px;opacity:.85}
+@media (max-width:560px){.week{grid-template-columns:1fr;gap:4px}.todo li{flex-direction:column;gap:2px}.hero{padding:48px 0 40px}section{padding:44px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><img src="../assets/autz-logo-white.png" alt="AUTZ"><span>Planejamento estratégico · Semana 1</span></header>
+
+<div class="hero">
+  <div class="eyebrow">Spa Recovery × AUTZ</div>
+  <h1>Do atendimento no feeling<br>para um <em>processo que escala</em></h1>
+  <p class="lead">Planejamento da implantação de RD Station Marketing, CRM e Conversas, construído a partir da reunião de 27/10. Este é o material que vamos validar juntos na reunião de 05/11.</p>
+  <div class="meta"><span class="chip">RD Marketing + CRM + Conversas</span><span class="chip">6 semanas · entrega em 08/12</span><span class="chip">Reunião de validação: 05/11, 9h</span></div>
+</div>
+
+<section>
+  <div class="eyebrow">01 · Onde estamos</div>
+  <h2>O que vimos no kickoff</h2>
+  <p class="sub">A operação comercial já tem um método que funciona. O que falta é estrutura para ele não depender da memória e das horas de plantão de duas pessoas.</p>
+  <div class="kpis">
+    <div class="kpi"><b>350 a 400</b><span>leads por mês</span></div>
+    <div class="kpi"><b>90%</b><span>vindos de mídia paga</span></div>
+    <div class="kpi"><b>~14 mil</b><span>leads no RD sem funil nem follow-up</span></div>
+    <div class="kpi"><b>~100</b><span>leads quentes por mês sem acompanhamento estruturado</span></div>
+  </div>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Ponto</th><th>Hoje</th><th>O que muda</th></tr>
+    <tr><td>Triagem</td><td>Teresa e Débora fazem tudo, inclusive com quem não tem perfil</td><td>Bot coleta os dados e filtra antes de chegar ao time</td></tr>
+    <tr><td>Retomada</td><td>"Fantasminhas" retomados semanalmente, no feeling</td><td>Cadência automática com regra clara e histórico</td></tr>
+    <tr><td>Fim de semana</td><td>Período mais quente, coberto por plantão manual</td><td>Atendimento automático e fila priorizada na volta</td></tr>
+    <tr><td>Pós-alta</td><td>Escala nova de 1 semana, 15 dias e 1 mês, manual</td><td>Contatos disparados pela data de alta, sem esquecer ninguém</td></tr>
+    <tr><td>Resultado</td><td>Sabemos de onde vem o lead, não de onde vem a internação</td><td>Rastreio de ponta a ponta: anúncio, conversa, preço, internação</td></tr>
+  </table></div>
+  <div class="thesis">A tese da implantação: transformar o que o comercial já faz bem em <strong>funil, cadência e métrica</strong>, para atender mais gente com o mesmo time e medir o que de fato gera internação.</div>
+</section>
+
+<section>
+  <div class="eyebrow">02 · RD Station CRM</div>
+  <h2>Três funis, uma jornada</h2>
+  <p class="sub">Cada funil cobre um momento do paciente e da família. Um lead pode passar pelos três.</p>
+
+  <div class="funnel">
+    <h3>Internação <span class="tag">principal</span></h3>
+    <p>Do primeiro contato até a entrada do paciente.</p>
+    <div class="stages">
+      <span class="stage">Novo lead</span><span class="arrow">→</span>
+      <span class="stage">Em qualificação</span><span class="arrow">→</span>
+      <span class="stage">Preço apresentado</span><span class="arrow">→</span>
+      <span class="stage">Negociação</span><span class="arrow">→</span>
+      <span class="stage">Contrato enviado</span><span class="arrow">→</span>
+      <span class="stage">Internação agendada</span><span class="arrow">→</span>
+      <span class="stage win">Internado</span>
+      <span class="stage lost">Perdido</span>
+    </div>
+  </div>
+  <div class="funnel">
+    <h3>Retomada</h3>
+    <p>Para quem recebeu o preço e sumiu, ou travou no valor. Ao reengajar, volta para Negociação.</p>
+    <div class="stages">
+      <span class="stage">Sumiu após preço</span><span class="arrow">→</span>
+      <span class="stage">Retomada sem. 1</span><span class="arrow">→</span>
+      <span class="stage">Sem. 2</span><span class="arrow">→</span>
+      <span class="stage">Sem. 3</span><span class="arrow">→</span>
+      <span class="stage">Sem. 4</span><span class="arrow">→</span>
+      <span class="stage">Nutrição longa</span><span class="arrow">→</span>
+      <span class="stage win">Reengajou</span>
+    </div>
+  </div>
+  <div class="funnel">
+    <h3>Pós-alta</h3>
+    <p>Acompanhamento do paciente que saiu, com espaço para terapias, consultas e reinternação.</p>
+    <div class="stages">
+      <span class="stage">Alta</span><span class="arrow">→</span>
+      <span class="stage">1 semana</span><span class="arrow">→</span>
+      <span class="stage">15 dias</span><span class="arrow">→</span>
+      <span class="stage">30 dias</span><span class="arrow">→</span>
+      <span class="stage">Mensal</span><span class="arrow">→</span>
+      <span class="stage win">Produto de pós ou reinternação</span>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="card"><h3>Informações do lead</h3><p>Campos que o time preenche (ou o bot já traz) em cada negociação.</p>
+      <ul><li>Para quem é o tratamento e parentesco</li><li>Idade e cidade do paciente</li><li>Demanda principal: álcool, cocaína, crack, maconha, medicamentos, saúde mental</li><li>Tempo de uso e internações anteriores</li><li>Período desejado: 7, 15, 30 ou 90 dias</li><li>Quarto: duplo, individual ou Prime</li><li>Forma de pagamento</li><li>Origem: Spa Recovery, Me Recovery, Instagram, orgânico</li><li>Datas de entrada e de alta</li></ul></div>
+    <div class="card"><h3>Motivos de perda</h3><p>Obrigatórios ao perder, para entender onde a venda escapa.</p>
+      <ul><li>Sem condição financeira</li><li>Não respondeu (tentativas esgotadas)</li><li>Buscava internação involuntária</li><li>Buscava consulta ou clínico geral</li><li>Perfil clínico fora do escopo</li><li>Família não apoiou ou desistiu</li><li>Fechou com outra clínica</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">03 · RD Station Conversas</div>
+  <h2>WhatsApp oficial com triagem automática</h2>
+  <p class="sub">Todo contato, venha do site, do Google, do Instagram ou direto no WhatsApp, passa pela mesma porta de entrada.</p>
+  <div class="steps">
+    <div class="step"><div><b>Boas-vindas e sigilo</b><span>Primeira mensagem acolhedora, reforçando a confidencialidade.</span></div></div>
+    <div class="step"><div><b>Quem é e para quem é</b><span>Nome, se o tratamento é para a própria pessoa ou para um familiar, idade e cidade.</span></div></div>
+    <div class="step"><div><b>Demanda principal</b><span>Seleção simples do tipo de tratamento buscado.</span></div></div>
+    <div class="step"><div><b>Filtro de perfil</b><span>Quem procura consulta médica comum recebe orientação e não ocupa a fila do comercial.</span></div></div>
+    <div class="step"><div><b>Negociação criada no CRM</b><span>Com as respostas já preenchidas, sem digitação manual.</span></div></div>
+  </div>
+  <div class="route">
+    <div><b>8h às 20h</b><br>Vai direto para a fila do comercial (Teresa e Débora), com o contexto pronto.</div>
+    <div><b>Fora do horário e fim de semana</b><br>Atendimento por IA, com retorno garantido e prioridade na fila seguinte.</div>
+  </div>
+
+  <h3 style="font-size:20px;margin:36px 0 14px">Cadências automáticas</h3>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Situação</th><th>Cadência proposta</th></tr>
+    <tr><td>Lead novo sem resposta</td><td>D0, D1, D3, D7, D14 e D30, depois encerra como "não respondeu"</td></tr>
+    <tr><td>Sumiu após o preço</td><td>1 mensagem por semana durante 4 semanas, depois nutrição mensal</td></tr>
+    <tr><td>Interessado com objeção de preço</td><td>Semanal, com um argumento diferente a cada vez: estrutura, método de 90 dias, opções de 15 ou 30 dias, condições de pagamento</td></tr>
+    <tr><td>Pós-alta</td><td>7, 15 e 30 dias após a alta, depois mensal</td></tr>
+  </table></div>
+  <p class="sub" style="margin-top:14px">Os textos partem dos scripts que o comercial já usa. Também entram os disparos para ex-pacientes, como uma campanha de fim de ano.</p>
+  <div class="note"><b>Atenção na migração.</b> O histórico do WhatsApp Business atual não passa automaticamente para a API oficial. Fazemos o backup por um número secundário antes de ativar. E, por ser um tema de saúde sensível, os modelos de mensagem são escritos para passar na aprovação da Meta.</div>
+</section>
+
+<section>
+  <div class="eyebrow">04 · RD Station Marketing</div>
+  <h2>Saber o que gera internação, não só lead</h2>
+  <div class="grid2">
+    <div class="card"><h3>Conexões e rastreio</h3><ul><li>Google Ads (as duas contas), Meta Ads, Instagram e Meta Business</li><li>Formulários do site integrados ao RD, sem perder o envio para o WhatsApp</li><li>UTMs padronizadas por campanha</li><li>Domínio e autenticação de e-mail, junto com a agência do site</li></ul></div>
+    <div class="card"><h3>Base e automações</h3><ul><li>Limpeza da base histórica de ~14 mil contatos antes de qualquer envio</li><li>Segmentações por demanda, etapa e ex-pacientes</li><li>Fluxo de nutrição para quem recebeu o preço</li><li>Fluxo de reativação da base antiga</li><li>Modelo de e-mail na identidade da marca</li></ul></div>
+  </div>
+  <div class="note"><b>LGPD.</b> Informação de saúde é dado sensível. Os formulários terão consentimento claro, e nenhum e-mail expõe condição de saúde no assunto ou na prévia.</div>
+</section>
+
+<section>
+  <div class="eyebrow">05 · Cronograma</div>
+  <h2>Seis semanas até a operação completa</h2>
+  <p class="sub">O time começa a usar a partir da segunda semana. As últimas semanas são de ajuste e treinamento.</p>
+  <div class="timeline">
+    <div class="week now"><div class="w">Semana 1<small>até 05/11</small></div><div>Planejamento validado e todos os acessos liberados</div></div>
+    <div class="week"><div class="w">Semana 2<small>até 10/11</small></div><div>Funis e campos no CRM, conexões no RD Marketing, número ativado no Conversas</div></div>
+    <div class="week"><div class="w">Semana 3<small>até 17/11</small></div><div>Bot de entrada no ar, Conversas integrado ao CRM, formulários do site no RD</div></div>
+    <div class="week"><div class="w">Semana 4<small>até 24/11</small></div><div>Cadências e modelos de mensagem aprovados, fluxos de e-mail</div></div>
+    <div class="week"><div class="w">Semana 5<small>até 01/12</small></div><div>Retomada e pós-alta automáticos, campanha de fim de ano</div></div>
+    <div class="week"><div class="w">Semana 6<small>até 08/12</small></div><div>Treinamentos e ajustes finais</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">06 · Para destravar</div>
+  <h2>O que precisamos de vocês</h2>
+  <div class="card"><ul class="todo">
+    <li><span class="who">Túlio</span>Link de ativação do RD Conversas (com o Artur)</li>
+    <li><span class="who">Túlio</span>Acesso da AUTZ ao Meta Business</li>
+    <li><span class="who">Túlio</span>Logo e manual da marca</li>
+    <li><span class="who">Túlio</span>Contato da agência responsável pelo site e domínio</li>
+    <li><span class="who">Teresa</span>Scripts de atendimento e o funil desenhado com a Débora</li>
+    <li><span class="who">Diretoria</span>Decisão sobre parcelamento no cartão e tabela de preços completa</li>
+  </ul></div>
+</section>
+
+<section>
+  <div class="eyebrow">07 · Para a reunião de 05/11</div>
+  <h2>Perguntas para fecharmos juntos</h2>
+  <ol class="q">
+    <li>Vocês atendem menores de idade, com acompanhamento do responsável?</li>
+    <li>Quem fecha o contrato: só o comercial, ou a diretoria participa em algum momento?</li>
+    <li>No fim de semana, mantemos plantão humano ou a IA assume e o time retoma na segunda?</li>
+    <li>Fora do horário: seguimos com o Cláudio ou passamos para a IA do RD Conversas?</li>
+    <li>Podemos usar depoimentos de pacientes nas mensagens e e-mails?</li>
+    <li>Os produtos de pós (terapias, consultas, nutrição) já têm preço definido?</li>
+    <li>Me Recovery tem funil próprio ou entra só como origem do lead?</li>
+  </ol>
+</section>
+
+<footer><img src="../assets/autz-logo-white.png" alt="AUTZ"><span>Material preparado pela AUTZ para a Spa Recovery · outubro de 2026</span></footer>
+</div>
+</body>
+</html>
