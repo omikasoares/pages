@@ -4,56 +4,80 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Spa Recovery | Planejamento</title>
+<title>Spa Recovery | Planejamento Completo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#00272C;--surface:#00323A;--surface2:#003D47;--lime:#E9FF4A;--white:#fff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--amber:#fbbf24;--green:#4ade80;--blue:#60a5fa;--border:rgba(233,255,74,.15);--bw:rgba(255,255,255,.08)}
+:root{--bg:#00272C;--bg2:#001e23;--surface:#00323A;--surface2:#003D47;--lime:#E9FF4A;--white:#fff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--amber:#fbbf24;--green:#4ade80;--blue:#60a5fa;--purple:#a78bfa;--border:rgba(233,255,74,.15);--bw:rgba(255,255,255,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:Poppins,system-ui,sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--bw);gap:12px}
 header.top img{height:28px}
-header.top span{color:var(--gray);font-size:13px;text-align:right}
-nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-nav.toc a{color:#cfe0e3;text-decoration:none;font-size:13px;border:1px solid var(--bw);border-radius:999px;padding:5px 12px}
-nav.toc a:hover{border-color:var(--border);color:var(--lime)}
-.hero{padding:64px 0 48px}
+header.top span{color:var(--gray);font-size:13px}
+.hero{padding:64px 0 40px}
 .eyebrow{color:var(--lime);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
-h1{font-size:clamp(32px,5.5vw,54px);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:14px 0 18px}
+h1{font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.06;letter-spacing:-.02em;margin:14px 0 18px}
 h1 em{font-style:normal;color:var(--lime)}
-.lead{color:var(--gray);font-size:17px;max-width:740px}
+.lead{color:var(--gray);font-size:17px;max-width:760px}
 .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .chip{border:1px solid var(--bw);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:13px;color:#cfe0e3}
-section{padding:56px 0;border-top:1px solid var(--bw);scroll-margin-top:12px}
-h2{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.01em;margin:8px 0 10px}
-h3.h{font-size:20px;font-weight:700;margin:36px 0 12px}
-.sub{color:var(--gray);max-width:780px;margin-bottom:24px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:24px}
+section{padding:60px 0;border-top:1px solid var(--bw);scroll-margin-top:10px}
+h2{font-size:clamp(24px,3.4vw,34px);font-weight:700;letter-spacing:-.01em;margin:8px 0 10px}
+h3.h{font-size:20px;font-weight:700;margin:34px 0 12px}
+.sub{color:var(--gray);max-width:800px;margin-bottom:24px}
+.sub b{color:#dce9eb}
+.back{display:inline-block;margin-top:22px;font-size:13px;color:var(--gray);text-decoration:none}
+.back:hover{color:var(--lime)}
+/* sumário */
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
+.toc-group{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:20px}
+.toc-group h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:8px;font-weight:600}
+.toc-group a{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:9px 0;border-top:1px solid var(--bw);text-decoration:none;color:var(--white)}
+.toc-group a:first-of-type{border-top:0}
+.toc-group a:hover b{color:var(--lime)}
+.toc-group a span.n{color:var(--lime);font-weight:700;font-size:14px}
+.toc-group a b{display:block;font-size:15px;font-weight:600}
+.toc-group a small{display:block;color:var(--gray);font-size:13px;line-height:1.45}
+.toc-group.journey{border-color:var(--border)}
+/* jornada */
+.journey-map{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:8px 0 22px}
+.jstep{background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:14px 12px;position:relative;text-decoration:none;color:var(--white)}
+.jstep:hover{border-color:var(--border)}
+.jstep .k{color:var(--lime);font-size:12px;font-weight:700}
+.jstep b{display:block;font-size:14px;margin:2px 0 6px;line-height:1.3}
+.jstep span{display:block;color:var(--gray);font-size:12px;line-height:1.4}
+.tools{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.t{font-size:10.5px;font-weight:600;border-radius:5px;padding:1px 6px}
+.t-mkt{background:rgba(96,165,250,.16);color:var(--blue)}
+.t-crm{background:rgba(74,222,128,.14);color:var(--green)}
+.t-rdc{background:rgba(167,139,250,.16);color:#c4b5fd}
+.t-ads{background:rgba(251,191,36,.14);color:var(--amber)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px}
 .kpi{background:var(--surface);border:1px solid var(--bw);border-radius:16px;padding:20px}
 .kpi b{display:block;font-size:30px;font-weight:800;color:var(--lime);line-height:1.1}
 .kpi span{color:var(--gray);font-size:13px}
 .tbl{width:100%;border-collapse:collapse;background:var(--surface);font-size:14px}
-.tbl th{text-align:left;background:var(--surface2);color:var(--gray);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px}
-.tbl td{padding:12px 16px;border-top:1px solid var(--bw);vertical-align:top}
+.tbl th{text-align:left;background:var(--surface2);color:var(--gray);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:12px 14px}
+.tbl td{padding:11px 14px;border-top:1px solid var(--bw);vertical-align:top}
 .tbl td:first-child{font-weight:600}
 .tbl code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--lime);background:rgba(233,255,74,.07);padding:1px 6px;border-radius:5px}
 .scroll{overflow-x:auto;border-radius:16px;border:1px solid var(--bw)}
-.thesis{background:linear-gradient(135deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:20px;padding:26px 28px;margin-top:24px;font-size:18px;font-weight:500}
+.thesis{background:linear-gradient(135deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:20px;padding:24px 28px;margin-top:22px;font-size:18px;font-weight:500}
 .thesis strong{color:var(--lime)}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-.card{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:24px}
-.card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:22px}
+.card h3{font-size:17px;font-weight:700;margin-bottom:6px}
 .card p{color:var(--gray);font-size:14px}
-.card ul{list-style:none;margin-top:12px}
-.card li{padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--bw);font-size:14px}
+.card ul{list-style:none;margin-top:10px}
+.card li{padding:7px 0 7px 20px;position:relative;border-top:1px solid var(--bw);font-size:14px}
 .card li:first-child{border-top:0}
-.card li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--lime)}
-.card.keep li::before{background:var(--green)}
-.card.add li::before{background:var(--blue)}
-.funnel{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:24px;margin-bottom:14px}
+.card li::before{content:"";position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:50%;background:var(--lime)}
+.card .tools{margin-top:10px}
+.funnel{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:22px;margin-bottom:14px}
 .funnel h3{font-size:18px;font-weight:700}
 .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--lime);border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:middle}
 .funnel p{color:var(--gray);font-size:14px;margin:4px 0 14px}
@@ -63,35 +87,34 @@ h3.h{font-size:20px;font-weight:700;margin:36px 0 12px}
 .stage.win{border-color:rgba(74,222,128,.4);color:var(--green)}
 .stage.lost{border-color:rgba(232,89,60,.4);color:var(--red)}
 .arrow{color:var(--gray2);font-size:14px}
-.pill{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600}
+.pill{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600;white-space:nowrap}
 .p-urg{background:rgba(232,89,60,.18);color:#ff9c86}
 .p-alta{background:rgba(251,191,36,.16);color:var(--amber)}
 .p-media{background:rgba(96,165,250,.16);color:var(--blue)}
 .p-ori{background:rgba(167,139,250,.16);color:#c4b5fd}
 .p-nut{background:rgba(122,159,168,.18);color:#b7d0d5}
-.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;align-items:stretch}
-.arch div{background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:16px}
-.arch b{display:block;font-size:14px;margin-bottom:4px}
-.arch span{color:var(--gray);font-size:13px}
-.arch .hl{border-color:var(--border)}
-.arch .hl b{color:var(--lime)}
 .shifts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .shift{background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:16px}
 .shift b{color:var(--lime);font-size:14px}
 .shift strong{display:block;font-size:15px;margin:2px 0 6px}
 .shift span{color:var(--gray);font-size:13px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 4px}
+.flow .stage{background:var(--surface)}
 .note{border-left:3px solid var(--amber);background:rgba(251,191,36,.06);border-radius:0 12px 12px 0;padding:14px 18px;margin-top:14px;font-size:14px;color:#e8dcc0}
 .note b{color:var(--amber)}
 .note.red{border-color:var(--red);background:rgba(232,89,60,.07);color:#f3d3cb}
 .note.red b{color:#ff9c86}
+.note.green{border-color:var(--green);background:rgba(74,222,128,.06);color:#d3eedc}
+.note.green b{color:var(--green)}
 .timeline{display:grid;gap:10px}
-.week{display:grid;grid-template-columns:110px 1fr;gap:16px;background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:15px 18px}
+.week{display:grid;grid-template-columns:110px 1fr 1fr;gap:16px;background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:15px 18px;font-size:14px}
 .week .w{font-weight:700}
 .week .w small{display:block;color:var(--gray);font-weight:400;font-size:12px}
+.week em{font-style:normal;display:block;color:var(--gray);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
 .week.now{border-color:var(--border)}
 .week.now .w{color:var(--lime)}
 .owner{margin-bottom:14px}
-.owner h4{font-size:14px;color:var(--lime);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.owner h4{font-size:14px;color:var(--lime);font-weight:600;margin-bottom:6px}
 .todo{list-style:none}
 .todo li{padding:8px 0 8px 24px;border-top:1px solid var(--bw);font-size:14px;position:relative}
 .todo li:first-child{border-top:0}
@@ -102,266 +125,406 @@ h3.h{font-size:20px;font-weight:700;margin:36px 0 12px}
 .q li span{display:block;color:var(--gray);font-size:13px;margin-top:2px}
 footer{padding:40px 0 56px;border-top:1px solid var(--bw);color:var(--gray);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 footer img{height:22px;opacity:.85}
-@media (max-width:560px){.week{grid-template-columns:1fr;gap:4px}.hero{padding:44px 0 36px}section{padding:44px 0}header.top span{display:none}}
+@media (max-width:900px){.journey-map{grid-template-columns:repeat(2,1fr)}.week{grid-template-columns:1fr;gap:6px}}
+@media (max-width:560px){.hero{padding:44px 0 32px}section{padding:46px 0}header.top span{display:none}.journey-map{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><img src="../assets/autz-logo-white.png" alt="AUTZ"><span>Planejamento estratégico · Semana 1</span></header>
+<header class="top"><img src="../assets/autz-logo-white.png" alt="AUTZ"><span>Planejamento estratégico · Implantação RD Station</span></header>
 
-<div class="hero">
+<div class="hero" id="topo">
   <div class="eyebrow">Spa Recovery × AUTZ</div>
-  <h1>O roteiro já existe.<br>Agora ele ganha <em>funil, agenda e resultado</em>.</h1>
-  <p class="lead">Planejamento da implantação de RD Station Marketing, CRM e Conversas. Junta o que ouvimos no kickoff de 27/10 com o Roteiro de atendimento v3 (29/09), que passa a ser a base do atendimento no WhatsApp. É o material que validamos juntos em 05/11.</p>
-  <div class="meta"><span class="chip">RD Marketing + CRM + Conversas</span><span class="chip">6 semanas · entrega em 08/12</span><span class="chip">Validação: 05/11, 9h</span></div>
-  <nav class="toc">
-    <a href="#hoje">Onde estamos</a><a href="#roteiro">Roteiro v3</a><a href="#crm">CRM</a><a href="#conversas">Conversas</a><a href="#marketing">Marketing</a><a href="#metricas">Métricas</a><a href="#cronograma">Cronograma</a><a href="#pendencias">Pendências</a><a href="#perguntas">Perguntas</a>
-  </nav>
+  <h1>Da primeira busca ao <em>retorno do paciente</em>: a jornada inteira, planejada.</h1>
+  <p class="lead">Planejamento completo da implantação de RD Station Marketing, CRM e Conversas. Cobre como o contato chega, como é atendido, como vira paciente, como é acompanhado depois da alta e como volta a se relacionar com a clínica. Construído a partir do kickoff de 27/10 e do Roteiro de atendimento v3.</p>
+  <div class="meta"><span class="chip">RD Marketing + CRM + Conversas</span><span class="chip">Agente de IA no RD Conversas</span><span class="chip">6 semanas · entrega em 08/12</span><span class="chip">Validação: 05/11, 9h</span></div>
 </div>
 
-<section id="hoje">
+<section id="sumario" style="padding-top:20px">
+  <div class="eyebrow">Sumário</div>
+  <h2>Como ler este planejamento</h2>
+  <p class="sub">Começa pelo diagnóstico, percorre as sete fases da jornada na ordem em que o paciente vive cada uma e termina com a operação: integrações, métricas, cronograma e decisões.</p>
+  <div class="toc">
+    <div class="toc-group">
+      <h4>Visão</h4>
+      <a href="#visao"><span class="n">01</span><div><b>Onde estamos</b><small>Números de hoje e a tese da implantação</small></div></a>
+      <a href="#jornada"><span class="n">02</span><div><b>A jornada completa</b><small>As 7 fases, o objetivo de cada uma e a ferramenta responsável</small></div></a>
+    </div>
+    <div class="toc-group journey">
+      <h4>Jornada do paciente</h4>
+      <a href="#captacao"><span class="n">03</span><div><b>Captação</b><small>Canais, públicos, rastreio e qualidade do lead</small></div></a>
+      <a href="#atendimento"><span class="n">04</span><div><b>Atendimento e qualificação</b><small>Agente no RD Conversas, turnos, prioridade e risco</small></div></a>
+      <a href="#venda"><span class="n">05</span><div><b>Venda</b><small>Funil principal no CRM, da avaliação ao contrato</small></div></a>
+      <a href="#retomada"><span class="n">06</span><div><b>Retomada e nutrição</b><small>Quem parou no preço, a família e a base antiga</small></div></a>
+      <a href="#tratamento"><span class="n">07</span><div><b>Chegada e tratamento</b><small>Preparação, família informada, extensão e opcionais</small></div></a>
+      <a href="#posvenda"><span class="n">08</span><div><b>Pós-venda</b><small>Acompanhamento depois da alta e satisfação</small></div></a>
+      <a href="#revenda"><span class="n">09</span><div><b>Revenda e relacionamento</b><small>Produtos de pós, retorno, indicação e campanhas</small></div></a>
+    </div>
+    <div class="toc-group">
+      <h4>Operação</h4>
+      <a href="#integracoes"><span class="n">10</span><div><b>Integrações e automações</b><small>Como as três ferramentas conversam entre si</small></div></a>
+      <a href="#metricas"><span class="n">11</span><div><b>Métricas e painel</b><small>Linha de base, metas e indicadores novos</small></div></a>
+      <a href="#cronograma"><span class="n">12</span><div><b>Cronograma</b><small>Seis semanas, entregas AUTZ e entregas Spa Recovery</small></div></a>
+      <a href="#pendencias"><span class="n">13</span><div><b>Decisões e pendências</b><small>O que precisa ser definido, por responsável</small></div></a>
+      <a href="#perguntas"><span class="n">14</span><div><b>Perguntas para 05/11</b><small>O que fechamos juntos na reunião</small></div></a>
+    </div>
+  </div>
+</section>
+
+<section id="visao">
   <div class="eyebrow">01 · Onde estamos</div>
-  <h2>O que os números já mostram</h2>
-  <p class="sub">O comercial tem um método que funciona e um roteiro muito bem pensado. O vazamento está na noite, no silêncio depois do preço e no que ninguém consegue medir: qual conversa virou paciente.</p>
+  <h2>O método existe. Falta estrutura para ele escalar.</h2>
+  <p class="sub">O comercial vende bem, o roteiro de atendimento é cuidadoso e a estrutura da clínica é diferenciada. O vazamento está na noite, no silêncio depois do preço e na falta de memória do processo: hoje ninguém consegue dizer qual campanha gerou um paciente.</p>
   <div class="kpis">
     <div class="kpi"><b>350 a 400</b><span>leads por mês, 90% de mídia paga</span></div>
-    <div class="kpi"><b>36,4%</b><span>dos leads da noite não voltam a escrever (518 de 1.423)</span></div>
+    <div class="kpi"><b>~14 mil</b><span>leads no RD Marketing, sem funil nem follow-up</span></div>
+    <div class="kpi"><b>36,4%</b><span>dos leads da noite não voltam a escrever</span></div>
     <div class="kpi"><b>5,6 h</b><span>mediana até a primeira resposta humana para quem escreveu à noite</span></div>
-    <div class="kpi"><b>55,2%</b><span>das conversas que não avançam param logo depois do preço, sem objeção</span></div>
-    <div class="kpi"><b>10%</b><span>das propostas viram pedido de dados (479 de 4.776)</span></div>
-    <div class="kpi"><b>7,3%</b><span>das menções de risco recebem orientação por escrito</span></div>
+    <div class="kpi"><b>55,2%</b><span>das conversas que não avançam param logo depois do preço</span></div>
+    <div class="kpi"><b>10%</b><span>das propostas viram pedido de dados</span></div>
   </div>
-  <div class="scroll"><table class="tbl">
-    <tr><th>Ponto</th><th>Hoje</th><th>Com a implantação</th></tr>
-    <tr><td>Noite e fim de semana</td><td>Fila que a equipe encontra de manhã; plantão manual no fim de semana</td><td>Roteiro v3 atendendo nas 4 faixas de horário, entregando uma agenda com horário já aceito</td></tr>
-    <tr><td>Depois do preço</td><td>Silêncio; "fantasminha" retomado no feeling</td><td>Pergunta de reação ao preço, motivo gravado, retornos D+1, D+3, D+7 e D+14</td></tr>
-    <tr><td>Risco</td><td>Orientação escrita em 7,3% dos casos</td><td>Gatilho 24 h, orientação 192/188 imediata, alerta ao plantão e bloqueio comercial</td></tr>
-    <tr><td>Resultado</td><td>~14 mil leads no RD sem funil; internação não aparece no ChatSac</td><td>CRM liga anúncio, conversa, avaliação e entrada do paciente</td></tr>
-    <tr><td>Pós-alta</td><td>Contatos de 1 semana, 15 dias e 1 mês, manuais</td><td>Disparados pela data de alta, com espaço para terapias e reinternação</td></tr>
-  </table></div>
-  <div class="thesis">O roteiro diz <strong>como falar</strong>. A implantação garante que ele rode no canal oficial, que cada conversa vire uma negociação rastreável e que a equipe saiba <strong>qual campanha gera paciente</strong>, não só lead.</div>
+  <div class="thesis">A tese: transformar o que a equipe já faz bem em <strong>processo, cadência e métrica</strong>, atender 24 horas sem perder o cuidado, e fechar o ciclo medindo <strong>paciente e receita por campanha</strong>, não só lead.</div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
-<section id="roteiro">
-  <div class="eyebrow">02 · Roteiro de atendimento v3</div>
-  <h2>O que adotamos e o que somamos</h2>
-  <p class="sub">O roteiro v3 é a referência de tom, regra e conteúdo do atendimento. Nada dele é reescrito pela AUTZ sem aprovação de vocês. O nosso trabalho é fazê-lo funcionar de ponta a ponta.</p>
-  <div class="grid2">
-    <div class="card keep"><h3>Mantemos como está</h3>
-      <ul>
-        <li>Conversa em texto livre, 2 ou 3 bolhas, ritmo de digitação por horário</li>
-        <li>Camila no acolhimento: não se anuncia, nunca afirma ser pessoa, assume em uma frase se perguntarem (H1)</li>
-        <li>Quatro faixas: dia, noite ativa, madrugada e amanhecer, mais a exceção de 2 horas</li>
-        <li>Ordem entender, explicar, mostrar o investimento, combinar o próximo passo</li>
-        <li>Vocabulário vetado para leads de anúncio e nenhuma opinião clínica</li>
-        <li>Checagem de risco antes de tudo, 24 horas</li>
-        <li>Desvios D1 a D6, orientação à família (F1/F2) e passagem de turno às 8h (H0)</li>
-      </ul></div>
-    <div class="card add"><h3>A implantação acrescenta</h3>
-      <ul>
-        <li>Canal na API oficial do WhatsApp pelo RD Conversas, sem risco de bloqueio</li>
-        <li>Camada de interpretação (IA) conectada ao canal, com o roteiro como instrução</li>
-        <li>Cada conversa vira negociação no CRM com os campos do roteiro preenchidos</li>
-        <li>Horário reservado à noite vira tarefa com dono às 8h, não promessa solta</li>
-        <li>Retornos fora da janela de 24 h como modelos aprovados pela Meta</li>
-        <li>Rastreio da origem até a entrada do paciente, por campanha e por conta de anúncio</li>
-        <li>Painel com as métricas do roteiro e as de conversão que hoje não existem</li>
-      </ul></div>
+<section id="jornada">
+  <div class="eyebrow">02 · A jornada completa</div>
+  <h2>Sete fases, três ferramentas, um histórico só</h2>
+  <p class="sub">Cada contato percorre a mesma linha do tempo. O histórico acompanha a pessoa do anúncio até o relacionamento depois da alta, sem ninguém pedir para ela repetir o que já contou.</p>
+  <div class="journey-map">
+    <a class="jstep" href="#captacao"><span class="k">03</span><b>Captação</b><span>Atrair o público certo e saber de onde veio</span><div class="tools"><span class="t t-ads">Ads</span><span class="t t-mkt">RD Mkt</span></div></a>
+    <a class="jstep" href="#atendimento"><span class="k">04</span><b>Atendimento</b><span>Acolher e entender o caso em minutos, 24 h</span><div class="tools"><span class="t t-rdc">Conversas</span></div></a>
+    <a class="jstep" href="#venda"><span class="k">05</span><b>Venda</b><span>Da avaliação gratuita ao contrato</span><div class="tools"><span class="t t-crm">CRM</span><span class="t t-rdc">Conversas</span></div></a>
+    <a class="jstep" href="#retomada"><span class="k">06</span><b>Retomada</b><span>Recuperar quem parou, com respeito ao tempo da família</span><div class="tools"><span class="t t-rdc">Conversas</span><span class="t t-mkt">RD Mkt</span><span class="t t-crm">CRM</span></div></a>
+    <a class="jstep" href="#tratamento"><span class="k">07</span><b>Tratamento</b><span>Chegada preparada, família informada</span><div class="tools"><span class="t t-crm">CRM</span></div></a>
+    <a class="jstep" href="#posvenda"><span class="k">08</span><b>Pós-venda</b><span>Acompanhar depois da alta</span><div class="tools"><span class="t t-crm">CRM</span><span class="t t-rdc">Conversas</span></div></a>
+    <a class="jstep" href="#revenda"><span class="k">09</span><b>Revenda</b><span>Pós, retorno, indicação e campanhas</span><div class="tools"><span class="t t-crm">CRM</span><span class="t t-mkt">RD Mkt</span><span class="t t-rdc">Conversas</span></div></a>
   </div>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Fase</th><th>Objetivo</th><th>Onde acontece</th><th>Indicador principal</th></tr>
+    <tr><td>Captação</td><td>Trazer quem tem perfil e autonomia de escolha, com origem rastreada</td><td>Google Ads, Meta, site, RD Marketing</td><td>Pacientes por campanha</td></tr>
+    <tr><td>Atendimento</td><td>Responder na hora, coletar as 5 informações, checar risco</td><td>RD Conversas, agente de IA</td><td>Conversas com 5 informações</td></tr>
+    <tr><td>Venda</td><td>Levar à avaliação inicial e dela ao contrato</td><td>RD CRM, equipe comercial</td><td>Avaliação → chegada</td></tr>
+    <tr><td>Retomada</td><td>Recuperar quem parou depois do preço ou depende da família</td><td>Conversas, RD Marketing, CRM</td><td>Retomadas que voltam ao funil</td></tr>
+    <tr><td>Tratamento</td><td>Chegada sem atrito, família informada, extensão quando indicada</td><td>RD CRM, equipe</td><td>Taxa de extensão de plano</td></tr>
+    <tr><td>Pós-venda</td><td>Manter o vínculo nas semanas mais sensíveis depois da alta</td><td>CRM, Conversas</td><td>Contatos feitos no prazo · NPS</td></tr>
+    <tr><td>Revenda</td><td>Acompanhamento pago, retorno sem julgamento, indicações</td><td>CRM, RD Marketing, Conversas</td><td>Receita de pós e indicações</td></tr>
+  </table></div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
-<section id="crm">
-  <div class="eyebrow">03 · RD Station CRM</div>
-  <h2>Quatro funis, seguindo as etapas do roteiro</h2>
-  <p class="sub">As etapas espelham o caminho do roteiro (entender, apresentar, reação ao preço, avaliação inicial) e continuam onde o WhatsApp para: proposta, contrato e entrada.</p>
+<section id="captacao">
+  <div class="eyebrow">03 · Captação</div>
+  <h2>Menos lead fora do perfil, mais clareza sobre o que gera paciente</h2>
+  <p class="sub">Hoje a captação funciona em volume, mas otimiza para lead. Com o CRM ligado ao RD Marketing, as campanhas passam a ser avaliadas e ajustadas pelo que realmente importa: a chegada do paciente.</p>
 
-  <div class="funnel">
-    <h3>Tratamento <span class="tag">principal</span></h3>
-    <p>Do primeiro contato até a chegada do paciente.</p>
-    <div class="stages">
-      <span class="stage">Novo contato<small>abertura A1 a A4</small></span><span class="arrow">→</span>
-      <span class="stage">Entendimento<small>Q1 a Q6</small></span><span class="arrow">→</span>
-      <span class="stage">Valores apresentados<small>T1 a T4, V1</small></span><span class="arrow">→</span>
-      <span class="stage">Avaliação inicial agendada<small>V2 / V2n</small></span><span class="arrow">→</span>
-      <span class="stage">Avaliação ou visita feita</span><span class="arrow">→</span>
-      <span class="stage">Proposta e negociação<small>equipe, V4</small></span><span class="arrow">→</span>
-      <span class="stage">Pedido de dados e contrato</span><span class="arrow">→</span>
-      <span class="stage">Chegada agendada</span><span class="arrow">→</span>
-      <span class="stage win">Em tratamento</span>
-      <span class="stage lost">Perdido</span>
-    </div>
-  </div>
-  <div class="funnel">
-    <h3>Retomada</h3>
-    <p>Quem recebeu os valores e não seguiu. Ao responder, volta para o funil principal.</p>
-    <div class="stages">
-      <span class="stage">Aguardando decisão familiar<small>V3, retorno na data escolhida</small></span>
-      <span class="stage">Sem resposta<small>S1 D+1 → S2 D+3 → S3 D+7 → S4 D+14</small></span><span class="arrow">→</span>
-      <span class="stage">Nutrição</span><span class="arrow">→</span>
-      <span class="stage win">Retomou conversa</span>
-    </div>
-  </div>
-  <div class="funnel">
-    <h3>Orientação à família</h3>
-    <p>Quando o paciente ainda não aceita (F1/F2). O tratamento é sempre voluntário; aqui a equipe ajuda a família a conduzir a conversa.</p>
-    <div class="stages">
-      <span class="stage">Sem aceitação do paciente</span><span class="arrow">→</span>
-      <span class="stage">Orientação agendada<small>mesmo dia</small></span><span class="arrow">→</span>
-      <span class="stage">Orientação feita</span><span class="arrow">→</span>
-      <span class="stage">Retorno em 15 dias<small>F2</small></span><span class="arrow">→</span>
-      <span class="stage win">Paciente aceitou</span>
-    </div>
-  </div>
-  <div class="funnel">
-    <h3>Pós-alta</h3>
-    <p>A escala que o comercial já começou, agora disparada pela data de alta.</p>
-    <div class="stages">
-      <span class="stage">Alta</span><span class="arrow">→</span>
-      <span class="stage">1 semana</span><span class="arrow">→</span>
-      <span class="stage">15 dias</span><span class="arrow">→</span>
-      <span class="stage">1 mês</span><span class="arrow">→</span>
-      <span class="stage">Mensal</span><span class="arrow">→</span>
-      <span class="stage win">Terapia, consulta ou retorno ao tratamento</span>
-    </div>
-  </div>
-
-  <h3 class="h">Campos da negociação</h3>
-  <p class="sub">Os mesmos nomes e valores do roteiro, para o bot e a equipe falarem a mesma língua. Regra do roteiro mantida: <b>grava categoria, nunca conteúdo clínico</b>. Substância, dose, diagnóstico, CPF e receita ficam só na conversa.</p>
+  <h3 class="h">Quem chega</h3>
   <div class="scroll"><table class="tbl">
-    <tr><th>Campo</th><th>Preenchido por</th><th>Valores</th></tr>
-    <tr><td><code>quem_escreve</code> · <code>relacao</code></td><td>Bot (Q1)</td><td>próprio, familiar, outro · pai/mãe, filho(a), cônjuge, irmão(ã), outro</td></tr>
-    <tr><td><code>nome_paciente</code> · <code>idade</code> · <code>cidade</code></td><td>Bot (Q2)</td><td>texto e número; idade abaixo de 18 encerra (D1)</td></tr>
-    <tr><td><code>linha_tratamento</code></td><td>Bot (Q3)</td><td>linha 1, linha 2, linha 3, a definir</td></tr>
-    <tr><td><code>voluntariedade</code> · <code>momento</code></td><td>Bot (Q4, Q5)</td><td>sim, dúvida, não · o quanto antes, próximas semanas, pesquisando</td></tr>
-    <tr><td><code>reacao_preco</code> · <code>objecao_principal</code></td><td>Bot (V1, V4)</td><td>ok, família, acima, sem resposta · valor, pagamento, tempo</td></tr>
-    <tr><td><code>turno_entrada</code> · <code>horario_reservado</code></td><td>Bot</td><td>dia, noite, madrugada, amanhecer · data e faixa de 1 hora</td></tr>
-    <tr><td><code>perguntou_automacao</code> · <code>prioridade</code></td><td>Bot (H1, seção 7)</td><td>sim, não · urgência, alta, média, orientação, nutrição</td></tr>
-    <tr><td><code>tempo_quadro</code> · <code>tratamento_anterior</code></td><td>Equipe</td><td>só a equipe pergunta, nunca o automático</td></tr>
-    <tr><td><code>acomodacao_interesse</code> · <code>decisor_financeiro</code></td><td>Equipe</td><td>duplo, Prime, Premium · quem decide e quem paga</td></tr>
-    <tr><td>Origem · campanha</td><td>Automático (AUTZ)</td><td>Spa Recovery, Me Recovery, Instagram, orgânico + UTM</td></tr>
-    <tr><td>Plano · pagamento</td><td>Equipe (AUTZ)</td><td>15, 30, 60, 90 dias · Pix, transferência, dinheiro, cartão</td></tr>
-    <tr><td>Data de chegada · data de alta</td><td>Equipe (AUTZ)</td><td>a data de alta dispara o funil Pós-alta</td></tr>
+    <tr><th>Público</th><th>Como costuma chegar</th><th>Do que precisa</th></tr>
+    <tr><td>Paciente com autonomia</td><td>Profissional ou provedor da família, pesquisa discreta, muitas vezes à noite; trata como uma pausa ou férias</td><td>Discrição, estrutura, rotina clara, valor transparente</td></tr>
+    <tr><td>Familiar que decide</td><td>Cônjuge, filho ou pais, em crise; picos no fim de semana e sob pressão da família</td><td>Orientação, resumo para a família, entender que o tratamento é voluntário</td></tr>
+    <tr><td>Contato frio da madrugada</td><td>Quem está em uso e arrependido, ou o familiar que precisa ser ouvido</td><td>Acolhimento, checagem de risco, conteúdo, sem pressão comercial</td></tr>
+    <tr><td>Fora do perfil</td><td>Busca consulta comum, convênio, menor de 18 ou internação involuntária</td><td>Resposta rápida e encaminhamento, sem ocupar a fila</td></tr>
   </table></div>
 
-  <div class="grid2" style="margin-top:16px">
-    <div class="card"><h3>Produtos e valores (30 dias)</h3><p>Da tabela do roteiro. O valor da negociação sai do produto escolhido.</p>
-      <ul><li>Quarto duplo: R$ 25.900</li><li>Individual Prime: R$ 36.900</li><li>Individual Premium: R$ 45.900</li><li>Planos de 15, 60 e 90 dias: valores a confirmar</li><li>Pós-alta (terapias, consultas, nutrição): valores a confirmar</li></ul></div>
-    <div class="card"><h3>Motivos de perda</h3><p>Obrigatórios, para saber onde a venda escapa.</p>
-      <ul><li>Sem condição financeira</li><li>Sem resposta após S4</li><li>Menor de 18 anos (D1)</li><li>Buscava internação involuntária</li><li>Buscava consulta, clínico ou convênio</li><li>Perfil clínico fora do escopo</li><li>Escolheu outra clínica</li><li>Pediu para não receber mensagens (D6)</li></ul></div>
+  <div class="grid3" style="margin-top:18px">
+    <div class="card"><h3>Canais</h3><ul><li>Google Ads: contas Spa Recovery e Me Recovery</li><li>Meta e Instagram pagos</li><li>Orgânico: site, blog e YouTube</li><li>Teste gratuito do site (/triagem)</li><li>Indicação de ex-pacientes, familiares e profissionais</li></ul><div class="tools"><span class="t t-ads">Ads</span><span class="t t-mkt">RD Mkt</span></div></div>
+    <div class="card"><h3>Rastreio</h3><ul><li>UTMs padronizadas por conta, campanha e anúncio</li><li>Formulários do site enviados ao RD sem perder o redirecionamento ao WhatsApp</li><li>Link de WhatsApp com origem identificada por campanha</li><li>Teste do site registrado como conversão</li><li>Paciente que chega devolvido ao Google Ads e à Meta como conversão</li></ul><div class="tools"><span class="t t-mkt">RD Mkt</span><span class="t t-crm">CRM</span></div></div>
+    <div class="card"><h3>Qualidade do lead</h3><ul><li>Termos negativos para quem busca clínico geral ou convênio</li><li>Conteúdo por nível de consciência: do "o que está acontecendo" até "como funciona aqui"</li><li>Vocabulário neutro nos anúncios e páginas, o mesmo do roteiro</li><li>Motivos de perda alimentando o ajuste das campanhas</li></ul><div class="tools"><span class="t t-ads">Ads</span><span class="t t-crm">CRM</span></div></div>
   </div>
+  <div class="note"><b>Por que devolver a conversão às plataformas.</b> Quando o Google Ads e a Meta sabem quais leads viraram pacientes, os lances passam a buscar pessoas parecidas com essas, e não qualquer pessoa que preenche um formulário. É o caminho mais direto para reduzir o lead fora do perfil que o Fernando citou no kickoff.</div>
+  <div class="note green"><b>Oportunidade de canal.</b> Parcerias de encaminhamento com psiquiatras, psicólogos e áreas de RH (casos de burnout) entram no CRM como origem própria, com acompanhamento de quantos pacientes cada parceiro indica.</div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
-<section id="conversas">
-  <div class="eyebrow">04 · RD Station Conversas</div>
-  <h2>Como o roteiro v3 roda no canal oficial</h2>
-  <p class="sub">O próprio roteiro aponta o ponto técnico: texto livre não funciona em menu de botões. Ele precisa de uma camada de linguagem sobre o canal. A arquitetura proposta:</p>
-  <div class="arch">
-    <div><b>WhatsApp oficial</b><span>RD Conversas na API da Meta, mesmo número comercial</span></div>
-    <div class="hl"><b>Camada de IA</b><span>interpreta o texto, segue o roteiro v3 como instrução, respeita horários e ritmo</span></div>
-    <div><b>RD Station CRM</b><span>cria e atualiza a negociação com os campos, prioridade e horário reservado</span></div>
-    <div><b>Equipe</b><span>recebe a conversa com contexto, a fila por prioridade e as tarefas das 8h</span></div>
+<section id="atendimento">
+  <div class="eyebrow">04 · Atendimento e qualificação</div>
+  <h2>O roteiro v3 rodando no agente de IA do RD Conversas</h2>
+  <p class="sub">Todo contato entra pela mesma porta: WhatsApp oficial, no RD Conversas, com o agente de IA configurado a partir do Roteiro de atendimento v3. O roteiro é a referência de tom, regra e conteúdo; <b>nada dele é alterado sem aprovação de vocês</b>.</p>
+
+  <div class="flow">
+    <span class="stage">Abertura<small>A1 a A4, por horário</small></span><span class="arrow">→</span>
+    <span class="stage">Entender o caso<small>Q1 a Q6, 5 informações</small></span><span class="arrow">→</span>
+    <span class="stage">Como funciona e valores<small>T1 a T4</small></span><span class="arrow">→</span>
+    <span class="stage">Reação ao preço<small>V1</small></span><span class="arrow">→</span>
+    <span class="stage">Próximo passo<small>avaliação, visita ou horário reservado</small></span><span class="arrow">→</span>
+    <span class="stage win">Equipe assume<small>com tudo registrado no CRM</small></span>
   </div>
 
-  <h3 class="h">Fila por prioridade</h3>
-  <div class="scroll"><table class="tbl">
-    <tr><th>Prioridade</th><th>Regra (seção 7 do roteiro)</th><th>Resposta da equipe</th></tr>
-    <tr><td><span class="pill p-urg">Urgência</span></td><td>Qualquer gatilho de risco</td><td>Imediata, pelo plantão, a qualquer hora</td></tr>
-    <tr><td><span class="pill p-alta">Alta</span></td><td>Aceita e quer o quanto antes; valor ok; ou horário reservado</td><td>Até 30 min; à noite, no horário reservado</td></tr>
-    <tr><td><span class="pill p-media">Média</span></td><td>Próximas semanas; voluntariedade em dúvida; valor acima</td><td>Até 1 h</td></tr>
-    <tr><td><span class="pill p-ori">Orientação</span></td><td>Paciente não aceita</td><td>Orientação à família no mesmo dia</td></tr>
-    <tr><td><span class="pill p-nut">Nutrição</span></td><td>Pesquisando, sem pedido de contato</td><td>Cadência automática</td></tr>
-  </table></div>
-  <p class="sub" style="margin-top:10px">Quem perguntou se era automático sobe uma posição dentro da mesma prioridade.</p>
-
-  <h3 class="h">Faixas de horário</h3>
+  <h3 class="h">Quatro faixas de horário</h3>
   <div class="shifts">
-    <div class="shift"><b>8h às 19h59</b><strong>Equipe online</strong><span>Acolhe, qualifica e passa para uma pessoa assim que pedirem.</span></div>
+    <div class="shift"><b>8h às 19h59</b><strong>Equipe online</strong><span>O agente acolhe, qualifica e passa para uma pessoa assim que pedirem.</span></div>
     <div class="shift"><b>20h às 23h59</b><strong>Noite ativa</strong><span>Faz tudo, inclusive valores, e reserva horário para a manhã.</span></div>
     <div class="shift"><b>0h às 5h59</b><strong>Madrugada</strong><span>Acolhimento e risco primeiro; valor só se pedirem; sem retorno automático.</span></div>
     <div class="shift"><b>6h às 7h59</b><strong>Amanhecer</strong><span>Qualificação completa; depois das 7h30 promete o contato da abertura.</span></div>
   </div>
+  <p class="sub" style="margin-top:12px">Se alguém da equipe escreveu na conversa nas últimas 2 horas, o agente não entra. Às 8h, cada conversa da noite passa para uma pessoa da equipe, que se apresenta com o próprio nome (H0).</p>
 
-  <div class="note red"><b>Risco, 24 horas.</b> As 26 palavras-gatilho do roteiro interrompem qualquer etapa: orientação 192 e 188 na primeira bolha, prioridade urgência, bloqueio de mensagem comercial e alerta ao plantão por WhatsApp e e-mail. Só vai ao ar com aprovação da direção clínica e com o responsável pelo alerta noturno definido.</div>
-  <div class="note"><b>Retornos e a regra das 24 horas.</b> Depois de 24 h sem mensagem do cliente, o WhatsApp oficial só aceita modelos aprovados pela Meta. Os retornos S1 a S4, F2 e o pós-alta viram modelos, escritos com o vocabulário neutro do roteiro, o que também ajuda na aprovação. Nenhum retorno sai entre 20h e 8h.</div>
-  <div class="note"><b>A confirmar no RD Conversas.</b> Atraso programado e indicador "digitando…" são essenciais para o roteiro soar natural. Validamos na semana 2 o que a plataforma permite e, se preciso, controlamos o ritmo pela camada de IA.</div>
-  <div class="note"><b>Migração.</b> O histórico do canal atual não passa automaticamente para a API oficial. Fazemos o backup antes de migrar o número e decidimos juntos o destino do ChatSac.</div>
+  <h3 class="h">Fila por prioridade</h3>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Prioridade</th><th>Quando</th><th>Resposta da equipe</th></tr>
+    <tr><td><span class="pill p-urg">Urgência</span></td><td>Qualquer palavra-gatilho de risco</td><td>Imediata, pelo plantão, a qualquer hora</td></tr>
+    <tr><td><span class="pill p-alta">Alta</span></td><td>Aceita e quer o quanto antes; valor ok; ou horário reservado</td><td>Até 30 min; à noite, no horário reservado</td></tr>
+    <tr><td><span class="pill p-media">Média</span></td><td>Próximas semanas; aceitação em dúvida; valor acima do previsto</td><td>Até 1 h</td></tr>
+    <tr><td><span class="pill p-ori">Orientação</span></td><td>O paciente ainda não aceita</td><td>Orientação à família no mesmo dia</td></tr>
+    <tr><td><span class="pill p-nut">Nutrição</span></td><td>Pesquisando, sem pedido de contato</td><td>Cadência automática</td></tr>
+  </table></div>
+
+  <div class="note red"><b>Risco, 24 horas.</b> As palavras-gatilho do roteiro interrompem qualquer etapa: orientação 192 e 188 na primeira mensagem, prioridade urgência, bloqueio de mensagem comercial e alerta ao plantão. Só vai ao ar com aprovação da direção clínica e com o responsável pelo alerta noturno definido.</div>
+  <div class="note"><b>O que validamos no agente na semana 2.</b> Leitura de texto livre e áudio, gravação dos campos direto no CRM, regras das quatro faixas e da exceção de 2 horas, atraso de resposta e indicador "digitando…", e transferência para a fila certa. O que a plataforma não fizer nativamente, ajustamos no roteiro com vocês antes de ir ao ar.</div>
+  <div class="note"><b>Migração do canal.</b> O histórico do canal atual não passa automaticamente para a API oficial. Fazemos o backup antes de migrar o número e definimos a data de desligamento do ChatSac.</div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
-<section id="marketing">
-  <div class="eyebrow">05 · RD Station Marketing</div>
-  <h2>Saber o que gera paciente, não só lead</h2>
-  <div class="grid2">
-    <div class="card"><h3>Conexões e rastreio</h3><ul><li>Google Ads (contas Spa Recovery e Me Recovery), Meta Ads, Instagram e Meta Business</li><li>Formulários do site integrados ao RD, sem perder o envio para o WhatsApp</li><li>Teste gratuito do site (/triagem) registrado como conversão</li><li>UTMs padronizadas por campanha e conta</li><li>Domínio e autenticação de e-mail, junto com a agência do site</li></ul></div>
-    <div class="card"><h3>Base e automações</h3><ul><li>Limpeza da base histórica de ~14 mil contatos antes de qualquer envio</li><li>Segmentações por linha de tratamento, etapa, prioridade e ex-pacientes</li><li>Nutrição para quem está pesquisando e para quem passou do S4</li><li>Reativação da base antiga, com conteúdo e chamada para o WhatsApp</li><li>Modelo de e-mail na identidade da marca</li></ul></div>
+<section id="venda">
+  <div class="eyebrow">05 · Venda</div>
+  <h2>Funil Tratamento: cada etapa com dono, critério e automação</h2>
+  <p class="sub">As primeiras etapas espelham o roteiro e são movidas pelo agente. A partir da avaliação inicial, quem conduz é a equipe, com tarefas e lembretes automáticos.</p>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Etapa</th><th>Sai da etapa quando</th><th>Quem move</th><th>Automação</th></tr>
+    <tr><td>Novo contato</td><td>O agente começa a entender o caso</td><td>Agente</td><td>Negociação criada com origem e campanha</td></tr>
+    <tr><td>Entendimento</td><td>As 5 informações estão completas</td><td>Agente</td><td>Campos e prioridade gravados</td></tr>
+    <tr><td>Valores apresentados</td><td>A reação ao preço foi registrada</td><td>Agente</td><td>Sem resposta em 24 h: vai para Retomada</td></tr>
+    <tr><td>Avaliação inicial agendada</td><td>A conversa com a equipe aconteceu</td><td>Agente / equipe</td><td>Tarefa no horário reservado, com dono</td></tr>
+    <tr><td>Avaliação ou visita feita</td><td>Plano e acomodação definidos</td><td>Equipe</td><td>Lembrete se parada há 24 h</td></tr>
+    <tr><td>Proposta e negociação</td><td>Aceite verbal</td><td>Equipe</td><td>Follow-up em 24 h e 72 h</td></tr>
+    <tr><td>Pedido de dados e contrato</td><td>Contrato assinado e pagamento</td><td>Equipe</td><td>Checklist de documentos</td></tr>
+    <tr><td>Chegada agendada</td><td>O paciente chegou</td><td>Equipe</td><td>Lembrete na véspera e orientações de chegada</td></tr>
+    <tr><td style="color:var(--green)">Em tratamento</td><td colspan="3">Negociação ganha, com data de chegada e plano contratado. Abre a fase de tratamento.</td></tr>
+  </table></div>
+
+  <div class="grid2" style="margin-top:16px">
+    <div class="card"><h3>Produtos e valores (30 dias)</h3><p>O valor da negociação vem do produto escolhido.</p>
+      <ul><li>Quarto duplo: R$ 25.900</li><li>Individual Prime: R$ 36.900</li><li>Individual Premium: R$ 45.900</li><li>Planos de 15, 60 e 90 dias: valores a confirmar</li><li>Opcionais e produtos de pós: cadastrados à parte (ver fases 07 e 09)</li></ul></div>
+    <div class="card"><h3>Motivos de perda</h3><p>Obrigatórios, para saber onde a venda escapa e ajustar a captação.</p>
+      <ul><li>Sem condição financeira</li><li>Sem resposta depois da retomada</li><li>Menor de 18 anos</li><li>Buscava internação involuntária</li><li>Buscava consulta, clínico ou convênio</li><li>Perfil clínico fora do escopo</li><li>Escolheu outra clínica</li><li>Pediu para não receber mensagens</li></ul></div>
   </div>
-  <div class="note"><b>Mesmas regras do roteiro no e-mail.</b> Vocabulário neutro para leads de anúncio, nenhuma promessa de resultado e nenhuma condição de saúde no assunto ou na prévia. Dado de saúde é sensível pela LGPD: consentimento claro nos formulários.</div>
+
+  <h3 class="h">Campos da negociação</h3>
+  <p class="sub">Os mesmos nomes do roteiro, para o agente e a equipe falarem a mesma língua. Regra mantida: <b>grava categoria, nunca conteúdo clínico</b>. Substância, dose, diagnóstico, CPF e receita ficam só na conversa.</p>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Campo</th><th>Quem preenche</th><th>Valores</th></tr>
+    <tr><td><code>quem_escreve</code> · <code>relacao</code></td><td>Agente</td><td>próprio, familiar, outro · pai/mãe, filho(a), cônjuge, irmão(ã), outro</td></tr>
+    <tr><td><code>nome_paciente</code> · <code>idade</code> · <code>cidade</code></td><td>Agente</td><td>abaixo de 18 encerra a qualificação</td></tr>
+    <tr><td><code>linha_tratamento</code></td><td>Agente</td><td>linha 1, linha 2, linha 3, a definir</td></tr>
+    <tr><td><code>voluntariedade</code> · <code>momento</code></td><td>Agente</td><td>sim, dúvida, não · o quanto antes, próximas semanas, pesquisando</td></tr>
+    <tr><td><code>reacao_preco</code> · <code>objecao_principal</code></td><td>Agente</td><td>ok, família, acima, sem resposta · valor, pagamento, tempo</td></tr>
+    <tr><td><code>turno_entrada</code> · <code>horario_reservado</code> · <code>prioridade</code></td><td>Agente</td><td>dia, noite, madrugada, amanhecer · faixa de 1 h · urgência a nutrição</td></tr>
+    <tr><td><code>tempo_quadro</code> · <code>tratamento_anterior</code></td><td>Equipe</td><td>só a equipe pergunta</td></tr>
+    <tr><td><code>acomodacao_interesse</code> · <code>decisor_financeiro</code></td><td>Equipe</td><td>duplo, Prime, Premium · quem decide e quem paga</td></tr>
+    <tr><td>Origem · campanha · parceiro</td><td>Automático</td><td>conta de anúncio, UTM, indicação</td></tr>
+    <tr><td>Plano · pagamento · datas</td><td>Equipe</td><td>15, 30, 60, 90 dias · forma de pagamento · chegada e alta</td></tr>
+  </table></div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
+</section>
+
+<section id="retomada">
+  <div class="eyebrow">06 · Retomada e nutrição</div>
+  <h2>Ninguém some sem um próximo passo</h2>
+  <p class="sub">O "fantasminha" que hoje é retomado no feeling ganha cadência, motivo registrado e conteúdo. E a família que ainda não conseguiu convencer o paciente recebe orientação, não proposta.</p>
+
+  <div class="funnel">
+    <h3>Funil Retomada</h3>
+    <p>Quem recebeu os valores e não seguiu. Ao responder, volta para o funil Tratamento na etapa em que parou.</p>
+    <div class="stages">
+      <span class="stage">Aguardando decisão familiar<small>retorno na data escolhida (V3)</small></span>
+      <span class="stage">Sem resposta<small>retornos D+1, D+3, D+7, D+14</small></span><span class="arrow">→</span>
+      <span class="stage">Nutrição<small>e-mail e conteúdo</small></span><span class="arrow">→</span>
+      <span class="stage win">Retomou conversa</span>
+    </div>
+  </div>
+  <div class="funnel">
+    <h3>Funil Orientação à família</h3>
+    <p>Quando o paciente ainda não aceita. O tratamento é sempre voluntário; a equipe ajuda a família a conduzir a conversa, sem custo.</p>
+    <div class="stages">
+      <span class="stage">Sem aceitação</span><span class="arrow">→</span>
+      <span class="stage">Orientação agendada<small>mesmo dia</small></span><span class="arrow">→</span>
+      <span class="stage">Orientação feita</span><span class="arrow">→</span>
+      <span class="stage">Retorno em 15 dias</span><span class="arrow">→</span>
+      <span class="stage win">Paciente aceitou</span>
+    </div>
+  </div>
+
+  <div class="scroll" style="margin-top:6px"><table class="tbl">
+    <tr><th>Retorno</th><th>Quando</th><th>Mensagem (do roteiro)</th></tr>
+    <tr><td>S1</td><td>D+1, entre 9h e 18h</td><td>Ficou alguma dúvida sobre o que está incluso ou o que é cobrado à parte?</td></tr>
+    <tr><td>S2</td><td>D+3</td><td>Convite para conhecer o espaço e a equipe, sem compromisso</td></tr>
+    <tr><td>S3</td><td>D+7</td><td>Como o paciente está, e a avaliação inicial gratuita</td></tr>
+    <tr><td>S4</td><td>D+14</td><td>Encerramento respeitoso; depois disso, só nutrição</td></tr>
+  </table></div>
+  <p class="sub" style="margin-top:10px">Nenhum retorno entre 20h e 8h. Como saem depois de 24 h sem mensagem do cliente, viram modelos aprovados pela Meta, escritos com o vocabulário neutro do roteiro. Pedido para parar (D6) bloqueia todas as cadências, inclusive e-mail.</p>
+
+  <div class="grid2" style="margin-top:8px">
+    <div class="card"><h3>Nutrição por e-mail</h3><p>Para quem passou pelo S4 ou está pesquisando.</p><ul><li>Como funciona um tratamento voluntário</li><li>A equipe e a rotina do dia a dia</li><li>Estrutura e ambiente</li><li>O que está incluso, com a transparência de sempre</li><li>Como conversar com a família</li><li>Convite para a avaliação inicial gratuita</li></ul><div class="tools"><span class="t t-mkt">RD Mkt</span></div></div>
+    <div class="card"><h3>Reativação da base antiga</h3><p>Os ~14 mil contatos acumulados no RD Marketing.</p><ul><li>Limpeza de e-mails inválidos antes de qualquer envio</li><li>Segmentação por data de entrada e linha de tratamento</li><li>Sequência curta de conteúdo e chamada para o WhatsApp</li><li>Quem responde entra no funil Tratamento com origem "reativação"</li></ul><div class="tools"><span class="t t-mkt">RD Mkt</span><span class="t t-rdc">Conversas</span></div></div>
+  </div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
+</section>
+
+<section id="tratamento">
+  <div class="eyebrow">07 · Chegada e tratamento</div>
+  <h2>Chegada sem atrito, família informada</h2>
+  <p class="sub">A venda não termina no contrato. A experiência da chegada e a comunicação com a família durante o tratamento definem a indicação, a extensão e o retorno.</p>
+  <div class="grid3">
+    <div class="card"><h3>Antes da chegada</h3><ul><li>Lembrete na véspera, com endereço e horário</li><li>Orientações do que levar e documentos</li><li>Regra de visita da família, em versão única</li><li>Data de chegada registrada no CRM</li></ul><div class="tools"><span class="t t-crm">CRM</span><span class="t t-rdc">Conversas</span></div></div>
+    <div class="card"><h3>Durante o tratamento</h3><ul><li>Grupo de comunicação da família criado na entrada</li><li>Informação só para quem o paciente autorizou por escrito</li><li>Contato da família com o comercial direcionado para o canal certo (D3)</li><li>Plano terapêutico em até 72 h, registrado como marco</li></ul><div class="tools"><span class="t t-crm">CRM</span></div></div>
+    <div class="card"><h3>Extensão e opcionais</h3><ul><li>Tarefa automática perto do fim do ciclo para a conversa de extensão, quando a equipe clínica indicar</li><li>Opcionais cobrados à parte como produtos: massagens e estética, fisioterapia, aulas individuais, avaliação neuropsicológica</li><li>Troca de acomodação registrada na mesma negociação</li></ul><div class="tools"><span class="t t-crm">CRM</span></div></div>
+  </div>
+  <div class="note"><b>Extensão é decisão clínica.</b> O CRM só garante que a conversa aconteça no momento certo. Quem indica o plano é a equipe clínica; o comercial cuida da parte financeira. O protocolo de referência da clínica é de 90 dias.</div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
+</section>
+
+<section id="posvenda">
+  <div class="eyebrow">08 · Pós-venda</div>
+  <h2>As semanas depois da alta, acompanhadas de perto</h2>
+  <p class="sub">A escala que o comercial já começou (1 semana, 15 dias e 1 mês) vira funil, disparado pela data de alta. Ninguém depende de lembrar quem saiu e quando.</p>
+  <div class="funnel">
+    <h3>Funil Pós-alta</h3>
+    <p>Cada etapa gera uma tarefa para a equipe e, quando faz sentido, uma mensagem no WhatsApp.</p>
+    <div class="stages">
+      <span class="stage">Alta<small>data registrada</small></span><span class="arrow">→</span>
+      <span class="stage">1 semana<small>contato da equipe</small></span><span class="arrow">→</span>
+      <span class="stage">15 dias<small>contato da equipe</small></span><span class="arrow">→</span>
+      <span class="stage">1 mês<small>contato + pesquisa de satisfação</small></span><span class="arrow">→</span>
+      <span class="stage">Mensal<small>até 12 meses</small></span><span class="arrow">→</span>
+      <span class="stage win">Acompanhamento contínuo</span>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>Em cada contato</h3><ul><li>Como a pessoa está e como está a rotina em casa</li><li>Se precisa de apoio da equipe</li><li>Registro breve no CRM, sem conteúdo clínico em campo</li></ul></div>
+    <div class="card"><h3>Satisfação</h3><ul><li>Pesquisa de satisfação no contato de 1 mês, com o paciente e com a família</li><li>Nota alta: convite para avaliar a clínica no Google</li><li>Nota baixa: tarefa para a coordenação retornar</li></ul></div>
+    <div class="card"><h3>Sinal de alerta</h3><ul><li>Qualquer palavra-gatilho de risco segue a regra das 24 horas</li><li>Sinal de dificuldade vira prioridade para a equipe, sem tom comercial</li><li>Retorno ao tratamento tratado como cuidado, nunca como falha</li></ul></div>
+  </div>
+  <div class="note"><b>Discrição sempre.</b> Mensagens de pós-alta não citam tratamento, substância ou diagnóstico na prévia. Quem não quiser mais contato sai de todas as cadências.</div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
+</section>
+
+<section id="revenda">
+  <div class="eyebrow">09 · Revenda e relacionamento</div>
+  <h2>O vínculo continua, e pode gerar receita</h2>
+  <p class="sub">Muitos pacientes voltam a procurar a clínica, e o comercial já está criando produtos de pós. A revenda ganha um funil próprio, para que cada oferta tenha dono, momento e resultado medido.</p>
+  <div class="funnel">
+    <h3>Funil Pós e revenda</h3>
+    <p>Alimentado pelo pós-alta, pela base de ex-pacientes e pelas campanhas.</p>
+    <div class="stages">
+      <span class="stage">Oportunidade identificada</span><span class="arrow">→</span>
+      <span class="stage">Oferta apresentada</span><span class="arrow">→</span>
+      <span class="stage">Agendado ou contratado</span><span class="arrow">→</span>
+      <span class="stage win">Ganho</span>
+      <span class="stage lost">Não agora</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>O que oferecer</h3><ul><li><b>Acompanhamento pós-alta:</b> terapia individual, consulta psiquiátrica e nutrição</li><li><b>Pacotes de pausa:</b> períodos curtos de descanso e cuidado, como os pacotes de férias em estudo</li><li><b>Retorno ao tratamento:</b> quando a pessoa ou a família pede, com prioridade alta e sem julgamento</li><li><b>Família:</b> orientação e acompanhamento para quem conviveu com o processo</li></ul></div>
+    <div class="card"><h3>Como gerar a oportunidade</h3><ul><li>Contatos do pós-alta registram interesse em acompanhamento</li><li>Segmento de ex-pacientes no RD Marketing, atualizado pela data de alta</li><li>Campanhas sazonais pelo WhatsApp e e-mail, como o fim de ano</li><li>Programa de indicação para ex-pacientes, familiares e profissionais parceiros, com origem própria no CRM</li></ul></div>
+  </div>
+  <h3 class="h">Calendário de relacionamento (proposta)</h3>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Momento</th><th>Ação</th><th>Público</th></tr>
+    <tr><td>Dezembro</td><td>Campanha de fim de ano: períodos de pausa e cuidado nas férias</td><td>Ex-pacientes, base antiga, leads em nutrição</td></tr>
+    <tr><td>Janeiro</td><td>Recomeço: conteúdo e avaliação inicial gratuita</td><td>Leads em nutrição e famílias em orientação</td></tr>
+    <tr><td>Datas pessoais</td><td>Mensagem de 6 meses e 1 ano de alta</td><td>Ex-pacientes que aceitaram contato</td></tr>
+    <tr><td>Julho</td><td>Campanha de férias de meio de ano</td><td>Ex-pacientes e base</td></tr>
+  </table></div>
+  <div class="note"><b>Consentimento e discrição.</b> Comunicação com ex-pacientes só para quem aceitou receber, com opção clara de sair. Nada que revele o tratamento em assunto de e-mail ou prévia de mensagem.</div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
+</section>
+
+<section id="integracoes">
+  <div class="eyebrow">10 · Integrações e automações</div>
+  <h2>Três ferramentas, um fluxo contínuo</h2>
+  <p class="sub">O que cada gatilho dispara, e em qual ferramenta.</p>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Gatilho</th><th>O que acontece</th><th>Ferramentas</th></tr>
+    <tr><td>Formulário do site enviado</td><td>Conversão no RD com UTM; mensagem imediata no WhatsApp; agente inicia o atendimento</td><td><span class="t t-mkt">RD Mkt</span> <span class="t t-rdc">Conversas</span></td></tr>
+    <tr><td>Primeira mensagem no WhatsApp</td><td>Negociação criada no funil Tratamento com origem e campanha</td><td><span class="t t-rdc">Conversas</span> <span class="t t-crm">CRM</span></td></tr>
+    <tr><td>Agente coleta informações</td><td>Campos e prioridade gravados; etapa avança</td><td><span class="t t-rdc">Conversas</span> <span class="t t-crm">CRM</span></td></tr>
+    <tr><td>Horário reservado à noite</td><td>Tarefa para a equipe na faixa combinada</td><td><span class="t t-crm">CRM</span></td></tr>
+    <tr><td>Palavra-gatilho de risco</td><td>Orientação imediata, bloqueio comercial, alerta ao plantão</td><td><span class="t t-rdc">Conversas</span></td></tr>
+    <tr><td>24 h sem resposta após os valores</td><td>Move para Retomada e inicia S1 a S4</td><td><span class="t t-crm">CRM</span> <span class="t t-rdc">Conversas</span></td></tr>
+    <tr><td>S4 sem resposta</td><td>Entra no fluxo de nutrição por e-mail</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span></td></tr>
+    <tr><td>Negociação ganha</td><td>Contato vira cliente no RD Marketing; conversão devolvida ao Google Ads e à Meta</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span> <span class="t t-ads">Ads</span></td></tr>
+    <tr><td>Data de alta registrada</td><td>Abre o funil Pós-alta e inclui no segmento de ex-pacientes</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span></td></tr>
+    <tr><td>Interesse em acompanhamento</td><td>Abre oportunidade no funil Pós e revenda</td><td><span class="t t-crm">CRM</span></td></tr>
+    <tr><td>Pedido para parar</td><td>Bloqueia WhatsApp, e-mail e tarefas de contato</td><td><span class="t t-rdc">Conversas</span> <span class="t t-mkt">RD Mkt</span> <span class="t t-crm">CRM</span></td></tr>
+  </table></div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
 <section id="metricas">
-  <div class="eyebrow">06 · Métricas</div>
-  <h2>As metas do roteiro, mais a conversão que falta</h2>
-  <p class="sub">O roteiro termina com uma frase certeira: "Nada aqui é conversão: a internação não aparece no ChatSac." O CRM resolve exatamente isso.</p>
+  <div class="eyebrow">11 · Métricas e painel</div>
+  <h2>Do primeiro contato à receita de pós</h2>
+  <p class="sub">As metas do roteiro continuam valendo. O CRM acrescenta o que hoje ninguém consegue medir: conversão em paciente, receita por campanha e o valor do relacionamento depois da alta.</p>
   <div class="scroll"><table class="tbl">
-    <tr><th>Indicador</th><th>Hoje</th><th>Meta</th><th>Fonte</th></tr>
-    <tr><td>Lead da noite que não volta a escrever</td><td>36,4%</td><td>até 25%</td><td>Conversas</td></tr>
-    <tr><td>Primeira resposta humana à fila da noite</td><td>mediana 5,6 h</td><td>até 1 h após o início do turno</td><td>Conversas</td></tr>
-    <tr><td>Conversas da noite com horário reservado</td><td>não existe</td><td>acima de 40%</td><td>CRM</td></tr>
-    <tr><td>Conversas com as 5 informações completas</td><td>não medido</td><td>acima de 60%</td><td>CRM</td></tr>
-    <tr><td>Proposta → pedido de dados</td><td>10%</td><td>15%</td><td>CRM</td></tr>
-    <tr><td>Menção de risco com orientação escrita</td><td>7,3%</td><td>100%</td><td>Conversas</td></tr>
-    <tr><td>Perguntam se é automático</td><td>não medido</td><td>alerta acima de 15%</td><td>CRM</td></tr>
-    <tr><td><b>Lead → avaliação inicial</b></td><td>não medido</td><td>base nas 4 primeiras semanas</td><td>CRM</td></tr>
-    <tr><td><b>Avaliação → chegada do paciente</b></td><td>não medido</td><td>base nas 4 primeiras semanas</td><td>CRM</td></tr>
-    <tr><td><b>Pacientes e receita por campanha e conta</b></td><td>não medido</td><td>mensal</td><td>CRM + RD Marketing</td></tr>
+    <tr><th>Fase</th><th>Indicador</th><th>Hoje</th><th>Meta</th></tr>
+    <tr><td>Captação</td><td>Pacientes e receita por campanha e conta</td><td>não medido</td><td>mensal, a partir da semana 6</td></tr>
+    <tr><td>Captação</td><td>Leads fora do perfil (motivos de perda)</td><td>não medido</td><td>base nas 4 primeiras semanas</td></tr>
+    <tr><td>Atendimento</td><td>Lead da noite que não volta a escrever</td><td>36,4%</td><td>até 25%</td></tr>
+    <tr><td>Atendimento</td><td>Primeira resposta humana à fila da noite</td><td>mediana 5,6 h</td><td>até 1 h após o início do turno</td></tr>
+    <tr><td>Atendimento</td><td>Conversas com as 5 informações</td><td>não medido</td><td>acima de 60%</td></tr>
+    <tr><td>Atendimento</td><td>Menções de risco com orientação escrita</td><td>7,3%</td><td>100%</td></tr>
+    <tr><td>Venda</td><td>Conversas da noite com horário reservado</td><td>não existe</td><td>acima de 40%</td></tr>
+    <tr><td>Venda</td><td>Lead → avaliação inicial → chegada</td><td>não medido</td><td>base nas 4 primeiras semanas</td></tr>
+    <tr><td>Venda</td><td>Proposta → pedido de dados</td><td>10%</td><td>15%</td></tr>
+    <tr><td>Retomada</td><td>Retomadas que voltam ao funil</td><td>não medido</td><td>base nas 4 primeiras semanas</td></tr>
+    <tr><td>Tratamento</td><td>Taxa de extensão de plano</td><td>não medido</td><td>acompanhar mensalmente</td></tr>
+    <tr><td>Pós-venda</td><td>Contatos de pós-alta feitos no prazo</td><td>manual</td><td>100%</td></tr>
+    <tr><td>Pós-venda</td><td>Satisfação (paciente e família)</td><td>não medido</td><td>acompanhar mensalmente</td></tr>
+    <tr><td>Revenda</td><td>Receita de pós, retornos e indicações</td><td>não medido</td><td>acompanhar mensalmente</td></tr>
   </table></div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
 <section id="cronograma">
-  <div class="eyebrow">07 · Cronograma</div>
+  <div class="eyebrow">12 · Cronograma</div>
   <h2>Seis semanas até a operação completa</h2>
-  <p class="sub">O CRM entra em uso na semana 2. O atendimento automático só vai ao ar depois dos testes do roteiro e das aprovações clínica e jurídica.</p>
+  <p class="sub">O CRM entra em uso na semana 2. O agente só atende clientes reais depois dos testes do roteiro e das aprovações clínica e jurídica.</p>
   <div class="timeline">
-    <div class="week now"><div class="w">Semana 1<small>até 05/11</small></div><div>Planejamento validado, acessos liberados, decisões da seção de pendências encaminhadas</div></div>
-    <div class="week"><div class="w">Semana 2<small>até 10/11</small></div><div>Funis, campos, produtos e motivos no CRM; conexões no RD Marketing; número ativado no RD Conversas e validação de ritmo e horários</div></div>
-    <div class="week"><div class="w">Semana 3<small>até 17/11</small></div><div>Camada de IA com o roteiro v3 em número de teste; integração Conversas e CRM; formulários do site no RD</div></div>
-    <div class="week"><div class="w">Semana 4<small>até 24/11</small></div><div>Bateria de testes do roteiro (4 aberturas, preço, "é robô?", menor, risco, áudio); modelos de retorno enviados à Meta</div></div>
-    <div class="week"><div class="w">Semana 5<small>até 01/12</small></div><div>Atendimento no ar com leitura diária das conversas; retomada, orientação à família e pós-alta automáticos</div></div>
-    <div class="week"><div class="w">Semana 6<small>até 08/12</small></div><div>Treinamento da equipe, painel de métricas e ajustes finais</div></div>
+    <div class="week now"><div class="w">Semana 1<small>até 05/11</small></div><div><em>AUTZ</em>Planejamento completo, mapeamento da jornada</div><div><em>Spa Recovery</em>Acessos, validação do planejamento, início das decisões</div></div>
+    <div class="week"><div class="w">Semana 2<small>até 10/11</small></div><div><em>AUTZ</em>Cinco funis, campos, produtos e motivos no CRM; conexões e rastreio no RD Marketing; número ativado no Conversas</div><div><em>Spa Recovery</em>Tabela de preços, regra de visita, telefone do plantão</div></div>
+    <div class="week"><div class="w">Semana 3<small>até 17/11</small></div><div><em>AUTZ</em>Agente de IA configurado com o roteiro v3 em número de teste; integração Conversas e CRM; formulários do site no RD</div><div><em>Spa Recovery</em>Aprovação clínica das mensagens de risco e das descrições</div></div>
+    <div class="week"><div class="w">Semana 4<small>até 24/11</small></div><div><em>AUTZ</em>Bateria de testes do roteiro; modelos de retorno, pós-alta e campanha enviados à Meta; fluxos de e-mail</div><div><em>Spa Recovery</em>Testes com a equipe; aprovação jurídica da privacidade</div></div>
+    <div class="week"><div class="w">Semana 5<small>até 01/12</small></div><div><em>AUTZ</em>Agente no ar com leitura diária das conversas; retomada, pós-alta e revenda automáticos; campanha de fim de ano</div><div><em>Spa Recovery</em>Operação no CRM; registro de datas de chegada e alta</div></div>
+    <div class="week"><div class="w">Semana 6<small>até 08/12</small></div><div><em>AUTZ</em>Treinamento por ferramenta, painel de métricas, ajustes finais</div><div><em>Spa Recovery</em>Equipe treinada e autônoma</div></div>
   </div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
 <section id="pendencias">
-  <div class="eyebrow">08 · Para destravar</div>
-  <h2>O que precisa ser decidido ou enviado</h2>
-  <p class="sub">Junta os acessos do kickoff com as pendências que o próprio roteiro marca como "confirmar antes de ativar".</p>
+  <div class="eyebrow">13 · Decisões e pendências</div>
+  <h2>O que precisa ser definido, por responsável</h2>
+  <p class="sub">Junta os acessos do kickoff com os itens que o roteiro marca como "confirmar antes de ativar".</p>
   <div class="grid2">
     <div class="card">
-      <div class="owner"><h4>Acessos e materiais · Túlio</h4><ul class="todo"><li>Link de ativação do RD Conversas (com o Artur)</li><li>Acesso da AUTZ ao Meta Business</li><li>Logo e manual da marca</li><li>Contato da agência do site e do domínio</li><li>Acesso de leitura ao ChatSac e exportação do histórico</li></ul></div>
-      <div class="owner"><h4>Comercial · Teresa</h4><ul class="todo"><li>Scripts atuais e o funil desenhado com a Débora</li><li>Quem faz a avaliação inicial, em que dias e horários</li><li>Telefone do plantão (D3)</li></ul></div>
+      <div class="owner"><h4>Acessos e materiais · Túlio</h4><ul class="todo"><li>Link de ativação do RD Conversas (com o Artur)</li><li>Acesso da AUTZ ao Meta Business</li><li>Logo e manual da marca</li><li>Contato da agência do site e do domínio</li><li>Exportação do histórico do canal atual</li></ul></div>
+      <div class="owner"><h4>Comercial · Teresa</h4><ul class="todo"><li>Scripts atuais e o funil desenhado com a Débora</li><li>Quem faz a avaliação inicial, em que dias e horários</li><li>Telefone do plantão</li><li>Produtos de pós em desenvolvimento e seus valores</li></ul></div>
+      <div class="owner"><h4>Jurídico</h4><ul class="todo"><li>Texto curto de privacidade usado no atendimento</li><li>Consentimento para comunicação com ex-pacientes</li></ul></div>
     </div>
     <div class="card">
-      <div class="owner"><h4>Direção clínica</h4><ul class="todo"><li>Aprovar as mensagens de risco e definir quem recebe o alerta à noite</li><li>Validar a descrição da retirada (T1b) e o nome da fase 1 em saúde mental (T1c)</li><li>Linhas 1 e 2 são o mesmo programa? Quando vale o plano de 15 dias?</li><li>Para onde encaminhar menores de 18 (D1)</li></ul></div>
-      <div class="owner"><h4>Diretoria</h4><ul class="todo"><li>Tabela única de valores, incluindo 15, 60 e 90 dias</li><li>Cartão: até 10x com taxa (roteiro) ou 3x sem juros embutido, R$ 28.200 no duplo (kickoff)</li><li>Condições que a equipe pode oferecer na objeção (V4)</li><li>Regra única de visita da família</li></ul></div>
-      <div class="owner"><h4>Jurídico</h4><ul class="todo"><li>Texto curto de privacidade (LGPD) usado no Q3</li></ul></div>
+      <div class="owner"><h4>Direção clínica</h4><ul class="todo"><li>Aprovar as mensagens de risco e definir quem recebe o alerta à noite</li><li>Validar a descrição da retirada de remédios e o nome da fase 1 em saúde mental</li><li>Linhas 1 e 2 são o mesmo programa? Quando vale o plano de 15 dias?</li><li>Para onde encaminhar menores de 18</li><li>Critério para indicar extensão de plano</li></ul></div>
+      <div class="owner"><h4>Diretoria</h4><ul class="todo"><li>Tabela única de valores, incluindo 15, 60 e 90 dias</li><li>Cartão: até 10x com taxa ou 3x sem juros embutido (R$ 28.200 no duplo)</li><li>Condições que a equipe pode oferecer na objeção de preço</li><li>Regra única de visita da família</li><li>Programa de indicação: existe benefício para quem indica?</li></ul></div>
     </div>
   </div>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
 <section id="perguntas">
-  <div class="eyebrow">09 · Para a reunião de 05/11</div>
+  <div class="eyebrow">14 · Para a reunião de 05/11</div>
   <h2>Perguntas para fecharmos juntos</h2>
   <ol class="q">
-    <li>O RD Conversas substitui o ChatSac por completo, ou o ChatSac fica em alguma frente?<span>Define a migração do número e onde roda a camada de IA.</span></li>
-    <li>A IA que hoje cobre o horário fora do expediente continua, ou passa a ser a camada do roteiro v3 no RD Conversas?</li>
+    <li>Qual a data ideal para desligar o canal atual e migrar o número para o RD Conversas?</li>
     <li>A equipe cobre das 19h às 20h e o início da manhã?<span>Quem escreve às 19h espera 8,1 h na mediana, segundo o roteiro.</span></li>
     <li>Quem conduz a proposta e o contrato: só o comercial, ou a diretoria entra em algum ponto?</li>
-    <li>A agenda das avaliações fica no CRM ou em um calendário compartilhado?</li>
+    <li>A agenda das avaliações iniciais fica no CRM ou em um calendário compartilhado?</li>
+    <li>Os produtos de pós serão presenciais, online ou os dois?</li>
+    <li>Já existe autorização de contato com ex-pacientes, ou começamos a coletar a partir de agora?</li>
     <li>Me Recovery tem funil próprio ou entra só como origem?</li>
-    <li>Podemos usar depoimentos de pacientes no e-mail e no WhatsApp?</li>
+    <li>Podemos usar depoimentos de pacientes e familiares no e-mail e no WhatsApp?</li>
   </ol>
+  <a class="back" href="#sumario">↑ voltar ao sumário</a>
 </section>
 
-<footer><img src="../assets/autz-logo-white.png" alt="AUTZ"><span>Material preparado pela AUTZ para a Spa Recovery · outubro de 2026</span></footer>
+<footer><img src="../assets/autz-logo-white.png" alt="AUTZ"><span>Planejamento preparado pela AUTZ para a Spa Recovery · outubro de 2026</span></footer>
 </div>
 </body>
 </html>
