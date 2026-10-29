@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choice | Integração RD Station x Cigam</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--surface:#00323A;--surface2:#003D47;--lime:#E9FF4A;--white:#fff;--gray:#7a9fa8;--gray2:#4a7078;--red:#E8593C;--blue:#60a5fa;--amber:#fbbf24;--green:#4ade80;--border:rgba(233,255,74,0.15);--bw:rgba(255,255,255,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:'Poppins',sans-serif;line-height:1.6;font-size:15px}
+.wrap{max-width:880px;margin:0 auto;padding:40px 20px 80px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:36px}
+header img{align-self:flex-start;flex:none;height:34px;max-width:120px;object-fit:contain}
+.tag{color:var(--gray);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+h1{font-size:26px;font-weight:800;line-height:1.25;margin:6px 0 4px}
+h1 span{color:var(--lime)}
+.sub{color:var(--gray);font-size:14px}
+h2{font-size:19px;font-weight:700;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
+h2 .n{background:var(--lime);color:var(--bg);font-size:13px;font-weight:800;width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+h2+p.lead{color:var(--gray);margin-bottom:14px}
+.card{background:var(--surface);border:1px solid var(--bw);border-radius:14px;padding:18px 20px;margin:12px 0}
+.card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.card p{color:#c9dade;font-size:14px}
+.fluxo{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:16px 0}
+.no{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;flex:1;min-width:180px}
+.no b{display:block;font-size:13px;color:var(--lime);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.no span{font-size:13px;color:#c9dade}
+.seta{align-self:center;color:var(--lime);font-size:20px;font-weight:800}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th{background:var(--surface2);color:var(--lime);text-align:left;padding:9px 12px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+td{padding:9px 12px;border-bottom:1px solid var(--bw);color:#c9dade;vertical-align:top}
+tr:last-child td{border-bottom:none}
+.ok{color:var(--green);font-weight:600}.no2{color:var(--red);font-weight:600}.mid{color:var(--amber);font-weight:600}
+.pill{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--lime);margin:2px 4px 2px 0}
+ul{margin:8px 0 8px 20px}
+li{color:#c9dade;font-size:14px;margin:6px 0}
+.alerta{border-left:3px solid var(--amber);background:var(--surface);border-radius:0 12px 12px 0;padding:14px 16px;margin:14px 0;font-size:14px;color:#c9dade}
+.alerta b{color:var(--amber)}
+footer{margin-top:60px;border-top:1px solid var(--bw);padding-top:16px;color:var(--gray2);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media print{body{background:#00272C!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body><div class="wrap">
+<header>
+  <div>
+    <div class="tag">Choice Tech · Documento de integração · 29/10/2026</div>
+    <h1>Como funciona a integração <span>RD Station x Cigam</span><br>e o espelho Representante x Venda Interna</h1>
+    <div class="sub">Guia para o time comercial entender o que é automático, o que é sincronizado e o que depende de pessoas.</div>
+  </div>
+  <img src="data:image/png;base64,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" alt="AUTZ">
+</header>
+
+<h2><span class="n">1</span> A visão geral</h2>
+<p class="lead">São três peças conversando o dia inteiro. O RD é onde o time trabalha; o Cigam é a fonte oficial de pedido, valor e faturamento.</p>
+<div class="fluxo">
+  <div class="no"><b>Funil Representante</b><span>Onde o representante prospecta e acompanha. Os cards dele são, na maioria, <u>cópias-espelho</u> dos negócios reais.</span></div>
+  <div class="seta">⇄</div>
+  <div class="no"><b>Funil Venda Interna</b><span>Onde vive o <u>negócio real</u>, no nome do vendedor interno. É daqui que sai a receita.</span></div>
+  <div class="seta">⇄</div>
+  <div class="no"><b>Cigam (ERP)</b><span>Oportunidade, pedido, itens, impostos e faturamento. É o número oficial: o RD se ajusta a ele, nunca o contrário.</span></div>
+</div>
+<div class="card"><h3>A regra de ouro</h3><p>Cada negócio existe uma única vez de verdade (no Venda Interna). O card do funil Representante é um espelho automático: serve para o representante acompanhar, não para operar. Quem liga os dois é um campo interno de vínculo gravado na cópia.</p></div>
+
+<h2><span class="n">2</span> O que a integração com o Cigam faz sozinha</h2>
+<table>
+<tr><th>Quando</th><th>O que acontece</th></tr>
+<tr><td>Card chega na etapa <b>Oportunidade</b></td><td>Cria a oportunidade no Cigam e grava o número no card (campo Código Cigam). Precisa de <b>Evento, Mercado e empresa vinculada</b> preenchidos, sem isso a oportunidade não nasce.</td></tr>
+<tr><td>Cotação vira pedido no Cigam</td><td>O número do pedido entra no card e os <b>itens do pedido viram produtos</b> da negociação, com valor = mercadoria + IPI + ST (sem frete).</td></tr>
+<tr><td>Itens do pedido mudam no Cigam</td><td>Os produtos do card são atualizados (roda a cada 3 minutos).</td></tr>
+<tr><td>Status do pedido muda no Cigam</td><td>De hora em hora o campo <b>Status do Pedido</b> é espelhado e, se o código for terminal, o card fecha sozinho: <span class="ok">aprovado/faturado (30, 31, 33, 35, 38, 39, 40, 50) = ganho</span> · <span class="no2">cancelado/perdido (16, 90, 92) = perdido com motivo</span>. Código 20 (colocado) ainda não fecha, de propósito.</td></tr>
+<tr><td>Card arrastado para Ganhas/Perdidas sem fechar</td><td>Desde 29/10 a checagem horária também olha essas colunas e fecha o card direito conforme o pedido. Mesmo assim, o certo é marcar o ganho/perda, não só arrastar.</td></tr>
+<tr><td>Todo dia às 06:00</td><td>Um conferente diário compara o valor de <b>cada negociação</b> (em andamento e ganha) com o total do pedido no Cigam: diferença pequena ele corrige sozinho e carimba o card como conferido renomeando para <b>“código do pedido - Nome”</b>; diferença grande vai para uma lista de revisão da AUTZ.</td></tr>
+</table>
+<div class="alerta"><b>Por que às vezes o RD fica ~2% abaixo do Cigam por algumas horas:</b> a API de impostos do Cigam não devolve o FCP-ST. O cálculo em tempo real usa o que a API dá (líquido + IPI + ST) e o conferente das 06:00 acerta a diferença contra o total oficial do pedido. Pedido novo criado hoje pode ficar com essa diferença até a manhã seguinte. A solução definitiva é a TI do Cigam expor o FCP por item na API.</div>
+
+<h2><span class="n">3</span> O espelho Representante x Venda Interna</h2>
+<p class="lead">Duas portas de entrada, uma manutenção contínua e um pós-venda automático.</p>
+<div class="card"><h3>Porta 1 · Negócio trazido pelo representante</h3><p>O representante trabalha o card no funil dele. Quando arrasta para <b>Oportunidade</b>, o sistema move esse card para o Venda Interna (vira o negócio real, no nome do vendedor interno do de-para) e cria um card novo no funil do representante, que é a cópia-espelho para ele acompanhar. Roda a cada 5 minutos.</p></div>
+<div class="card"><h3>Porta 2 · Negócio que nasce no Venda Interna</h3><p>Deal criado direto no VI (site, e-mail, telefone) com o campo <b>Representante</b> preenchido: quando chega em <b>Cotação ou Followup</b>, nasce a cópia no funil do representante. Antes disso não existe cópia, de propósito: só vale espelhar quando virou cotação de verdade.</p></div>
+<div class="card"><h3>Manutenção · Sync a cada 30 minutos</h3><p>Enquanto a cópia está em andamento, ela segue o real: mesma etapa (Oportunidade, Cotação, Followup), mesmos produtos e valores, mesmos campos (Status do Pedido, códigos Cigam, vendedor, mercado). Real ganhou, cópia vai para Negociação Ganha; real perdeu, cópia vai para Negociação Perdida. O caminho é sempre <b>real → cópia</b>: mexer na cópia não muda o real, e o sync desfaz na rodada seguinte.</p></div>
+<div class="card"><h3>Pós-venda · Recriação em 30 dias</h3><p>30 dias depois de um fechamento, se a empresa não tem outra negociação aberta no funil do representante, nasce um card novo em <b>Base Ativa</b> para ele retrabalhar o cliente. Se já existe card aberto, o sistema pula e registra o motivo.</p></div>
+
+<h2><span class="n">4</span> O que é sincronizado (e o que não é)</h2>
+<table>
+<tr><th>Item</th><th>Sincroniza?</th><th>Detalhe</th></tr>
+<tr><td>Etapa da cópia (em andamento)</td><td class="ok">Sim</td><td>Espelhada a cada 30 min</td></tr>
+<tr><td>Produtos e valor da cópia (em andamento)</td><td class="ok">Sim</td><td>Linha a linha, a cada 30 min</td></tr>
+<tr><td>Ganho / perda</td><td class="ok">Sim</td><td>Cópia fecha junto com o real</td></tr>
+<tr><td>Status do Pedido, códigos Cigam, vendedor, mercado</td><td class="ok">Sim</td><td>Na cópia em andamento</td></tr>
+<tr><td>Cópia já fechada (ganha/perdida)</td><td class="no2">Não</td><td><b>Cópia fechada congela.</b> Se o pedido andar depois (ex.: faturar), a cópia mantém o retrato do fechamento. O negócio real continua atualizado; é nele que se olha o status atual.</td></tr>
+<tr><td>Nome do card</td><td class="no2">Não</td><td>Renomear o real (ex.: prefixo do pedido) não renomeia a cópia.</td></tr>
+<tr><td>Anotações, tarefas, anexos</td><td class="no2">Não</td><td>São de cada card. O espelho sincroniza dados do negócio, não o histórico de trabalho.</td></tr>
+<tr><td>Cópia → real</td><td class="no2">Nunca</td><td>Por desenho: o real é a fonte da verdade. Alterações feitas na cópia são desfeitas pelo sync.</td></tr>
+</table>
+
+<h2><span class="n">5</span> Onde o sistema depende de pessoas (e trava em silêncio)</h2>
+<table>
+<tr><th>Situação</th><th>Efeito</th><th>Quem resolve</th></tr>
+<tr><td><b>Representante sem de-para</b> (sem usuário mapeado)</td><td class="mid">O negócio real existe e funciona, mas a cópia não nasce: o representante não enxerga o negócio dele</td><td>AUTZ cadastra o mapa assim que a Choice disser qual usuário do RD representa cada nome</td></tr>
+<tr><td><b>Vendedor sem de-para</b></td><td class="mid">Negócio do representante para na Oportunidade do funil dele, sem subir e sem avisar</td><td>Idem: Choice informa, AUTZ cadastra</td></tr>
+<tr><td>Card em Oportunidade <b>sem Evento, Mercado ou empresa</b></td><td class="mid">A oportunidade não é criada no Cigam</td><td>O dono do card preenche; o sistema cria em até 3 min depois disso</td></tr>
+<tr><td><b>Pedido sem itens / zerado no Cigam</b></td><td class="mid">O card fica sem produtos ou com valor divergente, e está certo: o RD espelha o que existe lá</td><td>Quem monta a cotação no Cigam</td></tr>
+<tr><td><b>Oportunidade criada à mão no Cigam</b> além da automática</td><td class="mid">Pedido duplicado e receita contada duas vezes</td><td>Time: usar sempre a oportunidade que a integração criou</td></tr>
+</table>
+
+<h2><span class="n">6</span> Regras de ouro para o time</h2>
+<ul>
+<li><b>Feche o negócio, não arraste.</b> Marque ganho/perda pelo botão. A automação corrige card só arrastado em até 1 hora, mas o fechamento correto evita relatório errado nesse meio tempo.</li>
+<li><b>Preencha Evento, Mercado e empresa antes da Oportunidade.</b> É o que destrava a criação no Cigam.</li>
+<li><b>Um pedido = uma negociação.</b> Não abra oportunidade manual no Cigam para negócio que já está no RD.</li>
+<li><b>Representante: trabalhe na sua cópia, mas saiba que ela é um espelho.</b> Valor, produtos e status vêm do negócio real e do pedido no Cigam.</li>
+<li><b>Card com prefixo numérico no nome</b> (ex.: “041050 - …”) significa <b>conferido contra o Cigam</b> pelo robô diário.</li>
+<li>Dúvida ou algo estranho: falar com a AUTZ antes de corrigir na mão, principalmente apagar ou mover em massa.</li>
+</ul>
+
+<footer>
+  <div>AUTZ · Automação e RD Station · documento preparado para o time Choice Tech</div>
+  <div>Dúvidas: Mika (AUTZ) · mk@autz.com.br</div>
+</footer>
+</div></body></html>
