@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Choice · Aprovação dos fluxos de e-mail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--surface:#00323A;--surface2:#003D47;--lime:#E9FF4A;--lime2:#D2E132;
+--white:#fff;--gray:#7a9fa8;--gray2:#4a7078;--amber:#fbbf24;--green:#4ade80;--red:#E8593C;
+--border:rgba(233,255,74,.15);--borderw:rgba(255,255,255,.08);--paper:#F6F7F4;--ink:#15272B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:'Poppins',sans-serif;font-size:15px;line-height:1.65}
+a{color:#8fd4e3;word-break:break-all}
+code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:12px;word-break:break-all}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 80px}
+header{display:flex;align-items:center;gap:14px;padding:22px 0;border-bottom:1px solid var(--borderw);flex-wrap:wrap}
+header img{height:30px;flex:none;align-self:center}
+header .ht{flex:1;min-width:220px}
+header .ht h1{font-size:19px;font-weight:700;line-height:1.3}
+header .ht p{color:var(--gray);font-size:13px}
+#progresso{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;white-space:nowrap}
+#progresso b{color:var(--lime)}
+.card{background:var(--surface);border:1px solid var(--borderw);border-radius:14px;padding:20px 22px;margin:22px 0}
+.card h3{font-size:15px;margin-bottom:10px;color:var(--lime)}
+.card ol{margin:8px 0 8px 20px;color:#d6e4e8}
+.card ol li{margin:5px 0}
+.nome-row{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.nome-row label{font-size:13px;color:var(--gray);font-weight:600}
+#autor{background:var(--bg2);border:1px solid var(--borderw);border-radius:9px;color:var(--white);padding:9px 13px;font-family:inherit;font-size:14px;flex:1;min-width:200px}
+#autor.err{border-color:var(--red);box-shadow:0 0 0 2px rgba(232,89,60,.3)}
+details.colap{background:var(--surface);border:1px solid var(--borderw);border-radius:14px;margin:14px 0}
+details.colap>summary{cursor:pointer;padding:14px 20px;font-weight:600;font-size:14px;list-style:none}
+details.colap>summary::-webkit-details-marker{display:none}
+details.colap>summary:before{content:"+";color:var(--lime);margin-right:10px;font-weight:700}
+details.colap[open]>summary:before{content:"–"}
+.colap-body{padding:0 20px 18px;color:#cfe0e4;font-size:14px}
+.colap-body ul,.colap-body ol{margin:8px 0 8px 20px}
+.colap-body li{margin:5px 0}
+.fluxo{margin-top:40px}
+.fx-head{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.fx-n{background:var(--lime);color:var(--bg);font-weight:800;font-size:13px;border-radius:9px;padding:7px 11px;white-space:nowrap}
+.fx-head h2{font-size:20px;font-weight:700;line-height:1.25}
+.fx-sub{color:var(--gray);font-size:13px}
+.fx-meta{background:transparent;border:1px dashed var(--borderw);border-radius:12px;margin:10px 0 14px}
+.fx-meta>summary{cursor:pointer;padding:10px 16px;font-size:13px;color:var(--gray);list-style:none}
+.fx-meta>summary::-webkit-details-marker{display:none}
+.fx-meta-body{padding:2px 16px 14px;font-size:13px;color:#b9cdd2}
+.fx-meta-body ul,.fx-meta-body ol{margin:6px 0 6px 18px}
+.badge{font-size:11px;font-weight:600;border-radius:20px;padding:2px 10px;vertical-align:middle}
+.badge-val{background:rgba(251,191,36,.14);color:var(--amber);border:1px solid rgba(251,191,36,.35)}
+details.email{background:var(--surface);border:1px solid var(--borderw);border-radius:14px;margin:10px 0;overflow:hidden}
+details.email[open]{border-color:var(--border)}
+details.email>summary{display:flex;align-items:center;gap:12px;cursor:pointer;padding:15px 18px;list-style:none}
+details.email>summary::-webkit-details-marker{display:none}
+details.email>summary:hover{background:var(--surface2)}
+.em-head{flex:1;min-width:0}
+.em-title{font-weight:600;font-size:15px}
+.em-n{color:var(--lime);font-weight:700;margin-right:4px}
+.em-sub{font-size:12px;color:var(--gray);margin-top:3px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.arrow{color:var(--gray);transition:transform .2s;flex:none}
+details.email[open] .arrow{transform:rotate(180deg)}
+.status{font-size:11px;font-weight:700;border-radius:20px;padding:3px 11px;white-space:nowrap;flex:none;
+background:rgba(255,255,255,.07);color:var(--gray);border:1px solid var(--borderw)}
+.status.ok{background:rgba(74,222,128,.13);color:var(--green);border-color:rgba(74,222,128,.4)}
+.status.adj{background:rgba(251,191,36,.13);color:var(--amber);border-color:rgba(251,191,36,.4)}
+.em-open{padding:4px 18px 18px;border-top:1px solid var(--borderw)}
+.subjects{margin:14px 0}
+.subj{display:flex;gap:10px;align-items:flex-start;margin:7px 0;font-size:14px}
+.chip{flex:none;font-size:10px;font-weight:700;letter-spacing:.4px;border-radius:6px;padding:3px 8px;margin-top:2px;
+background:var(--lime);color:var(--bg)}
+.chip-b{background:rgba(233,255,74,.18);color:var(--lime);border:1px solid var(--border)}
+.chip-p{background:rgba(255,255,255,.1);color:var(--gray)}
+.pre{color:var(--gray)}
+.sec{margin:14px 0;border-radius:12px;overflow:hidden}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:8px 16px}
+.sec-corpo .sec-label{background:#e8eae4;color:#5a6b63}
+.sec-corpo .sec-body{background:var(--paper);color:var(--ink);padding:16px 20px;font-size:14.5px}
+.sec-corpo .sec-body a{color:#0b6477}
+.sec-corpo .sec-body code{background:rgba(0,0,0,.07)}
+.sec-corpo .sec-body p{margin:9px 0}
+.sec-corpo .sec-body ul,.sec-corpo .sec-body ol{margin:9px 0 9px 22px}
+.sec-corpo .sec-body li{margin:4px 0}
+.sec-cta .sec-label{background:rgba(233,255,74,.12);color:var(--lime)}
+.sec-cta .sec-body{background:rgba(233,255,74,.05);border:1px solid var(--border);border-top:none;padding:12px 20px;font-size:14px}
+.sec-cta .sec-body p{margin:6px 0}
+.sec-arte .sec-label{background:rgba(255,255,255,.05);color:var(--gray)}
+.sec-arte .sec-body{border:1px dashed var(--borderw);border-top:none;padding:12px 20px;font-size:13.5px;color:#c4d6da}
+.sec-arte .sec-body p{margin:6px 0}
+.sec-arte .sec-body ul{margin:6px 0 6px 20px}
+.validar{background:rgba(251,191,36,.15);color:var(--amber);border:1px solid rgba(251,191,36,.4);
+border-radius:7px;padding:1px 7px;font-size:12px;font-weight:600}
+.var{background:rgba(96,165,250,.15);color:#93c5fd;border-radius:6px;padding:0 6px;font-size:13px;font-family:monospace}
+.review{background:var(--bg2);border:1px solid var(--borderw);border-radius:12px;padding:16px;margin-top:16px}
+.rev-title{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--lime)}
+.rev-btns{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.rev-btns button{font-family:inherit;font-size:13px;font-weight:600;border-radius:9px;padding:9px 16px;cursor:pointer;
+background:var(--surface);color:var(--white);border:1px solid var(--borderw)}
+.rev-btns .b-ok.sel{background:rgba(74,222,128,.16);border-color:var(--green);color:var(--green)}
+.rev-btns .b-adj.sel{background:rgba(251,191,36,.16);border-color:var(--amber);color:var(--amber)}
+.review textarea{width:100%;min-height:76px;background:var(--surface);border:1px solid var(--borderw);border-radius:9px;
+color:var(--white);font-family:inherit;font-size:14px;padding:11px 13px;resize:vertical}
+.review textarea:focus{outline:none;border-color:var(--border)}
+.rev-foot{display:flex;gap:12px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.b-send{font-family:inherit;background:var(--lime);color:var(--bg);font-weight:700;font-size:13px;border:none;
+border-radius:9px;padding:10px 20px;cursor:pointer}
+.b-send:hover{background:var(--lime2)}
+.b-send:disabled{opacity:.5;cursor:default}
+.rev-msg{font-size:12.5px;color:var(--gray)}
+.rev-msg.ok{color:var(--green)}
+.rev-msg.err{color:var(--red)}
+.pend{display:flex;gap:14px;background:var(--surface);border:1px solid var(--borderw);border-radius:14px;padding:18px;margin:10px 0}
+.pend-n{flex:none;background:rgba(251,191,36,.14);color:var(--amber);border:1px solid rgba(251,191,36,.35);
+font-weight:800;border-radius:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.pend-body{flex:1;min-width:0}
+.pend-body>p{font-size:14px;color:#d6e4e8}
+.review-pend{margin-top:12px;padding:12px}
+h2.sect{margin:46px 0 6px;font-size:20px}
+.sect-sub{color:var(--gray);font-size:13.5px;margin-bottom:12px}
+footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;color:var(--gray2);font-size:12.5px;text-align:center}
+@media(max-width:560px){
+ header{gap:10px}
+ #progresso{width:100%;text-align:center}
+ .em-open,.review{padding-left:12px;padding-right:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <img src="../assets/autz-logo-white.png" alt="AUTZ">
+  <div class="ht">
+    <h1>Choice Tecnologia · Aprovação das copies</h1>
+    <p>Fluxos de e-mail [FUNIL] · Key in Pocket, Trapped Key, Mineração, UMG 800 e Oportunidades</p>
+  </div>
+  <div id="progresso"><b id="pg-n">0</b>/18 e-mails avaliados</div>
+</header>
+
+<div class="card">
+  <h3>Como revisar</h3>
+  <ol>
+    <li>Clique em cada e-mail para abrir e ler a copy completa (assuntos, corpo, CTA e a descrição do banner).</li>
+    <li>Marque <strong>Aprovado</strong> ou <strong>Precisa de ajuste</strong> e, se quiser mudar algo, escreva a correção no campo de texto.</li>
+    <li>Clique em <strong>Enviar avaliação</strong>: cada envio chega na hora para a equipe AUTZ. Pode revisar aos poucos e voltar depois, e também reenviar se mudar de ideia.</li>
+  </ol>
+  <p style="font-size:13px;color:var(--gray);margin-top:10px">Os trechos marcados com <span class="validar">&#9888; VALIDAR</span> dependem de uma confirmação da Choice. As perguntas estão reunidas no fim da página, na seção <a href="#pendencias" style="word-break:normal">Pendências para validar</a>.</p>
+  <div class="nome-row">
+    <label for="autor">Quem está revisando:</label>
+    <input id="autor" type="text" placeholder="Seu nome" autocomplete="name">
+  </div>
+</div>
+
+<details class="colap">
+  <summary>Regras aplicadas em todos os e-mails</summary>
+  <div class="colap-body"><ul><li>Nada de prometer economia em percentual, eliminação de falha, conformidade, disponibilidade ou prazo sem diagnóstico (regra da ficha).</li><li>Um objetivo e um CTA principal por e-mail, repetido no fim. Os envios de feira com CTA único foram os de melhor clique da Choice (CTOR 19% a 23%), e a nutrição DFun com CTA genérico fica em 2%.</li><li>Imagens: só fotos reais de produto do site da Choice como referência. Não usar foto de instalação, cliente ou data center como se fosse da Choice. Não colocar número técnico ou resultado desenhado na imagem.</li><li>Variável no padrão RD: <code><span class="var">*|PRIMEIRO_NOME|*</span></code> (no corpo, nunca no botão).</li><li>UTM em todos os links: <code>?utm_source=RD+Station&amp;utm_medium=email&amp;utm_campaign=emkt_-_choice_-_&lt;fluxo&gt;</code>. O slug de cada fluxo está no topo dele.</li><li>Intervalo sugerido entre e-mails: 0, +3, +7 e +14 dias. Saída do fluxo quando o lead converter (orçamento, fale conosco, WhatsApp).</li><li>Itens marcados com <span class="validar">&#9888; VALIDAR</span> dependem de confirmação da Choice antes de ativar o fluxo.</li></ul></div>
+</details>
+
+
+<section class="fluxo" id="fluxo1">
+  <div class="fx-head">
+    <div class="fx-n">Fluxo 1</div>
+    <div>
+      <h2>Key in Pocket</h2>
+      <div class="fx-sub">3 e-mails</div>
+    </div>
+  </div>
+  <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-key-in-pocket</code> · Página: <a href="https://choicetech.com.br/key-in-pocket/" target="_blank" rel="noopener">https://choicetech.com.br/key-in-pocket/</a> Público: segurança do trabalho, manutenção e engenharia de máquinas com porta de proteção e acesso de pessoas à área de risco. Nível de consciência: consciente do problema (conhece o risco de partida inesperada), pouco consciente da solução por chave pessoal. Big Idea: a segurança de quem está dentro da máquina não pode depender da memória de quem está fora. Com a chave no bolso, a máquina fisicamente não religa. Hipótese de aprendizado: assunto em forma de cena real (pessoa dentro da máquina) gera mais clique que o assunto com nome de produto.</p></div></details>
+  
+<details class="email" id="f1e1">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 1</span> O risco</div>
+      <div class="em-sub"><code>FUNIL Key in Pocket 1-0</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f1e1">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Tem alguém dentro da máquina. Quem garante que ela não liga?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>O risco de partida inesperada durante a manutenção</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Uma chave, dois lugares possíveis: no dispositivo ou no bolso de quem entrou.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Toda parada para manutenção, ajuste ou limpeza tem o mesmo momento crítico: alguém entra na área de risco, e outra pessoa, do lado de fora, não sabe disso.</p>
+<p>Placa, cadeado e procedimento ajudam. Mas dependem de todo mundo lembrar e cumprir, em todos os turnos.</p>
+<p>O sistema Key in Pocket resolve isso de forma física, não apenas elétrica. Para abrir a porta de proteção, a pessoa precisa retirar uma chave codificada do intertravamento e levar com ela. Enquanto essa chave não voltar ao dispositivo:</p>
+<ul><li>a porta não pode ser travada de novo;</li><li>a máquina não pode ser religada.</li></ul>
+<p>Existe uma única chave, e ela só pode estar em um de dois lugares: presa no dispositivo, com a máquina liberada, ou no bolso de quem está lá dentro.</p>
+<p>Veja o ciclo completo, passo a passo, na simulação da nossa página.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver o ciclo Key in Pocket → <a href="https://choicetech.com.br/key-in-pocket/" target="_blank" rel="noopener">https://choicetech.com.br/key-in-pocket/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Função: mostrar em 1 segundo a ideia "a chave está com a pessoa".</li><li>Título: "A chave fica no seu bolso. A máquina fica parada."</li><li>Composição: fundo escuro industrial, à esquerda o título em branco com "no seu bolso" em destaque na cor da marca; à direita, foto do intertravamento SS-TS-SR-LT com a chave EK sendo retirada.</li><li>Referência: <code><a href="https://choicetech.com.br/wp-content/uploads/2026/05/SS-TS-SR-LT-1.jpg" target="_blank" rel="noopener">https://choicetech.com.br/wp-content/uploads/2026/05/SS-TS-SR-LT-1.jpg</a></code> e <code>.../EK_mini.png</code>.</li><li>Alt: "Intertravamento Key in Pocket com chave pessoal retirada".</li></ul></div></div><div class="sec sec-arte"><div class="sec-label">Imagem de apoio (meio do e-mail)</div><div class="sec-body"><p>o diagrama de abertura e fechamento do site (<code>.../2026/05/Esquema-1-890x1024.jpg</code>), recortado na horizontal, sem texto adicional. Ponha-o logo depois da lista "a porta não pode / a máquina não pode". <span class="validar">&#9888; VALIDAR</span> Não usar a imagem <code>heineken-abertura-fechamento.png</code> do site sem autorização: ela cita o nome de um cliente.</p></div></div>
+    <div class="review" data-id="f1e1" data-fluxo="Fluxo 1 · Key in Pocket" data-email="E-mail 1 · O risco (FUNIL Key in Pocket 1-0)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f1e2">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 2</span> Como funciona e para onde serve</div>
+      <div class="em-sub"><code>FUNIL Key in Pocket 1-1</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f1e2">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>4 passos entre a máquina parada e a porta aberta</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Key in Pocket: como a chave pessoal bloqueia o religamento</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Solenoide, chave auto-ejetável e 3.000 N de força de retenção. Em inox IP69K.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>No e-mail anterior falamos do momento crítico da manutenção. Agora, o que acontece na prática com o intertravamento TS-SR-LT:</p>
+<ol><li>A máquina para por completo e a solenoide de 24 Vcc é energizada, autorizando a liberação.</li><li>A chave pessoal pode ser girada.</li><li>A chave é ejetada do dispositivo e vai com a pessoa para a área de risco.</li><li>A porta é destravada e o acesso é liberado.</li></ol>
+<p>A partida só volta a ser possível quando a chave retorna e a porta é travada de novo. Os contatos de segurança abrem de forma forçada no desbloqueio (segurança positiva), e a chave auto-ejetável evita que alguém a esqueça no dispositivo.</p>
+<p>Configurações disponíveis:</p>
+<ul><li>Aço inox 316 com IP69K ou aço carbono polido com IP67;</li><li>força de retenção de 3.000 N;</li><li>mais de 100 opções de chaves codificadas (inox);</li><li>porta-cadeado para LOTO, liberação manual frontal ou traseira, botão de pulso ou de emergência na tampa.</li></ul>
+<p>Serve para portas articuladas ou deslizantes em máquinas e células robotizadas, e pode ser integrado a outras seções do mesmo sistema de chaves.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver versões e códigos → <a href="https://choicetech.com.br/key-in-pocket/" target="_blank" rel="noopener">https://choicetech.com.br/key-in-pocket/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "4 passos. Uma chave. Zero partida inesperada." <span class="validar">&#9888; VALIDAR</span> "Zero partida inesperada" pode soar como promessa. Alternativa segura: "4 passos. Uma chave. Máquina travada até a chave voltar."</li><li>Composição: faixa com 4 ícones numerados em linha (solenoide, giro, chave saindo, porta aberta), sem texto técnico, e a foto do dispositivo inox à direita.</li><li>Referência: <code>.../SS-TS-SR-LT-1.jpg</code>.</li></ul></div></div><div class="sec sec-arte"><div class="sec-label">Imagem de apoio (descrição)</div><div class="sec-body"><p>foto do porta-cadeado (<code>.../2026/05/CADEADOT.png</code>) ao lado do item LOTO.</p></div></div>
+    <div class="review" data-id="f1e2" data-fluxo="Fluxo 1 · Key in Pocket" data-email="E-mail 2 · Como funciona e para onde serve (FUNIL Key in Pocket 1-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f1e3">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 3</span> Conversa técnica</div>
+      <div class="em-sub"><code>FUNIL Key in Pocket 1-2</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f1e3">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, quantas pessoas entram na área de risco por turno?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Qual porta da sua planta precisa de chave pessoal?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Com três respostas, nosso time indica a versão certa para a sua aplicação.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Cada aplicação de Key in Pocket depende de três coisas:</p>
+<ul><li>o tipo de porta (articulada ou deslizante);</li><li>o ambiente (lavagem, área limpa, poeira, temperatura);</li><li>quantas pessoas entram na área ao mesmo tempo.</li></ul>
+<p>Quando mais de uma pessoa acessa a área, existem unidades com várias chaves, uma para cada pessoa.</p>
+<p>Responda este e-mail ou fale com um especialista da Choice com essas três informações. Indicamos a configuração e enviamos os códigos para o seu projeto.</p>
+<p>A Choice está há mais de 20 anos em segurança de máquinas, energia e automação industrial, com suporte técnico local.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <a href="https://choicetech.com.br/fale-conosco/" target="_blank" rel="noopener">https://choicetech.com.br/fale-conosco/</a> <span class="validar">&#9888; VALIDAR</span> Hoje todas as LPs mandam para /fale-conosco/, que é um formulário de suporte. Se houver formulário de avaliação técnica ou WhatsApp comercial, troque aqui.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem banner grande. Só uma faixa fina com a logo e uma foto da chave EK em close. Este e-mail funciona melhor parecendo uma mensagem pessoal.</p></div></div>
+    <div class="review" data-id="f1e3" data-fluxo="Fluxo 1 · Key in Pocket" data-email="E-mail 3 · Conversa técnica (FUNIL Key in Pocket 1-2)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+</section>
+<section class="fluxo" id="fluxo2">
+  <div class="fx-head">
+    <div class="fx-n">Fluxo 2</div>
+    <div>
+      <h2>Trapped Key</h2>
+      <div class="fx-sub">3 e-mails</div>
+    </div>
+  </div>
+  <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-trapped-key</code> Páginas: <a href="https://choicetech.com.br/sistema-de-intertravamento-para-cortina-trapped-key/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-de-intertravamento-para-cortina-trapped-key/</a> · <a href="https://choicetech.com.br/sistema-de-seguranca-com-chave-pessoal-trapped-key-libertacao-de-fuga-ou-loto/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-de-seguranca-com-chave-pessoal-trapped-key-libertacao-de-fuga-ou-loto/</a> · <a href="https://choicetech.com.br/categoria/prevenir-acidentes-nr-12/sistemas-de-intertravamento/conjunto-trapped-key/" target="_blank" rel="noopener">https://choicetech.com.br/categoria/prevenir-acidentes-nr-12/sistemas-de-intertravamento/conjunto-trapped-key/</a> Público: segurança do trabalho e engenharia de máquinas, com foco em NR-12. Nível de consciência: consciente da solução (sabe que existe LOTO e liberação de escape) e comparando abordagens. Big Idea: LOTO depende da vontade de quem opera. No Trapped Key, a proteção não é opcional: sem tirar a chave, a porta não abre. Hipótese: assunto em forma de comparação (LOTO x chave pessoal) gera clique de quem já usa LOTO.</p></div></details>
+  
+<details class="email" id="f2e1">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 1</span> LOTO x chave pessoal</div>
+      <div class="em-sub"><code>FUNIL Trapped Key 2-0</code> </div>
+    </div>
+    <span class="status" id="st-f2e1">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>LOTO depende de quem opera. A chave pessoal, não.</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Liberação de escape ou chave pessoal: qual protege melhor?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">A diretiva de máquinas passou a exigir prevenção, não só saída de emergência.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Em muitas plantas, a proteção de quem entra numa área de risco é feita por liberação de escape na porta ou por procedimento LOTO. As duas têm um ponto fraco.</p>
+<p>A liberação de escape só protege se a pessoa conseguir alcançar a porta a tempo. Em áreas grandes ou confusas, isso não acontece. E com a porta fechada, alguém de fora pode travar e religar a máquina.</p>
+<p>O LOTO resolve parte do problema, mas depende de cada operador cumprir o procedimento.</p>
+<p>Com uma chave pessoal codificada, a proteção é obrigatória: só depois de retirar a chave do intertravamento a porta pode ser aberta. Enquanto a chave estiver com a pessoa, a máquina não religa. Pela ISO/TS 19837, com a chave pessoal a liberação de escape geralmente deixa de ser necessária.</p>
+<p>A atual diretiva de máquinas (2006/42/CE) trata do "risco de ficar preso em uma máquina" e pede medidas preventivas, não só um jeito de sair.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Entender a diferença → página de chave pessoal (Skorpion)</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "LOTO depende de quem opera. A chave pessoal, não."</li><li>Composição: tela dividida em duas metades. À esquerda, um cadeado e uma etiqueta LOTO em tom acinzentado. À direita, a chave trapped key inox em destaque e iluminada. Título em cima, em duas linhas.</li><li>Referência: foto de produto do conjunto trapped key do site (ex.: estação de três chaves M12M inox) e <code>.../2026/05/chave-pessoal-liberacao-de-escape-LOTO-dold-choice-.jpg</code>.</li><li>Alt: "Comparação entre bloqueio LOTO e chave pessoal trapped key".</li></ul></div></div><div class="sec sec-arte"><div class="sec-label">Imagem de apoio (descrição)</div><div class="sec-body"><p>nenhuma. O e-mail é argumentativo e precisa ser curto no celular.</p></div></div>
+    <div class="review" data-id="f2e1" data-fluxo="Fluxo 2 · Trapped Key" data-email="E-mail 1 · LOTO x chave pessoal (FUNIL Trapped Key 2-0)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f2e2">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 2</span> Cortina de luz</div>
+      <div class="em-sub"><code>FUNIL Trapped Key 2-1</code> </div>
+    </div>
+    <span class="status" id="st-f2e2">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Sua cortina de luz protege quem está do lado de dentro?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Como travar a cortina de luz enquanto alguém trabalha na área</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">LCB: bloqueio com chave pessoal, montado direto na cortina, novo ou retrofit.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>A cortina de luz deixa a máquina mais acessível porque dispensa parte da proteção mecânica. Mas quando a tarefa exige entrar na área com o corpo inteiro, ela sozinha não impede que alguém rearme o sistema.</p>
+<p>O LCB (dispositivo de bloqueio de cortina de luz) resolve isso com a lógica trapped key:</p>
+<ol><li>Na posição liberada, a chave fica presa e não sai.</li><li>Girando a chave 90°, a placa de bloqueio fecha a cortina, e a chave pode ser removida.</li><li>Sem a chave, a placa fica travada. Só quando a chave volta a cortina pode ser liberada.</li></ol>
+<p>A chave vai com a pessoa para dentro da área, e o furo para cadeado de 8 mm permite incluir mais pessoas no bloqueio.</p>
+<p>Corpo em aço inox, placa de montagem integrada para instalar direto na cortina, versões para esquerda e direita em duas larguras (35,5 e 75,5 mm). Funciona em projeto novo e em retrofit, e pode fazer parte de um sistema maior de chaves trapped key.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver o LCB e os modelos → <a href="https://choicetech.com.br/sistema-de-intertravamento-para-cortina-trapped-key/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-de-intertravamento-para-cortina-trapped-key/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "A cortina de luz travada. A chave com você."</li><li>Composição: foto do LCB montado na lateral de uma cortina de luz, fundo industrial desfocado, título à esquerda.</li><li>Referência: <code><a href="https://choicetech.com.br/wp-content/uploads/2026/05/Light-curtain-blocking-device-with-coded-release-key.webp" target="_blank" rel="noopener">https://choicetech.com.br/wp-content/uploads/2026/05/Light-curtain-blocking-device-with-coded-release-key.webp</a></code>.</li></ul></div></div><div class="sec sec-arte"><div class="sec-label">Imagem de apoio (descrição)</div><div class="sec-body"><p>a sequência de 3 diagramas do site (<code>LCB-Light-Curtain-Operation-Diagram-1.jpg</code>, <code>-2.jpg</code> e <code>-3.jpg</code>) lado a lado numa faixa horizontal, logo depois da lista de 3 passos.</p></div></div>
+    <div class="review" data-id="f2e2" data-fluxo="Fluxo 2 · Trapped Key" data-email="E-mail 2 · Cortina de luz (FUNIL Trapped Key 2-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f2e3">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 3</span> Sistema completo</div>
+      <div class="em-sub"><code>FUNIL Trapped Key 2-2</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f2e3">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Uma chave para cada porta, painel e válvula da sua linha</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, vamos desenhar a sequência de chaves da sua máquina?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Chaves de segurança, travas, transferência de chaves e comando em um só sistema, até Cat. 4 / PL e.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Trapped key fica mais forte quando vira sistema. A mesma família de chaves combina:</p>
+<ul><li>chaves e travas de segurança nas portas;</li><li>transferência de chaves, para garantir a ordem certa de bloqueio (primeiro desliga a energia, depois abre o acesso);</li><li>funções de comando e unidades com várias chaves pessoais;</li><li>versões em aço inox e metal fundido, que podem ser combinadas.</li></ul>
+<p>O sistema atende aplicações até Categoria 4 / PL e (EN ISO 13849-1), é certificado pelo TÜV e também aceita proteção sem fio das portas, o que reduz instalação e retrofit.</p>
+<p>Para indicar a sequência certa, o nosso time precisa entender a máquina: quantos acessos, quais fontes de energia precisam ser isoladas e quem entra na área. Fale com um especialista e envie o cenário.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <span class="validar">&#9888; VALIDAR destino</span></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>ilustração em linha mostrando uma sequência simples: chave sai do painel, entra na porta, porta abre. Fotos reais de produto do conjunto trapped key como referência, sem desenhar máquina de cliente.</p></div></div>
+    <div class="review" data-id="f2e3" data-fluxo="Fluxo 2 · Trapped Key" data-email="E-mail 3 · Sistema completo (FUNIL Trapped Key 2-2)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+</section>
+<section class="fluxo" id="fluxo3">
+  <div class="fx-head">
+    <div class="fx-n">Fluxo 3</div>
+    <div>
+      <h2>Mineração e ambientes agressivos</h2>
+      <div class="fx-sub">3 e-mails</div>
+    </div>
+  </div>
+  <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-mineracao</code> Páginas: <a href="https://choicetech.com.br/sistema-wireless-e-sem-baterias/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-wireless-e-sem-baterias/</a> · <a href="https://choicetech.com.br/solucao-sem-fio-para-seguranca-industrial/" target="_blank" rel="noopener">https://choicetech.com.br/solucao-sem-fio-para-seguranca-industrial/</a> Público: manutenção e engenharia em mineração, metalurgia, siderurgia e ferroligas. Nível de consciência: consciente do problema (cabo queimando, parada, bypass), sem conhecer a solução sem fio. Big Idea: onde o cabo não aguenta, a solução é tirar o cabo. Hipótese: e-mail em formato de case (cliente real, mesmo sem nome) tem CTOR maior que o e-mail de produto.</p></div></details>
+  
+<details class="email" id="f3e1">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 1</span> O case</div>
+      <div class="em-sub"><code>FUNIL Mineração 1-0</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f3e1">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Cabo trocado a cada poucos dias. E 4 a 6 horas de parada a cada falha.</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Como uma metalúrgica de ferroligas tirou os cabos do forno</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">O que um fabricante fez quando o calor do forno passou a destruir o cabeamento.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Um fabricante de ferroligas, cliente da Choice, vivia o mesmo problema no Forno 04: a temperatura dentro do forno destruía o cabeamento das garras (clamps) e os fins de curso.</p>
+<p>A cada falha de cabo, a operação entrava em modo bypass, com a equipe em alerta e a linha em risco. A manutenção levava de 4 a 6 horas. E os cabos voltavam a ser trocados a cada poucos dias.</p>
+<p>Havia duas saídas: continuar trocando cabos ou mudar a forma de sensoriar.</p>
+<p>A escolha foi um sistema sem fio e sem baterias, que substituiu os cabos e os fins de curso tradicionais. Sem cabo, o desgaste daquele ponto deixou de existir.</p>
+<p>Veja o desafio, o projeto e a solução, com fotos da instalação.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver o case completo → <a href="https://choicetech.com.br/sistema-wireless-e-sem-baterias/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-wireless-e-sem-baterias/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "Onde o cabo não aguenta, tire o cabo."</li><li>Composição: foto real do case, com o forno ou a garra em ambiente de alta temperatura e tons quentes, título em branco à esquerda.</li><li>Referência: <code><a href="https://choicetech.com.br/wp-content/uploads/2026/05/ferro-liga-1-1.jpg" target="_blank" rel="noopener">https://choicetech.com.br/wp-content/uploads/2026/05/ferro-liga-1-1.jpg</a></code>. <span class="validar">&#9888; VALIDAR</span> Confirmar se as fotos f01, f02 e f03 do case podem ir em e-mail. Estão públicas no site, mas são da instalação do cliente.</li><li>Alt: "Forno de ferroligas com sensoriamento sem fio".</li></ul></div></div><div class="sec sec-arte"><div class="sec-label">Imagem de apoio (descrição)</div><div class="sec-body"><p>faixa com as 3 fotos do case (f01 desafio, f02 projeto, f03 solução) com legenda curta em HTML abaixo de cada uma, não escrita na imagem.</p></div></div>
+    <div class="review" data-id="f3e1" data-fluxo="Fluxo 3 · Mineração e ambientes agressivos" data-email="E-mail 1 · O case (FUNIL Mineração 1-0)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f3e2">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 2</span> Sem fio também para segurança</div>
+      <div class="em-sub"><code>FUNIL Mineração 1-1</code> </div>
+    </div>
+    <span class="status" id="st-f3e2">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Parada de emergência sem fio, em Categoria 4 / PL e</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Correia transportadora longa? A parada de emergência pode ser sem fio</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">UH 6900 (Dold SAFEMASTER W): duas zonas de segurança ligadas por rádio, até SIL 3.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Em mineração, as distâncias são grandes: correias transportadoras, pilhas, unidades móveis. Levar cabo de segurança até cada ponto custa caro e quebra fácil.</p>
+<p>O módulo de segurança sem fio UH 6900, da linha SAFEMASTER W da Dold, conecta duas zonas de segurança por rádio bidirecional, com segurança funcional até Categoria 4 / PL e ou SIL 3. Três formas de uso:</p>
+<ul><li><strong>Segurança total:</strong> uma parada de emergência em qualquer zona desliga as duas, de forma controlada.</li><li><strong>Segurança cruzada:</strong> a correia precisa estar vazia e parada antes de a porta da outra zona ser liberada.</li><li><strong>Conexão opcional:</strong> um veículo, como uma empilhadeira, entra na área e passa a compartilhar a parada de emergência com a máquina.</li></ul>
+<p>A configuração é feita com módulos pré-configurados e software gratuito (SAFEMASTER W Manager).</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver os modos de operação → <a href="https://choicetech.com.br/solucao-sem-fio-para-seguranca-industrial/" target="_blank" rel="noopener">https://choicetech.com.br/solucao-sem-fio-para-seguranca-industrial/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "Parada de emergência sem fio. Segurança Cat. 4."</li><li>Composição: foto do módulo UH 6900 em primeiro plano; ao fundo, uma correia transportadora longa e desfocada, com linhas finas de "sinal" entre dois pontos.</li><li>Referência: imagens de produto do site (<code><a href="https://www.choicetech.com.br/wp-content/uploads/2026/07/1.webp" target="_blank" rel="noopener">https://www.choicetech.com.br/wp-content/uploads/2026/07/1.webp</a></code> a <code>5.webp</code>).</li></ul></div></div><div class="sec sec-arte"><div class="sec-label">Imagem de apoio (descrição)</div><div class="sec-body"><p>o diagrama do modo de segurança cruzada, se estiver entre as imagens do site; se não, nenhuma.</p></div></div>
+    <div class="review" data-id="f3e2" data-fluxo="Fluxo 3 · Mineração e ambientes agressivos" data-email="E-mail 2 · Sem fio também para segurança (FUNIL Mineração 1-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f3e3">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 3</span> Diagnóstico</div>
+      <div class="em-sub"><code>FUNIL Mineração 1-2</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f3e3">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Qual ponto da sua planta mais queima cabo?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, onde está o seu Forno 04?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Conte o cenário e o nosso time avalia se a solução sem fio faz sentido para você.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Toda planta tem aquele ponto que a manutenção já conhece de cor: o cabo que queima, o fim de curso que quebra, o sensor que vive em bypass.</p>
+<p>Se você tem um ponto assim, conte para a gente:</p>
+<ul><li>o que falha e com que frequência;</li><li>a condição do ambiente (temperatura, vibração, poeira, água);</li><li>quanto tempo a linha fica parada a cada falha.</li></ul>
+<p>Com isso, o nosso time de engenharia avalia se a solução sem fio se aplica e qual seria o caminho técnico, antes de qualquer proposta.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Enviar meu cenário → <span class="validar">&#9888; VALIDAR destino</span></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>faixa simples com a foto do forno (e-mail 1) mais escura e o título "Qual é o seu Forno 04?".</p></div></div>
+    <div class="review" data-id="f3e3" data-fluxo="Fluxo 3 · Mineração e ambientes agressivos" data-email="E-mail 3 · Diagnóstico (FUNIL Mineração 1-2)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+</section>
+<section class="fluxo" id="fluxo4">
+  <div class="fx-head">
+    <div class="fx-n">Fluxo 4</div>
+    <div>
+      <h2>UMG 800, principais características</h2>
+      <div class="fx-sub">4 e-mails</div>
+    </div>
+  </div>
+  <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-umg800</code> Páginas: página do produto UMG 800 na loja · <a href="https://choicetech.com.br/umg-801/" target="_blank" rel="noopener">https://choicetech.com.br/umg-801/</a> · <a href="https://choicetech.com.br/gridvis-energy/" target="_blank" rel="noopener">https://choicetech.com.br/gridvis-energy/</a> Público: engenharia elétrica, manutenção, energia e facilities de indústria, data center e prédios comerciais. Nível de consciência: consciente da solução (sabe que precisa medir); compara medidores. Big Idea: medição de vários circuitos num só equipamento compacto, que cresce junto com a instalação. Hipótese: assunto com número concreto do produto (ex.: "63 harmônicas", "4 GB") abre menos e clica mais que assunto de benefício genérico. Testar A/B no e-mail 2.</p>
+<p><span class="validar">&#9888; VALIDAR antes de ativar</span> A página do UMG 800 está "Sob consulta" e o produto aparece "Fora de estoque" em Oportunidades, onde também tem preço de R$ 7.125 no pix. Confirmar disponibilidade e qual página usar. Enquanto o produto estiver fora de estoque, o CTA deve ser orçamento ou especialista, nunca "compre".</p></div></details>
+  
+<details class="email" id="f4e1">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 1</span> O problema</div>
+      <div class="em-sub"><code>FUNIL UMG800 1-0</code> </div>
+    </div>
+    <span class="status" id="st-f4e1">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Seu painel mede energia ou só o total?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Dados de energia espalhados em vários medidores?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Medir circuito por circuito, num equipamento de trilho DIN.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Em muitas instalações, a medição de energia para no total da entrada ou fica espalhada em vários medidores, cada um com o seu software. Quando surge uma perda ou uma falha, fica difícil saber em qual circuito ela começou.</p>
+<p>O UMG 800, da Janitza, foi feito para isso: um medidor modular de trilho DIN que acompanha vários circuitos ao mesmo tempo, com precisão de 0,2% e análise de qualidade de energia.</p>
+<p>Compacto, ocupa pouco espaço no painel e serve tanto para retrofit quanto para projeto novo.</p>
+<p>Nos próximos e-mails mostramos o que ele mede e como se integra aos seus sistemas.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Conhecer o UMG 800 → página do produto</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "Cada circuito, um dado. Num só medidor."</li><li>Composição: foto de produto do UMG 800 em fundo claro e limpo; à esquerda, o título; linhas finas saindo do medidor para vários pontos (representando circuitos), sem número.</li><li>Referência: <code><a href="https://choicetech.com.br/wp-content/uploads/2026/06/5238001-umg800-f-s-303x303.png.jpg" target="_blank" rel="noopener">https://choicetech.com.br/wp-content/uploads/2026/06/5238001-umg800-f-s-303x303.png.jpg</a></code> (pedir à Choice a foto em alta resolução, porque 303 px é pequena para o banner).</li></ul></div></div>
+    <div class="review" data-id="f4e1" data-fluxo="Fluxo 4 · UMG 800, principais características" data-email="E-mail 1 · O problema (FUNIL UMG800 1-0)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f4e2">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 2</span> O que ele mede</div>
+      <div class="em-sub"><code>FUNIL UMG800 1-1</code> </div>
+    </div>
+    <span class="status" id="st-f4e2">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>UMG 800: 0,2% de precisão, 63 harmônicas e 4 GB de memória</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>O que um medidor multicircuito precisa ter</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Harmônicas, transitórios, flicker e desequilíbrio, registrados no próprio equipamento.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>O que o UMG 800 entrega, em resumo:</p>
+<ul><li><strong>Precisão de 0,2%</strong> nas medições;</li><li><strong>multicircuito:</strong> vários pontos de consumo acompanhados ao mesmo tempo;</li><li><strong>qualidade de energia:</strong> harmônicas até a 63ª, desequilíbrio, flicker, transitórios, sobretensão, subtensão, sobrecorrente e interrupção de tensão;</li><li><strong>memória interna de 4 GB</strong>, para histórico local mesmo sem rede;</li><li><strong>4 entradas e 4 saídas digitais</strong> configuráveis.</li></ul>
+<p>Com esses dados, a manutenção deixa de reagir à falha e passa a ver o que está acontecendo no circuito antes dela.</p>
+<p>No site você encontra datasheet, manual e lista de endereços Modbus para baixar.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Baixar o datasheet → página do produto (seção Download de Arquivos)</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem foto grande. Faixa com o produto pequeno à direita e o título "0,2% · 63ª harmônica · 4 GB" em tipografia grande. Este é o único banner da série com número, porque o número é a mensagem.</p></div></div>
+    <div class="review" data-id="f4e2" data-fluxo="Fluxo 4 · UMG 800, principais características" data-email="E-mail 2 · O que ele mede (FUNIL UMG800 1-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f4e3">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 3</span> Integração</div>
+      <div class="em-sub"><code>FUNIL UMG800 1-2</code> </div>
+    </div>
+    <span class="status" id="st-f4e3">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Medição de energia que conversa com o seu SCADA</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Modbus, OPC UA e 2 portas Ethernet: o UMG 800 na sua rede</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Dados do painel direto para supervisório, automação e GridVis.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Dado de energia só ajuda se chegar a quem decide. O UMG 800 tem:</p>
+<ul><li>2 portas Ethernet, RS485 e USB;</li><li>protocolos Modbus RTU, Modbus TCP/IP e OPC UA.</li></ul>
+<p>Com isso, as medições vão direto para o supervisório, para o CLP ou para o software GridVis, onde viram relatório de consumo, de qualidade de energia e alarme.</p>
+<p>Se a sua instalação precisar crescer, a mesma família tem o UMG 801, que chega a 92 canais de medição com módulos de corrente.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver o GridVis → <a href="https://choicetech.com.br/gridvis-energy/" target="_blank" rel="noopener">https://choicetech.com.br/gridvis-energy/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>ilustração simples de um medidor no centro ligado a três ícones (supervisório, CLP, relatório). Produto real como referência.</p></div></div>
+    <div class="review" data-id="f4e3" data-fluxo="Fluxo 4 · UMG 800, principais características" data-email="E-mail 3 · Integração (FUNIL UMG800 1-2)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f4e4">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 4</span> Prova e conversa</div>
+      <div class="em-sub"><code>FUNIL UMG800 1-3</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f4e4">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Mais de 5.000 analisadores instalados e comissionados pela Choice</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, quer ajuda para definir os pontos de medição?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Do projeto ao comissionamento, com suporte técnico local.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Escolher o medidor é a parte fácil. O que define o resultado é onde medir, quantos pontos, como integrar e como ler os dados depois.</p>
+<p>Há mais de 20 anos a Choice faz esse caminho com a tecnologia Janitza: são mais de 5.000 analisadores instalados e comissionados e mais de 80 data centers monitorados no Brasil.</p>
+<p>Um exemplo público é o Metrô de São Paulo: 237 pontos de medição em 87 subestações, com analisadores Janitza e GridVis.</p>
+<p>Conte o cenário da sua instalação e o nosso time ajuda a definir os pontos de medição e o equipamento certo.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <span class="validar">&#9888; VALIDAR destino</span> Link secundário em texto: "Ver o case do Metrô-SP" → <a href="https://choicetech.com.br/metro-sp-monitoramento-qualidade-energia/" target="_blank" rel="noopener">https://choicetech.com.br/metro-sp-monitoramento-qualidade-energia/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto do UMG 800 com o título "Mais de 5.000 analisadores comissionados". Sem foto do Metrô (instalação do cliente).</p></div></div>
+    <div class="review" data-id="f4e4" data-fluxo="Fluxo 4 · UMG 800, principais características" data-email="E-mail 4 · Prova e conversa (FUNIL UMG800 1-3)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+</section>
+<section class="fluxo" id="fluxo5">
+  <div class="fx-head">
+    <div class="fx-n">Fluxo 5</div>
+    <div>
+      <h2>Promo / Oportunidades</h2>
+      <div class="fx-sub">5 e-mails <span class="badge badge-val">&#9888; precisa de validação antes de ativar</span></div>
+    </div>
+  </div>
+  <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-oportunidades</code> Página: <a href="https://choicetech.com.br/categoria/oportunidades/" target="_blank" rel="noopener">https://choicetech.com.br/categoria/oportunidades/</a></p>
+<p><span class="validar">&#9888; VALIDAR, bloqueia o fluxo</span> O e-mail original (fevereiro e março de 2025) era uma liquidação de estoque com até 60% de desconto em botões, colunas luminosas e pedaleiras. Hoje a categoria Oportunidades tem 6 produtos de energia e fontes, e 5 deles aparecem "Fora de estoque". Também não há preço "de/por" na página. Antes de ativar este fluxo, a Choice precisa enviar:</p>
+<ol><li>a lista de itens com estoque real;</li><li>o preço normal e o preço da oportunidade (ou o percentual);</li><li>o prazo ou a quantidade limite. Sem isso, não usamos urgência nem desconto (regra da ficha). As copies abaixo estão prontas com marcadores para preencher.</li></ol>
+<p>Público: base geral, com foco em quem já comprou ou pediu orçamento (mais consciente). Big Idea: equipamento de linha, com estoque e preço de oportunidade, para quem já tem projeto em andamento.</p></div></details>
+  
+<details class="email" id="f5e1">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 1</span> Abertura</div>
+      <div class="em-sub"><code>FUNIL Promo 1-0</code> </div>
+    </div>
+    <span class="status" id="st-f5e1">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Oportunidades Choice: [N] itens com estoque e preço especial</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>[Produto principal] por R$ [preço]: oportunidade com estoque limitado</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Analisadores Janitza, fontes UPS e mais, enquanto durar o estoque.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+<p>Separamos alguns itens do nosso estoque com condição especial para quem tem projeto em andamento:</p>
+<ul><li>[Produto 1]: de R$ [x] por R$ [y]</li><li>[Produto 2]: de R$ [x] por R$ [y]</li><li>[Produto 3]: de R$ [x] por R$ [y]</li></ul>
+<p>São quantidades limitadas, válidas até [data] ou enquanto durar o estoque.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver as oportunidades → <a href="https://choicetech.com.br/categoria/oportunidades/" target="_blank" rel="noopener">https://choicetech.com.br/categoria/oportunidades/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "Oportunidades Choice" e subtítulo "[N] itens com estoque".</li><li>Composição: fundo na cor principal da Choice, 3 fotos de produto em fundo branco lado a lado, sem preço desenhado na imagem (o preço fica em HTML, para poder mudar sem refazer a peça).</li></ul></div></div>
+    <div class="review" data-id="f5e1" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 1 · Abertura (FUNIL Promo 1-0)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f5e2">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 2</span> Produto destaque de energia</div>
+      <div class="em-sub"><code>FUNIL Promo 1-1</code> </div>
+    </div>
+    <span class="status" id="st-f5e2">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>[Analisador] para medir a sua instalação, com preço de oportunidade</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">[principal característica]. Válido até [data].</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>um único produto de energia da lista (ex.: UMG 509-PRO ou UMG 96-PA-MID+), com 3 características do site, preço e CTA "Ver o produto". Exemplo para o UMG 509-PRO, se estiver na lista: 4 canais de tensão até 600 V, 6 canais de corrente com RCM, memória de 256 MB, RS485, Profibus e Ethernet.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto do produto em destaque, título com o nome do produto e "Preço de oportunidade".</p></div></div>
+    <div class="review" data-id="f5e2" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 2 · Produto destaque de energia (FUNIL Promo 1-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f5e3">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 3</span> Produto destaque de fontes</div>
+      <div class="em-sub"><code>FUNIL Promo 2-0</code> <span class="badge badge-val">&#9888; 2 p/ validar</span></div>
+    </div>
+    <span class="status" id="st-f5e3">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Fonte UPS com ultracapacitor: [modelo] com preço de oportunidade</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Energia de backup sem bateria química para o seu painel.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>fonte C-TEC 2410-5 (saída 12/24 Vcc, 5 A, 5,8 kJ) ou CAPTEC 2410-14 (10 A, 14 kJ), se estiverem na lista. Explicar em 2 frases para que serve (manter CLP e comando alimentados durante queda curta) e 1 benefício do ultracapacitor. <span class="validar">&#9888; VALIDAR</span> Peça à Choice a vantagem que eles destacam frente à bateria (vida útil, manutenção), porque o site não tem esse texto.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto da fonte UPS, título "Backup para o painel, sem bateria química". <span class="validar">&#9888; VALIDAR</span> Só usar se a Choice confirmar que é ultracapacitor sem bateria química nesse modelo.</p></div></div>
+    <div class="review" data-id="f5e3" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 3 · Produto destaque de fontes (FUNIL Promo 2-0)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f5e4">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 4</span> Lembrete</div>
+      <div class="em-sub"><code>FUNIL Promo 2-1</code> </div>
+    </div>
+    <span class="status" id="st-f5e4">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Ainda tem [produto]? Sim, mas por pouco tempo</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">A condição vale até [data].</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>3 linhas, lembrando a lista do e-mail 1, com o que ainda tem estoque, e o mesmo CTA. Mandar só para quem abriu e não clicou nos e-mails anteriores.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>reaproveitar o banner do e-mail 1 com o selo "Últimos itens" em HTML, não na imagem.</p></div></div>
+    <div class="review" data-id="f5e4" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 4 · Lembrete (FUNIL Promo 2-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+<details class="email" id="f5e5">
+  <summary>
+    <div class="em-head">
+      <div class="em-title"><span class="em-n">E-mail 5</span> Última chamada</div>
+      <div class="em-sub"><code>FUNIL Promo 3-1</code> </div>
+    </div>
+    <span class="status" id="st-f5e5">pendente</span>
+    <span class="arrow">&#9662;</span>
+  </summary>
+  <div class="em-open">
+    <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Última chance: oportunidades Choice terminam [dia]</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Depois de [data], os itens voltam ao preço normal.</div></div></div>
+    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>2 parágrafos curtos e o CTA. Só enviar se houver prazo real. Se não houver, troque por: "Fale com um especialista e veja se algum item da lista atende o seu projeto."</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem banner. Só texto e botão, com cara de aviso direto.</p></div></div>
+    <div class="review" data-id="f5e5" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 5 · Última chamada (FUNIL Promo 3-1)">
+      <div class="rev-title">Sua avaliação deste e-mail</div>
+      <div class="rev-btns">
+        <button type="button" class="b-ok" onclick="setSt(this,'aprovado')">&#10003; Aprovado</button>
+        <button type="button" class="b-adj" onclick="setSt(this,'ajustar')">&#9998; Precisa de ajuste</button>
+      </div>
+      <textarea placeholder="Escreva aqui a correção ou observação (o que mudar, como prefere, o que está errado)..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviar(this)">Enviar avaliação</button>
+        <span class="rev-msg"></span>
+      </div>
+    </div>
+  </div>
+</details>
+</section>
+
+<h2 class="sect" id="pendencias">Pendências para a Choice validar</h2>
+<p class="sect-sub">Respostas destes pontos destravam a produção das peças. Responda o que já souber, cada item é enviado separadamente.</p>
+
+<div class="pend" id="pend1">
+  <div class="pend-n">1</div>
+  <div class="pend-body">
+    <p>Fluxo Promo: lista de itens com estoque, preços de/por e prazo. <strong>Bloqueia o fluxo.</strong></p>
+    <div class="review review-pend" data-id="pend1" data-fluxo="Pendências" data-email="Pendência 1">
+      <textarea placeholder="Resposta da Choice..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
+        <span class="rev-msg"></span>
+        <span class="status" id="st-pend1" style="margin-left:auto">pendente</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pend" id="pend2">
+  <div class="pend-n">2</div>
+  <div class="pend-body">
+    <p>UMG 800: disponibilidade, preço e qual página usar no CTA.</p>
+    <div class="review review-pend" data-id="pend2" data-fluxo="Pendências" data-email="Pendência 2">
+      <textarea placeholder="Resposta da Choice..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
+        <span class="rev-msg"></span>
+        <span class="status" id="st-pend2" style="margin-left:auto">pendente</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pend" id="pend3">
+  <div class="pend-n">3</div>
+  <div class="pend-body">
+    <p>Destino do CTA "Falar com um especialista": hoje vai para /fale-conosco/ (formulário de suporte). Ideal é um formulário de avaliação técnica ou o WhatsApp comercial.</p>
+    <div class="review review-pend" data-id="pend3" data-fluxo="Pendências" data-email="Pendência 3">
+      <textarea placeholder="Resposta da Choice..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
+        <span class="rev-msg"></span>
+        <span class="status" id="st-pend3" style="margin-left:auto">pendente</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pend" id="pend4">
+  <div class="pend-n">4</div>
+  <div class="pend-body">
+    <p>Fotos do case de ferroligas (f01 a f03) e foto do UMG 800 em alta resolução.</p>
+    <div class="review review-pend" data-id="pend4" data-fluxo="Pendências" data-email="Pendência 4">
+      <textarea placeholder="Resposta da Choice..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
+        <span class="rev-msg"></span>
+        <span class="status" id="st-pend4" style="margin-left:auto">pendente</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pend" id="pend5">
+  <div class="pend-n">5</div>
+  <div class="pend-body">
+    <p>Não usar a imagem do site que tem o nome de um cliente (Heineken) sem autorização.</p>
+    <div class="review review-pend" data-id="pend5" data-fluxo="Pendências" data-email="Pendência 5">
+      <textarea placeholder="Resposta da Choice..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
+        <span class="rev-msg"></span>
+        <span class="status" id="st-pend5" style="margin-left:auto">pendente</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pend" id="pend6">
+  <div class="pend-n">6</div>
+  <div class="pend-body">
+    <p>Uso dos cases públicos (Metrô-SP, ferroligas) em e-mail: estão no site, mas a ficha pede validação para citar cliente.</p>
+    <div class="review review-pend" data-id="pend6" data-fluxo="Pendências" data-email="Pendência 6">
+      <textarea placeholder="Resposta da Choice..."></textarea>
+      <div class="rev-foot">
+        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
+        <span class="rev-msg"></span>
+        <span class="status" id="st-pend6" style="margin-left:auto">pendente</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>AUTZ · material de aprovação interna · dúvidas: mk@autz.com.br</footer>
+</div>
+
+<script>
+var WEBHOOK = "https://webhook.autz.com.br/webhook/aprovacao-fluxos-choice";
+var PAGINA = "aprovacao-fluxos-choice";
+var TOTAL = 18;
+var LSKEY = "aprovacao-fluxos-choice";
+var store = {autor: "", itens: {}};
+try { var s = localStorage.getItem(LSKEY); if (s) store = JSON.parse(s); } catch(e) {}
+
+function save() { try { localStorage.setItem(LSKEY, JSON.stringify(store)); } catch(e) {} }
+
+function setSt(btn, st) {
+  var box = btn.closest(".review");
+  box.dataset.status = st;
+  box.querySelector(".b-ok").classList.toggle("sel", st === "aprovado");
+  box.querySelector(".b-adj").classList.toggle("sel", st === "ajustar");
+}
+
+function badge(id, st) {
+  var el = document.getElementById("st-" + id);
+  if (!el) return;
+  if (st === "aprovado") { el.textContent = "aprovado"; el.className = "status ok"; }
+  else if (st === "ajustar") { el.textContent = "com ajustes"; el.className = "status adj"; }
+  else if (st === "resposta") { el.textContent = "respondida"; el.className = "status ok"; }
+}
+
+function progresso() {
+  var n = 0;
+  for (var k in store.itens) if (k.indexOf("f") === 0 && store.itens[k].enviado) n++;
+  var el = document.getElementById("pg-n");
+  if (el) el.textContent = n;
+}
+
+function getAutor() {
+  var inp = document.getElementById("autor");
+  var v = (inp.value || "").trim();
+  if (!v) {
+    inp.classList.add("err");
+    inp.scrollIntoView({behavior: "smooth", block: "center"});
+    inp.focus();
+    return null;
+  }
+  inp.classList.remove("err");
+  store.autor = v; save();
+  return v;
+}
+
+function post(box, payload, done) {
+  var btn = box.querySelector(".b-send");
+  var msg = box.querySelector(".rev-msg");
+  btn.disabled = true;
+  msg.className = "rev-msg"; msg.textContent = "enviando...";
+  fetch(WEBHOOK, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)})
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function() {
+      btn.disabled = false;
+      msg.className = "rev-msg ok"; msg.textContent = "Enviado para a AUTZ \u2713";
+      done(true);
+    })
+    .catch(function() {
+      btn.disabled = false;
+      msg.className = "rev-msg err";
+      msg.textContent = "Falha no envio. Tente de novo ou mande por WhatsApp.";
+      done(false);
+    });
+}
+
+function enviar(btn) {
+  var box = btn.closest(".review");
+  var st = box.dataset.status || "";
+  var msg = box.querySelector(".rev-msg");
+  if (!st) { msg.className = "rev-msg err"; msg.textContent = "Marque Aprovado ou Precisa de ajuste."; return; }
+  var com = box.querySelector("textarea").value.trim();
+  if (st === "ajustar" && !com) { msg.className = "rev-msg err"; msg.textContent = "Escreva qual ajuste fazer."; return; }
+  var autor = getAutor(); if (!autor) return;
+  var id = box.dataset.id;
+  post(box, {pagina: PAGINA, fluxo: box.dataset.fluxo, email: box.dataset.email, status: st, comentario: com, autor: autor}, function(ok) {
+    if (ok) {
+      store.itens[id] = {status: st, comentario: com, enviado: true};
+      save(); badge(id, st); progresso();
+    }
+  });
+}
+
+function enviarPend(btn) {
+  var box = btn.closest(".review");
+  var com = box.querySelector("textarea").value.trim();
+  var msg = box.querySelector(".rev-msg");
+  if (!com) { msg.className = "rev-msg err"; msg.textContent = "Escreva a resposta antes de enviar."; return; }
+  var autor = getAutor(); if (!autor) return;
+  var id = box.dataset.id;
+  post(box, {pagina: PAGINA, fluxo: box.dataset.fluxo, email: box.dataset.email, status: "resposta", comentario: com, autor: autor}, function(ok) {
+    if (ok) {
+      store.itens[id] = {status: "resposta", comentario: com, enviado: true};
+      save(); badge(id, "resposta"); progresso();
+    }
+  });
+}
+
+// restaurar estado salvo
+(function() {
+  if (store.autor) document.getElementById("autor").value = store.autor;
+  for (var id in store.itens) {
+    var it = store.itens[id];
+    var el = document.getElementById(id);
+    if (!el) continue;
+    var box = el.querySelector ? el.querySelector(".review") : null;
+    if (el.classList && el.classList.contains("pend")) box = el.querySelector(".review");
+    if (box) {
+      if (it.status === "aprovado" || it.status === "ajustar") {
+        box.dataset.status = it.status;
+        var bo = box.querySelector(".b-ok"), ba = box.querySelector(".b-adj");
+        if (bo) bo.classList.toggle("sel", it.status === "aprovado");
+        if (ba) ba.classList.toggle("sel", it.status === "ajustar");
+      }
+      if (it.comentario) box.querySelector("textarea").value = it.comentario;
+      if (it.enviado) {
+        var m = box.querySelector(".rev-msg");
+        m.className = "rev-msg ok"; m.textContent = "J\u00e1 enviado \u2713";
+      }
+    }
+    if (it.enviado) badge(id, it.status);
+  }
+  progresso();
+})();
+</script>
+</body>
+</html>
