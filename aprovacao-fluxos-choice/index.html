@@ -52,6 +52,15 @@ details.colap[open]>summary:before{content:"–"}
 .fx-meta-body ul,.fx-meta-body ol{margin:6px 0 6px 18px}
 .badge{font-size:11px;font-weight:600;border-radius:20px;padding:2px 10px;vertical-align:middle}
 .badge-val{background:rgba(251,191,36,.14);color:var(--amber);border:1px solid rgba(251,191,36,.35)}
+.badge-pv{background:rgba(233,255,74,.14);color:var(--lime);border:1px solid var(--border)}
+.preview{display:flex;gap:16px;align-items:center;margin:16px 0 4px;padding:12px;border-radius:12px;text-decoration:none;
+background:rgba(233,255,74,.06);border:1px solid var(--border);color:var(--white);word-break:normal}
+.preview:hover{background:rgba(233,255,74,.11)}
+.preview img{width:180px;max-width:42%;border-radius:8px;display:block;flex:none}
+.pv-tag{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--lime)}
+.pv-t{font-size:14.5px;font-weight:600;margin-top:4px;line-height:1.4}
+.hl-pv{display:flex;gap:14px;align-items:center;background:rgba(233,255,74,.06);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:14px;font-size:13.5px;color:#d6e4e8}
+.hl-pv a{color:var(--lime);font-weight:600;word-break:normal}
 details.email{background:var(--surface);border:1px solid var(--borderw);border-radius:14px;margin:10px 0;overflow:hidden}
 details.email[open]{border-color:var(--border)}
 details.email>summary{display:flex;align-items:center;gap:12px;cursor:pointer;padding:15px 18px;list-style:none}
@@ -147,6 +156,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <li>Clique em <strong>Enviar avaliação</strong>: cada envio chega na hora para a equipe AUTZ. Pode revisar aos poucos e voltar depois, e também reenviar se mudar de ideia.</li>
   </ol>
   <p style="font-size:13px;color:var(--gray);margin-top:10px">Os trechos marcados com <span class="validar">&#9888; VALIDAR</span> dependem de uma confirmação da Choice. Se souber a resposta, escreva no campo de correção do próprio e-mail.</p>
+  <div class="hl-pv">&#128064; <div>Quer ver como os e-mails vão ficar depois de aprovados? O <a href="#f1e1" onclick="document.getElementById('f1e1').open=true">Fluxo 1, E-mail 1</a> já tem um exemplo montado, com banner, texto e botão: <a href="https://pages.autz.com.br/choice-email-funil-key-in-pocket-1/" target="_blank" rel="noopener">abrir exemplo</a>.</div></div>
   <div class="nome-row">
     <label for="autor">Quem está revisando:</label>
     <input id="autor" type="text" placeholder="Seu nome" autocomplete="name">
@@ -173,14 +183,18 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   <summary>
     <div class="em-head">
       <div class="em-title"><span class="em-n">E-mail 1</span> O risco</div>
-      <div class="em-sub"><code>FUNIL Key in Pocket 1-0</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+      <div class="em-sub"><code>FUNIL Key in Pocket 1-0</code> <span class="badge badge-val">&#9888; 1 p/ validar</span> <span class="badge badge-pv">peça pronta</span></div>
     </div>
     <span class="status" id="st-f1e1">pendente</span>
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    <a class="preview" href="https://pages.autz.com.br/choice-email-funil-key-in-pocket-1/" target="_blank" rel="noopener">
+      <img src="https://lh3.googleusercontent.com/d/1zvyTk6qOXuqckuPMipEkEEjLPrjj386i" alt="Banner do e-mail">
+      <div class="pv-txt"><div class="pv-tag">Exemplo de peça pronta</div><div class="pv-t">Ver este e-mail montado, como o contato vai receber &rarr;</div></div>
+    </a>
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Tem alguém dentro da máquina. Quem garante que ela não liga?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>O risco de partida inesperada durante a manutenção</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Uma chave, dois lugares possíveis: no dispositivo ou no bolso de quem entrou.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Toda parada para manutenção, ajuste ou limpeza tem o mesmo momento crítico: alguém entra na área de risco, e outra pessoa, do lado de fora, não sabe disso.</p>
 <p>Placa, cadeado e procedimento ajudam. Mas dependem de todo mundo lembrar e cumprir, em todos os turnos.</p>
 <p>O sistema Key in Pocket resolve isso de forma física, não apenas elétrica. Para abrir a porta de proteção, a pessoa precisa retirar uma chave codificada do intertravamento e levar com ela. Enquanto essa chave não voltar ao dispositivo:</p>
@@ -211,8 +225,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>4 passos entre a máquina parada e a porta aberta</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Key in Pocket: como a chave pessoal bloqueia o religamento</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Solenoide, chave auto-ejetável e 3.000 N de força de retenção. Em inox IP69K.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>No e-mail anterior falamos do momento crítico da manutenção. Agora, o que acontece na prática com o intertravamento TS-SR-LT:</p>
 <ol><li>A máquina para por completo e a solenoide de 24 Vcc é energizada, autorizando a liberação.</li><li>A chave pessoal pode ser girada.</li><li>A chave é ejetada do dispositivo e vai com a pessoa para a área de risco.</li><li>A porta é destravada e o acesso é liberado.</li></ol>
 <p>A partida só volta a ser possível quando a chave retorna e a porta é travada de novo. Os contatos de segurança abrem de forma forçada no desbloqueio (segurança positiva), e a chave auto-ejetável evita que alguém a esqueça no dispositivo.</p>
@@ -243,8 +258,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, quantas pessoas entram na área de risco por turno?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Qual porta da sua planta precisa de chave pessoal?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Com três respostas, nosso time indica a versão certa para a sua aplicação.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Cada aplicação de Key in Pocket depende de três coisas:</p>
 <ul><li>o tipo de porta (articulada ou deslizante);</li><li>o ambiente (lavagem, área limpa, poeira, temperatura);</li><li>quantas pessoas entram na área ao mesmo tempo.</li></ul>
 <p>Quando mais de uma pessoa acessa a área, existem unidades com várias chaves, uma para cada pessoa.</p>
@@ -285,8 +301,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>LOTO depende de quem opera. A chave pessoal, não.</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Liberação de escape ou chave pessoal: qual protege melhor?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">A diretiva de máquinas passou a exigir prevenção, não só saída de emergência.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Em muitas plantas, a proteção de quem entra numa área de risco é feita por liberação de escape na porta ou por procedimento LOTO. As duas têm um ponto fraco.</p>
 <p>A liberação de escape só protege se a pessoa conseguir alcançar a porta a tempo. Em áreas grandes ou confusas, isso não acontece. E com a porta fechada, alguém de fora pode travar e religar a máquina.</p>
 <p>O LOTO resolve parte do problema, mas depende de cada operador cumprir o procedimento.</p>
@@ -316,8 +333,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Sua cortina de luz protege quem está do lado de dentro?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Como travar a cortina de luz enquanto alguém trabalha na área</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">LCB: bloqueio com chave pessoal, montado direto na cortina, novo ou retrofit.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>A cortina de luz deixa a máquina mais acessível porque dispensa parte da proteção mecânica. Mas quando a tarefa exige entrar na área com o corpo inteiro, ela sozinha não impede que alguém rearme o sistema.</p>
 <p>O LCB (dispositivo de bloqueio de cortina de luz) resolve isso com a lógica trapped key:</p>
 <ol><li>Na posição liberada, a chave fica presa e não sai.</li><li>Girando a chave 90°, a placa de bloqueio fecha a cortina, e a chave pode ser removida.</li><li>Sem a chave, a placa fica travada. Só quando a chave volta a cortina pode ser liberada.</li></ol>
@@ -347,8 +365,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Uma chave para cada porta, painel e válvula da sua linha</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, vamos desenhar a sequência de chaves da sua máquina?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Chaves de segurança, travas, transferência de chaves e comando em um só sistema, até Cat. 4 / PL e.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Trapped key fica mais forte quando vira sistema. A mesma família de chaves combina:</p>
 <ul><li>chaves e travas de segurança nas portas;</li><li>transferência de chaves, para garantir a ordem certa de bloqueio (primeiro desliga a energia, depois abre o acesso);</li><li>funções de comando e unidades com várias chaves pessoais;</li><li>versões em aço inox e metal fundido, que podem ser combinadas.</li></ul>
 <p>O sistema atende aplicações até Categoria 4 / PL e (EN ISO 13849-1), é certificado pelo TÜV e também aceita proteção sem fio das portas, o que reduz instalação e retrofit.</p>
@@ -388,8 +407,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Cabo trocado a cada poucos dias. E 4 a 6 horas de parada a cada falha.</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Como uma metalúrgica de ferroligas tirou os cabos do forno</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">O que um fabricante fez quando o calor do forno passou a destruir o cabeamento.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Um fabricante de ferroligas, cliente da Choice, vivia o mesmo problema no Forno 04: a temperatura dentro do forno destruía o cabeamento das garras (clamps) e os fins de curso.</p>
 <p>A cada falha de cabo, a operação entrava em modo bypass, com a equipe em alerta e a linha em risco. A manutenção levava de 4 a 6 horas. E os cabos voltavam a ser trocados a cada poucos dias.</p>
 <p>Havia duas saídas: continuar trocando cabos ou mudar a forma de sensoriar.</p>
@@ -419,8 +439,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Parada de emergência sem fio, em Categoria 4 / PL e</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Correia transportadora longa? A parada de emergência pode ser sem fio</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">UH 6900 (Dold SAFEMASTER W): duas zonas de segurança ligadas por rádio, até SIL 3.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Em mineração, as distâncias são grandes: correias transportadoras, pilhas, unidades móveis. Levar cabo de segurança até cada ponto custa caro e quebra fácil.</p>
 <p>O módulo de segurança sem fio UH 6900, da linha SAFEMASTER W da Dold, conecta duas zonas de segurança por rádio bidirecional, com segurança funcional até Categoria 4 / PL e ou SIL 3. Três formas de uso:</p>
 <ul><li><strong>Segurança total:</strong> uma parada de emergência em qualquer zona desliga as duas, de forma controlada.</li><li><strong>Segurança cruzada:</strong> a correia precisa estar vazia e parada antes de a porta da outra zona ser liberada.</li><li><strong>Conexão opcional:</strong> um veículo, como uma empilhadeira, entra na área e passa a compartilhar a parada de emergência com a máquina.</li></ul>
@@ -449,8 +470,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Qual ponto da sua planta mais queima cabo?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, onde está o seu Forno 04?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Conte o cenário e o nosso time avalia se a solução sem fio faz sentido para você.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Toda planta tem aquele ponto que a manutenção já conhece de cor: o cabo que queima, o fim de curso que quebra, o sensor que vive em bypass.</p>
 <p>Se você tem um ponto assim, conte para a gente:</p>
 <ul><li>o que falha e com que frequência;</li><li>a condição do ambiente (temperatura, vibração, poeira, água);</li><li>quanto tempo a linha fica parada a cada falha.</li></ul>
@@ -491,8 +513,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Seu painel mede energia ou só o total?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Dados de energia espalhados em vários medidores?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Medir circuito por circuito, num equipamento de trilho DIN.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Em muitas instalações, a medição de energia para no total da entrada ou fica espalhada em vários medidores, cada um com o seu software. Quando surge uma perda ou uma falha, fica difícil saber em qual circuito ela começou.</p>
 <p>O UMG 800, da Janitza, foi feito para isso: um medidor modular de trilho DIN que acompanha vários circuitos ao mesmo tempo, com precisão de 0,2% e análise de qualidade de energia.</p>
 <p>Compacto, ocupa pouco espaço no painel e serve tanto para retrofit quanto para projeto novo.</p>
@@ -521,8 +544,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>UMG 800: 0,2% de precisão, 63 harmônicas e 4 GB de memória</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>O que um medidor multicircuito precisa ter</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Harmônicas, transitórios, flicker e desequilíbrio, registrados no próprio equipamento.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>O que o UMG 800 entrega, em resumo:</p>
 <ul><li><strong>Precisão de 0,2%</strong> nas medições;</li><li><strong>multicircuito:</strong> vários pontos de consumo acompanhados ao mesmo tempo;</li><li><strong>qualidade de energia:</strong> harmônicas até a 63ª, desequilíbrio, flicker, transitórios, sobretensão, subtensão, sobrecorrente e interrupção de tensão;</li><li><strong>memória interna de 4 GB</strong>, para histórico local mesmo sem rede;</li><li><strong>4 entradas e 4 saídas digitais</strong> configuráveis.</li></ul>
 <p>Com esses dados, a manutenção deixa de reagir à falha e passa a ver o que está acontecendo no circuito antes dela.</p>
@@ -551,8 +575,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Medição de energia que conversa com o seu SCADA</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>Modbus, OPC UA e 2 portas Ethernet: o UMG 800 na sua rede</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Dados do painel direto para supervisório, automação e GridVis.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Dado de energia só ajuda se chegar a quem decide. O UMG 800 tem:</p>
 <ul><li>2 portas Ethernet, RS485 e USB;</li><li>protocolos Modbus RTU, Modbus TCP/IP e OPC UA.</li></ul>
 <p>Com isso, as medições vão direto para o supervisório, para o CLP ou para o software GridVis, onde viram relatório de consumo, de qualidade de energia e alarme.</p>
@@ -581,8 +606,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Mais de 5.000 analisadores instalados e comissionados pela Choice</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div><span class="var">*|PRIMEIRO_NOME|*</span>, quer ajuda para definir os pontos de medição?</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Do projeto ao comissionamento, com suporte técnico local.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Escolher o medidor é a parte fácil. O que define o resultado é onde medir, quantos pontos, como integrar e como ler os dados depois.</p>
 <p>Há mais de 20 anos a Choice faz esse caminho com a tecnologia Janitza: são mais de 5.000 analisadores instalados e comissionados e mais de 80 data centers monitorados no Brasil.</p>
 <p>Um exemplo público é o Metrô de São Paulo: 237 pontos de medição em 87 subestações, com analisadores Janitza e GridVis.</p>
@@ -625,8 +651,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Oportunidades Choice: [N] itens com estoque e preço especial</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>[Produto principal] por R$ [preço]: oportunidade com estoque limitado</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Analisadores Janitza, fontes UPS e mais, enquanto durar o estoque.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
 <p>Separamos alguns itens do nosso estoque com condição especial para quem tem projeto em andamento:</p>
 <ul><li>[Produto 1]: de R$ [x] por R$ [y]</li><li>[Produto 2]: de R$ [x] por R$ [y]</li><li>[Produto 3]: de R$ [x] por R$ [y]</li></ul>
 <p>São quantidades limitadas, válidas até [data] ou enquanto durar o estoque.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Ver as oportunidades → <a href="https://choicetech.com.br/categoria/oportunidades/" target="_blank" rel="noopener">https://choicetech.com.br/categoria/oportunidades/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><ul><li>Título: "Oportunidades Choice" e subtítulo "[N] itens com estoque".</li><li>Composição: fundo na cor principal da Choice, 3 fotos de produto em fundo branco lado a lado, sem preço desenhado na imagem (o preço fica em HTML, para poder mudar sem refazer a peça).</li></ul></div></div>
@@ -654,8 +681,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>[Analisador] para medir a sua instalação, com preço de oportunidade</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">[principal característica]. Válido até [data].</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>um único produto de energia da lista (ex.: UMG 509-PRO ou UMG 96-PA-MID+), com 3 características do site, preço e CTA "Ver o produto". Exemplo para o UMG 509-PRO, se estiver na lista: 4 canais de tensão até 600 V, 6 canais de corrente com RCM, memória de 256 MB, RS485, Profibus e Ethernet.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto do produto em destaque, título com o nome do produto e "Preço de oportunidade".</p></div></div>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>um único produto de energia da lista (ex.: UMG 509-PRO ou UMG 96-PA-MID+), com 3 características do site, preço e CTA "Ver o produto". Exemplo para o UMG 509-PRO, se estiver na lista: 4 canais de tensão até 600 V, 6 canais de corrente com RCM, memória de 256 MB, RS485, Profibus e Ethernet.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto do produto em destaque, título com o nome do produto e "Preço de oportunidade".</p></div></div>
     <div class="review" data-id="f5e2" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 2 · Produto destaque de energia (FUNIL Promo 1-1)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -680,8 +708,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Fonte UPS com ultracapacitor: [modelo] com preço de oportunidade</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Energia de backup sem bateria química para o seu painel.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>fonte C-TEC 2410-5 (saída 12/24 Vcc, 5 A, 5,8 kJ) ou CAPTEC 2410-14 (10 A, 14 kJ), se estiverem na lista. Explicar em 2 frases para que serve (manter CLP e comando alimentados durante queda curta) e 1 benefício do ultracapacitor. <span class="validar">&#9888; VALIDAR</span> Peça à Choice a vantagem que eles destacam frente à bateria (vida útil, manutenção), porque o site não tem esse texto.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto da fonte UPS, título "Backup para o painel, sem bateria química". <span class="validar">&#9888; VALIDAR</span> Só usar se a Choice confirmar que é ultracapacitor sem bateria química nesse modelo.</p></div></div>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>fonte C-TEC 2410-5 (saída 12/24 Vcc, 5 A, 5,8 kJ) ou CAPTEC 2410-14 (10 A, 14 kJ), se estiverem na lista. Explicar em 2 frases para que serve (manter CLP e comando alimentados durante queda curta) e 1 benefício do ultracapacitor. <span class="validar">&#9888; VALIDAR</span> Peça à Choice a vantagem que eles destacam frente à bateria (vida útil, manutenção), porque o site não tem esse texto.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto da fonte UPS, título "Backup para o painel, sem bateria química". <span class="validar">&#9888; VALIDAR</span> Só usar se a Choice confirmar que é ultracapacitor sem bateria química nesse modelo.</p></div></div>
     <div class="review" data-id="f5e3" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 3 · Produto destaque de fontes (FUNIL Promo 2-0)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -706,8 +735,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Ainda tem [produto]? Sim, mas por pouco tempo</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">A condição vale até [data].</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>3 linhas, lembrando a lista do e-mail 1, com o que ainda tem estoque, e o mesmo CTA. Mandar só para quem abriu e não clicou nos e-mails anteriores.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>reaproveitar o banner do e-mail 1 com o selo "Últimos itens" em HTML, não na imagem.</p></div></div>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>3 linhas, lembrando a lista do e-mail 1, com o que ainda tem estoque, e o mesmo CTA. Mandar só para quem abriu e não clicou nos e-mails anteriores.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>reaproveitar o banner do e-mail 1 com o selo "Últimos itens" em HTML, não na imagem.</p></div></div>
     <div class="review" data-id="f5e4" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 4 · Lembrete (FUNIL Promo 2-1)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -732,8 +762,9 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <span class="arrow">&#9662;</span>
   </summary>
   <div class="em-open">
+    
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Última chance: oportunidades Choice terminam [dia]</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Depois de [data], os itens voltam ao preço normal.</div></div></div>
-    <div class="sec sec-arte"><div class="sec-label">Observações</div><div class="sec-body"></div></div><div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>2 parágrafos curtos e o CTA. Só enviar se houver prazo real. Se não houver, troque por: "Fale com um especialista e veja se algum item da lista atende o seu projeto."</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem banner. Só texto e botão, com cara de aviso direto.</p></div></div>
+    <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>2 parágrafos curtos e o CTA. Só enviar se houver prazo real. Se não houver, troque por: "Fale com um especialista e veja se algum item da lista atende o seu projeto."</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem banner. Só texto e botão, com cara de aviso direto.</p></div></div>
     <div class="review" data-id="f5e5" data-fluxo="Fluxo 5 · Promo / Oportunidades" data-email="E-mail 5 · Última chamada (FUNIL Promo 3-1)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
