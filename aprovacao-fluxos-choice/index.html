@@ -146,7 +146,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <li>Marque <strong>Aprovado</strong> ou <strong>Precisa de ajuste</strong> e, se quiser mudar algo, escreva a correção no campo de texto.</li>
     <li>Clique em <strong>Enviar avaliação</strong>: cada envio chega na hora para a equipe AUTZ. Pode revisar aos poucos e voltar depois, e também reenviar se mudar de ideia.</li>
   </ol>
-  <p style="font-size:13px;color:var(--gray);margin-top:10px">Os trechos marcados com <span class="validar">&#9888; VALIDAR</span> dependem de uma confirmação da Choice. As perguntas estão reunidas no fim da página, na seção <a href="#pendencias" style="word-break:normal">Pendências para validar</a>.</p>
+  <p style="font-size:13px;color:var(--gray);margin-top:10px">Os trechos marcados com <span class="validar">&#9888; VALIDAR</span> dependem de uma confirmação da Choice. Se souber a resposta, escreva no campo de correção do próprio e-mail.</p>
   <div class="nome-row">
     <label for="autor">Quem está revisando:</label>
     <input id="autor" type="text" placeholder="Seu nome" autocomplete="name">
@@ -749,94 +749,6 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   </div>
 </details>
 </section>
-
-<h2 class="sect" id="pendencias">Pendências para a Choice validar</h2>
-<p class="sect-sub">Respostas destes pontos destravam a produção das peças. Responda o que já souber, cada item é enviado separadamente.</p>
-
-<div class="pend" id="pend1">
-  <div class="pend-n">1</div>
-  <div class="pend-body">
-    <p>Fluxo Promo: lista de itens com estoque, preços de/por e prazo. <strong>Bloqueia o fluxo.</strong></p>
-    <div class="review review-pend" data-id="pend1" data-fluxo="Pendências" data-email="Pendência 1">
-      <textarea placeholder="Resposta da Choice..."></textarea>
-      <div class="rev-foot">
-        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
-        <span class="rev-msg"></span>
-        <span class="status" id="st-pend1" style="margin-left:auto">pendente</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="pend" id="pend2">
-  <div class="pend-n">2</div>
-  <div class="pend-body">
-    <p>UMG 800: disponibilidade, preço e qual página usar no CTA.</p>
-    <div class="review review-pend" data-id="pend2" data-fluxo="Pendências" data-email="Pendência 2">
-      <textarea placeholder="Resposta da Choice..."></textarea>
-      <div class="rev-foot">
-        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
-        <span class="rev-msg"></span>
-        <span class="status" id="st-pend2" style="margin-left:auto">pendente</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="pend" id="pend3">
-  <div class="pend-n">3</div>
-  <div class="pend-body">
-    <p>Destino do CTA "Falar com um especialista": hoje vai para /fale-conosco/ (formulário de suporte). Ideal é um formulário de avaliação técnica ou o WhatsApp comercial.</p>
-    <div class="review review-pend" data-id="pend3" data-fluxo="Pendências" data-email="Pendência 3">
-      <textarea placeholder="Resposta da Choice..."></textarea>
-      <div class="rev-foot">
-        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
-        <span class="rev-msg"></span>
-        <span class="status" id="st-pend3" style="margin-left:auto">pendente</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="pend" id="pend4">
-  <div class="pend-n">4</div>
-  <div class="pend-body">
-    <p>Fotos do case de ferroligas (f01 a f03) e foto do UMG 800 em alta resolução.</p>
-    <div class="review review-pend" data-id="pend4" data-fluxo="Pendências" data-email="Pendência 4">
-      <textarea placeholder="Resposta da Choice..."></textarea>
-      <div class="rev-foot">
-        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
-        <span class="rev-msg"></span>
-        <span class="status" id="st-pend4" style="margin-left:auto">pendente</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="pend" id="pend5">
-  <div class="pend-n">5</div>
-  <div class="pend-body">
-    <p>Não usar a imagem do site que tem o nome de um cliente (Heineken) sem autorização.</p>
-    <div class="review review-pend" data-id="pend5" data-fluxo="Pendências" data-email="Pendência 5">
-      <textarea placeholder="Resposta da Choice..."></textarea>
-      <div class="rev-foot">
-        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
-        <span class="rev-msg"></span>
-        <span class="status" id="st-pend5" style="margin-left:auto">pendente</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="pend" id="pend6">
-  <div class="pend-n">6</div>
-  <div class="pend-body">
-    <p>Uso dos cases públicos (Metrô-SP, ferroligas) em e-mail: estão no site, mas a ficha pede validação para citar cliente.</p>
-    <div class="review review-pend" data-id="pend6" data-fluxo="Pendências" data-email="Pendência 6">
-      <textarea placeholder="Resposta da Choice..."></textarea>
-      <div class="rev-foot">
-        <button type="button" class="b-send" onclick="enviarPend(this)">Enviar resposta</button>
-        <span class="rev-msg"></span>
-        <span class="status" id="st-pend6" style="margin-left:auto">pendente</span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <footer>AUTZ · material de aprovação interna · dúvidas: mk@autz.com.br</footer>
 </div>
