@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contabilista Play · Funil Comercial (Novo)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,21 +18,26 @@
 body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins', system-ui, -apple-system, sans-serif; font-weight:400; line-height:1.6; -webkit-font-smoothing:antialiased;}
 img{max-width:100%;}
 h1,h2,h3{text-wrap:balance; margin:0;}
-.wrap{max-width:880px; margin:0 auto; padding:64px 32px 96px;}
 
-header.doc-header{display:flex; flex-direction:column; align-items:flex-start; gap:28px; margin-bottom:56px;}
+header.doc-header{display:flex; flex-direction:column; align-items:flex-start; gap:28px;}
 .logo{height:28px; width:auto; max-width:120px; display:block; object-fit:contain; flex:none;}
 .eyebrow{font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--lime); margin:0;}
 .doc-title{font-size:34px; font-weight:800; letter-spacing:-0.01em; margin-top:6px;}
-.doc-meta{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:18px; width:100%;}
+.doc-meta{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:18px;}
 .doc-meta strong{color:var(--white); font-weight:600;}
 
-section{margin-bottom:56px;}
-.section-label{font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); margin-bottom:14px;}
+.section-label{font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); margin:0 0 14px;}
 .section-title{font-size:22px; font-weight:700; margin-bottom:16px;}
-p.lede{font-size:16px; color:var(--gray); max-width:64ch; margin:0;}
-p.lede + p.lede{margin-top:10px;}
+p.lede{font-size:16px; color:var(--gray); max-width:64ch;}
 p.lede strong{color:var(--white);}
+
+.card-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.entity-card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:22px; display:flex; flex-direction:column; gap:12px; min-width:0;}
+.entity-head{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+.entity-name{font-size:17px; font-weight:700;}
+ul.rules{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+ul.rules li{font-size:14px; color:var(--white); padding-left:22px; position:relative;}
+ul.rules li::before{content:"→"; position:absolute; left:0; top:1px; color:var(--lime); font-weight:700; font-size:13px;}
 
 .callout{border-radius:12px; padding:22px 24px; border:1px solid; display:flex; flex-direction:column; gap:12px; min-width:0;}
 .callout.amber{background:rgba(251,191,36,0.08); border-color:rgba(251,191,36,0.3);}
@@ -44,64 +48,18 @@ p.lede strong{color:var(--white);}
 .callout.green .callout-title{color:var(--green);}
 .callout.lime .callout-title{color:var(--lime);}
 .callout ul{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:8px;}
-.callout li{font-size:14.5px; color:var(--white); opacity:0.92;}
+.callout li{font-size:15px; color:var(--white); opacity:0.92;}
 
-.mindmap{background:var(--bg2); border:1px solid var(--border-white); border-radius:14px; padding:18px; overflow-x:auto;}
-.mindmap svg{display:block; width:100%; min-width:760px; height:auto;}
-
-.stage{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:22px 24px; margin-bottom:14px;}
-.stage.ativa{border-color:rgba(233,255,74,0.35);}
-.stage.won{border-color:rgba(74,222,128,0.45);}
-.stage.lost{border-color:rgba(232,89,60,0.45);}
-.stage-head{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px;}
-.stage-order{width:28px; height:28px; border-radius:50%; background:var(--surface2); border:1px solid var(--border); color:var(--lime); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:none;}
-.stage-name{font-size:17px; font-weight:700;}
-.tag{font-size:11px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
-.tag.none{background:rgba(255,255,255,0.06); color:var(--gray);}
-.tag.auto{background:rgba(233,255,74,0.12); color:var(--lime);}
-.tag.ok{background:rgba(74,222,128,0.15); color:var(--green);}
-.tag.wip{background:rgba(251,191,36,0.14); color:var(--amber);}
-.tag.red{background:rgba(232,89,60,0.15); color:#ff8a70;}
-.stage p{margin:0 0 10px; font-size:14.5px; color:var(--white); opacity:0.92;}
-.dir{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
-@media (max-width:640px){ .dir{grid-template-columns:1fr;} .wrap{padding:40px 18px 72px;} .doc-title{font-size:27px;} }
-.dir-box{background:var(--bg2); border:1px solid var(--border-white); border-radius:10px; padding:14px 16px; min-width:0;}
-.dir-title{font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--lime2); margin-bottom:8px;}
-.dir-box ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px;}
-.dir-box li{font-size:13.5px; color:var(--white); opacity:0.9;}
-.stage-rule{font-size:13px; color:var(--gray); margin-top:12px; border-top:1px solid var(--border-white); padding-top:10px;}
-.stage-rule strong{color:var(--white); font-weight:600;}
-.days{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 10px;}
-.day{font-size:12px; font-weight:800; color:var(--bg2); background:var(--lime); border-radius:999px; padding:3px 10px;}
-.day.end{background:rgba(232,89,60,0.85); color:#fff;}
-.day.move{background:var(--blue); color:var(--bg2);}
-code{background:var(--bg2); border:1px solid var(--border-white); border-radius:6px; padding:1px 6px; font-size:12.5px; color:var(--lime2);}
-
-.call-rule{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:6px;}
-@media (max-width:640px){ .call-rule{grid-template-columns:1fr;} }
-.call-slot{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:18px; text-align:center;}
-.call-slot .n{font-size:26px; font-weight:800; color:var(--lime);}
-.call-slot .t{font-size:13px; color:var(--gray); margin-top:4px;}
-.call-slot .t b{color:var(--white);}
-
-.flow-steps{display:flex; flex-direction:column; counter-reset:step; margin-top:18px;}
-.flow-step{display:grid; grid-template-columns:28px 1fr; gap:14px; padding:12px 0; border-bottom:1px solid var(--border-white);}
+.flow-steps{display:flex; flex-direction:column; counter-reset:step;}
+.flow-step{display:grid; grid-template-columns:28px 1fr; gap:14px; padding:11px 0; border-bottom:1px solid var(--border-white);}
 .flow-step:last-child{border-bottom:none;}
 .flow-num{counter-increment:step; width:26px; height:26px; border-radius:50%; background:var(--surface2); border:1px solid var(--border); color:var(--lime); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
 .flow-num::before{content:counter(step);}
 .flow-text{font-size:14.5px; color:var(--white); padding-top:3px;}
 .flow-text .who{color:var(--lime2); font-weight:600;}
 
-.table-scroll{overflow-x:auto;}
-.rule-table{width:100%; border-collapse:collapse; font-size:14px;}
-.rule-table th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--gray); padding:0 16px 10px 0; border-bottom:1px solid var(--border-white);}
-.rule-table td{padding:14px 16px 14px 0; border-bottom:1px solid var(--border-white); vertical-align:top; color:var(--white);}
-.rule-table tr:last-child td{border-bottom:none;}
-.rule-table td.label{font-weight:600; white-space:nowrap; color:var(--lime2);}
-
 .timeline{display:flex; flex-direction:column;}
-.phase{display:grid; grid-template-columns:40px 1fr; gap:18px; padding-bottom:26px; position:relative;}
-.phase:not(:last-child)::before{content:""; position:absolute; left:19px; top:38px; bottom:0; width:1px; background:var(--border-white);}
+.phase{display:grid; grid-template-columns:40px 1fr; gap:18px; padding-bottom:22px; position:relative;}
 .phase-num{width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; flex-shrink:0; z-index:1;}
 .phase-num.done{background:var(--green); color:var(--bg2);}
 .phase-num.wip{background:var(--amber); color:var(--bg2);}
@@ -112,298 +70,512 @@ code{background:var(--bg2); border:1px solid var(--border-white); border-radius:
 .phase-status.done{color:var(--green);}
 .phase-status.wip{color:var(--amber);}
 .phase-status.todo{color:var(--gray);}
-.phase-desc{font-size:14px; color:var(--gray); margin-top:6px; max-width:62ch;}
+.phase-desc{font-size:14px; color:var(--gray); margin-top:4px; max-width:60ch;}
 
+.rule-table{width:100%; border-collapse:collapse; font-size:14px;}
+.rule-table th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--gray); padding:0 16px 10px 0; border-bottom:1px solid var(--border-white);}
+.rule-table td{padding:11px 16px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top; color:var(--white);}
+.rule-table tr:last-child td{border-bottom:none;}
+.rule-table td.label{font-weight:600; white-space:nowrap; color:var(--lime2);}
+.table-scroll{overflow-x:auto;}
+
+.stage{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:18px 22px; margin-bottom:12px;}
+.stage.ativa{border-color:rgba(233,255,74,0.35);}
+.stage.won{border-color:rgba(74,222,128,0.45);}
+.stage.lost{border-color:rgba(232,89,60,0.45);}
+.stage-head{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:10px;}
+.stage-order{width:28px; height:28px; border-radius:50%; background:var(--surface2); border:1px solid var(--border); color:var(--lime); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:none;}
+.stage-name{font-size:17px; font-weight:700;}
+.tag{font-size:11px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.tag.none{background:rgba(255,255,255,0.06); color:var(--gray);}
+.tag.auto{background:rgba(233,255,74,0.12); color:var(--lime);}
+.tag.ok{background:rgba(74,222,128,0.15); color:var(--green);}
+.tag.wip{background:rgba(251,191,36,0.14); color:var(--amber);}
+.tag.red{background:rgba(232,89,60,0.15); color:#ff8a70;}
+.stage p{margin:0; font-size:14.5px; color:var(--white); opacity:0.92;}
+.dir{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+.dir-box{background:var(--bg2); border:1px solid var(--border-white); border-radius:10px; padding:14px 16px; min-width:0;}
+.dir-title{font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--lime2); margin-bottom:8px;}
+.dir-box ul{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:5px;}
+.dir-box li{font-size:13.5px; color:var(--white); opacity:0.9;}
+.stage-rule{font-size:13px; color:var(--gray); margin-top:12px; border-top:1px solid var(--border-white); padding-top:10px;}
+.stage-rule strong{color:var(--white); font-weight:600;}
+.days{display:flex; flex-wrap:wrap; gap:6px; margin:2px 0 10px;}
+.day{font-size:12px; font-weight:800; color:var(--bg2); background:var(--lime); border-radius:999px; padding:3px 10px;}
+.day.end{background:rgba(232,89,60,0.85); color:#fff;}
+.day.move{background:var(--blue); color:var(--bg2);}
+code{background:var(--bg2); border:1px solid var(--border-white); border-radius:6px; padding:1px 6px; font-size:12.5px; color:var(--lime2);}
+
+.mindmap{background:var(--bg2); border:1px solid var(--border-white); border-radius:14px; padding:14px;}
+.mindmap svg{display:block; width:100%; height:auto; max-height:calc(100vh - 260px);}
+
+.funnel-row{display:flex; flex-wrap:wrap; gap:8px; align-items:stretch;}
+.f-step{flex:1 1 0; min-width:118px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:6px;}
+.f-step .n{font-size:11px; font-weight:700; color:var(--gray); letter-spacing:.08em; text-transform:uppercase;}
+.f-step .t{font-size:15px; font-weight:700; line-height:1.3;}
+.f-step .d{font-size:12.5px; color:var(--gray);}
+.f-step.hl{border-color:rgba(233,255,74,0.35);}
+.f-step.won{border-color:rgba(74,222,128,0.45);}
+.f-step.lost{border-color:rgba(232,89,60,0.45);}
+
+.call-rule{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.call-slot{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:22px; text-align:center;}
+.call-slot .n{font-size:34px; font-weight:800; color:var(--lime);}
+.call-slot .t{font-size:14px; color:var(--gray); margin-top:4px;}
+.call-slot .t b{color:var(--white); font-size:16px;}
 a{color:var(--lime);}
-footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--border-white); font-size:12px; color:var(--gray2); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
 </style>
-</head>
-<body>
-<div class="wrap">
 
-  <header class="doc-header">
-    <img class="logo" src="../assets/autz-logo-white.png" alt="Autz">
-    <div>
-      <p class="eyebrow">Como funciona o novo funil</p>
-      <h1 class="doc-title">Funil Comercial (Novo) no RD CRM</h1>
-    </div>
-    <div class="doc-meta">
-      <span>Cliente: <strong>Contabilista Play</strong></span>
-      <span>Preparado por: <strong>Autz</strong></span>
-      <span>Data: <strong>30 de outubro de 2026</strong></span>
-      <span>Versão: <strong>1.0</strong></span>
-    </div>
-  </header>
+<style>
+html,body{height:100%;}
+body{overflow:hidden;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{margin:0; position:absolute; inset:0; display:none; overflow-y:auto; padding:48px 56px 24px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1040px;}
+.slide .section-title{font-size:28px; margin-bottom:12px;}
+.slide p.lede{font-size:16px; max-width:72ch; margin:0 0 18px;}
+.slide .section-label{margin-bottom:10px;}
+.capa .doc-title{font-size:48px; line-height:1.1;}
+.capa .logo{height:36px; max-width:160px;}
+.capa .doc-meta{margin-top:28px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-2 > *{min-width:0;}
+.timeline.duas{display:grid; grid-template-columns:1fr 1fr; column-gap:32px;}
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white);}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.barra .contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.barra .titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s;}
+.dica-teclas{font-size:12px; color:var(--gray2); margin:0;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; box-shadow:0 4px 14px rgba(0,0,0,.35);}
+.mais.visivel{display:block;}
+@media (max-width:760px){
+  .slide{padding:28px 18px 20px;}
+  .slide .section-title{font-size:22px;}
+  .capa .doc-title{font-size:34px;}
+  .grid-2,.timeline.duas,.dir,.card-grid,.call-rule{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica-teclas{display:none;}
+  .mindmap{overflow-x:auto;} .mindmap svg{min-width:640px; max-height:none;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais{display:none;}
+}
+</style>
 
-  <section>
-    <p class="section-label">Contexto</p>
-    <h2 class="section-title">Por que o funil mudou</h2>
-    <p class="lede">No diagnóstico do CRM, <strong>82% das negociações perdidas</strong> (1.424 de 1.742) tinham o motivo "Tentativas de Contato Esgotada". O problema não era preço nem desinteresse: o lead esfriava antes de alguém conseguir falar com ele. Com cerca de 40 leads novos por dia para 2 consultores, o contato dependia de lembrar na hora.</p>
-    <p class="lede">O funil novo resolve isso com etapas mais simples, prazos claros em cada etapa e tarefas criadas sozinhas no CRM nos dias certos. O consultor abre a lista de tarefas do dia e executa: ligação e mensagem.</p>
-    <div class="callout green" style="margin-top:20px;">
-      <div class="callout-title">✓ O que muda na rotina</div>
-      <ul>
-        <li>As 4 etapas de tentativa (Tentativa 1, 2, 3 e Última tentativa) viraram <strong>uma única etapa: Tentativa de Contato</strong>, com cadência de 14 dias.</li>
-        <li>Cada etapa tem um <strong>prazo máximo</strong>. Ninguém fica parado sem status: quando o prazo acaba, o negócio avança ou é encerrado com o motivo certo.</li>
-        <li>O CRM cria sozinho as tarefas <strong>Ligação Dx</strong> e <strong>Mensagem WhatsApp Dx</strong> para o dono do negócio, com vencimento às 18h.</li>
-        <li>As mensagens viram <strong>templates oficiais no RD Conversas</strong>, com o mesmo texto para todos e aprovados pela Meta.</li>
-        <li>Toda ligação, atendida ou não, vira <strong>nota no negócio</strong>.</li>
-      </ul>
-    </div>
-  </section>
+<main class="deck" id="deck">
 
-  <section>
-    <p class="section-label">Mapa mental</p>
-    <h2 class="section-title">O funil em uma imagem</h2>
-    <div class="mindmap">
-      <svg viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" font-family="Poppins, sans-serif">
-        <g stroke="rgba(233,255,74,0.35)" stroke-width="2" fill="none">
-          <path d="M440 280 C 330 280, 300 95, 205 95"/>
-          <path d="M440 280 C 330 280, 300 280, 205 280"/>
-          <path d="M440 280 C 330 280, 300 465, 205 465"/>
-          <path d="M440 280 C 550 280, 580 95, 675 95"/>
-          <path d="M440 280 C 550 280, 580 280, 675 280"/>
-          <path d="M440 280 C 550 280, 580 465, 675 465"/>
-        </g>
-        <rect x="340" y="236" width="200" height="88" rx="18" fill="#E9FF4A"/>
-        <text x="440" y="273" text-anchor="middle" font-size="16" font-weight="800" fill="#001e23">Funil Comercial</text>
-        <text x="440" y="296" text-anchor="middle" font-size="16" font-weight="800" fill="#001e23">(Novo)</text>
-
-        <g>
-          <rect x="16" y="22" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
-          <text x="34" y="52" font-size="14" font-weight="800" fill="#E9FF4A">1. Etapas</text>
-          <text x="34" y="78" font-size="12.5" fill="#ffffff">Lead Recebido · Em atendimento</text>
-          <text x="34" y="100" font-size="12.5" fill="#ffffff">Tentativa de Contato</text>
-          <text x="34" y="122" font-size="12.5" fill="#ffffff">Negociação · Follow Proposta</text>
-          <text x="34" y="144" font-size="12.5" fill="#ffffff">Fechado Ganhou · Fechado Perdido</text>
-        </g>
-        <g>
-          <rect x="16" y="208" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
-          <text x="34" y="238" font-size="14" font-weight="800" fill="#E9FF4A">2. Cadências</text>
-          <text x="34" y="264" font-size="12.5" fill="#ffffff">Tentativa: D1, D3, D5, D7, D14</text>
-          <text x="34" y="286" font-size="12.5" fill="#ffffff">Negociação: D1, D3, D5, D7, D10</text>
-          <text x="34" y="308" font-size="12.5" fill="#ffffff">Follow Proposta: D2, D4</text>
-          <text x="34" y="330" font-size="12.5" fill="#7a9fa8">D1 = dia em que entrou na etapa</text>
-        </g>
-        <g>
-          <rect x="16" y="394" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
-          <text x="34" y="424" font-size="14" font-weight="800" fill="#E9FF4A">3. Ligações</text>
-          <text x="34" y="450" font-size="12.5" fill="#ffffff">3 por dia de toque na Tentativa</text>
-          <text x="34" y="472" font-size="12.5" fill="#ffffff">9h · 13h30 · 17h</text>
-          <text x="34" y="494" font-size="12.5" fill="#ffffff">Pelo Webphone do CRM</text>
-          <text x="34" y="516" font-size="12.5" fill="#ffffff">Toda tentativa vira nota</text>
-        </g>
-        <g>
-          <rect x="594" y="22" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
-          <text x="612" y="52" font-size="14" font-weight="800" fill="#E9FF4A">4. Mensagens</text>
-          <text x="612" y="78" font-size="12.5" fill="#ffffff">12 templates no RD Conversas</text>
-          <text x="612" y="100" font-size="12.5" fill="#ffffff">Um por dia de toque</text>
-          <text x="612" y="122" font-size="12.5" fill="#ffffff">Template para contato antigo</text>
-          <text x="612" y="144" font-size="12.5" fill="#ffffff">Ligação reabre a conversa</text>
-        </g>
-        <g>
-          <rect x="594" y="208" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
-          <text x="612" y="238" font-size="14" font-weight="800" fill="#E9FF4A">5. Automações</text>
-          <text x="612" y="264" font-size="12.5" fill="#ffffff">Tarefas criadas sozinhas</text>
-          <text x="612" y="286" font-size="12.5" fill="#ffffff">Negociação D11 → Follow</text>
-          <text x="612" y="308" font-size="12.5" fill="#ffffff">Follow D5 → Perdido</text>
-          <text x="612" y="330" font-size="12.5" fill="#ffffff">Tentativa D15 → Perdido</text>
-        </g>
-        <g>
-          <rect x="594" y="394" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
-          <text x="612" y="424" font-size="14" font-weight="800" fill="#E9FF4A">6. Atendimento</text>
-          <text x="612" y="450" font-size="12.5" fill="#ffffff">Chatbot: 10 min → fila geral</text>
-          <text x="612" y="472" font-size="12.5" fill="#ffffff">Lead fica com quem atendeu</text>
-          <text x="612" y="494" font-size="12.5" fill="#ffffff">Respondeu: sai da cadência</text>
-          <text x="612" y="516" font-size="12.5" fill="#ffffff">Perda sempre com motivo real</text>
-        </g>
-      </svg>
+  <section class="slide capa" data-titulo="Capa">
+    <div class="slide-inner">
+      <header class="doc-header" style="margin:0;">
+        <img class="logo" src="../assets/autz-logo-white.png" alt="Autz">
+        <div>
+          <p class="eyebrow">Como funciona o novo funil</p>
+          <h1 class="doc-title">Funil Comercial (Novo)<br>no RD CRM</h1>
+        </div>
+        <div class="doc-meta">
+          <span>Cliente: <strong>Contabilista Play</strong></span>
+          <span>Preparado por: <strong>Autz</strong></span>
+          <span>Data: <strong>30 de outubro de 2026</strong></span>
+          <span>Versão: <strong>1.0</strong></span>
+        </div>
+        <p class="dica-teclas">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </header>
     </div>
   </section>
 
-  <section>
-    <p class="section-label">Etapa por etapa</p>
-    <h2 class="section-title">O que acontece em cada etapa do funil</h2>
-    <p class="lede" style="margin-bottom:20px;">As etapas aparecem na ordem do funil. Em cada uma: o que o consultor faz, o que acontece sozinho e quando o negócio sai dela.</p>
-
-    <div class="stage">
-      <div class="stage-head"><span class="stage-order">1</span><span class="stage-name">Lead Recebido</span><span class="tag none">Entrada</span></div>
-      <p>Onde nasce todo lead novo: tráfego pago, site, chatbot do RD Conversas ou cadastro manual.</p>
-      <div class="dir">
-        <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
-          <li>Assume o lead e move para Em atendimento</li>
-          <li>Cadastra à mão o lead que chegou sem negociação no CRM</li>
-        </ul></div>
-        <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
-          <li>Leads do tráfego entram direto no CRM e no Conversas</li>
-          <li>Lead parado no chatbot por 10 minutos cai na fila geral</li>
-        </ul></div>
+  <section class="slide" data-titulo="Por que o funil mudou">
+    <div class="slide-inner">
+      <p class="section-label">Contexto</p>
+      <h2 class="section-title">Por que o funil mudou</h2>
+      <p class="lede">No diagnóstico do CRM, <strong>82% das negociações perdidas</strong> (1.424 de 1.742) tinham o motivo "Tentativas de Contato Esgotada". O problema não era preço nem desinteresse: o lead esfriava antes de alguém conseguir falar com ele. Com cerca de 40 leads novos por dia para 2 consultores, o contato dependia de lembrar na hora.</p>
+      <div class="callout green">
+        <div class="callout-title">✓ O que muda na rotina</div>
+        <ul>
+          <li>As 4 etapas de tentativa viraram <strong>uma única etapa: Tentativa de Contato</strong>, com cadência de 14 dias.</li>
+          <li>Cada etapa tem um <strong>prazo máximo</strong>: quando acaba, o negócio avança ou é encerrado com o motivo certo.</li>
+          <li>O CRM cria sozinho as tarefas <strong>Ligação Dx</strong> e <strong>Mensagem WhatsApp Dx</strong> para o dono do negócio.</li>
+          <li>As mensagens viram <strong>templates oficiais no RD Conversas</strong>, aprovados pela Meta.</li>
+          <li>Toda ligação, atendida ou não, vira <strong>nota no negócio</strong>.</li>
+        </ul>
       </div>
-      <div class="stage-rule"><strong>Sai quando:</strong> o consultor inicia o atendimento. Quanto mais rápido o primeiro contato, maior a chance de conversa.</div>
     </div>
+  </section>
 
-    <div class="stage">
-      <div class="stage-head"><span class="stage-order">2</span><span class="stage-name">Em atendimento</span><span class="tag none">Dia 0</span></div>
-      <p>Primeiro contato do dia em que o lead chegou.</p>
-      <div class="dir">
-        <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
-          <li>3 ligações no mesmo dia, nos horários da regra</li>
-          <li>Mensagem de boas-vindas pelo WhatsApp</li>
-          <li>Registra cada tentativa como nota</li>
-        </ul></div>
-        <div class="dir-box"><div class="dir-title">Próximo passo</div><ul>
-          <li>Conversou e tem interesse: Negociação</li>
-          <li>Não respondeu: Tentativa de Contato</li>
-          <li>Sem perfil ou contato errado: Perdido, com o motivo</li>
-        </ul></div>
+  <section class="slide" data-titulo="Mapa mental">
+    <div class="slide-inner">
+      <p class="section-label">Mapa mental</p>
+      <h2 class="section-title">O funil em uma imagem</h2>
+      <div class="mindmap">
+        <svg viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" font-family="Poppins, sans-serif" role="img" aria-label="Mapa mental do Funil Comercial (Novo)">
+          <g stroke="rgba(233,255,74,0.35)" stroke-width="2" fill="none">
+            <path d="M440 280 C 330 280, 300 95, 205 95"/>
+            <path d="M440 280 C 330 280, 300 280, 205 280"/>
+            <path d="M440 280 C 330 280, 300 465, 205 465"/>
+            <path d="M440 280 C 550 280, 580 95, 675 95"/>
+            <path d="M440 280 C 550 280, 580 280, 675 280"/>
+            <path d="M440 280 C 550 280, 580 465, 675 465"/>
+          </g>
+          <rect x="340" y="236" width="200" height="88" rx="18" fill="#E9FF4A"/>
+          <text x="440" y="273" text-anchor="middle" font-size="16" font-weight="800" fill="#001e23">Funil Comercial</text>
+          <text x="440" y="296" text-anchor="middle" font-size="16" font-weight="800" fill="#001e23">(Novo)</text>
+          <g>
+            <rect x="16" y="22" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
+            <text x="34" y="52" font-size="14" font-weight="800" fill="#E9FF4A">1. Etapas</text>
+            <text x="34" y="78" font-size="12.5" fill="#ffffff">Lead Recebido · Em atendimento</text>
+            <text x="34" y="100" font-size="12.5" fill="#ffffff">Tentativa de Contato</text>
+            <text x="34" y="122" font-size="12.5" fill="#ffffff">Negociação · Follow Proposta</text>
+            <text x="34" y="144" font-size="12.5" fill="#ffffff">Fechado Ganhou · Fechado Perdido</text>
+          </g>
+          <g>
+            <rect x="16" y="208" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
+            <text x="34" y="238" font-size="14" font-weight="800" fill="#E9FF4A">2. Cadências</text>
+            <text x="34" y="264" font-size="12.5" fill="#ffffff">Tentativa: D1, D3, D5, D7, D14</text>
+            <text x="34" y="286" font-size="12.5" fill="#ffffff">Negociação: D1, D3, D5, D7, D10</text>
+            <text x="34" y="308" font-size="12.5" fill="#ffffff">Follow Proposta: D2, D4</text>
+            <text x="34" y="330" font-size="12.5" fill="#7a9fa8">D1 = dia em que entrou na etapa</text>
+          </g>
+          <g>
+            <rect x="16" y="394" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
+            <text x="34" y="424" font-size="14" font-weight="800" fill="#E9FF4A">3. Ligações</text>
+            <text x="34" y="450" font-size="12.5" fill="#ffffff">3 por dia de toque na Tentativa</text>
+            <text x="34" y="472" font-size="12.5" fill="#ffffff">9h · 13h30 · 17h</text>
+            <text x="34" y="494" font-size="12.5" fill="#ffffff">Pelo Webphone do CRM</text>
+            <text x="34" y="516" font-size="12.5" fill="#ffffff">Toda tentativa vira nota</text>
+          </g>
+          <g>
+            <rect x="594" y="22" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
+            <text x="612" y="52" font-size="14" font-weight="800" fill="#E9FF4A">4. Mensagens</text>
+            <text x="612" y="78" font-size="12.5" fill="#ffffff">12 templates no RD Conversas</text>
+            <text x="612" y="100" font-size="12.5" fill="#ffffff">Um por dia de toque</text>
+            <text x="612" y="122" font-size="12.5" fill="#ffffff">Template para contato antigo</text>
+            <text x="612" y="144" font-size="12.5" fill="#ffffff">Ligação reabre a conversa</text>
+          </g>
+          <g>
+            <rect x="594" y="208" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
+            <text x="612" y="238" font-size="14" font-weight="800" fill="#E9FF4A">5. Automações</text>
+            <text x="612" y="264" font-size="12.5" fill="#ffffff">Tarefas criadas sozinhas</text>
+            <text x="612" y="286" font-size="12.5" fill="#ffffff">Negociação D11 → Follow</text>
+            <text x="612" y="308" font-size="12.5" fill="#ffffff">Follow D5 → Perdido</text>
+            <text x="612" y="330" font-size="12.5" fill="#ffffff">Tentativa D15 → Perdido</text>
+          </g>
+          <g>
+            <rect x="594" y="394" width="270" height="150" rx="14" fill="#00323A" stroke="rgba(255,255,255,0.12)"/>
+            <text x="612" y="424" font-size="14" font-weight="800" fill="#E9FF4A">6. Atendimento</text>
+            <text x="612" y="450" font-size="12.5" fill="#ffffff">Chatbot: 10 min → fila geral</text>
+            <text x="612" y="472" font-size="12.5" fill="#ffffff">Lead fica com quem atendeu</text>
+            <text x="612" y="494" font-size="12.5" fill="#ffffff">Respondeu: sai da cadência</text>
+            <text x="612" y="516" font-size="12.5" fill="#ffffff">Perda sempre com motivo real</text>
+          </g>
+        </svg>
       </div>
-      <div class="stage-rule"><strong>Sai quando:</strong> no mesmo dia, depois das 3 ligações e da mensagem.</div>
     </div>
+  </section>
 
-    <div class="stage ativa">
-      <div class="stage-head"><span class="stage-order">3</span><span class="stage-name">Tentativa de Contato</span><span class="tag auto">Cadência de 14 dias</span><span class="tag wip">Automação em implantação</span></div>
-      <div class="days"><span class="day">D1</span><span class="day">D3</span><span class="day">D5</span><span class="day">D7</span><span class="day">D14</span><span class="day end">D15 · Perdido</span></div>
-      <p>Uma única etapa para todas as tentativas. Em cada dia de toque, o consultor faz 3 ligações e envia o template do dia.</p>
-      <div class="dir">
-        <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
-          <li>3 ligações por dia de toque (9h, 13h30, 17h)</li>
-          <li>Envia o template do dia: <code>cplay_tentativa_d1</code> a <code>cplay_tentativa_d14</code></li>
-          <li>Conclui as tarefas no CRM depois de fazer</li>
-        </ul></div>
-        <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
-          <li>Tarefas "Ligação Dx" e "Mensagem WhatsApp Dx" criadas nos dias de toque</li>
-          <li>Sem resposta depois do D14: vai para Fechado Perdido com o motivo "Tentativas de Contato Esgotada"</li>
-        </ul></div>
+  <section class="slide" data-titulo="As 7 etapas">
+    <div class="slide-inner">
+      <p class="section-label">Visão geral</p>
+      <h2 class="section-title">As 7 etapas do funil</h2>
+      <p class="lede">Da entrada do lead até o fechamento. As três etapas do meio têm cadência com dias de toque e prazo máximo.</p>
+      <div class="funnel-row">
+        <div class="f-step"><span class="n">1</span><span class="t">Lead Recebido</span><span class="d">Entrada do lead</span></div>
+        <div class="f-step"><span class="n">2</span><span class="t">Em atendimento</span><span class="d">Dia 0</span></div>
+        <div class="f-step hl"><span class="n">3</span><span class="t">Tentativa de Contato</span><span class="d">14 dias</span></div>
+        <div class="f-step hl"><span class="n">4</span><span class="t">Negociação</span><span class="d">10 dias</span></div>
+        <div class="f-step hl"><span class="n">5</span><span class="t">Follow Proposta</span><span class="d">4 dias</span></div>
+        <div class="f-step won"><span class="n">6</span><span class="t">Fechado Ganhou</span><span class="d">Venda</span></div>
+        <div class="f-step lost"><span class="n">7</span><span class="t">Fechado Perdido</span><span class="d">Com motivo</span></div>
       </div>
-      <div class="stage-rule"><strong>Sai quando:</strong> o lead responde (vai para Negociação) ou o prazo de 14 dias acaba. <strong>Prazo máximo:</strong> 15 dias.</div>
-    </div>
-
-    <div class="stage ativa">
-      <div class="stage-head"><span class="stage-order">4</span><span class="stage-name">Negociação</span><span class="tag auto">Cadência de 10 dias</span><span class="tag ok">Em produção</span></div>
-      <div class="days"><span class="day">D1</span><span class="day">D3</span><span class="day">D5</span><span class="day">D7</span><span class="day">D10</span><span class="day move">D11 · Follow Proposta</span></div>
-      <p>O lead já conversou com o consultor e conhece a proposta. O foco é tirar dúvidas e destravar a decisão.</p>
-      <div class="dir">
-        <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
-          <li>1 ligação bem feita em cada dia de toque</li>
-          <li>Envia o template do dia: <code>cplay_negociacao_d1</code> a <code>cplay_negociacao_d10</code></li>
-          <li>Fechou: marca como ganho</li>
-        </ul></div>
-        <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
-          <li>Tarefas de Ligação e Mensagem nos dias de toque</li>
-          <li>No D11 o negócio vai sozinho para Follow Proposta</li>
-        </ul></div>
+      <div class="callout lime" style="margin-top:20px;">
+        <div class="callout-title">Regra de ouro</div>
+        <ul>
+          <li>Respondeu, sai da cadência na hora: o consultor segue a conversa e move o negócio para a etapa certa.</li>
+          <li>Não respondeu, a cadência segue sozinha até o prazo da etapa acabar.</li>
+        </ul>
       </div>
-      <div class="stage-rule"><strong>Prazo máximo:</strong> 10 dias. A automação confere o funil de hora em hora, das 7h às 19h.</div>
     </div>
+  </section>
 
-    <div class="stage ativa">
-      <div class="stage-head"><span class="stage-order">5</span><span class="stage-name">Follow Proposta</span><span class="tag auto">Cadência de 4 dias</span><span class="tag ok">Em produção</span></div>
-      <div class="days"><span class="day">D2</span><span class="day">D4</span><span class="day end">D5 · Perdido</span></div>
-      <p>Últimos dias para retomar a proposta antes de encerrar.</p>
-      <div class="dir">
-        <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
-          <li>Ligação e template do dia: <code>cplay_follow_d2</code> e <code>cplay_follow_d4</code></li>
-          <li>Respondeu e quer seguir: volta para Negociação ou marca ganho</li>
-        </ul></div>
-        <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
-          <li>Tarefas de Ligação e Mensagem no D2 e no D4</li>
-          <li>No D5 vai para Fechado Perdido com o motivo "Sem retorno após proposta"</li>
-        </ul></div>
+  <section class="slide" data-titulo="Etapa 1 · Lead Recebido">
+    <div class="slide-inner">
+      <p class="section-label">Etapa 1</p>
+      <h2 class="section-title">Lead Recebido</h2>
+      <div class="stage">
+        <div class="stage-head"><span class="stage-name">Entrada do lead</span><span class="tag none">Entrada</span></div>
+        <p>Onde nasce todo lead novo: tráfego pago, site, chatbot do RD Conversas ou cadastro manual.</p>
+        <div class="dir">
+          <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
+            <li>Assume o lead e move para Em atendimento</li>
+            <li>Cadastra à mão o lead que chegou sem negociação no CRM</li>
+          </ul></div>
+          <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
+            <li>Leads do tráfego entram direto no CRM e no Conversas</li>
+            <li>Lead parado no chatbot por 10 minutos cai na fila geral</li>
+          </ul></div>
+        </div>
+        <div class="stage-rule"><strong>Sai quando:</strong> o consultor inicia o atendimento. Quanto mais rápido o primeiro contato, maior a chance de conversa.</div>
       </div>
-      <div class="stage-rule"><strong>Prazo máximo:</strong> 4 dias.</div>
-    </div>
-
-    <div class="stage won">
-      <div class="stage-head"><span class="stage-order">6</span><span class="stage-name">Fechado Ganhou</span><span class="tag ok">Venda</span></div>
-      <p>A matrícula foi feita.</p>
-      <div class="stage-rule"><strong>Regra:</strong> marcar como ganho com o curso (produto), o valor real e o campo <strong>Tipo de curso</strong> preenchido. É isso que alimenta os relatórios de venda.</div>
-    </div>
-
-    <div class="stage lost">
-      <div class="stage-head"><span class="stage-order">7</span><span class="stage-name">Fechado Perdido</span><span class="tag red">Encerrado</span></div>
-      <p>O negócio foi encerrado sem venda.</p>
-      <div class="stage-rule"><strong>Regra:</strong> sempre com o motivo real. Os motivos automáticos são "Tentativas de Contato Esgotada" (Tentativa D15) e "Sem retorno após proposta" (Follow D5). Quando o consultor encerra antes, escolhe o motivo que aconteceu de fato (sem interesse, valor, data, contato inválido...). Lead perdido pode voltar a qualquer momento se procurar de novo.</div>
     </div>
   </section>
 
-  <section>
-    <p class="section-label">Regra de ligações</p>
-    <h2 class="section-title">3 ligações por dia de toque</h2>
-    <p class="lede">Na Tentativa de Contato, em todo dia de toque o consultor faz 3 ligações em horários diferentes, para pegar rotinas diferentes. A ligação serve para fazer o lead responder no WhatsApp e reabrir a conversa.</p>
-    <div class="call-rule" style="margin-top:18px;">
-      <div class="call-slot"><div class="n">1ª</div><div class="t">Início da manhã<br><b>9h às 10h</b></div></div>
-      <div class="call-slot"><div class="n">2ª</div><div class="t">Início da tarde<br><b>13h30 às 14h30</b></div></div>
-      <div class="call-slot"><div class="n">3ª</div><div class="t">Fim da tarde<br><b>17h às 18h</b></div></div>
-    </div>
-    <div class="flow-steps">
-      <div class="flow-step"><div class="flow-num"></div><div class="flow-text"><span class="who">Webphone:</span> ligar pelo Webphone do RD CRM, não pelo celular pessoal. A chamada fica registrada no negócio, com transcrição.</div></div>
-      <div class="flow-step"><div class="flow-num"></div><div class="flow-text"><span class="who">Registro:</span> toda tentativa vira nota no negócio, atendida ou não. É o que mostra o esforço real por lead.</div></div>
-      <div class="flow-step"><div class="flow-num"></div><div class="flow-text"><span class="who">Caixa postal:</span> se cair na caixa postal nas 3 tentativas, anotar só "caixa postal" e seguir para o próximo lead.</div></div>
-      <div class="flow-step"><div class="flow-num"></div><div class="flow-text"><span class="who">Negociação e Follow:</span> 1 ligação bem feita no dia do toque já basta. O lead já conhece a proposta.</div></div>
-      <div class="flow-step"><div class="flow-num"></div><div class="flow-text"><span class="who">Atendeu:</span> conclua as tarefas do dia, siga a conversa e mova o negócio para a etapa certa. Ele sai da cadência na hora.</div></div>
-    </div>
-  </section>
-
-  <section>
-    <p class="section-label">WhatsApp e RD Conversas</p>
-    <h2 class="section-title">Regras de atendimento</h2>
-    <div class="table-scroll">
-      <table class="rule-table">
-        <thead><tr><th>Tema</th><th>Regra</th></tr></thead>
-        <tbody>
-          <tr><td class="label">Fila do chatbot</td><td>Lead parado no chatbot por 10 minutos cai na fila geral, visível para os dois consultores.</td></tr>
-          <tr><td class="label">Carteira</td><td>O lead fica com o primeiro consultor que atendeu. Retornos e follow-ups ficam com ele.</td></tr>
-          <tr><td class="label">Contato antigo</td><td>Conversa encerrada nem sempre deixa a janela do WhatsApp aberta. Para lead que não respondeu, usar sempre o template do dia.</td></tr>
-          <tr><td class="label">Templates</td><td>12 templates cadastrados no RD Conversas, um por dia de toque: 5 da Tentativa, 5 da Negociação e 2 do Follow. Textos completos no <a href="https://pages.autz.com.br/playbook-contabilistaplay/">playbook de follow-up</a>.</td></tr>
-          <tr><td class="label">Personalização</td><td>Preencher nome, consultor e curso antes de enviar. Condição de grupo ou desconto só se existir de verdade.</td></tr>
-        </tbody>
-      </table>
+  <section class="slide" data-titulo="Etapa 2 · Em atendimento">
+    <div class="slide-inner">
+      <p class="section-label">Etapa 2</p>
+      <h2 class="section-title">Em atendimento</h2>
+      <div class="stage">
+        <div class="stage-head"><span class="stage-name">Primeiro contato</span><span class="tag none">Dia 0</span></div>
+        <p>O contato acontece no mesmo dia em que o lead chegou.</p>
+        <div class="dir">
+          <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
+            <li>3 ligações no mesmo dia, nos horários da regra</li>
+            <li>Mensagem de boas-vindas pelo WhatsApp</li>
+            <li>Registra cada tentativa como nota</li>
+          </ul></div>
+          <div class="dir-box"><div class="dir-title">Próximo passo</div><ul>
+            <li>Conversou e tem interesse: Negociação</li>
+            <li>Não respondeu: Tentativa de Contato</li>
+            <li>Sem perfil ou contato errado: Perdido, com o motivo</li>
+          </ul></div>
+        </div>
+        <div class="stage-rule"><strong>Sai quando:</strong> no mesmo dia, depois das 3 ligações e da mensagem.</div>
+      </div>
     </div>
   </section>
 
-  <section>
-    <p class="section-label">Prazos</p>
-    <h2 class="section-title">Resumo dos prazos por etapa</h2>
-    <div class="table-scroll">
-      <table class="rule-table">
-        <thead><tr><th>Etapa</th><th>Dias de toque</th><th>Prazo máximo</th><th>No fim do prazo</th></tr></thead>
-        <tbody>
-          <tr><td class="label">Em atendimento</td><td>Dia 0</td><td>Mesmo dia</td><td>Negociação ou Tentativa de Contato</td></tr>
-          <tr><td class="label">Tentativa de Contato</td><td>D1, D3, D5, D7, D14</td><td>15 dias</td><td>Perdido: Tentativas de Contato Esgotada</td></tr>
-          <tr><td class="label">Negociação</td><td>D1, D3, D5, D7, D10</td><td>10 dias</td><td>Vai sozinho para Follow Proposta</td></tr>
-          <tr><td class="label">Follow Proposta</td><td>D2, D4</td><td>4 dias</td><td>Perdido: Sem retorno após proposta</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="callout lime" style="margin-top:18px;">
-      <div class="callout-title">Como os dias são contados</div>
-      <ul>
-        <li>O D1 é o dia em que o negócio entrou na etapa. Se ele sair e voltar, a contagem daquela etapa recomeça.</li>
-        <li>Hoje a contagem é em dias corridos, incluindo sábado e domingo.</li>
-        <li>Se um dia for perdido por instabilidade, o sistema cria só o toque mais recente, sem duplicar tarefas.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <p class="section-label">Implantação</p>
-    <h2 class="section-title">Onde estamos</h2>
-    <div class="timeline">
-      <div class="phase"><div class="phase-num done">1</div><div class="phase-body"><div class="phase-title">Funil novo criado <span class="phase-status done">Concluído</span></div><div class="phase-desc">7 etapas no RD CRM, com a Tentativa de Contato unificada.</div></div></div>
-      <div class="phase"><div class="phase-num done">2</div><div class="phase-body"><div class="phase-title">Cadência de Negociação e Follow Proposta <span class="phase-status done">Em produção</span></div><div class="phase-desc">Tarefas automáticas, passagem para Follow no D11 e perda no D5 com o motivo "Sem retorno após proposta".</div></div></div>
-      <div class="phase"><div class="phase-num done">3</div><div class="phase-body"><div class="phase-title">Playbook de mensagens <span class="phase-status done">Concluído</span></div><div class="phase-desc">12 mensagens revisadas e publicadas no playbook de follow-up.</div></div></div>
-      <div class="phase"><div class="phase-num wip">4</div><div class="phase-body"><div class="phase-title">Templates no RD Conversas <span class="phase-status wip">Em andamento</span></div><div class="phase-desc">Cadastro dos 12 templates e aprovação pela Meta.</div></div></div>
-      <div class="phase"><div class="phase-num wip">5</div><div class="phase-body"><div class="phase-title">Cadência da Tentativa de Contato e perda no D15 <span class="phase-status wip">Em implantação</span></div><div class="phase-desc">Tarefas automáticas da Tentativa e encerramento automático depois do D14.</div></div></div>
-      <div class="phase"><div class="phase-num todo">6</div><div class="phase-body"><div class="phase-title">Migração para o funil novo <span class="phase-status todo">Próximo passo</span></div><div class="phase-desc">Levar as negociações abertas do funil antigo e apontar a entrada de leads para o funil novo.</div></div></div>
-      <div class="phase"><div class="phase-num todo">7</div><div class="phase-body"><div class="phase-title">Limpeza da base <span class="phase-status todo">Próximo passo</span></div><div class="phase-desc">Unificar contatos duplicados por e-mail ou telefone e organizar motivos de perda e fontes.</div></div></div>
+  <section class="slide" data-titulo="Etapa 3 · Tentativa de Contato">
+    <div class="slide-inner">
+      <p class="section-label">Etapa 3</p>
+      <h2 class="section-title">Tentativa de Contato</h2>
+      <div class="stage ativa">
+        <div class="stage-head"><span class="stage-name">Cadência de 14 dias</span><span class="tag wip">Automação em implantação</span></div>
+        <div class="days"><span class="day">D1</span><span class="day">D3</span><span class="day">D5</span><span class="day">D7</span><span class="day">D14</span><span class="day end">D15 · Perdido</span></div>
+        <p>Uma única etapa para todas as tentativas. Em cada dia de toque, o consultor faz 3 ligações e envia o template do dia.</p>
+        <div class="dir">
+          <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
+            <li>3 ligações por dia de toque (9h, 13h30, 17h)</li>
+            <li>Envia o template do dia: <code>cplay_tentativa_d1</code> a <code>cplay_tentativa_d14</code></li>
+            <li>Conclui as tarefas no CRM depois de fazer</li>
+          </ul></div>
+          <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
+            <li>Tarefas "Ligação Dx" e "Mensagem WhatsApp Dx" nos dias de toque</li>
+            <li>Sem resposta depois do D14: Fechado Perdido com o motivo "Tentativas de Contato Esgotada"</li>
+          </ul></div>
+        </div>
+        <div class="stage-rule"><strong>Sai quando:</strong> o lead responde (vai para Negociação) ou o prazo acaba. <strong>Prazo máximo:</strong> 15 dias.</div>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <span>Autz · Funil Comercial (Novo) · Contabilista Play</span>
-    <span>Versão 1.0 · 30/10/2026</span>
-  </footer>
+  <section class="slide" data-titulo="Etapa 4 · Negociação">
+    <div class="slide-inner">
+      <p class="section-label">Etapa 4</p>
+      <h2 class="section-title">Negociação</h2>
+      <div class="stage ativa">
+        <div class="stage-head"><span class="stage-name">Cadência de 10 dias</span><span class="tag ok">Em produção</span></div>
+        <div class="days"><span class="day">D1</span><span class="day">D3</span><span class="day">D5</span><span class="day">D7</span><span class="day">D10</span><span class="day move">D11 · Follow Proposta</span></div>
+        <p>O lead já conversou com o consultor e conhece a proposta. O foco é tirar dúvidas e destravar a decisão.</p>
+        <div class="dir">
+          <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
+            <li>1 ligação bem feita em cada dia de toque</li>
+            <li>Envia o template do dia: <code>cplay_negociacao_d1</code> a <code>cplay_negociacao_d10</code></li>
+            <li>Fechou: marca como ganho</li>
+          </ul></div>
+          <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
+            <li>Tarefas de Ligação e Mensagem nos dias de toque</li>
+            <li>No D11 o negócio vai sozinho para Follow Proposta</li>
+          </ul></div>
+        </div>
+        <div class="stage-rule"><strong>Prazo máximo:</strong> 10 dias. A automação confere o funil de hora em hora, das 7h às 19h.</div>
+      </div>
+    </div>
+  </section>
 
-</div>
-</body>
+  <section class="slide" data-titulo="Etapa 5 · Follow Proposta">
+    <div class="slide-inner">
+      <p class="section-label">Etapa 5</p>
+      <h2 class="section-title">Follow Proposta</h2>
+      <div class="stage ativa">
+        <div class="stage-head"><span class="stage-name">Cadência de 4 dias</span><span class="tag ok">Em produção</span></div>
+        <div class="days"><span class="day">D2</span><span class="day">D4</span><span class="day end">D5 · Perdido</span></div>
+        <p>Últimos dias para retomar a proposta antes de encerrar.</p>
+        <div class="dir">
+          <div class="dir-box"><div class="dir-title">O consultor faz</div><ul>
+            <li>Ligação e template do dia: <code>cplay_follow_d2</code> e <code>cplay_follow_d4</code></li>
+            <li>Respondeu e quer seguir: volta para Negociação ou marca ganho</li>
+          </ul></div>
+          <div class="dir-box"><div class="dir-title">Acontece sozinho</div><ul>
+            <li>Tarefas de Ligação e Mensagem no D2 e no D4</li>
+            <li>No D5 vai para Fechado Perdido com o motivo "Sem retorno após proposta"</li>
+          </ul></div>
+        </div>
+        <div class="stage-rule"><strong>Prazo máximo:</strong> 4 dias.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-titulo="Etapas 6 e 7 · Fechamento">
+    <div class="slide-inner">
+      <p class="section-label">Etapas 6 e 7</p>
+      <h2 class="section-title">Fechamento</h2>
+      <div class="grid-2">
+        <div class="stage won" style="margin:0;">
+          <div class="stage-head"><span class="stage-order">6</span><span class="stage-name">Fechado Ganhou</span><span class="tag ok">Venda</span></div>
+          <p>A matrícula foi feita.</p>
+          <div class="stage-rule"><strong>Regra:</strong> marcar como ganho com o curso (produto), o valor real e o campo <strong>Tipo de curso</strong> preenchido. É isso que alimenta os relatórios de venda.</div>
+        </div>
+        <div class="stage lost" style="margin:0;">
+          <div class="stage-head"><span class="stage-order">7</span><span class="stage-name">Fechado Perdido</span><span class="tag red">Encerrado</span></div>
+          <p>Encerrado sem venda, sempre com o motivo real.</p>
+          <div class="stage-rule"><strong>Motivos automáticos:</strong> "Tentativas de Contato Esgotada" (Tentativa D15) e "Sem retorno após proposta" (Follow D5). Quando o consultor encerra antes, escolhe o motivo que aconteceu de fato. Lead perdido pode voltar a qualquer momento.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-titulo="Regra de ligações">
+    <div class="slide-inner">
+      <p class="section-label">Regra de ligações</p>
+      <h2 class="section-title">3 ligações por dia de toque</h2>
+      <p class="lede">Na Tentativa de Contato, em todo dia de toque o consultor faz 3 ligações em horários diferentes, para pegar rotinas diferentes. A ligação serve para fazer o lead responder no WhatsApp e reabrir a conversa.</p>
+      <div class="call-rule">
+        <div class="call-slot"><div class="n">1ª</div><div class="t">Início da manhã<br><b>9h às 10h</b></div></div>
+        <div class="call-slot"><div class="n">2ª</div><div class="t">Início da tarde<br><b>13h30 às 14h30</b></div></div>
+        <div class="call-slot"><div class="n">3ª</div><div class="t">Fim da tarde<br><b>17h às 18h</b></div></div>
+      </div>
+      <p class="lede" style="margin:18px 0 0;">Na Negociação e no Follow Proposta, 1 ligação bem feita no dia do toque já basta: o lead já conhece a proposta.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-titulo="Como ligar e registrar">
+    <div class="slide-inner">
+      <p class="section-label">Regra de ligações</p>
+      <h2 class="section-title">Como ligar e registrar</h2>
+      <div class="flow-steps">
+        <div class="flow-step"><span class="flow-num"></span><div class="flow-text"><span class="who">Webphone:</span> ligar pelo Webphone do RD CRM, não pelo celular pessoal. A chamada fica registrada no negócio, com transcrição.</div></div>
+        <div class="flow-step"><span class="flow-num"></span><div class="flow-text"><span class="who">Registro:</span> toda tentativa vira nota no negócio, atendida ou não. É o que mostra o esforço real por lead.</div></div>
+        <div class="flow-step"><span class="flow-num"></span><div class="flow-text"><span class="who">Caixa postal:</span> se cair na caixa postal nas 3 tentativas, anotar só "caixa postal" e seguir para o próximo lead.</div></div>
+        <div class="flow-step"><span class="flow-num"></span><div class="flow-text"><span class="who">Mensagem:</span> depois das ligações, enviar o template do dia pelo RD Conversas e concluir as duas tarefas no CRM.</div></div>
+        <div class="flow-step"><span class="flow-num"></span><div class="flow-text"><span class="who">Atendeu:</span> siga a conversa e mova o negócio para a etapa certa. Ele sai da cadência na hora.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-titulo="WhatsApp e RD Conversas">
+    <div class="slide-inner">
+      <p class="section-label">WhatsApp e RD Conversas</p>
+      <h2 class="section-title">Regras de atendimento</h2>
+      <div class="table-scroll">
+        <table class="rule-table">
+          <thead><tr><th>Tema</th><th>Regra</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Fila do chatbot</td><td>Lead parado no chatbot por 10 minutos cai na fila geral, visível para os dois consultores.</td></tr>
+            <tr><td class="label">Carteira</td><td>O lead fica com o primeiro consultor que atendeu. Retornos e follow-ups ficam com ele.</td></tr>
+            <tr><td class="label">Contato antigo</td><td>Conversa encerrada nem sempre deixa a janela do WhatsApp aberta. Para lead que não respondeu, usar sempre o template do dia.</td></tr>
+            <tr><td class="label">Templates</td><td>12 templates no RD Conversas, um por dia de toque: 5 da Tentativa, 5 da Negociação e 2 do Follow. Textos no <a href="https://pages.autz.com.br/playbook-contabilistaplay/">playbook de follow-up</a>.</td></tr>
+            <tr><td class="label">Personalização</td><td>Preencher nome, consultor e curso antes de enviar. Condição de grupo ou desconto só se existir de verdade.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-titulo="Prazos por etapa">
+    <div class="slide-inner">
+      <p class="section-label">Prazos</p>
+      <h2 class="section-title">Resumo dos prazos por etapa</h2>
+      <div class="table-scroll">
+        <table class="rule-table">
+          <thead><tr><th>Etapa</th><th>Dias de toque</th><th>Prazo máximo</th><th>No fim do prazo</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Em atendimento</td><td>Dia 0</td><td>Mesmo dia</td><td>Negociação ou Tentativa de Contato</td></tr>
+            <tr><td class="label">Tentativa de Contato</td><td>D1, D3, D5, D7, D14</td><td>15 dias</td><td>Perdido: Tentativas de Contato Esgotada</td></tr>
+            <tr><td class="label">Negociação</td><td>D1, D3, D5, D7, D10</td><td>10 dias</td><td>Vai sozinho para Follow Proposta</td></tr>
+            <tr><td class="label">Follow Proposta</td><td>D2, D4</td><td>4 dias</td><td>Perdido: Sem retorno após proposta</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout lime" style="margin-top:18px;">
+        <div class="callout-title">Como os dias são contados</div>
+        <ul>
+          <li>O D1 é o dia em que o negócio entrou na etapa. Se ele sair e voltar, a contagem daquela etapa recomeça.</li>
+          <li>Hoje a contagem é em dias corridos, incluindo sábado e domingo.</li>
+          <li>As tarefas vencem às 18h do dia. Se um dia for perdido por instabilidade, o sistema cria só o toque mais recente, sem duplicar.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-titulo="Onde estamos">
+    <div class="slide-inner">
+      <p class="section-label">Implantação</p>
+      <h2 class="section-title">Onde estamos</h2>
+      <div class="timeline duas">
+        <div class="phase"><div class="phase-num done">1</div><div class="phase-body"><div class="phase-title">Funil novo criado <span class="phase-status done">Concluído</span></div><div class="phase-desc">7 etapas no RD CRM, com a Tentativa de Contato unificada.</div></div></div>
+        <div class="phase"><div class="phase-num wip">5</div><div class="phase-body"><div class="phase-title">Cadência da Tentativa e perda no D15 <span class="phase-status wip">Em implantação</span></div><div class="phase-desc">Tarefas automáticas da Tentativa e encerramento depois do D14.</div></div></div>
+        <div class="phase"><div class="phase-num done">2</div><div class="phase-body"><div class="phase-title">Cadência de Negociação e Follow <span class="phase-status done">Em produção</span></div><div class="phase-desc">Tarefas automáticas, Follow no D11 e perda no D5.</div></div></div>
+        <div class="phase"><div class="phase-num todo">6</div><div class="phase-body"><div class="phase-title">Migração para o funil novo <span class="phase-status todo">Próximo passo</span></div><div class="phase-desc">Levar as negociações abertas do funil antigo e apontar a entrada de leads para o funil novo.</div></div></div>
+        <div class="phase"><div class="phase-num done">3</div><div class="phase-body"><div class="phase-title">Playbook de mensagens <span class="phase-status done">Concluído</span></div><div class="phase-desc">12 mensagens revisadas e publicadas.</div></div></div>
+        <div class="phase"><div class="phase-num todo">7</div><div class="phase-body"><div class="phase-title">Limpeza da base <span class="phase-status todo">Próximo passo</span></div><div class="phase-desc">Unificar contatos duplicados e organizar motivos de perda e fontes.</div></div></div>
+        <div class="phase"><div class="phase-num wip">4</div><div class="phase-body"><div class="phase-title">Templates no RD Conversas <span class="phase-status wip">Em andamento</span></div><div class="phase-desc">Cadastro dos 12 templates e aprovação pela Meta.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">↓ Role para ver o resto deste slide</div>
+<nav class="barra" aria-label="Navegação dos slides">
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <button type="button" id="anterior" aria-label="Slide anterior">‹</button>
+  <span class="contador" id="contador"></span>
+  <button type="button" id="proximo" aria-label="Próximo slide">›</button>
+</nav>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisarRolagem();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisarRolagem() {
+    var s = slides[atual];
+    var falta = s.scrollHeight - s.clientHeight - s.scrollTop;
+    document.getElementById('mais').classList.toggle('visivel', falta > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisarRolagem, { passive: true }); });
+  window.addEventListener('resize', avisarRolagem);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var inicioX = null, inicioY = null;
+  document.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; inicioY = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (inicioX === null) return;
+    var dx = e.changedTouches[0].clientX - inicioX, dy = e.changedTouches[0].clientY - inicioY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    inicioX = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
 </html>
