@@ -22,7 +22,7 @@ body{background:var(--bg);color:var(--white);font-family:Poppins,system-ui,sans-
 .bar img{height:20px;opacity:.9}
 .bar .chap{flex:1;color:var(--gray);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar .ctrl{display:flex;align-items:center;gap:8px}
-.bar button{background:var(--surface);border:1px solid var(--bw);color:var(--white);border-radius:10px;height:34px;min-width:34px;padding:0 10px;font:inherit;font-size:15px;cursor:pointer}
+.bar button{background:var(--surface);border:1px solid var(--bw);color:var(--white);border-radius:10px;height:36px;min-width:36px;padding:0 10px;font:inherit;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 .bar button:hover{border-color:var(--border);color:var(--lime)}
 .bar .count{font-size:13px;color:var(--gray);min-width:64px;text-align:center;font-variant-numeric:tabular-nums}
 .progress{position:fixed;left:0;top:0;height:3px;background:var(--lime);z-index:11;transition:width .35s ease}
@@ -61,7 +61,23 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
 .t{font-size:10.5px;font-weight:600;border-radius:5px;padding:1px 6px}
 .t-mkt{background:rgba(96,165,250,.16);color:var(--blue)}
 .t-crm{background:rgba(74,222,128,.14);color:var(--green)}
-.t-rdc{background:rgba(167,139,250,.16);color:#c4b5fd}
+.t-rdc{background:rgba(233,255,74,.12);color:var(--lime)}
+/* funil comercial */
+.fn{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:8px 32px;align-items:center}
+.fn .cell{display:flex;justify-content:center}
+.fn .fbar{height:56px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;background:var(--lime);color:var(--bg);clip-path:polygon(0 0,100% 0,calc(100% - 20px) 100%,20px 100%)}
+.fn .fbar i{font-style:normal;font-size:12px;font-weight:700;opacity:.7}
+.fn .fbar.hold{background:var(--surface2);color:var(--lime)}
+.fn .desc b{display:block;font-size:15px}
+.fn .desc span{color:var(--gray);font-size:13.5px}
+.fn .desc .who{display:inline-block;margin-top:3px;font-size:11px;font-weight:600;color:var(--lime);border:1px solid var(--border);border-radius:6px;padding:0 7px}
+.outc{display:flex;gap:10px;justify-content:center;margin-top:6px}
+.outc div{border-radius:12px;padding:10px 18px;font-weight:700;font-size:15px;text-align:center;min-width:150px}
+.outc small{display:block;font-weight:400;font-size:12px;color:var(--gray)}
+.outc .won{border:1.5px solid var(--green);color:var(--green);background:rgba(74,222,128,.06)}
+.outc .lost{border:1.5px solid var(--red);color:#ff9c86;background:rgba(232,89,60,.06)}
+.diagram{background:var(--surface);border:1px solid var(--bw);border-radius:18px;padding:18px}
+.diagram svg{display:block;width:100%;height:auto}
 .t-ads{background:rgba(251,191,36,.14);color:var(--amber)}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .kpi{background:var(--surface);border:1px solid var(--bw);border-radius:16px;padding:20px}
@@ -98,7 +114,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
 .p-urg{background:rgba(232,89,60,.18);color:#ff9c86}
 .p-alta{background:rgba(251,191,36,.16);color:var(--amber)}
 .p-media{background:rgba(96,165,250,.16);color:var(--blue)}
-.p-ori{background:rgba(167,139,250,.16);color:#c4b5fd}
+.p-ori{background:rgba(74,222,128,.14);color:var(--green)}
 .p-nut{background:rgba(122,159,168,.18);color:#b7d0d5}
 .shifts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .shift{background:var(--surface);border:1px solid var(--bw);border-radius:16px;padding:18px}
@@ -175,7 +191,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
       <h4>Jornada do paciente</h4>
       <a data-goto="captacao"><span class="n">03</span><div><b>Captação</b><small>Públicos, canais, rastreio e qualidade</small></div></a>
       <a data-goto="atendimento"><span class="n">04</span><div><b>Atendimento e qualificação</b><small>Agente no RD Conversas, turnos e risco</small></div></a>
-      <a data-goto="venda"><span class="n">05</span><div><b>Venda</b><small>Funil principal, da avaliação ao contrato</small></div></a>
+      <a data-goto="venda"><span class="n">05</span><div><b>Venda</b><small>Funil comercial: do novo lead ao fechado</small></div></a>
       <a data-goto="retomada"><span class="n">06</span><div><b>Retomada e nutrição</b><small>Quem parou no preço, família e base antiga</small></div></a>
       <a data-goto="tratamento"><span class="n">07</span><div><b>Chegada e tratamento</b><small>Preparação, família, extensão e opcionais</small></div></a>
       <a data-goto="posvenda"><span class="n">08</span><div><b>Pós-venda</b><small>Acompanhamento depois da alta</small></div></a>
@@ -337,19 +353,121 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
 <section class="slide" id="venda" data-chap="05 · Venda">
 <div class="inner">
   <div class="eyebrow">05 · Venda</div>
-  <h2>Funil Tratamento: cada etapa com dono, critério e automação</h2>
+  <h2>Funil Comercial no RD Station CRM</h2>
+  <p class="sub">Cinco etapas de trabalho e dois desfechos. As etapas em destaque são o caminho principal; as escuras são de espera, onde a cadência trabalha pela equipe.</p>
+  <div class="fn">
+    <div class="cell"><div class="fbar" style="width:100%"><i>1</i>Novo lead</div></div>
+    <div class="desc"><b>Chegou e está sendo atendido</b><span>Agente acolhe e entende o caso (5 informações)</span><br><span class="who">Agente</span></div>
+    <div class="cell"><div class="fbar hold" style="width:90%"><i>2</i>Tentando contato</div></div>
+    <div class="desc"><b>Não respondeu ou parou no meio</b><span>Lembrete em 2 h; equipe tenta D+1, D+3 e D+7</span><br><span class="who">Agente e equipe</span></div>
+    <div class="cell"><div class="fbar" style="width:80%"><i>3</i>Em negociação</div></div>
+    <div class="desc"><b>Caso entendido</b><span>Como funciona, avaliação inicial gratuita ou visita, plano e acomodação</span><br><span class="who">Agente e equipe</span></div>
+    <div class="cell"><div class="fbar" style="width:70%"><i>4</i>Proposta enviada</div></div>
+    <div class="desc"><b>Valores e condições do caso enviados</b><span>Reação ao preço registrada; resumo para a família</span><br><span class="who">Agente e equipe</span></div>
+    <div class="cell"><div class="fbar hold" style="width:60%"><i>5</i>FUP proposta</div></div>
+    <div class="desc"><b>Retornos depois da proposta</b><span>D+1, D+3, D+7 e D+14, ou na data combinada com a família</span><br><span class="who">Agente e equipe</span></div>
+    <div class="cell"><div class="outc"><div class="won">Fechado<small>contrato e pagamento</small></div><div class="lost">Perdido<small>motivo obrigatório</small></div></div></div>
+    <div class="desc"><span>No RD Station CRM, fechado e perdido são a marcação de venda ganha ou perdida: tiram a negociação do funil e alimentam os relatórios.</span></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-chap="05 · Venda">
+<div class="inner">
+  <div class="eyebrow">05 · Venda</div>
+  <h2>Como a negociação anda entre as etapas</h2>
+  <p class="sub">O caminho principal segue em linha reta. As etapas de espera devolvem a negociação para frente quando a pessoa responde, ou encerram com motivo quando as tentativas acabam.</p>
+  <div class="diagram">
+  <svg viewBox="0 0 1100 440" role="img" aria-label="Fluxo entre as etapas do funil comercial">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a9fa8"/></marker>
+      <marker id="al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E9FF4A"/></marker>
+    </defs>
+    <g font-family="Poppins, sans-serif">
+      <!-- caminho principal -->
+      <line x1="192" y1="72" x2="308" y2="72" stroke="#E9FF4A" stroke-width="2" marker-end="url(#al)"/>
+      <line x1="492" y1="72" x2="608" y2="72" stroke="#E9FF4A" stroke-width="2" marker-end="url(#al)"/>
+      <line x1="792" y1="72" x2="896" y2="72" stroke="#E9FF4A" stroke-width="2" marker-end="url(#al)"/>
+      <text x="252" y="58" fill="#7a9fa8" font-size="11.5" text-anchor="middle">caso entendido</text>
+      <text x="552" y="58" fill="#7a9fa8" font-size="11.5" text-anchor="middle">valores enviados</text>
+      <text x="846" y="58" fill="#7a9fa8" font-size="12" text-anchor="middle">aceite</text>
+      <!-- esperas -->
+      <line x1="102" y1="106" x2="102" y2="296" stroke="#7a9fa8" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="114" y="190" fill="#7a9fa8" font-size="12">não respondeu</text>
+      <text x="114" y="206" fill="#7a9fa8" font-size="12">ou parou no meio</text>
+      <line x1="192" y1="312" x2="380" y2="108" stroke="#7a9fa8" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="300" y="235" fill="#7a9fa8" font-size="12">respondeu</text>
+      <line x1="702" y1="106" x2="702" y2="296" stroke="#7a9fa8" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="714" y="190" fill="#7a9fa8" font-size="12">24 h sem</text>
+      <text x="714" y="206" fill="#7a9fa8" font-size="12">resposta</text>
+      <line x1="612" y1="312" x2="460" y2="108" stroke="#7a9fa8" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="474" y="235" fill="#7a9fa8" font-size="12">objeção</text>
+      <text x="474" y="251" fill="#7a9fa8" font-size="12">ou ajuste</text>
+      <line x1="780" y1="300" x2="958" y2="108" stroke="#E9FF4A" stroke-width="2" marker-end="url(#al)"/>
+      <text x="884" y="235" fill="#7a9fa8" font-size="12">aceitou</text>
+      <line x1="792" y1="332" x2="896" y2="332" stroke="#E8593C" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="846" y="318" fill="#7a9fa8" font-size="12" text-anchor="middle">S4 sem</text>
+      <text x="846" y="356" fill="#7a9fa8" font-size="12" text-anchor="middle">resposta</text>
+      <path d="M102 364 L102 410 L990 410 L990 368" fill="none" stroke="#E8593C" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="550" y="430" fill="#7a9fa8" font-size="12" text-anchor="middle">sem resposta depois da tentativa de D+7</text>
+      <!-- nós -->
+      <rect x="12" y="40" width="180" height="64" rx="12" fill="#E9FF4A"/>
+      <text x="102" y="78" fill="#00272C" font-size="16" font-weight="700" text-anchor="middle">Novo lead</text>
+      <rect x="312" y="40" width="180" height="64" rx="12" fill="#E9FF4A"/>
+      <text x="402" y="78" fill="#00272C" font-size="16" font-weight="700" text-anchor="middle">Em negociação</text>
+      <rect x="612" y="40" width="180" height="64" rx="12" fill="#E9FF4A"/>
+      <text x="702" y="78" fill="#00272C" font-size="16" font-weight="700" text-anchor="middle">Proposta enviada</text>
+      <rect x="900" y="40" width="180" height="64" rx="12" fill="rgba(74,222,128,.08)" stroke="#4ade80" stroke-width="1.5"/>
+      <text x="990" y="78" fill="#4ade80" font-size="16" font-weight="700" text-anchor="middle">Fechado</text>
+      <rect x="12" y="300" width="180" height="64" rx="12" fill="#003D47" stroke="rgba(233,255,74,.25)"/>
+      <text x="102" y="338" fill="#E9FF4A" font-size="16" font-weight="700" text-anchor="middle">Tentando contato</text>
+      <rect x="612" y="300" width="180" height="64" rx="12" fill="#003D47" stroke="rgba(233,255,74,.25)"/>
+      <text x="702" y="338" fill="#E9FF4A" font-size="16" font-weight="700" text-anchor="middle">FUP proposta</text>
+      <rect x="900" y="300" width="180" height="64" rx="12" fill="rgba(232,89,60,.08)" stroke="#E8593C" stroke-width="1.5"/>
+      <text x="990" y="338" fill="#ff9c86" font-size="16" font-weight="700" text-anchor="middle">Perdido</text>
+    </g>
+  </svg>
+  </div>
+  <p class="sub" style="margin:12px 0 0">Qualquer etapa pode ir para Perdido com motivo. Quando o paciente ainda não aceita o tratamento, a negociação passa para o funil Orientação à família.</p>
+</div>
+</section>
+
+<section class="slide" data-chap="05 · Venda">
+<div class="inner">
+  <div class="eyebrow">05 · Venda</div>
+  <h2>Etapas 1 a 3: do primeiro contato à negociação</h2>
   <div class="scroll"><table class="tbl">
-    <tr><th>Etapa</th><th>Sai da etapa quando</th><th>Quem move</th><th>Automação</th></tr>
-    <tr><td>Novo contato</td><td>O agente começa a entender o caso</td><td>Agente</td><td>Negociação criada com origem e campanha</td></tr>
-    <tr><td>Entendimento</td><td>As 5 informações estão completas</td><td>Agente</td><td>Campos e prioridade gravados</td></tr>
-    <tr><td>Valores apresentados</td><td>A reação ao preço foi registrada</td><td>Agente</td><td>Sem resposta em 24 h: vai para Retomada</td></tr>
-    <tr><td>Avaliação inicial agendada</td><td>A conversa com a equipe aconteceu</td><td>Agente / equipe</td><td>Tarefa no horário reservado, com dono</td></tr>
-    <tr><td>Avaliação ou visita feita</td><td>Plano e acomodação definidos</td><td>Equipe</td><td>Lembrete se parada há 24 h</td></tr>
-    <tr><td>Proposta e negociação</td><td>Aceite verbal</td><td>Equipe</td><td>Follow-up em 24 h e 72 h</td></tr>
-    <tr><td>Pedido de dados e contrato</td><td>Contrato assinado e pagamento</td><td>Equipe</td><td>Checklist de documentos</td></tr>
-    <tr><td>Chegada agendada</td><td>O paciente chegou</td><td>Equipe</td><td>Lembrete na véspera e orientações</td></tr>
-    <tr><td style="color:var(--green)">Em tratamento</td><td colspan="3">Negociação ganha, com data de chegada e plano contratado</td></tr>
+    <tr><th>Etapa</th><th>O que acontece</th><th>Sai quando</th><th>Automação e prazo</th></tr>
+    <tr><td>1 · Novo lead</td><td>Lead chega pelo site, WhatsApp, ligação ou indicação. O agente acolhe e entende o caso (Q1 a Q6).</td><td>5 informações completas: Em negociação. Sem resposta ou parou no meio: Tentando contato.</td><td>Negociação criada com origem e UTM; prioridade calculada; risco vira urgência na hora.</td></tr>
+    <tr><td>2 · Tentando contato</td><td>Quem não respondeu à abertura ou parou no meio da triagem.</td><td>Respondeu: Em negociação. Sem resposta depois de D+7: Perdido, motivo "sem resposta".</td><td>Lembrete do agente em 2 h (nunca de madrugada); equipe tenta D+1, D+3 e D+7 por WhatsApp e ligação, com tarefa automática.</td></tr>
+    <tr><td>3 · Em negociação</td><td>Caso entendido. Explicação do tratamento, rotina e equipe (T1, T2); avaliação inicial gratuita ou visita; plano e acomodação.</td><td>Valores e condições enviados: Proposta enviada. Paciente não aceita: funil Orientação à família.</td><td>Tarefa no horário reservado para a avaliação; lembrete se a negociação ficar 48 h parada.</td></tr>
   </table></div>
+</div>
+</section>
+
+<section class="slide" data-chap="05 · Venda">
+<div class="inner">
+  <div class="eyebrow">05 · Venda</div>
+  <h2>Etapas 4 e 5: proposta e follow-up</h2>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Etapa</th><th>O que acontece</th><th>Sai quando</th><th>Automação e prazo</th></tr>
+    <tr><td>4 · Proposta enviada</td><td>Valores e condições do caso enviados (T3, T4), pelo agente ou pela equipe. Reação ao preço registrada (V1) e resumo para a família quando pedirem.</td><td>Aceite: Fechado. 24 h sem resposta: FUP proposta.</td><td>Produto e valor na negociação; objeção registrada. Condição especial só pela equipe.</td></tr>
+    <tr><td>5 · FUP proposta</td><td>Retornos do roteiro: S1 D+1, S2 D+3, S3 D+7 e S4 D+14, ou retorno na data combinada com a família.</td><td>Aceite: Fechado. Objeção ou ajuste: Em negociação. S4 sem resposta: Perdido.</td><td>Modelos aprovados pela Meta, nunca entre 20h e 8h; tarefa para a equipe a cada retorno.</td></tr>
+  </table></div>
+  <div class="note"><b>Prazos de resposta.</b> Valem os da fila por prioridade: urgência imediata, alta em até 30 min, média em até 1 h. Negociação parada além do prazo da etapa aparece para a coordenação.</div>
+</div>
+</section>
+
+<section class="slide" data-chap="05 · Venda">
+<div class="inner">
+  <div class="eyebrow">05 · Venda</div>
+  <h2>Fechado e perdido</h2>
+  <div class="grid2">
+    <div class="card"><h3 style="color:var(--green)">Fechado</h3><p>Marcado como venda ganha quando o contrato é assinado e o pagamento confirmado.</p>
+      <ul><li>Obrigatórios: produto (plano e acomodação), valor e data de chegada</li><li>Lembrete na véspera e orientações de chegada</li><li>Contato vira cliente no RD Marketing</li><li>Conversão devolvida ao Google Ads e à Meta</li><li>Data de alta registrada abre o funil Pós-alta</li></ul></div>
+    <div class="card"><h3 style="color:#ff9c86">Perdido</h3><p>Marcado como venda perdida, sempre com motivo. O motivo define o destino.</p>
+      <ul><li>Sem resposta: nutrição por e-mail</li><li>Sem condição financeira: nutrição e campanhas</li><li>Paciente não aceita: funil Orientação à família</li><li>Fora do perfil, menor de 18 ou convênio: encerra com orientação</li><li>Pediu para parar: sai de todas as cadências</li></ul></div>
+  </div>
 </div>
 </section>
 
@@ -361,7 +479,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
     <div class="card"><h3>Produtos e valores (30 dias)</h3><p>O valor da negociação vem do produto escolhido.</p>
       <ul><li>Quarto duplo: R$ 25.900</li><li>Individual Prime: R$ 36.900</li><li>Individual Premium: R$ 45.900</li><li>Planos de 15, 60 e 90 dias: valores a confirmar</li><li>Opcionais e produtos de pós: cadastrados à parte</li></ul></div>
     <div class="card"><h3>Motivos de perda</h3><p>Obrigatórios, para saber onde a venda escapa.</p>
-      <ul><li>Sem condição financeira</li><li>Sem resposta depois da retomada</li><li>Menor de 18 anos</li><li>Buscava internação involuntária</li><li>Buscava consulta, clínico ou convênio</li><li>Perfil clínico fora do escopo</li><li>Escolheu outra clínica</li><li>Pediu para não receber mensagens</li></ul></div>
+      <ul><li>Sem condição financeira</li><li>Sem resposta depois das tentativas</li><li>Menor de 18 anos</li><li>Buscava internação involuntária</li><li>Buscava consulta, clínico ou convênio</li><li>Perfil clínico fora do escopo</li><li>Escolheu outra clínica</li><li>Pediu para não receber mensagens</li></ul></div>
   </div>
 </div>
 </section>
@@ -394,13 +512,13 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
   <h2>Ninguém some sem um <em>próximo passo</em></h2>
   <p class="sub">O "fantasminha" ganha cadência, motivo registrado e conteúdo. A família que ainda não convenceu o paciente recebe orientação, não proposta.</p>
   <div class="funnel">
-    <h3>Funil Retomada</h3>
-    <p>Quem recebeu os valores e não seguiu. Ao responder, volta ao funil Tratamento na etapa em que parou.</p>
+    <h3>Dentro do funil Comercial</h3>
+    <p>A retomada acontece em duas etapas de espera do próprio funil. Quem responde volta a andar; quem não responde sai como perdido e entra na nutrição.</p>
     <div class="stages">
-      <span class="stage">Aguardando decisão familiar<small>retorno na data escolhida</small></span>
-      <span class="stage">Sem resposta<small>D+1, D+3, D+7, D+14</small></span><span class="arrow">→</span>
-      <span class="stage">Nutrição<small>e-mail e conteúdo</small></span><span class="arrow">→</span>
-      <span class="stage win">Retomou conversa</span>
+      <span class="stage">Tentando contato<small>2 h, D+1, D+3, D+7</small></span>
+      <span class="stage">FUP proposta<small>D+1, D+3, D+7, D+14 ou data da família</small></span><span class="arrow">→</span>
+      <span class="stage">Perdido sem resposta<small>vai para a nutrição</small></span><span class="arrow">→</span>
+      <span class="stage win">Respondeu: volta ao funil</span>
     </div>
   </div>
   <div class="funnel">
@@ -420,7 +538,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
 <section class="slide" data-chap="06 · Retomada e nutrição">
 <div class="inner">
   <div class="eyebrow">06 · Retomada e nutrição</div>
-  <h2>Retornos automáticos</h2>
+  <h2>Retornos da etapa FUP proposta</h2>
   <div class="scroll"><table class="tbl">
     <tr><th>Retorno</th><th>Quando</th><th>Mensagem (do roteiro)</th></tr>
     <tr><td>S1</td><td>D+1, entre 9h e 18h</td><td>Ficou alguma dúvida sobre o que está incluso ou o que é cobrado à parte?</td></tr>
@@ -438,7 +556,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
   <h2>Nutrição e reativação da base</h2>
   <div class="grid2">
     <div class="card"><h3>Nutrição por e-mail</h3><p>Para quem passou pelo S4 ou está pesquisando.</p><ul><li>Como funciona um tratamento voluntário</li><li>A equipe e a rotina do dia a dia</li><li>Estrutura e ambiente</li><li>O que está incluso, com transparência</li><li>Como conversar com a família</li><li>Convite para a avaliação inicial gratuita</li></ul><div class="tools"><span class="t t-mkt">RD Mkt</span></div></div>
-    <div class="card"><h3>Reativação da base antiga</h3><p>Os ~14 mil contatos acumulados no RD Marketing.</p><ul><li>Limpeza de e-mails inválidos antes de qualquer envio</li><li>Segmentação por data de entrada e linha de tratamento</li><li>Sequência curta de conteúdo e chamada para o WhatsApp</li><li>Quem responde entra no funil Tratamento com origem "reativação"</li></ul><div class="tools"><span class="t t-mkt">RD Mkt</span><span class="t t-rdc">Conversas</span></div></div>
+    <div class="card"><h3>Reativação da base antiga</h3><p>Os ~14 mil contatos acumulados no RD Marketing.</p><ul><li>Limpeza de e-mails inválidos antes de qualquer envio</li><li>Segmentação por data de entrada e linha de tratamento</li><li>Sequência curta de conteúdo e chamada para o WhatsApp</li><li>Quem responde entra no funil Comercial com origem "reativação"</li></ul><div class="tools"><span class="t t-mkt">RD Mkt</span><span class="t t-rdc">Conversas</span></div></div>
   </div>
 </div>
 </section>
@@ -531,12 +649,12 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
   <div class="scroll"><table class="tbl">
     <tr><th>Gatilho</th><th>O que acontece</th><th>Ferramentas</th></tr>
     <tr><td>Formulário do site</td><td>Conversão no RD com UTM; mensagem imediata no WhatsApp; agente inicia</td><td><span class="t t-mkt">RD Mkt</span> <span class="t t-rdc">Conversas</span></td></tr>
-    <tr><td>Primeira mensagem</td><td>Negociação criada no funil Tratamento com origem e campanha</td><td><span class="t t-rdc">Conversas</span> <span class="t t-crm">CRM</span></td></tr>
+    <tr><td>Primeira mensagem</td><td>Negociação criada no funil Comercial, etapa Novo lead, com origem e campanha</td><td><span class="t t-rdc">Conversas</span> <span class="t t-crm">CRM</span></td></tr>
     <tr><td>Agente coleta informações</td><td>Campos e prioridade gravados; etapa avança</td><td><span class="t t-rdc">Conversas</span> <span class="t t-crm">CRM</span></td></tr>
     <tr><td>Horário reservado à noite</td><td>Tarefa para a equipe na faixa combinada</td><td><span class="t t-crm">CRM</span></td></tr>
     <tr><td>Palavra-gatilho de risco</td><td>Orientação imediata, bloqueio comercial, alerta ao plantão</td><td><span class="t t-rdc">Conversas</span></td></tr>
-    <tr><td>24 h sem resposta após valores</td><td>Move para Retomada e inicia S1 a S4</td><td><span class="t t-crm">CRM</span> <span class="t t-rdc">Conversas</span></td></tr>
-    <tr><td>S4 sem resposta</td><td>Entra na nutrição por e-mail</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span></td></tr>
+    <tr><td>24 h sem resposta após a proposta</td><td>Move para FUP proposta e inicia S1 a S4</td><td><span class="t t-crm">CRM</span> <span class="t t-rdc">Conversas</span></td></tr>
+    <tr><td>S4 sem resposta</td><td>Marca como perdido (sem resposta) e entra na nutrição por e-mail</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span></td></tr>
     <tr><td>Negociação ganha</td><td>Vira cliente no RD Marketing; conversão devolvida ao Google Ads e à Meta</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span> <span class="t t-ads">Ads</span></td></tr>
     <tr><td>Data de alta registrada</td><td>Abre o Pós-alta e inclui no segmento de ex-pacientes</td><td><span class="t t-crm">CRM</span> <span class="t t-mkt">RD Mkt</span></td></tr>
     <tr><td>Interesse em acompanhamento</td><td>Abre oportunidade no funil Pós e revenda</td><td><span class="t t-crm">CRM</span></td></tr>
@@ -572,7 +690,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
     <tr><td>Venda</td><td>Conversas da noite com horário reservado</td><td>não existe</td><td>acima de 40%</td></tr>
     <tr><td>Venda</td><td>Lead → avaliação inicial → chegada</td><td>não medido</td><td>base nas 4 primeiras semanas</td></tr>
     <tr><td>Venda</td><td>Proposta → pedido de dados</td><td>10%</td><td>15%</td></tr>
-    <tr><td>Retomada</td><td>Retomadas que voltam ao funil</td><td>não medido</td><td>base nas 4 primeiras semanas</td></tr>
+    <tr><td>Retomada</td><td>Tentando contato e FUP que voltam a negociar</td><td>não medido</td><td>base nas 4 primeiras semanas</td></tr>
     <tr><td>Tratamento</td><td>Taxa de extensão de plano</td><td>não medido</td><td>acompanhar mensalmente</td></tr>
     <tr><td>Pós-venda</td><td>Contatos de pós-alta feitos no prazo</td><td>manual</td><td>100%</td></tr>
     <tr><td>Pós-venda</td><td>Satisfação (paciente e família)</td><td>não medido</td><td>acompanhar mensalmente</td></tr>
@@ -589,7 +707,7 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
   <p class="sub">O CRM entra em uso na semana 2. O agente só atende clientes reais depois dos testes e das aprovações clínica e jurídica.</p>
   <div class="timeline">
     <div class="week now"><div class="w">Semana 1<small>até 05/11</small></div><div><em>AUTZ</em>Planejamento completo e mapeamento da jornada</div><div><em>Spa Recovery</em>Acessos, validação do planejamento, início das decisões</div></div>
-    <div class="week"><div class="w">Semana 2<small>até 10/11</small></div><div><em>AUTZ</em>Cinco funis, campos, produtos e motivos no CRM; rastreio no RD Marketing; número ativado no Conversas</div><div><em>Spa Recovery</em>Tabela de preços, regra de visita, telefone do plantão</div></div>
+    <div class="week"><div class="w">Semana 2<small>até 10/11</small></div><div><em>AUTZ</em>Funis Comercial, Orientação à família, Pós-alta e Pós e revenda, com campos, produtos e motivos no CRM; rastreio no RD Marketing; número ativado no Conversas</div><div><em>Spa Recovery</em>Tabela de preços, regra de visita, telefone do plantão</div></div>
     <div class="week"><div class="w">Semana 3<small>até 17/11</small></div><div><em>AUTZ</em>Agente configurado com o roteiro v3 em número de teste; Conversas e CRM integrados; formulários no RD</div><div><em>Spa Recovery</em>Aprovação clínica das mensagens de risco e descrições</div></div>
     <div class="week"><div class="w">Semana 4<small>até 24/11</small></div><div><em>AUTZ</em>Testes do roteiro; modelos de retorno, pós-alta e campanha enviados à Meta; fluxos de e-mail</div><div><em>Spa Recovery</em>Testes com a equipe; aprovação jurídica da privacidade</div></div>
     <div class="week"><div class="w">Semana 5<small>até 01/12</small></div><div><em>AUTZ</em>Agente no ar com leitura diária; retomada, pós-alta e revenda automáticos; campanha de fim de ano</div><div><em>Spa Recovery</em>Operação no CRM; registro de chegadas e altas</div></div>
@@ -650,11 +768,11 @@ h3.h{font-size:19px;font-weight:700;margin:0 0 12px}
   <img src="../assets/autz-logo-white.png" alt="AUTZ">
   <span class="chap" id="chap"></span>
   <div class="ctrl">
-    <button id="bPrev" aria-label="Slide anterior">‹</button>
+    <button id="bPrev" aria-label="Slide anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
     <span class="count" id="count"></span>
-    <button id="bNext" aria-label="Próximo slide">›</button>
-    <button id="bToc" aria-label="Sumário" title="Sumário">☰</button>
-    <button id="bFs" aria-label="Tela cheia" title="Tela cheia (F)">⛶</button>
+    <button id="bNext" aria-label="Próximo slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    <button id="bToc" aria-label="Sumário" title="Sumário"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button id="bFs" aria-label="Tela cheia" title="Tela cheia (F)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
   </div>
 </nav>
 
