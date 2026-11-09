@@ -1,0 +1,62 @@
+# Coloca o favicon da AUTZ (o mesmo do diagnostico.autz.com.br) em toda página HTML do pages.
+# Roda a cada push de HTML e também manualmente. Não mexe em página que já tem favicon,
+# nas páginas da Uniplast (white-label, sem marca AUTZ) nem nos HTMLs de e-mail importados no RD.
+name: Favicon AUTZ
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.html']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: favicon
+  cancel-in-progress: false
+
+jobs:
+  favicon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inserir favicon onde falta
+        run: |
+          python3 - <<'PY'
+          import pathlib, re
+          TAG = '<link rel="icon" type="image/png" href="/assets/autz-logo-white.png">'
+          FORA = ('uniplast', '-email-')
+          alterados = []
+          for p in sorted(pathlib.Path('.').rglob('*.html')):
+              caminho = p.as_posix()
+              if caminho.startswith('.git') or any(f in caminho.lower() for f in FORA):
+                  continue
+              txt = p.read_text(encoding='utf-8', errors='surrogateescape')
+              if re.search(r'<link[^>]+rel=["\'][^"\']*icon', txt[:20000], re.I):
+                  continue
+              m = re.search(r'<head[^>]*>', txt, re.I)
+              if m:
+                  novo = txt[:m.end()] + '\n' + TAG + txt[m.end():]
+              else:
+                  m = re.search(r'<html[^>]*>', txt, re.I)
+                  pos = m.end() if m else 0
+                  novo = txt[:pos] + '\n' + TAG + '\n' + txt[pos:]
+              p.write_text(novo, encoding='utf-8', errors='surrogateescape')
+              alterados.append(caminho)
+          print(f'{len(alterados)} página(s) com favicon novo:')
+          print('\n'.join(alterados))
+          PY
+
+      - name: Commit e publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then echo "Nada a alterar."; exit 0; fi
+          git config user.name "autz-favicon[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Favicon AUTZ nas páginas sem favicon"
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Build do Pages segue pelo push."
