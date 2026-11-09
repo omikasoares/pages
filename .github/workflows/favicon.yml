@@ -1,12 +1,13 @@
 # Coloca o favicon da AUTZ (o mesmo do diagnostico.autz.com.br) em toda página HTML do pages.
-# Roda a cada push de HTML e também manualmente. Não mexe em página que já tem favicon,
-# nas páginas da Uniplast (white-label, sem marca AUTZ) nem nos HTMLs de e-mail importados no RD.
+# Roda a cada push de HTML, quando esta automação muda e também manualmente. Não mexe em página que já tem
+# favicon, nas páginas da Uniplast (white-label, sem marca AUTZ) nem em HTML de e-mail (nome com "-email-"
+# ou layout de e-mail em tabela de 600px), que é importado no RD.
 name: Favicon AUTZ
 
 on:
   push:
     branches: [main]
-    paths: ['**.html']
+    paths: ['**.html', '.github/workflows/favicon.yml']
   workflow_dispatch:
 
 permissions:
@@ -29,13 +30,17 @@ jobs:
           import pathlib, re
           TAG = '<link rel="icon" type="image/png" href="/assets/autz-logo-white.png">'
           FORA = ('uniplast', '-email-')
-          alterados = []
+          alterados, pulados = [], []
           for p in sorted(pathlib.Path('.').rglob('*.html')):
               caminho = p.as_posix()
-              if caminho.startswith('.git') or any(f in caminho.lower() for f in FORA):
+              if caminho.startswith('.git'):
                   continue
               txt = p.read_text(encoding='utf-8', errors='surrogateescape')
-              if re.search(r'<link[^>]+rel=["\'][^"\']*icon', txt[:20000], re.I):
+              inicio = txt[:20000]
+              if any(f in caminho.lower() for f in FORA) or re.search(r'<table[^>]+width=["\']?600', inicio, re.I):
+                  pulados.append(caminho)
+                  continue
+              if re.search(r'<link[^>]+rel=["\'][^"\']*icon', inicio, re.I):
                   continue
               m = re.search(r'<head[^>]*>', txt, re.I)
               if m:
@@ -48,6 +53,8 @@ jobs:
               alterados.append(caminho)
           print(f'{len(alterados)} página(s) com favicon novo:')
           print('\n'.join(alterados))
+          print(f'\n{len(pulados)} página(s) puladas (Uniplast ou e-mail):')
+          print('\n'.join(pulados))
           PY
 
       - name: Commit e publicar
