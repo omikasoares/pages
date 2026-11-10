@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Choice · Aprovação dos fluxos de e-mail</title>
@@ -42,10 +42,13 @@ details.colap[open]>summary:before{content:"–"}
 .colap-body ul,.colap-body ol{margin:8px 0 8px 20px}
 .colap-body li{margin:5px 0}
 .fluxo{margin-top:40px}
+.fluxo-off details.email{opacity:.6}
 .fx-head{display:flex;gap:14px;align-items:center;margin-bottom:12px}
 .fx-n{background:var(--lime);color:var(--bg);font-weight:800;font-size:13px;border-radius:9px;padding:7px 11px;white-space:nowrap}
+.fluxo-off .fx-n{background:var(--gray2);color:var(--white)}
 .fx-head h2{font-size:20px;font-weight:700;line-height:1.25}
 .fx-sub{color:var(--gray);font-size:13px}
+.fx-status{font-size:12.5px;color:#b9cdd2;margin-top:4px;line-height:1.5}
 .fx-meta{background:transparent;border:1px dashed var(--borderw);border-radius:12px;margin:10px 0 14px}
 .fx-meta>summary{cursor:pointer;padding:10px 16px;font-size:13px;color:var(--gray);list-style:none}
 .fx-meta>summary::-webkit-details-marker{display:none}
@@ -53,6 +56,7 @@ details.colap[open]>summary:before{content:"–"}
 .fx-meta-body ul,.fx-meta-body ol{margin:6px 0 6px 18px}
 .badge{font-size:11px;font-weight:600;border-radius:20px;padding:2px 10px;vertical-align:middle}
 .badge-val{background:rgba(251,191,36,.14);color:var(--amber);border:1px solid rgba(251,191,36,.35)}
+.badge-off{background:rgba(255,255,255,.07);color:var(--gray);border:1px solid var(--borderw)}
 .badge-pv{background:rgba(233,255,74,.14);color:var(--lime);border:1px solid var(--border)}
 .preview{display:flex;gap:16px;align-items:center;margin:16px 0 4px;padding:12px;border-radius:12px;text-decoration:none;
 background:rgba(233,255,74,.06);border:1px solid var(--border);color:var(--white);word-break:normal}
@@ -122,14 +126,6 @@ border-radius:9px;padding:10px 20px;cursor:pointer}
 .rev-msg{font-size:12.5px;color:var(--gray)}
 .rev-msg.ok{color:var(--green)}
 .rev-msg.err{color:var(--red)}
-.pend{display:flex;gap:14px;background:var(--surface);border:1px solid var(--borderw);border-radius:14px;padding:18px;margin:10px 0}
-.pend-n{flex:none;background:rgba(251,191,36,.14);color:var(--amber);border:1px solid rgba(251,191,36,.35);
-font-weight:800;border-radius:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
-.pend-body{flex:1;min-width:0}
-.pend-body>p{font-size:14px;color:#d6e4e8}
-.review-pend{margin-top:12px;padding:12px}
-h2.sect{margin:46px 0 6px;font-size:20px}
-.sect-sub{color:var(--gray);font-size:13.5px;margin-bottom:12px}
 footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;color:var(--gray2);font-size:12.5px;text-align:center}
 @media(max-width:560px){
  header{gap:10px}
@@ -156,8 +152,8 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <li>Marque <strong>Aprovado</strong> ou <strong>Precisa de ajuste</strong> e, se quiser mudar algo, escreva a correção no campo de texto.</li>
     <li>Clique em <strong>Enviar avaliação</strong>: cada envio chega na hora para a equipe AUTZ. Pode revisar aos poucos e voltar depois, e também reenviar se mudar de ideia.</li>
   </ol>
-  <p style="font-size:13px;color:var(--gray);margin-top:10px">Os trechos marcados com <span class="validar">&#9888; VALIDAR</span> dependem de uma confirmação da Choice. Se souber a resposta, escreva no campo de correção do próprio e-mail.</p>
-  <div class="hl-pv">&#128064; <div>Quer ver como os e-mails vão ficar depois de aprovados? O <a href="#f1e1" onclick="document.getElementById('f1e1').open=true">Fluxo 1, E-mail 1</a> já tem um exemplo montado, com banner, texto e botão: <a href="https://pages.autz.com.br/choice-email-funil-key-in-pocket-1/" target="_blank" rel="noopener">abrir exemplo</a>.</div></div>
+  <p style="font-size:13px;color:var(--gray);margin-top:10px">Os trechos marcados com <span class="validar">&#9888; VALIDAR</span> dependem de uma confirmação da Choice. Se souber a resposta, escreva no campo de correção do próprio e-mail. Cada fluxo mostra o status combinado: ativo, em revisão, em espera ou não será usado.</p>
+  <div class="hl-pv"><div>Padrão visual dos e-mails: o <a href="#f1e1" onclick="document.getElementById('f1e1').open=true">Fluxo 1, E-mail 1</a> está montado no padrão combinado (logo C | CHOICETECH, título do banner repetido em texto e rodapé com LinkedIn): <a href="https://pages.autz.com.br/choice-email-funil-key-in-pocket-1/" target="_blank" rel="noopener">abrir exemplo</a>.</div></div>
   <div class="nome-row">
     <label for="autor">Quem está revisando:</label>
     <input id="autor" type="text" placeholder="Seu nome" autocomplete="name">
@@ -166,7 +162,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
 
 <details class="colap">
   <summary>Regras aplicadas em todos os e-mails</summary>
-  <div class="colap-body"><ul><li>Nada de prometer economia em percentual, eliminação de falha, conformidade, disponibilidade ou prazo sem diagnóstico (regra da ficha).</li><li>Um objetivo e um CTA principal por e-mail, repetido no fim. Os envios de feira com CTA único foram os de melhor clique da Choice (CTOR 19% a 23%), e a nutrição DFun com CTA genérico fica em 2%.</li><li>Imagens: só fotos reais de produto do site da Choice como referência. Não usar foto de instalação, cliente ou data center como se fosse da Choice. Não colocar número técnico ou resultado desenhado na imagem.</li><li>Variável no padrão RD: <code><span class="var">*|PRIMEIRO_NOME|*</span></code> (no corpo, nunca no botão).</li><li>UTM em todos os links: <code>?utm_source=RD+Station&amp;utm_medium=email&amp;utm_campaign=emkt_-_choice_-_&lt;fluxo&gt;</code>. O slug de cada fluxo está no topo dele.</li><li>Intervalo sugerido entre e-mails: 0, +3, +7 e +14 dias. Saída do fluxo quando o lead converter (orçamento, fale conosco, WhatsApp).</li><li>Itens marcados com <span class="validar">&#9888; VALIDAR</span> dependem de confirmação da Choice antes de ativar o fluxo.</li></ul></div>
+  <div class="colap-body"><ul><li>Nada de prometer economia em percentual, eliminação de falha, conformidade, disponibilidade ou prazo sem diagnóstico (regra da ficha).</li><li>Um objetivo e um CTA principal por e-mail, repetido no fim. Os envios de feira com CTA único foram os de melhor clique da Choice (CTOR 19% a 23%), e a nutrição DFun com CTA genérico fica em 2%.</li><li>Imagens: só fotos reais de produto do site da Choice como referência. Não usar foto de instalação, cliente ou data center como se fosse da Choice. Não colocar número técnico ou resultado desenhado na imagem.</li><li>Variável no padrão RD: <code><span class="var">*|PRIMEIRO_NOME|*</span></code> (no corpo, nunca no botão).</li><li>Padrão visual (definido pela Choice em 11/2026): logo atual "C | CHOICETECH", título do banner repetido em texto logo abaixo da imagem (no Outlook as imagens costumam vir bloqueadas) e rodapé igual ao dos e-mails da Choice: telefone (41) 3015-7953, vendas@choicetech.com.br, site e "Siga a Choice no LinkedIn".</li><li>Botão "Falar com um especialista": WhatsApp comercial <a href="https://wa.me/554130157953" target="_blank" rel="noopener">https://wa.me/554130157953</a> com mensagem pronta citando o fluxo (ex.: "Olá, vim pelo e-mail de Key in Pocket e quero falar com um especialista"), para o comercial saber a origem.</li><li>UTM em todos os links: <code>?utm_source=RD+Station&amp;utm_medium=email&amp;utm_campaign=emkt_-_choice_-_&lt;fluxo&gt;</code>. O slug de cada fluxo está no topo dele.</li><li>Intervalo sugerido entre e-mails: 0, +3, +7 e +14 dias. Saída do fluxo quando o lead converter (orçamento, fale conosco, WhatsApp).</li><li>Itens marcados com <span class="validar">&#9888; VALIDAR</span> dependem de confirmação da Choice antes de ativar o fluxo.</li></ul></div>
 </details>
 
 
@@ -175,7 +171,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <div class="fx-n">Fluxo 1</div>
     <div>
       <h2>Key in Pocket</h2>
-      <div class="fx-sub">3 e-mails</div>
+      <div class="fx-sub">3 e-mails <span class="badge badge-pv">Ativo, entrada pelo e-mail 2</span><div class="fx-status">Decisão da Choice: quem clicar no e-mail avulso Key in Pocket do cronograma (18/11) entra neste fluxo a partir do e-mail 2. O e-mail 1 não é enviado, porque repete o assunto do avulso.</div></div>
     </div>
   </div>
   <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-key-in-pocket</code> · Página: <a href="https://choicetech.com.br/key-in-pocket/" target="_blank" rel="noopener">https://choicetech.com.br/key-in-pocket/</a> Público: segurança do trabalho, manutenção e engenharia de máquinas com porta de proteção e acesso de pessoas à área de risco. Nível de consciência: consciente do problema (conhece o risco de partida inesperada), pouco consciente da solução por chave pessoal. Big Idea: a segurança de quem está dentro da máquina não pode depender da memória de quem está fora. Com a chave no bolso, a máquina fisicamente não religa. Hipótese de aprendizado: assunto em forma de cena real (pessoa dentro da máquina) gera mais clique que o assunto com nome de produto.</p></div></details>
@@ -192,7 +188,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   <div class="em-open">
     <a class="preview" href="https://pages.autz.com.br/choice-email-funil-key-in-pocket-1/" target="_blank" rel="noopener">
       <img src="https://lh3.googleusercontent.com/d/1zvyTk6qOXuqckuPMipEkEEjLPrjj386i" alt="Banner do e-mail">
-      <div class="pv-txt"><div class="pv-tag">Exemplo de peça pronta</div><div class="pv-t">Ver este e-mail montado, como o contato vai receber &rarr;</div></div>
+      <div class="pv-txt"><div class="pv-tag">Exemplo do padrão visual</div><div class="pv-t">Ver este e-mail montado, como o contato vai receber &rarr;</div></div>
     </a>
     <div class="subjects"><div class="subj"><span class="chip">Assunto A</span><div>Tem alguém dentro da máquina. Quem garante que ela não liga?</div></div><div class="subj"><span class="chip chip-b">Assunto B</span><div>O risco de partida inesperada durante a manutenção</div></div><div class="subj"><span class="chip chip-p">Pré-header</span><div class="pre">Uma chave, dois lugares possíveis: no dispositivo ou no bolso de quem entrou.</div></div></div>
     <div class="sec sec-corpo"><div class="sec-label">Corpo do e-mail</div><div class="sec-body"><p>Olá, <span class="var">*|PRIMEIRO_NOME|*</span>.</p>
@@ -253,7 +249,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   <summary>
     <div class="em-head">
       <div class="em-title"><span class="em-n">E-mail 3</span> Conversa técnica</div>
-      <div class="em-sub"><code>FUNIL Key in Pocket 1-2</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+      <div class="em-sub"><code>FUNIL Key in Pocket 1-2</code> </div>
     </div>
     <span class="status" id="st-f1e3">pendente</span>
     <span class="arrow">&#9662;</span>
@@ -266,7 +262,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
 <ul><li>o tipo de porta (articulada ou deslizante);</li><li>o ambiente (lavagem, área limpa, poeira, temperatura);</li><li>quantas pessoas entram na área ao mesmo tempo.</li></ul>
 <p>Quando mais de uma pessoa acessa a área, existem unidades com várias chaves, uma para cada pessoa.</p>
 <p>Responda este e-mail ou fale com um especialista da Choice com essas três informações. Indicamos a configuração e enviamos os códigos para o seu projeto.</p>
-<p>A Choice está há mais de 20 anos em segurança de máquinas, energia e automação industrial, com suporte técnico local.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <a href="https://choicetech.com.br/fale-conosco/" target="_blank" rel="noopener">https://choicetech.com.br/fale-conosco/</a> <span class="validar">&#9888; VALIDAR</span> Hoje todas as LPs mandam para /fale-conosco/, que é um formulário de suporte. Se houver formulário de avaliação técnica ou WhatsApp comercial, troque aqui.</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem banner grande. Só uma faixa fina com a logo e uma foto da chave EK em close. Este e-mail funciona melhor parecendo uma mensagem pessoal.</p></div></div>
+<p>A Choice está há mais de 20 anos em segurança de máquinas, energia e automação industrial, com suporte técnico local.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <a href="https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20Key%20in%20Pocket%20e%20quero%20falar%20com%20um%20especialista" target="_blank" rel="noopener">https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20Key%20in%20Pocket%20e%20quero%20falar%20com%20um%20especialista</a> (WhatsApp comercial, mensagem pronta citando o fluxo; sem UTM)</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>sem banner grande. Só uma faixa fina com a logo e uma foto da chave EK em close. Este e-mail funciona melhor parecendo uma mensagem pessoal.</p></div></div>
     <div class="review" data-id="f1e3" data-fluxo="Fluxo 1 · Key in Pocket" data-email="E-mail 3 · Conversa técnica (FUNIL Key in Pocket 1-2)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -287,7 +283,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <div class="fx-n">Fluxo 2</div>
     <div>
       <h2>Trapped Key</h2>
-      <div class="fx-sub">3 e-mails</div>
+      <div class="fx-sub">3 e-mails <span class="badge badge-val">Em revisão pela Choice (o Flávio vai encaminhar à equipe técnica o que precisar)</span></div>
     </div>
   </div>
   <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-trapped-key</code> Páginas: <a href="https://choicetech.com.br/sistema-de-intertravamento-para-cortina-trapped-key/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-de-intertravamento-para-cortina-trapped-key/</a> · <a href="https://choicetech.com.br/sistema-de-seguranca-com-chave-pessoal-trapped-key-libertacao-de-fuga-ou-loto/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-de-seguranca-com-chave-pessoal-trapped-key-libertacao-de-fuga-ou-loto/</a> · <a href="https://choicetech.com.br/categoria/prevenir-acidentes-nr-12/sistemas-de-intertravamento/conjunto-trapped-key/" target="_blank" rel="noopener">https://choicetech.com.br/categoria/prevenir-acidentes-nr-12/sistemas-de-intertravamento/conjunto-trapped-key/</a> Público: segurança do trabalho e engenharia de máquinas, com foco em NR-12. Nível de consciência: consciente da solução (sabe que existe LOTO e liberação de escape) e comparando abordagens. Big Idea: LOTO depende da vontade de quem opera. No Trapped Key, a proteção não é opcional: sem tirar a chave, a porta não abre. Hipótese: assunto em forma de comparação (LOTO x chave pessoal) gera clique de quem já usa LOTO.</p></div></details>
@@ -360,7 +356,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   <summary>
     <div class="em-head">
       <div class="em-title"><span class="em-n">E-mail 3</span> Sistema completo</div>
-      <div class="em-sub"><code>FUNIL Trapped Key 2-2</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+      <div class="em-sub"><code>FUNIL Trapped Key 2-2</code> </div>
     </div>
     <span class="status" id="st-f2e3">pendente</span>
     <span class="arrow">&#9662;</span>
@@ -372,7 +368,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
 <p>Trapped key fica mais forte quando vira sistema. A mesma família de chaves combina:</p>
 <ul><li>chaves e travas de segurança nas portas;</li><li>transferência de chaves, para garantir a ordem certa de bloqueio (primeiro desliga a energia, depois abre o acesso);</li><li>funções de comando e unidades com várias chaves pessoais;</li><li>versões em aço inox e metal fundido, que podem ser combinadas.</li></ul>
 <p>O sistema atende aplicações até Categoria 4 / PL e (EN ISO 13849-1), é certificado pelo TÜV e também aceita proteção sem fio das portas, o que reduz instalação e retrofit.</p>
-<p>Para indicar a sequência certa, o nosso time precisa entender a máquina: quantos acessos, quais fontes de energia precisam ser isoladas e quem entra na área. Fale com um especialista e envie o cenário.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <span class="validar">&#9888; VALIDAR destino</span></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>ilustração em linha mostrando uma sequência simples: chave sai do painel, entra na porta, porta abre. Fotos reais de produto do conjunto trapped key como referência, sem desenhar máquina de cliente.</p></div></div>
+<p>Para indicar a sequência certa, o nosso time precisa entender a máquina: quantos acessos, quais fontes de energia precisam ser isoladas e quem entra na área. Fale com um especialista e envie o cenário.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <a href="https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20Trapped%20Key%20e%20quero%20falar%20com%20um%20especialista" target="_blank" rel="noopener">https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20Trapped%20Key%20e%20quero%20falar%20com%20um%20especialista</a> (WhatsApp comercial, mensagem pronta citando o fluxo; sem UTM)</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>ilustração em linha mostrando uma sequência simples: chave sai do painel, entra na porta, porta abre. Fotos reais de produto do conjunto trapped key como referência, sem desenhar máquina de cliente.</p></div></div>
     <div class="review" data-id="f2e3" data-fluxo="Fluxo 2 · Trapped Key" data-email="E-mail 3 · Sistema completo (FUNIL Trapped Key 2-2)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -393,7 +389,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
     <div class="fx-n">Fluxo 3</div>
     <div>
       <h2>Mineração e ambientes agressivos</h2>
-      <div class="fx-sub">3 e-mails</div>
+      <div class="fx-sub">3 e-mails <span class="badge badge-val">Em revisão pela Choice (o Flávio vai encaminhar à equipe técnica o que precisar)</span></div>
     </div>
   </div>
   <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-mineracao</code> Páginas: <a href="https://choicetech.com.br/sistema-wireless-e-sem-baterias/" target="_blank" rel="noopener">https://choicetech.com.br/sistema-wireless-e-sem-baterias/</a> · <a href="https://choicetech.com.br/solucao-sem-fio-para-seguranca-industrial/" target="_blank" rel="noopener">https://choicetech.com.br/solucao-sem-fio-para-seguranca-industrial/</a> Público: manutenção e engenharia em mineração, metalurgia, siderurgia e ferroligas. Nível de consciência: consciente do problema (cabo queimando, parada, bypass), sem conhecer a solução sem fio. Big Idea: onde o cabo não aguenta, a solução é tirar o cabo. Hipótese: e-mail em formato de case (cliente real, mesmo sem nome) tem CTOR maior que o e-mail de produto.</p></div></details>
@@ -465,7 +461,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   <summary>
     <div class="em-head">
       <div class="em-title"><span class="em-n">E-mail 3</span> Diagnóstico</div>
-      <div class="em-sub"><code>FUNIL Mineração 1-2</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+      <div class="em-sub"><code>FUNIL Mineração 1-2</code> </div>
     </div>
     <span class="status" id="st-f3e3">pendente</span>
     <span class="arrow">&#9662;</span>
@@ -477,7 +473,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
 <p>Toda planta tem aquele ponto que a manutenção já conhece de cor: o cabo que queima, o fim de curso que quebra, o sensor que vive em bypass.</p>
 <p>Se você tem um ponto assim, conte para a gente:</p>
 <ul><li>o que falha e com que frequência;</li><li>a condição do ambiente (temperatura, vibração, poeira, água);</li><li>quanto tempo a linha fica parada a cada falha.</li></ul>
-<p>Com isso, o nosso time de engenharia avalia se a solução sem fio se aplica e qual seria o caminho técnico, antes de qualquer proposta.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Enviar meu cenário → <span class="validar">&#9888; VALIDAR destino</span></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>faixa simples com a foto do forno (e-mail 1) mais escura e o título "Qual é o seu Forno 04?".</p></div></div>
+<p>Com isso, o nosso time de engenharia avalia se a solução sem fio se aplica e qual seria o caminho técnico, antes de qualquer proposta.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Enviar meu cenário → <a href="https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20Minera%C3%A7%C3%A3o%20%28sistema%20sem%20fio%29%20e%20quero%20falar%20com%20um%20especialista" target="_blank" rel="noopener">https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20Minera%C3%A7%C3%A3o%20%28sistema%20sem%20fio%29%20e%20quero%20falar%20com%20um%20especialista</a> (WhatsApp comercial, mensagem pronta citando o fluxo; sem UTM)</p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>faixa simples com a foto do forno (e-mail 1) mais escura e o título "Qual é o seu Forno 04?".</p></div></div>
     <div class="review" data-id="f3e3" data-fluxo="Fluxo 3 · Mineração e ambientes agressivos" data-email="E-mail 3 · Diagnóstico (FUNIL Mineração 1-2)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -493,12 +489,12 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   </div>
 </details>
 </section>
-<section class="fluxo" id="fluxo4">
+<section class="fluxo fluxo-off" id="fluxo4">
   <div class="fx-head">
     <div class="fx-n">Fluxo 4</div>
     <div>
       <h2>UMG 800, principais características</h2>
-      <div class="fx-sub">4 e-mails</div>
+      <div class="fx-sub">4 e-mails <span class="badge badge-off">Não será usado</span><div class="fx-status">A Choice já tem um fluxo do UMG 800 aprovado e indo para programação; vamos usar o deles, no nosso padrão visual, para não duplicar.</div></div>
     </div>
   </div>
   <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-umg800</code> Páginas: página do produto UMG 800 na loja · <a href="https://choicetech.com.br/umg-801/" target="_blank" rel="noopener">https://choicetech.com.br/umg-801/</a> · <a href="https://choicetech.com.br/gridvis-energy/" target="_blank" rel="noopener">https://choicetech.com.br/gridvis-energy/</a> Público: engenharia elétrica, manutenção, energia e facilities de indústria, data center e prédios comerciais. Nível de consciência: consciente da solução (sabe que precisa medir); compara medidores. Big Idea: medição de vários circuitos num só equipamento compacto, que cresce junto com a instalação. Hipótese: assunto com número concreto do produto (ex.: "63 harmônicas", "4 GB") abre menos e clica mais que assunto de benefício genérico. Testar A/B no e-mail 2.</p>
@@ -601,7 +597,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   <summary>
     <div class="em-head">
       <div class="em-title"><span class="em-n">E-mail 4</span> Prova e conversa</div>
-      <div class="em-sub"><code>FUNIL UMG800 1-3</code> <span class="badge badge-val">&#9888; 1 p/ validar</span></div>
+      <div class="em-sub"><code>FUNIL UMG800 1-3</code> </div>
     </div>
     <span class="status" id="st-f4e4">pendente</span>
     <span class="arrow">&#9662;</span>
@@ -613,7 +609,7 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
 <p>Escolher o medidor é a parte fácil. O que define o resultado é onde medir, quantos pontos, como integrar e como ler os dados depois.</p>
 <p>Há mais de 20 anos a Choice faz esse caminho com a tecnologia Janitza: são mais de 5.000 analisadores instalados e comissionados e mais de 80 data centers monitorados no Brasil.</p>
 <p>Um exemplo público é o Metrô de São Paulo: 237 pontos de medição em 87 subestações, com analisadores Janitza e GridVis.</p>
-<p>Conte o cenário da sua instalação e o nosso time ajuda a definir os pontos de medição e o equipamento certo.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <span class="validar">&#9888; VALIDAR destino</span> Link secundário em texto: "Ver o case do Metrô-SP" → <a href="https://choicetech.com.br/metro-sp-monitoramento-qualidade-energia/" target="_blank" rel="noopener">https://choicetech.com.br/metro-sp-monitoramento-qualidade-energia/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto do UMG 800 com o título "Mais de 5.000 analisadores comissionados". Sem foto do Metrô (instalação do cliente).</p></div></div>
+<p>Conte o cenário da sua instalação e o nosso time ajuda a definir os pontos de medição e o equipamento certo.</p></div></div><div class="sec sec-cta"><div class="sec-label">CTA (botão)</div><div class="sec-body"><p>Falar com um especialista → <a href="https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20UMG%20800%20e%20quero%20falar%20com%20um%20especialista" target="_blank" rel="noopener">https://wa.me/554130157953?text=Ol%C3%A1%2C%20vim%20pelo%20e-mail%20de%20UMG%20800%20e%20quero%20falar%20com%20um%20especialista</a> (WhatsApp comercial) Link secundário em texto: "Ver o case do Metrô-SP" → <a href="https://choicetech.com.br/metro-sp-monitoramento-qualidade-energia/" target="_blank" rel="noopener">https://choicetech.com.br/metro-sp-monitoramento-qualidade-energia/</a></p></div></div><div class="sec sec-arte"><div class="sec-label">Banner (descrição da arte)</div><div class="sec-body"><p>foto do UMG 800 com o título "Mais de 5.000 analisadores comissionados". Sem foto do Metrô (instalação do cliente).</p></div></div>
     <div class="review" data-id="f4e4" data-fluxo="Fluxo 4 · UMG 800, principais características" data-email="E-mail 4 · Prova e conversa (FUNIL UMG800 1-3)">
       <div class="rev-title">Sua avaliação deste e-mail</div>
       <div class="rev-btns">
@@ -629,12 +625,12 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
   </div>
 </details>
 </section>
-<section class="fluxo" id="fluxo5">
+<section class="fluxo fluxo-off" id="fluxo5">
   <div class="fx-head">
     <div class="fx-n">Fluxo 5</div>
     <div>
       <h2>Promo / Oportunidades</h2>
-      <div class="fx-sub">5 e-mails <span class="badge badge-val">&#9888; precisa de validação antes de ativar</span></div>
+      <div class="fx-sub">5 e-mails <span class="badge badge-off">Em espera</span><div class="fx-status">A Choice ainda não tem preços definidos no site.</div></div>
     </div>
   </div>
   <details class="fx-meta"><summary>Contexto do fluxo (público, big idea, links)</summary><div class="fx-meta-body"><p>Slug UTM: <code>funil-oportunidades</code> Página: <a href="https://choicetech.com.br/categoria/oportunidades/" target="_blank" rel="noopener">https://choicetech.com.br/categoria/oportunidades/</a></p>
@@ -788,7 +784,6 @@ footer{margin-top:60px;border-top:1px solid var(--borderw);padding-top:18px;colo
 <script>
 var WEBHOOK = "https://webhook.autz.com.br/webhook/aprovacao-fluxos-choice";
 var PAGINA = "aprovacao-fluxos-choice";
-var TOTAL = 18;
 var LSKEY = "aprovacao-fluxos-choice";
 var store = {autor: "", itens: {}};
 try { var s = localStorage.getItem(LSKEY); if (s) store = JSON.parse(s); } catch(e) {}
@@ -807,12 +802,11 @@ function badge(id, st) {
   if (!el) return;
   if (st === "aprovado") { el.textContent = "aprovado"; el.className = "status ok"; }
   else if (st === "ajustar") { el.textContent = "com ajustes"; el.className = "status adj"; }
-  else if (st === "resposta") { el.textContent = "respondida"; el.className = "status ok"; }
 }
 
 function progresso() {
   var n = 0;
-  for (var k in store.itens) if (k.indexOf("f") === 0 && store.itens[k].enviado) n++;
+  for (var k in store.itens) if (store.itens[k].enviado) n++;
   var el = document.getElementById("pg-n");
   if (el) el.textContent = n;
 }
@@ -831,26 +825,6 @@ function getAutor() {
   return v;
 }
 
-function post(box, payload, done) {
-  var btn = box.querySelector(".b-send");
-  var msg = box.querySelector(".rev-msg");
-  btn.disabled = true;
-  msg.className = "rev-msg"; msg.textContent = "enviando...";
-  fetch(WEBHOOK, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)})
-    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function() {
-      btn.disabled = false;
-      msg.className = "rev-msg ok"; msg.textContent = "Enviado para a AUTZ \u2713";
-      done(true);
-    })
-    .catch(function() {
-      btn.disabled = false;
-      msg.className = "rev-msg err";
-      msg.textContent = "Falha no envio. Tente de novo ou mande por WhatsApp.";
-      done(false);
-    });
-}
-
 function enviar(btn) {
   var box = btn.closest(".review");
   var st = box.dataset.status || "";
@@ -860,44 +834,36 @@ function enviar(btn) {
   if (st === "ajustar" && !com) { msg.className = "rev-msg err"; msg.textContent = "Escreva qual ajuste fazer."; return; }
   var autor = getAutor(); if (!autor) return;
   var id = box.dataset.id;
-  post(box, {pagina: PAGINA, fluxo: box.dataset.fluxo, email: box.dataset.email, status: st, comentario: com, autor: autor}, function(ok) {
-    if (ok) {
+  btn.disabled = true;
+  msg.className = "rev-msg"; msg.textContent = "enviando...";
+  fetch(WEBHOOK, {method: "POST", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({pagina: PAGINA, fluxo: box.dataset.fluxo, email: box.dataset.email, status: st, comentario: com, autor: autor})})
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function() {
+      btn.disabled = false;
+      msg.className = "rev-msg ok"; msg.textContent = "Enviado para a AUTZ \u2713";
       store.itens[id] = {status: st, comentario: com, enviado: true};
       save(); badge(id, st); progresso();
-    }
-  });
+    })
+    .catch(function() {
+      btn.disabled = false;
+      msg.className = "rev-msg err";
+      msg.textContent = "Falha no envio. Tente de novo ou mande por WhatsApp.";
+    });
 }
 
-function enviarPend(btn) {
-  var box = btn.closest(".review");
-  var com = box.querySelector("textarea").value.trim();
-  var msg = box.querySelector(".rev-msg");
-  if (!com) { msg.className = "rev-msg err"; msg.textContent = "Escreva a resposta antes de enviar."; return; }
-  var autor = getAutor(); if (!autor) return;
-  var id = box.dataset.id;
-  post(box, {pagina: PAGINA, fluxo: box.dataset.fluxo, email: box.dataset.email, status: "resposta", comentario: com, autor: autor}, function(ok) {
-    if (ok) {
-      store.itens[id] = {status: "resposta", comentario: com, enviado: true};
-      save(); badge(id, "resposta"); progresso();
-    }
-  });
-}
-
-// restaurar estado salvo
 (function() {
   if (store.autor) document.getElementById("autor").value = store.autor;
   for (var id in store.itens) {
     var it = store.itens[id];
     var el = document.getElementById(id);
     if (!el) continue;
-    var box = el.querySelector ? el.querySelector(".review") : null;
-    if (el.classList && el.classList.contains("pend")) box = el.querySelector(".review");
+    var box = el.querySelector(".review");
     if (box) {
       if (it.status === "aprovado" || it.status === "ajustar") {
         box.dataset.status = it.status;
-        var bo = box.querySelector(".b-ok"), ba = box.querySelector(".b-adj");
-        if (bo) bo.classList.toggle("sel", it.status === "aprovado");
-        if (ba) ba.classList.toggle("sel", it.status === "ajustar");
+        box.querySelector(".b-ok").classList.toggle("sel", it.status === "aprovado");
+        box.querySelector(".b-adj").classList.toggle("sel", it.status === "ajustar");
       }
       if (it.comentario) box.querySelector("textarea").value = it.comentario;
       if (it.enviado) {
