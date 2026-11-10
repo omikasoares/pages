@@ -1,13 +1,16 @@
-# Coloca o favicon da AUTZ (o mesmo do diagnostico.autz.com.br) em toda página HTML do pages.
-# Roda a cada push de HTML, quando esta automação muda e também manualmente. Não mexe em página que já tem
-# favicon, nas páginas da Uniplast (white-label, sem marca AUTZ) nem em HTML de e-mail (nome com "-email-"
-# ou layout de e-mail em tabela de 600px), que é importado no RD.
+# Coloca o favicon da AUTZ (símbolo, assets/favicon-autz.png) em toda página HTML do pages.
+# Roda a cada push de HTML, quando o favicon ou esta automação mudam e também manualmente.
+# - Gera assets/favicon-autz.png a partir de assets/favicon-autz.b64.
+# - Troca o favicon antigo da AUTZ (logo branco) pelo símbolo.
+# - Põe o símbolo em página sem favicon.
+# Não mexe em página com favicon próprio, nas páginas da Uniplast (white-label, sem marca AUTZ) nem em
+# HTML de e-mail (nome com "-email-" ou layout de e-mail em tabela de 600px), que é importado no RD.
 name: Favicon AUTZ
 
 on:
   push:
     branches: [main]
-    paths: ['**.html', '.github/workflows/favicon.yml']
+    paths: ['**.html', 'assets/favicon-autz.b64', '.github/workflows/favicon.yml']
   workflow_dispatch:
 
 permissions:
@@ -24,11 +27,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Inserir favicon onde falta
+      - name: Gerar PNG e atualizar páginas
         run: |
           python3 - <<'PY'
-          import pathlib, re
-          TAG = '<link rel="icon" type="image/png" href="/assets/autz-logo-white.png">'
+          import base64, pathlib, re
+          png = pathlib.Path('assets/favicon-autz.png')
+          dados = base64.b64decode(pathlib.Path('assets/favicon-autz.b64').read_text().strip())
+          if not png.exists() or png.read_bytes() != dados:
+              png.write_bytes(dados)
+              print('assets/favicon-autz.png gerado')
+          TAG = '<link rel="icon" type="image/png" href="/assets/favicon-autz.png">'
+          ANTIGA = '<link rel="icon" type="image/png" href="/assets/autz-logo-white.png">'
           FORA = ('uniplast', '-email-')
           alterados, pulados = [], []
           for p in sorted(pathlib.Path('.').rglob('*.html')):
@@ -40,18 +49,22 @@ jobs:
               if any(f in caminho.lower() for f in FORA) or re.search(r'<table[^>]+width=["\']?600', inicio, re.I):
                   pulados.append(caminho)
                   continue
-              if re.search(r'<link[^>]+rel=["\'][^"\']*icon', inicio, re.I):
+              if ANTIGA in txt:
+                  novo = txt.replace(ANTIGA, TAG)
+              elif re.search(r'<link[^>]+rel=["\'][^"\']*icon', inicio, re.I):
                   continue
-              m = re.search(r'<head[^>]*>', txt, re.I)
-              if m:
-                  novo = txt[:m.end()] + '\n' + TAG + txt[m.end():]
               else:
-                  m = re.search(r'<html[^>]*>', txt, re.I)
-                  pos = m.end() if m else 0
-                  novo = txt[:pos] + '\n' + TAG + '\n' + txt[pos:]
-              p.write_text(novo, encoding='utf-8', errors='surrogateescape')
-              alterados.append(caminho)
-          print(f'{len(alterados)} página(s) com favicon novo:')
+                  m = re.search(r'<head[^>]*>', txt, re.I)
+                  if m:
+                      novo = txt[:m.end()] + '\n' + TAG + txt[m.end():]
+                  else:
+                      m = re.search(r'<html[^>]*>', txt, re.I)
+                      pos = m.end() if m else 0
+                      novo = txt[:pos] + '\n' + TAG + '\n' + txt[pos:]
+              if novo != txt:
+                  p.write_text(novo, encoding='utf-8', errors='surrogateescape')
+                  alterados.append(caminho)
+          print(f'{len(alterados)} página(s) com o símbolo AUTZ:')
           print('\n'.join(alterados))
           print(f'\n{len(pulados)} página(s) puladas (Uniplast ou e-mail):')
           print('\n'.join(pulados))
@@ -61,9 +74,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet; then echo "Nada a alterar."; exit 0; fi
+          git add -A assets/favicon-autz.png
+          if git diff --quiet && git diff --cached --quiet; then echo "Nada a alterar."; exit 0; fi
           git config user.name "autz-favicon[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Favicon AUTZ nas páginas sem favicon"
+          git commit -am "Favicon AUTZ (símbolo) nas páginas"
           git push
           gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Build do Pages segue pelo push."
