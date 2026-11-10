@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implementação RD Vendas | Gás Verde | AUTZ</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00272C;--bg2:#001e23;--surface:#00323A;--surface2:#003D47;--lime:#E9FF4A;--lime2:#D2E132;--white:#fff;--gray:#9bbcc4;--gray2:#5d8a93;--red:#E8593C;--line:rgba(255,255,255,.10);--line-lime:rgba(233,255,74,.22)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:'Poppins',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+a{color:var(--lime)}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{padding:22px 0}
+header.top img{height:26px;display:block}
+.hero{padding:28px 0 56px;background:radial-gradient(900px 420px at 85% -10%,rgba(233,255,74,.10),transparent 60%),radial-gradient(700px 380px at -10% 110%,rgba(0,61,71,.9),transparent 60%)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin:0 0 12px}
+h1{font-size:clamp(30px,6.4vw,54px);line-height:1.08;font-weight:800;margin:0 0 16px;letter-spacing:-.02em;text-wrap:balance}
+h1 span{color:var(--lime)}
+.lead{font-size:clamp(15px,2.2vw,18px);color:var(--gray);max-width:58ch;margin:0 0 28px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 0 28px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.kpi b{display:block;font-size:22px;font-weight:800;color:var(--lime)}
+.kpi small{color:var(--gray);font-size:12.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:100px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.btn-lime{background:var(--lime);color:var(--bg)}
+.btn-lime:hover{background:var(--lime2);transform:translateY(-1px);box-shadow:0 10px 30px rgba(233,255,74,.18)}
+.btn-ghost{background:transparent;color:var(--white);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
+.btn svg{width:18px;height:18px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(24px,4.4vw,36px);font-weight:800;line-height:1.15;margin:0 0 10px;letter-spacing:-.01em}
+.sub{color:var(--gray);margin:0 0 28px;max-width:62ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--lime);border-radius:100px;padding:3px 10px;margin-bottom:10px}
+.tag.out{background:transparent;color:var(--lime);border:1px solid var(--line-lime)}
+.cols{display:grid;gap:14px;margin-top:12px}
+.cols h4{margin:0 0 6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray2);font-weight:700}
+.cols ul{margin:0;padding-left:18px;color:var(--gray);font-size:14px}
+.cols li{margin-bottom:4px}
+.obj{margin:0;color:var(--gray);font-size:14px}
+.ent{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--gray)}
+.ent b{color:var(--lime)}
+
+/* D-1 fluxo */
+.d1{margin:0 0 34px}
+.d1-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.d1-head .tag{margin:0}
+.d1-note{font-size:12.5px;color:var(--gray2)}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 14px}
+.flow li{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;opacity:0;transform:translateY(10px);transition:opacity .5s ease calc(var(--i)*.12s),transform .5s cubic-bezier(.2,.7,.2,1) calc(var(--i)*.12s)}
+.d1.vis .flow li{opacity:1;transform:none}
+.flow .ic{width:52px;height:52px;border-radius:16px;background:var(--surface);border:1px solid var(--line-lime);display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative}
+.flow .ic svg{width:24px;height:24px;fill:none;stroke:var(--lime);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.flow li:first-child .ic:after{content:"";position:absolute;inset:-6px;border-radius:20px;border:2px solid var(--lime);opacity:0;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{opacity:.7;transform:scale(.9)}100%{opacity:0;transform:scale(1.25)}}
+.flow b{font-size:14.5px}
+.flow small{font-size:12px;color:var(--gray);line-height:1.4}
+/* trilha */
+.road{position:relative;display:flex;flex-direction:column;gap:6px;padding:4px 0 8px}
+.rail{position:absolute;left:27px;top:30px;bottom:30px;width:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.rail .fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(var(--lime),var(--lime2));transition:height 1.6s cubic-bezier(.4,0,.2,1) .2s}
+.road.vis .rail .fill{height:100%}
+.wk{position:relative}
+.wkl{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2);margin:10px 0 6px 72px}
+.mts{display:flex;flex-direction:column;gap:6px}
+.mt{all:unset;cursor:pointer;display:flex;align-items:center;gap:16px;padding:6px 0;opacity:0;transform:scale(.85);transition:opacity .45s ease calc(.25s + var(--i)*.14s),transform .45s cubic-bezier(.3,1.4,.5,1) calc(.25s + var(--i)*.14s)}
+.road.vis .mt{opacity:1;transform:none}
+.mt .c{position:relative;z-index:1;flex:none;width:56px;height:56px;border-radius:50%;background:var(--bg);border:2px solid var(--surface2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--gray);transition:all .25s ease}
+.mt .cap{font-size:14.5px;font-weight:600;color:var(--gray);transition:color .2s}
+.mt:hover .c,.mt:focus-visible .c{border-color:var(--lime);color:var(--lime)}
+.mt:hover .cap{color:var(--white)}
+.mt.on .c{background:var(--lime);border-color:var(--lime);color:var(--bg);box-shadow:0 0 0 6px rgba(233,255,74,.12)}
+.mt.on .cap{color:var(--white)}
+.mt.go .c:after{content:"";position:absolute;right:-3px;top:-3px;width:14px;height:14px;border-radius:50%;background:var(--lime);border:3px solid var(--bg)}
+.mt.go.on .c:after{background:var(--white)}
+/* painel */
+.panel{margin-top:22px;min-height:220px}
+.panel .ph{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.panel .ph .tag{margin:0}
+.panel h3{margin:4px 0 4px;font-size:21px}
+.panel .anim{animation:in .35s ease}
+.pnav{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.pnav button{all:unset;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);padding:8px 14px;border:1px solid var(--line);border-radius:100px}
+.pnav button:hover{color:var(--lime);border-color:var(--lime)}
+.pnav button[disabled]{opacity:.3;pointer-events:none}
+@media (min-width:720px){
+  .flow{grid-template-columns:repeat(4,1fr)}
+  .flow li:not(:last-child):before{content:"";position:absolute;top:26px;left:64px;right:-6px;height:2px;background:linear-gradient(90deg,var(--line-lime),rgba(233,255,74,.04))}
+  .road{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .rail{left:4%;right:4%;top:58px;bottom:auto;width:auto;height:2px}
+  .rail .fill{height:100%;width:0;transition:width 1.6s cubic-bezier(.4,0,.2,1) .2s}
+  .road.vis .rail .fill{width:100%;height:100%}
+  .wk{text-align:center;padding:0 6px}
+  .wkl{margin:0 0 14px}
+  .mts{flex-direction:row;justify-content:center;gap:14px}
+  .mt{flex-direction:column;gap:10px;padding:0;max-width:120px;text-align:center}
+  .mt .cap{font-size:13px;line-height:1.35}
+}
+/* pagamento */
+.pay{display:grid;gap:14px}
+.pay .card h3{margin:0 0 4px;font-size:17px}
+.price{font-size:32px;font-weight:800;margin:6px 0 2px;letter-spacing:-.01em}
+.price small{font-size:14px;font-weight:500;color:var(--gray)}
+.pay .card p{color:var(--gray);font-size:14px;margin:6px 0 14px}
+.pay .card.hl{border-color:var(--line-lime);background:linear-gradient(160deg,rgba(233,255,74,.07),var(--surface) 55%)}
+.sim{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 14px}
+.sim label{font-size:12.5px;color:var(--gray);display:block;margin-bottom:6px}
+.sim output{display:block;font-size:20px;font-weight:700;margin-top:8px}
+.sim output small{font-size:12.5px;color:var(--gray);font-weight:500}
+/* regras */
+.rules{display:grid;gap:12px}
+.rule{display:flex;gap:14px;align-items:flex-start}
+.rule svg{flex:none;width:22px;height:22px;color:var(--lime);margin-top:2px}
+.rule p{margin:0;color:var(--gray);font-size:14.5px}
+.rule b{color:var(--white)}
+/* formulario */
+.form{max-width:720px}
+.progress{display:flex;gap:6px;margin:0 0 10px}
+.progress span{flex:1;height:4px;border-radius:4px;background:var(--line);transition:background .25s}
+.progress span.on{background:var(--lime)}
+.steplabel{font-size:12.5px;color:var(--gray2);margin:0 0 22px}
+.step{display:none}
+.step.on{display:block;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.step h3{font-size:20px;margin:0 0 4px}
+.step > p{color:var(--gray);font-size:14px;margin:0 0 20px}
+.grid2{display:grid;gap:0 14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.field .hint{display:block;font-size:12px;color:var(--gray2);margin-top:5px}
+.req{color:var(--lime)}
+input,textarea,select{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 13px;font:inherit;font-size:15px;color:var(--white);outline:none;transition:border-color .15s}
+input::placeholder,textarea::placeholder{color:var(--gray2)}
+input:focus,textarea:focus,select:focus{border-color:var(--lime)}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--red)}
+textarea{min-height:84px;resize:vertical}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gray) 50%),linear-gradient(135deg,var(--gray) 50%,transparent 50%);background-position:calc(100% - 18px) center,calc(100% - 13px) center;background-size:5px 5px;background-repeat:no-repeat}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills label{margin:0;font-weight:500;font-size:13.5px;padding:10px 16px;border-radius:100px;border:1px solid var(--line);background:var(--bg2);color:var(--gray);cursor:pointer;transition:all .15s}
+.pills input{position:absolute;opacity:0;width:1px;height:1px}
+.pills input:checked + label{background:var(--lime);color:var(--bg);border-color:var(--lime);font-weight:700}
+.pills input:focus-visible + label{outline:2px solid var(--lime);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--gray)}
+.check input{width:20px;height:20px;accent-color:var(--lime);flex:none;margin-top:2px}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:8px}
+.msg{display:none;margin-top:14px;padding:12px 14px;border-radius:10px;font-size:14px}
+.msg.err{display:block;background:rgba(232,89,60,.12);border:1px solid rgba(232,89,60,.4);color:#ffb6a6}
+.done{text-align:center;padding:28px 10px}
+.done svg{width:56px;height:56px;color:var(--lime)}
+.done h3{font-size:24px;margin:10px 0 6px}
+.done p{color:var(--gray);max-width:46ch;margin:0 auto 6px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--gray2);font-size:12.5px}
+footer img{height:20px;opacity:.8;margin-bottom:10px;display:block}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.vis{opacity:1;transform:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+@media (min-width:720px){
+  .kpis{grid-template-columns:repeat(4,1fr)}
+  .cols{grid-template-columns:1fr 1fr}
+  .pay{grid-template-columns:1fr 1fr}
+  .rules{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr 1fr}
+  .hero{padding:48px 0 80px}
+  section{padding:80px 0}
+  .card{padding:24px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><img src="../assets/autz-logo-white.png" alt="AUTZ" width="70" height="26"></div></header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Gás Verde · Implementação RD Vendas</p>
+    <h1>Seu RD Vendas pronto para vender em <span>4 semanas</span>.</h1>
+    <p class="lead">Aqui está todo o caminho, do contrato ao treinamento da equipe. Antes de começar, falta só o D-1: aprovar o contrato, escolher a forma de pagamento e mandar as informações do seu comercial pelo formulário no fim da página.</p>
+    <div class="kpis">
+      <div class="kpi"><b>R$ 2.000</b><small>investimento único</small></div>
+      <div class="kpi"><b>4 semanas</b><small>do kickoff ao treinamento</small></div>
+      <div class="kpi"><b>6 reuniões</b><small>em dias fixos, nas 4 semanas</small></div>
+      <div class="kpi"><b>24h úteis</b><small>para o primeiro retorno</small></div>
+    </div>
+    <a class="btn btn-lime" href="#formulario">Começar pelo D-1 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</div>
+
+<section id="cronograma">
+  <div class="wrap">
+    <h2 class="reveal">Cronograma</h2>
+    <p class="sub reveal">6 reuniões em 4 semanas. Entre uma reunião e outra, a AUTZ configura. Toque em cada reunião para ver o que acontece.</p>
+
+    <div class="d1 reveal" aria-label="D-1 contratual">
+      <div class="d1-head"><span class="tag">D-1 · Contratual</span><span class="d1-note">antes do prazo começar</span></div>
+      <ol class="flow">
+        <li style="--i:0"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 11h6M9 15h6M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span><b>Formulário</b><small>dados do contrato e do comercial</small></li>
+        <li style="--i:1"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 21l3-1 11-11-2-2L4 18z"/><path d="M14 6l2 2"/><path d="M13 21h8"/></svg></span><b>Assinatura</b><small>contrato digital no e-mail</small></li>
+        <li style="--i:2"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><b>Pagamento</b><small>Pix, boleto ou cartão</small></li>
+        <li style="--i:3"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span><b>Acesso</b><small>gestao@autz.com.br como admin</small></li>
+      </ol>
+    </div>
+
+    <div class="road reveal" id="road">
+      <div class="rail" aria-hidden="true"><span class="fill"></span></div>
+      <div class="wk"><span class="wkl">Semana 1</span><div class="mts">
+        <button type="button" class="mt on" data-k="0" style="--i:0"><span class="c">R1</span><span class="cap">Kickoff e Discovery</span></button>
+        <button type="button" class="mt" data-k="1" style="--i:1"><span class="c">R2</span><span class="cap">Plano estratégico</span></button></div></div>
+      <div class="wk"><span class="wkl">Semana 2</span><div class="mts">
+        <button type="button" class="mt" data-k="2" style="--i:2"><span class="c">R3</span><span class="cap">Funil e equipe</span></button></div></div>
+      <div class="wk"><span class="wkl">Semana 3</span><div class="mts">
+        <button type="button" class="mt" data-k="3" style="--i:3"><span class="c">R4</span><span class="cap">Dados e comercial</span></button></div></div>
+      <div class="wk"><span class="wkl">Semana 4</span><div class="mts">
+        <button type="button" class="mt" data-k="4" style="--i:4"><span class="c">R5</span><span class="cap">Automações</span></button>
+        <button type="button" class="mt go" data-k="5" style="--i:5"><span class="c">R6</span><span class="cap">Treinamento e go-live</span></button></div></div>
+    </div>
+
+    <div class="card panel" id="panel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="pagamento">
+  <div class="wrap">
+    <h2 class="reveal">Investimento e pagamento</h2>
+    <p class="sub reveal">Implementação completa do RD Vendas, em pagamento único. Você escolhe a forma no formulário.</p>
+    <div class="pay">
+      <div class="card reveal">
+        <span class="tag out">Direto com a AUTZ</span>
+        <h3>Pix ou boleto</h3>
+        <div class="price">R$ 2.000,00 <small>à vista</small></div>
+        <p>Sem taxas. A AUTZ envia os dados do Pix ou o boleto junto com o contrato, no e-mail do financeiro.</p>
+      </div>
+      <div class="card hl reveal">
+        <span class="tag">Link de pagamento</span>
+        <h3>Pix, débito ou crédito em até 12x</h3>
+        <div class="price">R$ 2.240,12 <small>com as taxas da operadora</small></div>
+        <div class="sim">
+          <label for="parc">Simule o parcelamento no cartão</label>
+          <select id="parc"></select>
+          <output id="parcOut"></output>
+        </div>
+        <p id="linkInfo">Valor calculado sobre o total do link. O valor final de cada parcela aparece na tela de pagamento.</p>
+        <a id="linkBtn" class="btn btn-lime" href="#" target="_blank" rel="noopener" hidden>Pagar pelo link</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="regras">
+  <div class="wrap">
+    <h2 class="reveal">Como o projeto funciona</h2>
+    <p class="sub reveal">Combinado claro desde o começo, para o RD Vendas ficar pronto no prazo.</p>
+    <div class="rules">
+      <div class="rule reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p><b>O prazo começa no fim do D-1.</b> As 4 semanas contam a partir do contrato assinado, do pagamento confirmado e dos acessos liberados, o que acontecer por último.</p></div>
+      <div class="rule reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><p><b>Retorno em até 24 horas úteis</b>, de segunda a sexta, das 9h às 18h, pelo grupo de WhatsApp do projeto.</p></div>
+      <div class="rule reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><p><b>Cada reunião tem uma entrega para aprovar.</b> Se uma informação ou validação atrasar do lado da Gás Verde, o cronograma anda junto.</p></div>
+      <div class="rule reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><p><b>Fora do escopo vira aditivo.</b> Integrações com outros sistemas e pedidos novos são combinados à parte, antes de começar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="formulario">
+  <div class="wrap">
+    <h2 class="reveal">Formulário do D-1</h2>
+    <p class="sub reveal">Leva uns 10 minutos. Os dados do contrato são obrigatórios. Nas perguntas sobre o comercial, responda o que souber: o resto a gente completa no kickoff.</p>
+    <form class="form card" id="f" novalidate>
+      <div class="progress" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <p class="steplabel" id="stepLabel"></p>
+
+      <div class="step" data-t="Empresa e contrato">
+        <h3>Empresa e contrato</h3>
+        <p>Usamos estes dados para emitir o contrato.</p>
+        <div class="grid2">
+          <div class="field"><label for="razao_social">Razão social <span class="req">*</span></label><input id="razao_social" name="razao_social" required data-s="Contrato" data-q="Razão social"></div>
+          <div class="field"><label for="nome_fantasia">Nome fantasia</label><input id="nome_fantasia" name="nome_fantasia" value="Gás Verde" data-s="Contrato" data-q="Nome fantasia"></div>
+          <div class="field"><label for="cnpj">CNPJ <span class="req">*</span></label><input id="cnpj" name="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00" data-mask="cnpj" data-s="Contrato" data-q="CNPJ"></div>
+          <div class="field"><label for="cep">CEP <span class="req">*</span></label><input id="cep" name="cep" required inputmode="numeric" placeholder="00000-000" data-mask="cep" data-s="Contrato" data-q="CEP"></div>
+        </div>
+        <div class="field"><label for="endereco">Endereço com número e complemento <span class="req">*</span></label><input id="endereco" name="endereco" required data-s="Contrato" data-q="Endereço"></div>
+        <div class="grid2">
+          <div class="field"><label for="bairro">Bairro</label><input id="bairro" name="bairro" data-s="Contrato" data-q="Bairro"></div>
+          <div class="field"><label for="cidade">Cidade <span class="req">*</span></label><input id="cidade" name="cidade" required data-s="Contrato" data-q="Cidade"></div>
+          <div class="field"><label for="uf">Estado (UF) <span class="req">*</span></label><input id="uf" name="uf" required maxlength="2" placeholder="SP" data-s="Contrato" data-q="UF"></div>
+          <div class="field"><label for="responsavel_legal">Quem assina pela empresa <span class="req">*</span></label><input id="responsavel_legal" name="responsavel_legal" required data-s="Contrato" data-q="Responsável legal"></div>
+          <div class="field"><label for="cpf_responsavel">CPF de quem assina <span class="req">*</span></label><input id="cpf_responsavel" name="cpf_responsavel" required inputmode="numeric" placeholder="000.000.000-00" data-mask="cpf" data-s="Contrato" data-q="CPF do responsável"></div>
+          <div class="field"><label for="email_assinatura">E-mail para assinar o contrato <span class="req">*</span></label><input id="email_assinatura" name="email_assinatura" type="email" required data-s="Contrato" data-q="E-mail para assinatura"></div>
+        </div>
+      </div>
+
+      <div class="step" data-t="Contato e pagamento">
+        <h3>Contato e pagamento</h3>
+        <p>Quem fala com a AUTZ durante o projeto e como prefere pagar.</p>
+        <div class="grid2">
+          <div class="field"><label for="contato_nome">Nome de quem acompanha o projeto <span class="req">*</span></label><input id="contato_nome" name="contato_nome" required data-s="Contato" data-q="Responsável pelo projeto"></div>
+          <div class="field"><label for="contato_cargo">Cargo</label><input id="contato_cargo" name="contato_cargo" data-s="Contato" data-q="Cargo"></div>
+          <div class="field"><label for="contato_email">E-mail <span class="req">*</span></label><input id="contato_email" name="contato_email" type="email" required data-s="Contato" data-q="E-mail"></div>
+          <div class="field"><label for="contato_whatsapp">WhatsApp <span class="req">*</span></label><input id="contato_whatsapp" name="contato_whatsapp" required inputmode="tel" placeholder="(00) 00000-0000" data-mask="tel" data-s="Contato" data-q="WhatsApp"></div>
+        </div>
+        <div class="field"><label for="email_financeiro">E-mail do financeiro <span class="req">*</span></label><input id="email_financeiro" name="email_financeiro" type="email" required data-s="Pagamento" data-q="E-mail do financeiro"></div>
+        <div class="field"><label>Forma de pagamento <span class="req">*</span></label>
+          <div class="pills" data-s="Pagamento" data-q="Forma de pagamento">
+            <input type="radio" id="fp1" name="forma_pagamento" value="Pix direto (R$ 2.000,00)" required><label for="fp1">Pix direto</label>
+            <input type="radio" id="fp2" name="forma_pagamento" value="Boleto (R$ 2.000,00)"><label for="fp2">Boleto</label>
+            <input type="radio" id="fp3" name="forma_pagamento" value="Link de pagamento: Pix, débito ou crédito (R$ 2.240,12)"><label for="fp3">Link (cartão até 12x)</label>
+          </div></div>
+        <div class="field" id="parcField" hidden><label for="parcelas">Em quantas vezes no cartão?</label><select id="parcelas" name="parcelas" data-s="Pagamento" data-q="Parcelas no cartão"></select></div>
+        <div class="field"><label>Melhor dia do mês para o pagamento <span class="req">*</span></label>
+          <div class="pills" data-s="Pagamento" data-q="Dia do pagamento">
+            <input type="radio" id="dp1" name="dia_pagamento" value="05" required><label for="dp1">Dia 05</label>
+            <input type="radio" id="dp2" name="dia_pagamento" value="10"><label for="dp2">Dia 10</label>
+            <input type="radio" id="dp3" name="dia_pagamento" value="15"><label for="dp3">Dia 15</label>
+          </div></div>
+      </div>
+
+      <div class="step" data-t="Seu comercial hoje">
+        <h3>Seu comercial hoje</h3>
+        <p>Isso vira o roteiro da primeira reunião.</p>
+        <div class="field"><label>Vocês já usam ou usaram o RD Vendas (antigo RD Station CRM)?</label>
+          <div class="pills" data-s="Comercial" data-q="Já usa o RD Vendas">
+            <input type="radio" id="u1" name="usa_crm" value="Já usamos"><label for="u1">Já usamos</label>
+            <input type="radio" id="u2" name="usa_crm" value="Conta criada, sem uso"><label for="u2">Conta criada, sem uso</label>
+            <input type="radio" id="u3" name="usa_crm" value="Ainda não temos conta"><label for="u3">Ainda não temos conta</label>
+          </div></div>
+        <div class="field"><label for="processo">Como funciona a venda, do primeiro contato ao fechamento?</label><textarea id="processo" name="processo" placeholder="Ex.: o cliente chama no WhatsApp, fazemos visita técnica, mandamos orçamento, negociamos..." data-s="Comercial" data-q="Processo comercial"></textarea></div>
+        <div class="field"><label for="origem_leads">De onde vêm os contatos hoje?</label><input id="origem_leads" name="origem_leads" placeholder="Site, WhatsApp, indicação, Google, Instagram, representantes..." data-s="Comercial" data-q="Origem dos contatos"></div>
+        <div class="field"><label for="onde_contatos">Onde ficam hoje os contatos e as negociações?</label><input id="onde_contatos" name="onde_contatos" placeholder="Planilha, outro CRM, sistema, caderno, WhatsApp..." data-s="Comercial" data-q="Onde ficam os contatos"></div>
+        <div class="field"><label>Já existe um funil de vendas definido?</label>
+          <div class="pills" data-s="Comercial" data-q="Funil definido">
+            <input type="radio" id="fn1" name="funil" value="Sim, já definido"><label for="fn1">Sim</label>
+            <input type="radio" id="fn2" name="funil" value="Mais ou menos"><label for="fn2">Mais ou menos</label>
+            <input type="radio" id="fn3" name="funil" value="Não, desenhar do zero"><label for="fn3">Desenhar do zero</label>
+          </div></div>
+        <div class="field"><label for="perdas">Por que vocês costumam perder vendas?</label><textarea id="perdas" name="perdas" placeholder="Preço, prazo, concorrente, sem retorno do cliente..." data-s="Comercial" data-q="Motivos de perda"></textarea></div>
+      </div>
+
+      <div class="step" data-t="Equipe e dados">
+        <h3>Equipe e dados</h3>
+        <p>Quem vai usar o RD Vendas e o que precisa estar nele.</p>
+        <div class="grid2">
+          <div class="field"><label for="vendedores">Quantos vendedores?</label><input id="vendedores" name="vendedores" inputmode="numeric" data-s="Equipe" data-q="Número de vendedores"></div>
+          <div class="field"><label for="equipes">Quantas equipes de venda?</label><input id="equipes" name="equipes" inputmode="numeric" data-s="Equipe" data-q="Número de equipes"></div>
+        </div>
+        <div class="field"><label for="usuarios">Nome e e-mail de quem vai usar</label><textarea id="usuarios" name="usuarios" placeholder="Um por linha. Ex.: Ana Souza, ana@gasverde.com.br" data-s="Equipe" data-q="Usuários"></textarea></div>
+        <div class="field"><label>Vendedores têm meta?</label>
+          <div class="pills" data-s="Equipe" data-q="Metas">
+            <input type="radio" id="m1" name="metas" value="Por vendedor"><label for="m1">Por vendedor</label>
+            <input type="radio" id="m2" name="metas" value="Por equipe"><label for="m2">Por equipe</label>
+            <input type="radio" id="m3" name="metas" value="Vendedor e equipe"><label for="m3">As duas</label>
+            <input type="radio" id="m4" name="metas" value="Sem meta definida"><label for="m4">Não</label>
+          </div></div>
+        <div class="field"><label>Tem base de clientes ou contatos para importar?</label>
+          <div class="pills" data-s="Dados" data-q="Base para importar">
+            <input type="radio" id="b1" name="base" value="Sim, em planilha"><label for="b1">Sim, em planilha</label>
+            <input type="radio" id="b2" name="base" value="Sim, em outro sistema"><label for="b2">Sim, em outro sistema</label>
+            <input type="radio" id="b3" name="base" value="Não"><label for="b3">Não</label>
+          </div></div>
+        <div class="field"><label for="campos">Que informações não podem faltar em cada negociação?</label><textarea id="campos" name="campos" placeholder="Ex.: tipo de cliente, consumo mensal, cidade, segmento, CNPJ..." data-s="Dados" data-q="Campos importantes"></textarea></div>
+      </div>
+
+      <div class="step" data-t="Produtos e integrações">
+        <h3>Produtos, propostas e integrações</h3>
+        <p>Última etapa. Depois é só enviar.</p>
+        <div class="field"><label for="produtos">O que vocês vendem?</label><textarea id="produtos" name="produtos" placeholder="Liste os principais produtos ou serviços" data-s="Comercial" data-q="Produtos e serviços"></textarea></div>
+        <div class="field"><label>Querem montar propostas dentro do RD Vendas?</label>
+          <div class="pills" data-s="Comercial" data-q="Proposta no RD Vendas">
+            <input type="radio" id="p1" name="proposta" value="Sim"><label for="p1">Sim</label>
+            <input type="radio" id="p2" name="proposta" value="Não, fazemos fora"><label for="p2">Não, fazemos fora</label>
+            <input type="radio" id="p3" name="proposta" value="Ainda não sei"><label for="p3">Ainda não sei</label>
+          </div></div>
+        <div class="field"><label for="integracoes">Usam algum sistema que precisaria conversar com o RD Vendas?</label><input id="integracoes" name="integracoes" placeholder="ERP, RD Marketing, sistema de faturamento... ou nenhum" data-s="Integrações" data-q="Sistemas e integrações"></div>
+        <div class="field"><label for="posvenda">Como funciona o pós-venda hoje?</label><textarea id="posvenda" name="posvenda" data-s="Comercial" data-q="Pós-venda"></textarea></div>
+        <div class="field"><label for="reuniao">Melhores dias e horários para as reuniões</label><input id="reuniao" name="reuniao" placeholder="Ex.: terças às 10h" data-s="Agenda" data-q="Dias e horários das reuniões"></div>
+        <div class="field"><label class="check"><input type="checkbox" id="acesso" name="acesso" data-s="Acessos" data-q="Adicionou gestao@autz.com.br como administrador"> Já adicionei gestao@autz.com.br como administrador do RD Vendas (pode fazer depois, antes do kickoff).</label></div>
+        <div class="field"><label for="obs">Algo mais que a gente precisa saber?</label><textarea id="obs" name="obs" data-s="Outros" data-q="Observações"></textarea></div>
+      </div>
+
+      <div class="step" id="ok">
+        <div class="done">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          <h3>Recebemos, obrigado!</h3>
+          <p>Nas próximas 24 horas úteis a AUTZ envia o contrato para assinatura e as instruções de pagamento. Depois disso, marcamos o kickoff.</p>
+        </div>
+      </div>
+
+      <div class="msg" id="msg" role="alert"></div>
+      <div class="nav" id="nav">
+        <button type="button" class="btn btn-ghost" id="back">Voltar</button>
+        <button type="button" class="btn btn-lime" id="next">Continuar</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer><div class="wrap"><img src="../assets/autz-logo-white.png" alt="AUTZ" width="54" height="20">AUTZ · Consultoria parceira TOTVS, especializada na unidade de negócios RD Station, nível Diamante.<br>contato@autz.com.br</div></footer>
+
+<script>
+(function(){
+  var WEBHOOK = 'https://webhook.autz.com.br/webhook/onboarding-rd-vendas';
+  var TOTAL_LINK = 2240.12, VALOR = 2000;
+  var LINK_C6 = '';
+  var brl = function(v){ return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); };
+
+  // simulador
+  var parc = document.getElementById('parc'), parcF = document.getElementById('parcelas'), out = document.getElementById('parcOut');
+  for (var i = 1; i <= 12; i++) {
+    var t = i + 'x de ' + brl(TOTAL_LINK / i);
+    parc.add(new Option(t, i)); parcF.add(new Option(t, i + 'x'));
+  }
+  parc.value = 12;
+  function sim(){ var n = +parc.value; out.innerHTML = n + 'x de ' + brl(TOTAL_LINK / n) + ' <small>total ' + brl(TOTAL_LINK) + '</small>'; }
+  parc.addEventListener('change', sim); sim();
+  if (LINK_C6) { var lb = document.getElementById('linkBtn'); lb.href = LINK_C6; lb.hidden = false; }
+  else { document.getElementById('linkInfo').textContent = 'Valor calculado sobre o total do link. Escolhendo esta opção, a AUTZ envia o link de pagamento junto com o contrato.'; }
+
+
+  // cronograma
+  var M = [
+    { t:'S1 · R1', n:'Kickoff e Discovery', o:'Entender o comercial da Gás Verde de ponta a ponta.', a:['Apresentação da AUTZ e do método','Processo comercial, do primeiro contato ao fechamento','Origem dos contatos, equipe, metas, base, produtos, propostas, integrações e pós-venda','Revisão das respostas deste formulário'], b:['Participa com quem conhece o comercial','Envia a base de contatos e clientes (planilha), se houver'], e:'Diagnóstico do comercial' },
+    { t:'S1 · R2', n:'Plano estratégico de implementação', o:'O RD Vendas desenhado para a Gás Verde, antes de configurar.', a:['Funil proposto: etapas, fontes e motivos de perda','Campos de empresa, contato e negociação','Distribuição, metas e automações previstas','Datas das próximas reuniões'], b:['Aprova o plano ou pede ajustes'], e:'Plano aprovado' },
+    { t:'S2 · R3', n:'Funil e equipe', o:'O funil funcionando e a equipe pronta para entrar.', a:['Fontes, segmentos, funil, etapas e motivos de perda configurados','Usuários, permissões e equipes','Metas por empresa, equipe e vendedor'], b:['Valida o funil','Convida os vendedores pelo RD Vendas'], e:'Funil e equipe no ar' },
+    { t:'S3 · R4', n:'Dados e comercial', o:'Informação certa em cada negociação e proposta saindo do RD Vendas.', a:['Campos personalizados e obrigatórios por etapa','Importação da base e conferência por amostragem','Produtos, modelos de proposta e qualificação'], b:['Confere a base importada','Revisa produtos, preços e modelos de proposta'], e:'Base e comercial configurados' },
+    { t:'S4 · R5', n:'Automações e integrações', o:'Menos tarefa manual e nenhum follow-up esquecido.', a:['Automações do funil: tarefas, alertas e follow-up','Extensão de vendas no WhatsApp','Integração com o RD Marketing, se houver','Teste de ponta a ponta'], b:['Testa uma negociação do começo ao fim'], e:'Automações testadas' },
+    { t:'S4 · R6', n:'Treinamento e início do uso', o:'Equipe vendendo pelo RD Vendas.', a:['Treinamento de 1h30 para vendedores e gestores','Rotina diária e boas práticas','Trilha da Universidade RD Station','Próximos passos e acompanhamento'], b:['Reúne a equipe no treinamento','Passa a registrar todas as negociações no RD Vendas'], e:'RD Vendas em uso' }
+  ];
+  var panel = document.getElementById('panel'), mts = [].slice.call(document.querySelectorAll('.mt'));
+  var li = function(xs){ return xs.map(function(x){ return '<li>' + x + '</li>'; }).join(''); };
+  function pick(k){
+    var m = M[k];
+    mts.forEach(function(b){ b.classList.toggle('on', +b.dataset.k === k); b.setAttribute('aria-pressed', +b.dataset.k === k); });
+    panel.innerHTML = '<div class="anim"><div class="ph"><span class="tag">' + m.t + '</span></div><h3>' + m.n + '</h3><p class="obj">' + m.o + '</p>' +
+      '<div class="cols"><div><h4>Na reunião</h4><ul>' + li(m.a) + '</ul></div><div><h4>O que a Gás Verde faz</h4><ul>' + li(m.b) + '</ul></div></div>' +
+      '<p class="ent"><b>Entrega:</b> ' + m.e + '</p>' +
+      '<div class="pnav"><button type="button" data-d="-1"' + (k === 0 ? ' disabled' : '') + '>Reunião anterior</button><button type="button" data-d="1"' + (k === M.length - 1 ? ' disabled' : '') + '>Próxima reunião</button></div></div>';
+    panel.querySelectorAll('.pnav button').forEach(function(b){ b.addEventListener('click', function(){ pick(k + (+b.dataset.d)); }); });
+  }
+  mts.forEach(function(b){ b.addEventListener('click', function(){ pick(+b.dataset.k); }); });
+  pick(0);
+
+  // reveal
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } }); }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('vis'); }); }
+
+  // mascaras
+  var masks = {
+    cnpj: function(d){ d = d.slice(0,14); return d.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2'); },
+    cpf: function(d){ d = d.slice(0,11); return d.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'); },
+    cep: function(d){ d = d.slice(0,8); return d.replace(/(\d{5})(\d)/,'$1-$2'); },
+    tel: function(d){ d = d.slice(0,11); return d.length > 10 ? d.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3') : d.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3').replace(/-$/,''); }
+  };
+  document.querySelectorAll('[data-mask]').forEach(function(el){
+    el.addEventListener('input', function(){ var d = el.value.replace(/\D/g,''); el.value = d ? masks[el.dataset.mask](d) : ''; });
+  });
+
+  // pagamento: mostra parcelas so no link
+  document.querySelectorAll('input[name=forma_pagamento]').forEach(function(r){
+    r.addEventListener('change', function(){ document.getElementById('parcField').hidden = !document.getElementById('fp3').checked; });
+  });
+
+  // wizard
+  var f = document.getElementById('f'), steps = [].slice.call(f.querySelectorAll('.step')), bars = f.querySelectorAll('.progress span');
+  var cur = 0, last = steps.length - 2, msg = document.getElementById('msg');
+  var back = document.getElementById('back'), next = document.getElementById('next');
+  function show(i){
+    steps.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
+    document.getElementById('stepLabel').textContent = i <= last ? 'Etapa ' + (i + 1) + ' de ' + (last + 1) + ' · ' + steps[i].dataset.t : '';
+    back.style.visibility = i === 0 ? 'hidden' : 'visible';
+    next.textContent = i === last ? 'Enviar' : 'Continuar';
+    msg.className = 'msg';
+  }
+  function valid(i){
+    var ok = true, first = null;
+    steps[i].querySelectorAll('[required]').forEach(function(el){
+      var fld = el.closest('.field'), good;
+      if (el.type === 'radio') good = !!f.querySelector('input[name="' + el.name + '"]:checked');
+      else if (el.type === 'email') good = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+      else if (el.dataset.mask === 'cnpj') good = el.value.replace(/\D/g,'').length === 14;
+      else if (el.dataset.mask === 'cpf') good = el.value.replace(/\D/g,'').length === 11;
+      else good = el.value.trim() !== '';
+      if (fld) fld.classList.toggle('err', !good);
+      if (!good && ok) { ok = false; first = el; }
+    });
+    if (!ok) { msg.className = 'msg err'; msg.textContent = 'Confira os campos marcados antes de continuar.'; if (first) first.focus(); }
+    return ok;
+  }
+  function collect(){
+    var data = { origem: location.pathname, valor: VALOR, respostas: [] };
+    new FormData(f).forEach(function(v, k){ data[k] = String(v).trim(); });
+    data.uf = (data.uf || '').toUpperCase();
+    var seen = {};
+    f.querySelectorAll('[data-q]').forEach(function(el){
+      var q = el.dataset.q; if (seen[q]) return; seen[q] = 1;
+      var v;
+      if (el.classList.contains('pills')) { var c = el.querySelector('input:checked'); v = c ? c.value : ''; }
+      else if (el.type === 'checkbox') v = el.checked ? 'Sim' : 'Não';
+      else v = el.value.trim();
+      data.respostas.push({ secao: el.dataset.s, pergunta: q, resposta: v });
+    });
+    data.respostas.unshift({ secao: 'Pagamento', pergunta: 'Investimento', resposta: 'R$ 2.000,00 (link de pagamento: R$ 2.240,12)' });
+    return data;
+  }
+  back.addEventListener('click', function(){ if (cur > 0) { cur--; show(cur); f.scrollIntoView({ behavior: 'smooth' }); } });
+  next.addEventListener('click', function(){
+    if (!valid(cur)) return;
+    if (cur < last) { cur++; show(cur); f.scrollIntoView({ behavior: 'smooth' }); return; }
+    next.disabled = true; next.textContent = 'Enviando...';
+    fetch(WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(collect()) })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){ document.getElementById('nav').hidden = true; cur = steps.length - 1; show(cur); f.scrollIntoView({ behavior: 'smooth' }); })
+      .catch(function(){ next.disabled = false; next.textContent = 'Enviar'; msg.className = 'msg err'; msg.innerHTML = 'Não conseguimos enviar agora. Tente de novo em instantes ou mande um e-mail para <a href="mailto:contato@autz.com.br">contato@autz.com.br</a>.'; });
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
