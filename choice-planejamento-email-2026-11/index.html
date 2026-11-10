@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Choice | Planejamento de e-mail marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --white:#ffffff; --gray:#7a9fa8; --gray2:#4a7078;
+  --red:#E8593C; --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory; scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+section.slide{min-height:100vh;width:100%;scroll-snap-align:start;padding:96px 96px 64px;display:flex;flex-direction:column;gap:32px;position:relative;background:var(--bg)}
+.eyebrow{font-size:16px;font-weight:600;color:var(--lime);text-transform:uppercase;letter-spacing:3px}
+.eyebrow.alt{color:var(--red)}
+h1{font-size:64px;font-weight:700;line-height:1.1}
+h2{font-size:42px;font-weight:700;line-height:1.15;max-width:900px}
+h3{font-size:20px;font-weight:600}
+p{font-size:18px;line-height:1.5;color:#D7E6E8}
+.sub{font-size:19px;color:var(--gray);max-width:680px;line-height:1.5}
+.logo{position:fixed;left:40px;top:32px;height:34px;object-fit:contain;z-index:50;opacity:0.9}
+.footer{position:absolute;left:96px;right:96px;bottom:32px;display:flex;justify-content:space-between;font-size:14px;color:var(--gray2)}
+.cards{display:flex;gap:28px;flex:1;flex-wrap:wrap;align-items:flex-start}
+.card{flex:1;min-width:320px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.card.alt{background:var(--surface2);border-color:var(--border-white)}
+.card h3{color:var(--lime)}
+.card.alt h3{color:var(--white)}
+ul{padding-left:22px;display:flex;flex-direction:column;gap:10px}
+li{font-size:17px;line-height:1.5;color:#D7E6E8}
+.cover{justify-content:center;background:radial-gradient(circle at 82% 18%, rgba(233,255,74,0.14), transparent 60%), var(--bg)}
+.cover h1{font-size:76px}
+.diagram{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px}
+.box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 18px;min-width:180px;text-align:center;font-size:17px;font-weight:600}
+.arrow{color:var(--gray);font-size:28px}
+.branch-wrap{display:flex;flex-direction:column;align-items:center;margin-top:28px;gap:8px}
+.branch-arrow{color:var(--red);font-size:28px}
+.box.alt{background:#2A1512;border-color:rgba(232,89,60,0.35);color:var(--red)}
+.checklist{display:flex;flex-direction:column;gap:20px;flex:1;justify-content:center;max-width:980px}
+.check-row{display:flex;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px}
+.num{width:48px;height:48px;border-radius:24px;background:var(--lime);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;flex:none}
+.check-row p{font-size:19px;color:var(--white)}
+@media (max-width:900px){
+  section.slide{padding:64px 32px 96px}
+  h1{font-size:42px} .cover h1{font-size:46px} h2{font-size:30px}
+  .cards{flex-direction:column}
+  .diagram{flex-direction:column;align-items:stretch}
+  .arrow{transform:rotate(90deg);align-self:center}
+  .footer{position:static;margin-top:32px;left:auto;right:auto;bottom:auto}
+}
+
+html{scroll-snap-type:none}
+body{height:100vh;overflow:hidden}
+section.slide{position:fixed;inset:0;min-height:0;height:100vh;height:100dvh;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease, visibility .35s;padding:96px 96px 104px}
+section.slide.ativo{opacity:1;visibility:visible}
+.footer{bottom:72px}
+.mapa{display:flex;flex-direction:column;gap:10px;max-width:1100px}
+.linha{display:grid;grid-template-columns:minmax(220px,1.1fr) 32px minmax(170px,.8fr) 1.4fr;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border-white);border-radius:12px;padding:12px 20px}
+.linha .etapa{font-weight:600;font-size:17px}
+.linha .seta{color:var(--gray);font-size:22px;text-align:center}
+.linha .ev{font-weight:700;color:var(--lime);font-size:17px}
+.linha .desc{color:var(--gray);font-size:15px}
+.linha.forte{border-color:rgba(233,255,74,.45);background:var(--surface2)}
+.linha.off{opacity:.6}
+.linha.off .ev{color:var(--gray)}
+.check-row.ok .num{background:transparent;border:2px solid var(--lime);color:var(--lime)}
+.progresso{position:fixed;left:0;top:0;height:3px;background:var(--lime);z-index:60;transition:width .3s}
+.barra{position:fixed;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 32px;background:rgba(0,30,35,.92);border-top:1px solid var(--border-white);z-index:60}
+.barra .titulo-atual{margin-right:auto;font-size:14px;color:var(--gray)}
+.barra button{width:44px;height:40px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--lime);font-size:24px;cursor:pointer;font-family:inherit}
+.barra button:disabled{opacity:.3;cursor:default}
+.barra button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.contador{font-size:14px;color:var(--white);min-width:52px;text-align:center}
+.mais{position:fixed;left:50%;bottom:68px;transform:translateX(-50%);background:var(--lime);color:var(--bg);font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;white-space:nowrap;z-index:61;opacity:0;pointer-events:none;transition:opacity .2s}
+.mais.visivel{opacity:1}
+@media (max-width:900px){
+  section.slide{padding:72px 20px 96px}
+  .linha{grid-template-columns:1fr auto;grid-template-areas:"etapa ev" "desc desc";row-gap:4px}
+  .linha .etapa{grid-area:etapa}.linha .ev{grid-area:ev}.linha .desc{grid-area:desc}.linha .seta{display:none}
+  .card{min-width:0}
+  .barra{padding:0 16px}.barra .titulo-atual{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .logo{left:20px;top:22px;height:26px}
+}
+
+@media (min-width:901px) and (max-height:820px){
+  section.slide{padding:84px 96px 96px;gap:16px}
+  h2{font-size:34px}
+  .mapa{gap:7px}.linha{padding:7px 18px}
+  .checklist{gap:12px;justify-content:flex-start}.check-row{padding:14px 20px}.check-row p{font-size:17px}
+  .num{width:40px;height:40px;font-size:18px}
+  .footer{bottom:66px}
+}
+@media (prefers-reduced-motion:reduce){section.slide,.progresso{transition:none}}
+@media print{
+  body{height:auto;overflow:visible}
+  section.slide{position:relative;opacity:1;visibility:visible;height:auto;min-height:100vh;page-break-after:always;overflow:visible}
+  .barra,.progresso,.mais{display:none}
+  .logo{position:absolute}
+}
+.slide > .logo{position:absolute;left:40px;top:32px;width:120px;height:34px;background:url(../assets/autz-logo-white.png) no-repeat left center/contain;opacity:.9}
+@media (max-width:900px){.slide > .logo{left:20px;top:22px;height:26px}}
+@media print{.slide > .logo{position:absolute}}
+.regras{display:flex;flex-wrap:wrap;gap:10px}
+.regras span{background:var(--surface2);border:1px solid var(--border-white);border-radius:999px;padding:7px 14px;font-size:14px;color:#D7E6E8}
+.tabela{display:flex;flex-direction:column;gap:6px;max-width:1150px}
+.tabela .th,.tabela .tr{display:grid;grid-template-columns:1.5fr 1.3fr .7fr 1fr;gap:14px;padding:9px 18px;align-items:center}
+.tabela .th{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.tabela .tr{background:var(--surface);border:1px solid var(--border-white);border-radius:10px;font-size:15px}
+.tabela .tr span:nth-child(1){font-weight:600}
+.tabela .tr span:nth-child(2),.tabela .tr span:nth-child(3){color:var(--lime);font-weight:600}
+.tabela .tr span:nth-child(4){color:var(--gray)}
+.nota{font-size:15px;color:var(--gray);max-width:1100px}
+.cod{display:block;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;color:var(--lime);word-break:break-all;line-height:1.5}
+@media (max-width:900px){.tabela .th{display:none}.tabela .tr{grid-template-columns:1fr 1fr;row-gap:4px}.tabela .tr span:nth-child(1){grid-column:1/-1}.tabela .tr span:nth-child(4){grid-column:1/-1}.tabela .tr span:nth-child(2)::before{content:'source: ';color:var(--gray);font-weight:400}.tabela .tr span:nth-child(3)::before{content:'medium: ';color:var(--gray);font-weight:400}.tabela .tr span:nth-child(4)::before{content:'campaign: '}.regras span{font-size:13px}}
+@media (min-width:901px) and (max-height:820px){.tabela .tr{padding:6px 16px;font-size:14px}.tabela{gap:4px}.nota{font-size:14px}.cod{padding:10px;font-size:13px}}
+
+:root{--ok:#4ade80;--warn:#fbbf24}
+.nota-big{display:flex;align-items:center;gap:28px;margin-top:8px}
+.nota-big .circ{width:132px;height:132px;border-radius:50%;border:6px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;flex:none;background:transparent}
+.nota-big p{max-width:560px}
+.areas{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.area{background:var(--surface);border:1px solid var(--border-white);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;border-top:4px solid var(--c)}
+.area .t{font-size:15px;font-weight:600}
+.area .v{font-size:30px;font-weight:800;color:var(--c);line-height:1}
+.area .s{font-size:13px;color:var(--gray)}
+.achado{background:var(--surface);border:1px solid var(--border-white);border-left:4px solid var(--c);border-radius:12px;padding:14px 20px;display:flex;flex-direction:column;gap:6px}
+.achado .top{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;color:var(--bg);background:var(--c)}
+.achado h3{font-size:18px;color:var(--white)}
+.achado p{font-size:15px}
+.achado .acao{color:var(--lime);font-size:15px}
+.lista-achados{display:flex;flex-direction:column;gap:12px;max-width:1150px}
+.slide .check-row{padding:16px 22px}.slide .check-row p{font-size:17px}.slide .checklist{gap:14px;justify-content:flex-start}
+.met{display:grid;grid-template-columns:14px 1.5fr .8fr .8fr 1.6fr;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border-white);border-radius:12px;padding:12px 18px}
+.met .dot{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.met .nm{font-weight:600;font-size:16px}
+.met .vl{font-weight:800;font-size:20px;color:var(--c)}
+.met .rf{font-size:13px;color:var(--gray)}
+.met .dt{font-size:13px;color:var(--gray)}
+.mets{display:flex;flex-direction:column;gap:10px;max-width:1150px}
+.pend{background:var(--surface2);border:1px dashed var(--border);border-radius:12px;padding:20px;color:#D7E6E8;max-width:900px}
+.tab{width:100%;max-width:1150px;border-collapse:collapse;font-size:14px}
+.tab th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:6px 10px;border-bottom:1px solid var(--border-white)}
+.tab td{padding:8px 10px;border-bottom:1px solid var(--border-white);color:#D7E6E8}
+.tab td.n{text-align:right;font-variant-numeric:tabular-nums}
+.tab td.r{color:var(--red);font-weight:600}
+.tab-wrap{overflow-x:auto;max-width:100%}
+.delta{font-size:12px;color:var(--gray);display:block;font-weight:500}
+@media (max-width:900px){
+ .areas{grid-template-columns:1fr 1fr}
+ .met{grid-template-columns:12px 1fr auto;row-gap:2px}.met .rf,.met .dt{grid-column:2/-1}
+ .nota-big{flex-direction:column;align-items:flex-start}
+ section.slide.cover{justify-content:flex-start;padding-top:84px}
+}
+@media (min-width:901px) and (max-height:820px){
+ .met{padding:8px 16px}.mets{gap:7px}.achado{padding:9px 18px;gap:3px}.achado p{font-size:14px;line-height:1.4}.achado h3{font-size:17px}.lista-achados{gap:8px}
+ .slide .check-row{padding:11px 18px}.slide .check-row p{font-size:16px}.area{padding:12px 16px}.tab td{padding:6px 10px}
+ .nota-big .circ{width:110px;height:110px;font-size:38px}
+}
+
+.slide h2{max-width:1050px}
+.lead{font-size:18px;color:var(--gray);max-width:900px;margin-top:-14px}
+/* mapa mental */
+.mm{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px 70px;max-width:1200px;width:100%;align-items:center}
+.mm svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.mm svg line{stroke:rgba(233,255,74,.35);stroke-width:2;stroke-dasharray:4 5}
+.nd{position:relative;z-index:1;background:var(--surface);border:1px solid var(--border-white);border-top:3px solid var(--c,var(--lime));border-radius:14px;padding:12px 16px;display:flex;flex-direction:column;gap:6px}
+.nd h3{font-size:15px;color:var(--c,var(--lime));letter-spacing:.02em}
+.nd ul{padding-left:16px;gap:3px}.nd li{font-size:13.5px;line-height:1.4}
+.centro{position:relative;z-index:1;justify-self:center;width:210px;height:210px;border-radius:50%;background:var(--lime);color:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;box-shadow:0 0 0 10px rgba(233,255,74,.10),0 0 0 22px rgba(233,255,74,.05)}
+.centro b{font-size:22px;line-height:1.15}.centro span{font-size:13px;font-weight:600;margin-top:6px}
+/* números grandes */
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px}
+.bn{background:var(--surface);border:1px solid var(--border-white);border-left:4px solid var(--c);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.bn .v{font-size:44px;font-weight:800;color:var(--c);line-height:1}
+.bn .t{font-size:16px;font-weight:600;color:var(--white)}
+.bn p{font-size:14px;color:var(--gray);line-height:1.45}
+/* status */
+.st{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;color:var(--bg);background:var(--c);white-space:nowrap}
+.tab td:first-child{white-space:nowrap;font-weight:600;color:var(--white)}
+.tab td.q{color:var(--gray);font-size:13px}
+.tab td{padding:7px 10px}.tab td:nth-child(3){white-space:nowrap}
+/* metas */
+.metas{display:flex;flex-direction:column;gap:12px;max-width:1150px;width:100%}
+.mt{display:grid;grid-template-columns:1.3fr 2.2fr 1fr;gap:20px;align-items:center;background:var(--surface);border:1px solid var(--border-white);border-radius:12px;padding:12px 18px}
+.mt .nm{font-weight:600;font-size:16px}.mt .nm small{display:block;font-weight:400;font-size:12.5px;color:var(--gray)}
+.trk{position:relative;height:14px;border-radius:7px;background:var(--surface2)}
+.trk .f{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--c)}
+.trk .g{position:absolute;top:-6px;bottom:-6px;width:3px;background:var(--lime);border-radius:2px}
+.trk .gl{position:absolute;top:-24px;transform:translateX(-50%);font-size:11px;color:var(--lime);font-weight:700;white-space:nowrap}
+.mt .vals{text-align:right;font-size:14px;color:var(--gray)}.mt .vals b{display:block;font-size:22px;color:var(--c)}
+.legenda{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--gray)}
+.legenda i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+/* regras */
+.regra{display:grid;grid-template-columns:1.1fr .8fr .8fr 2fr;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--border-white);border-left:4px solid var(--c);border-radius:12px;padding:13px 18px}
+.regra .nm{font-weight:600;font-size:16px}
+.regra .lim{font-size:22px;font-weight:800;color:var(--lime)}.regra .lim small,.regra .hj small{display:block;font-size:11px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.06em}
+.regra .hj{font-size:22px;font-weight:800;color:var(--c)}
+.regra .ac{font-size:14.5px;color:#D7E6E8;line-height:1.45}
+.regras-l{display:flex;flex-direction:column;gap:10px;max-width:1180px;width:100%}
+/* linha do tempo */
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1220px;width:100%}
+.sem{display:flex;flex-direction:column;gap:10px}
+.sem .cab{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);padding-bottom:8px;border-bottom:2px solid var(--border)}
+.ev{background:var(--surface);border:1px solid var(--border-white);border-left:4px solid var(--c);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.ev .d{font-size:12px;color:var(--gray);font-weight:600}.ev .n{font-size:14.5px;font-weight:600;line-height:1.3}.ev .p{font-size:12.5px;color:var(--gray)}
+/* fluxo da base */
+.fluxo{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;gap:10px;align-items:stretch;max-width:1180px;width:100%}
+.fluxo .bx{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.fluxo .bx h3{font-size:16px;color:var(--lime)}.fluxo .bx p{font-size:14px;line-height:1.45}
+.fluxo .bx.alt{background:#2A1512;border-color:rgba(232,89,60,.35)}.fluxo .bx.alt h3{color:var(--red)}
+.fluxo .sx{display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:26px}
+.col{display:flex;flex-direction:column;gap:10px}
+@media (max-width:900px){
+ .mm{grid-template-columns:1fr;gap:10px}.mm svg{display:none}
+ .centro{width:auto;height:auto;border-radius:14px;padding:14px;order:-1;box-shadow:none;justify-self:stretch}
+ .big{grid-template-columns:1fr}.bn .v{font-size:34px}
+ .mt{grid-template-columns:1fr;gap:12px}.mt .vals{text-align:left}
+ .regra{grid-template-columns:1fr 1fr;row-gap:6px}.regra .nm,.regra .ac{grid-column:1/-1}
+ .tl{grid-template-columns:1fr}
+ .fluxo{grid-template-columns:1fr}.fluxo .sx{transform:rotate(90deg);height:26px}
+}
+@media (min-width:901px) and (max-height:820px){
+ .nd{padding:8px 14px;gap:3px}.nd li{font-size:12.5px}.mm{gap:10px 60px}.centro{width:170px;height:170px}.centro b{font-size:19px}
+ .bn{padding:14px 18px}.bn .v{font-size:36px}.mt{padding:5px 16px}.mt .vals b{font-size:19px}.metas{gap:6px;margin-top:6px!important}.trk{height:10px}.regra{padding:9px 16px}.regras-l{gap:7px}
+ .tab td{padding:4px 10px;font-size:13.5px}.ev{padding:7px 10px}.ev .n{font-size:13.5px}.lead{font-size:16px}
+}
+</style>
+</head>
+<body>
+<section class="slide cover" data-titulo="Capa">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Choice Tecnologia · reunião com Flávio</p>
+ <h1>Planejamento de<br>e-mail <span style="color:var(--lime)">marketing</span></h1>
+ <p class="sub">Diagnóstico da conta no RD Station Marketing cruzado com o cronograma aprovado em 29/10, metas de abertura e regras mínimas de envio para novembro e dezembro.</p>
+ <div class="footer"><span>10 de novembro de 2026 · dados de 27/09 a 10/11/2026</span><span>Autz × Choice</span></div>
+</section>
+<section class="slide" data-titulo="Mapa do plano">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Visão geral</p>
+ <h2>O plano em uma tela</h2>
+<div class="mm">
+ <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="50" y1="50" x2="17" y2="15" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="50" y2="12" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="83" y2="15" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="17" y2="50" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="83" y2="50" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="17" y2="85" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="50" y2="88" vector-effect="non-scaling-stroke"/><line x1="50" y1="50" x2="83" y2="85" vector-effect="non-scaling-stroke"/></svg>
+ <div class="nd" style="--c:var(--ok);"><h3>1 · Base e reputação</h3><ul><li>Tirar hard bounce na hora</li><li>Avulsos só para quem abriu nos últimos 180 dias</li><li>Inativos vão para reengajamento</li></ul></div>
+ <div class="nd" style="--c:var(--lime);"><h3>Metas de abertura</h3><ul><li>Base geral: de 17,9% para 25%</li><li>Fluxos: de 18,8% para 25%</li><li>Clique por abertura: de 2,9% para 8%</li></ul></div>
+ <div class="nd" style="--c:var(--ok);"><h3>2 · Pós-feira CINASE e DCW</h3><ul><li>4 e-mails, 1 por semana</li><li>Recomeça em 12/11 (estava para 05/11)</li><li>Depois do 4º, entra na nutrição</li></ul></div>
+ <div class="nd" style="--c:var(--ok);"><h3>3 · Nutrição automática</h3><ul><li>8 e-mails, 1 por semana</li><li>Energia: 01, 03, 05, 08</li><li>Data center: 02, 06, 07 · IoT: 04, 05</li></ul></div>
+ <div class="centro"><b>E-mail Choice</b><span>novembro e dezembro</span></div>
+ <div class="nd" style="--c:var(--ok);"><h3>4 · Avulsos para a base</h3><ul><li>Key in Pocket 18/11</li><li>Consultoria gratuita 02/12</li><li>No máximo 1 por semana, terça a quinta</li></ul></div>
+ <div class="nd" style="--c:var(--warn);"><h3>5 · Fora do cronograma</h3><ul><li>Fluxo DFun ainda ativo: rever</li><li>Braço Articulado TK: repetir o formato</li></ul></div>
+ <div class="nd" style="--c:var(--red);"><h3>Regras mínimas</h3><ul><li>Bounce até 1% por envio</li><li>Descadastro até 0,3% por envio</li><li>Passou do limite: para e corrige</li></ul></div>
+ <div class="nd" style="--c:var(--warn);"><h3>6 · Decisões de hoje</h3><ul><li>Black Friday: sim ou não</li><li>Agendamento do diagnóstico</li><li>Low-Power e descontinuados</li></ul></div>
+</div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Onde estamos">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Diagnóstico da conta</p>
+ <h2>Onde estamos hoje</h2>
+ <div class="nota-big" style="color:var(--warn)"><div class="circ">57</div>
+ <p>Nota geral da conta, de 0 a 100: <b style="color:var(--warn)">atenção</b>. A cadência está boa e a conta organizada. O que puxa a nota para baixo é <b style="color:var(--white)">para quem estamos mandando</b> (base inteira, com contatos que não abrem) e a falta da nutrição automática.</p></div>
+ <div class="areas" style="grid-template-columns:repeat(3,1fr)"><div class="area" style="--c:var(--warn)"><span class="t">Reputação de envio</span><span class="v">48</span><span class="s">Bounce e descadastro altos</span></div><div class="area" style="--c:var(--warn)"><span class="t">Engajamento</span><span class="v">46</span><span class="s">Abre, mas quase não clica</span></div><div class="area" style="--c:var(--ok)"><span class="t">Cadência</span><span class="v">100</span><span class="s">5 campanhas em 44 dias</span></div><div class="area" style="--c:var(--red)"><span class="t">Automação</span><span class="v">35</span><span class="s">Sem nutrição ativa</span></div><div class="area" style="--c:var(--ok)"><span class="t">Organização da conta</span><span class="v">100</span><span class="s">Sem duplicados</span></div><div class="area" style="--c:var(--red)"><span class="t">Páginas e pop-ups</span><span class="v">15</span><span class="s">Ativos publicados sem visita</span></div></div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="O que funcionou">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Últimos 44 dias</p>
+ <h2>O que funcionou</h2>
+<div class="big">
+ <div class="bn" style="--c:var(--ok)"><span class="v">53,4%</span><span class="t">Braço Articulado TK (22/10)</span><p>Abertura de 2.206 contatos, com 2,3% de clique e só 3 descadastros. O melhor envio do período: produto específico, público escolhido.</p></div>
+ <div class="bn" style="--c:var(--ok)"><span class="v">39,5%</span><span class="t">Envios para públicos menores</span><p>Abertura média quando o e-mail vai para uma lista escolhida. Para a base inteira, a mesma conta abre 17,9%.</p></div>
+ <div class="bn" style="--c:var(--ok)"><span class="v">61,2%</span><span class="t">"Amanhã começa" CINASE Rio</span><p>482 aberturas em 788 entregas. Lembrete de evento para quem já se inscreveu funciona muito bem.</p></div>
+</div>
+<p class="nota">Denúncia de spam em 0,01% (2 em 37 mil envios): a base reconhece a Choice como remetente.</p>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="O que preocupa">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Últimos 44 dias</p>
+ <h2>O que preocupa</h2>
+<div class="big">
+ <div class="bn" style="--c:var(--red)"><span class="v">3,47%</span><span class="t">Bounce (meta: até 1%)</span><p>1.297 e-mails voltaram, 288 de endereço que não existe mais. O pior: DFun Outubro 1, com 6,1%. Bounce alto faz o Gmail e o Outlook mandarem tudo para o spam.</p></div>
+ <div class="bn" style="--c:var(--red)"><span class="v">0,56%</span><span class="t">Descadastro (meta: até 0,3%)</span><p>206 descadastros no período: 181 vieram do fluxo DFun, que manda para a base inteira. O agradecimento da DCW teve 7,1% (15 de 211).</p></div>
+ <div class="bn" style="--c:var(--red)"><span class="v">2,9%</span><span class="t">Clique por abertura (meta: 8%)</span><p>De cada 100 que abrem, menos de 3 clicam. Clique sobre entregues: 0,61%. Falta uma chamada única e clara por e-mail.</p></div>
+</div>
+<p class="nota">Quando o e-mail vai para cerca de 8 mil contatos, a abertura cai para 17,9%. Mandar para quem não abre é o que gera o bounce e o descadastro.</p>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Cronograma x RD">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Cronograma aprovado x conta</p>
+ <h2>O que foi aprovado e o que está no RD</h2>
+ <p class="lead">Conferido hoje nos e-mails e fluxos da conta. Low-Power e Descontinuados seguem bloqueados.</p>
+ <div class="tab-wrap"><table class="tab"><tr><th>Data</th><th>E-mail</th><th>Para quem</th><th>No RD hoje</th><th>Detalhe</th></tr><tr><td>Sex 30/10</td><td>Convite DCD Connect</td><td class="q">Toda a base</td><td><span class="st" style="--c:var(--warn)">Saiu com atraso</span></td><td class="q">Saiu uma vez, em 03/11, para 908 contatos: 17,1% de abertura e 1,6% de clique</td></tr><tr><td>Ter 03/11</td><td>Lembrete DCD Connect</td><td class="q">Toda a base</td><td><span class="st" style="--c:var(--red)">Não saiu</span></td><td class="q">Só houve o envio de 03/11. O evento já passou</td></tr><tr><td>Desde 03/11</td><td>8 e-mails de nutrição (fluxos)</td><td class="q">Cada lead novo</td><td><span class="st" style="--c:var(--red)">Não ativado</span></td><td class="q">Só existe o fluxo "[Energia] UMG 800", desativado</td></tr><tr><td>Qui 05/11</td><td>Pós-feira 1 · UMG 800 e 801</td><td class="q">Leads das feiras</td><td><span class="st" style="--c:var(--red)">Não saiu</span></td><td class="q">Não está no RD, nem agendado</td></tr><tr><td>Qui 12/11</td><td>Pós-feira 2 · Caso Metrô SP</td><td class="q">Leads das feiras</td><td><span class="st" style="--c:var(--warn)">Não montado</span></td><td class="q">Ainda não está no RD</td></tr><tr><td>Qua 18/11</td><td>Key in Pocket</td><td class="q">Toda a base</td><td><span class="st" style="--c:var(--warn)">Não montado</span></td><td class="q">Ainda não está no RD</td></tr><tr><td>Qui 19/11</td><td>Pós-feira 3 · Diagnóstico</td><td class="q">Leads das feiras</td><td><span class="st" style="--c:var(--warn)">A definir</span></td><td class="q">Falta decidir como será o agendamento</td></tr><tr><td>Sem. 23/11</td><td>Black Friday</td><td class="q">Toda a base</td><td><span class="st" style="--c:var(--gray2)">Decisão</span></td><td class="q">Só sai se houver campanha</td></tr><tr><td>Qui 26/11</td><td>Pós-feira 4 · Contato comercial</td><td class="q">Leads das feiras</td><td><span class="st" style="--c:var(--warn)">Não montado</span></td><td class="q">Ainda não está no RD</td></tr><tr><td>Qua 02/12</td><td>Consultoria gratuita Janitza</td><td class="q">Toda a base</td><td><span class="st" style="--c:var(--warn)">Não montado</span></td><td class="q">Ainda não está no RD</td></tr></table></div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Fora do cronograma">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Fora do cronograma</p>
+ <h2>O que está rodando sem estar no plano</h2>
+<div class="big" style="grid-template-columns:1.2fr 1fr">
+ <div class="bn" style="--c:var(--warn)"><span class="t">Fluxo "[DFun] Setembro" ainda ativo</span><span class="v">181</span><p>descadastros em 4 e-mails de outubro, com cerca de 31 mil entregas, 17% a 20% de abertura e menos de 0,5% de clique. Ele não está no cronograma e manda para a base inteira.<br><br><b style="color:var(--lime)">Proposta:</b> pausar e reaproveitar o conteúdo de baterias DFun no e-mail 06 da nutrição (Data center), que vai só para quem tem interesse.</p></div>
+ <div class="bn" style="--c:var(--ok)"><span class="t">Braço Articulado TK (22/10)</span><span class="v">53,4%</span><p>Também fora do cronograma, e foi o melhor resultado do período. <br><br><b style="color:var(--lime)">Proposta:</b> usar como modelo para os avulsos (um produto, um público, uma chamada) e repetir o formato com outra linha em dezembro.</p></div>
+</div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Metas de abertura">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Metas até dezembro</p>
+ <h2>Metas de abertura e clique</h2>
+ <p class="lead">Medidas a cada envio e fechadas na reunião do mês.</p>
+ <div class="metas" style="margin-top:14px"><div class="mt" style="--c:var(--ok)"><span class="nm">Abertura · listas escolhidas<small>manter</small></span><div class="trk"><div class="f" style="width:65.8%"></div><div class="g" style="left:58.3%"></div><span class="gl" style="left:58.3%">meta 35%</span></div><span class="vals"><b>39,5%</b>hoje</span></div><div class="mt" style="--c:var(--red)"><span class="nm">Abertura · avulsos para a base<small>só para quem abre</small></span><div class="trk"><div class="f" style="width:29.8%"></div><div class="g" style="left:41.7%"></div><span class="gl" style="left:41.7%">meta 25%</span></div><span class="vals"><b>17,9%</b>hoje</span></div><div class="mt" style="--c:var(--warn)"><span class="nm">Abertura · nutrição automática<small>8 e-mails por lead</small></span><div class="trk"><div class="f" style="width:31.3%"></div><div class="g" style="left:41.7%"></div><span class="gl" style="left:41.7%">meta 25%</span></div><span class="vals"><b>18,8%</b>hoje</span></div><div class="mt" style="--c:var(--warn)"><span class="nm">Abertura · pós-feira<small>hoje: agradecimento DCW</small></span><div class="trk"><div class="f" style="width:35.0%"></div><div class="g" style="left:50.0%"></div><span class="gl" style="left:50.0%">meta 30%</span></div><span class="vals"><b>21,0%</b>hoje</span></div><div class="mt" style="--c:var(--red)"><span class="nm">Clique por abertura<small>de quem abre, quantos clicam</small></span><div class="trk"><div class="f" style="width:19.3%"></div><div class="g" style="left:53.3%"></div><span class="gl" style="left:53.3%">meta 8%</span></div><span class="vals"><b>2,9%</b>hoje</span></div></div>
+ <div class="legenda"><span><i style="background:var(--lime)"></i>Meta</span><span><i style="background:var(--ok)"></i>Já na meta</span><span><i style="background:var(--warn)"></i>Perto</span><span><i style="background:var(--red)"></i>Longe</span></div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Regras mínimas">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Regras de envio</p>
+ <h2>Regras mínimas: o que não pode passar</h2>
+ <p class="lead">Valem para cada envio, não só para a média do mês. Uma média boa pode esconder um e-mail ruim, como o agradecimento da DCW.</p>
+ <div class="regras-l"><div class="regra" style="--c:var(--red)"><span class="nm">Bounce</span><span class="lim"><small>Limite</small>até 1%</span><span class="hj"><small>Hoje</small>3,47%</span><span class="ac">Acima de 2% em um envio: aquela lista não recebe mais nada até ser limpa.</span></div><div class="regra" style="--c:var(--warn)"><span class="nm">Hard bounce</span><span class="lim"><small>Limite</small>até 0,5%</span><span class="hj"><small>Hoje</small>0,85%</span><span class="ac">Endereço inexistente sai da base no mesmo dia, sem exceção.</span></div><div class="regra" style="--c:var(--red)"><span class="nm">Descadastro</span><span class="lim"><small>Limite</small>até 0,3%</span><span class="hj"><small>Hoje</small>0,56%</span><span class="ac">Acima de 1% em um e-mail: revisamos público e assunto antes do próximo envio para a mesma lista.</span></div><div class="regra" style="--c:var(--ok)"><span class="nm">Denúncia de spam</span><span class="lim"><small>Limite</small>até 0,05%</span><span class="hj"><small>Hoje</small>0,01%</span><span class="ac">Acima do limite: pausa os avulsos da semana e revisa a lista usada.</span></div><div class="regra" style="--c:var(--warn)"><span class="nm">Entrega</span><span class="lim"><small>Limite</small>98% ou mais</span><span class="hj"><small>Hoje</small>97,5%</span><span class="ac">Abaixo de 98% por duas semanas: limpeza geral da base antes do próximo avulso.</span></div></div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Quem recebe o quê">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Uso da base</p>
+ <h2>Quem recebe o quê</h2>
+ <p class="lead">É assim que a abertura dos avulsos sobe de 17,9% para 25%: o mesmo e-mail, só para quem lê.</p>
+<div class="fluxo">
+ <div class="col">
+  <div class="bx"><h3>Lead novo ou de feira</h3><p>Pós-feira (4 e-mails) para quem passou no estande. Depois, nutrição de 8 semanas pela linha de interesse.</p></div>
+  <div class="bx"><h3>Contato engajado</h3><p>Abriu ou clicou nos últimos 180 dias. Recebe os avulsos: Key in Pocket, Consultoria, Black Friday.</p></div>
+ </div>
+ <div class="sx">→</div>
+ <div class="col">
+  <div class="bx"><h3>Contato inativo</h3><p>Sem abrir há mais de 180 dias. Sai dos avulsos e recebe 2 e-mails de reengajamento em dezembro.</p></div>
+  <div class="bx"><h3>Voltou a abrir</h3><p>Volta para o grupo engajado e para os avulsos.</p></div>
+ </div>
+ <div class="sx">→</div>
+ <div class="col">
+  <div class="bx alt"><h3>Não respondeu</h3><p>Não abriu nenhum dos 2: sai dos envios. Protege a entrega para quem lê.</p></div>
+  <div class="bx alt"><h3>Hard bounce ou descadastro</h3><p>Sai da base na hora.</p></div>
+ </div>
+</div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Novo cronograma">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Proposta de ajuste</p>
+ <h2>Cronograma ajustado até dezembro</h2>
+ <p class="lead">A sequência pós-feira anda uma semana. Os avulsos mantêm as datas aprovadas e passam a ir só para quem abre.</p>
+ <div class="tl"><div class="sem"><span class="cab">Semana de 09/11</span><div class="ev" style="--c:#7dd3fc"><span class="d">Hoje</span><span class="n">Limpeza da base</span><span class="p">Hard bounce fora, grupo de engajados criado</span></div><div class="ev" style="--c:var(--ok)"><span class="d">Qui 12/11</span><span class="n">Pós-feira 1 · UMG 800 e 801</span><span class="p">CINASE e DCW</span></div></div><div class="sem"><span class="cab">Semana de 16/11</span><div class="ev" style="--c:#7dd3fc"><span class="d">Seg 16/11</span><span class="n">Fluxos de nutrição no ar</span><span class="p">Pausa do DFun</span></div><div class="ev" style="--c:var(--lime)"><span class="d">Qua 18/11</span><span class="n">Key in Pocket</span><span class="p">Só engajados</span></div><div class="ev" style="--c:var(--ok)"><span class="d">Qui 19/11</span><span class="n">Pós-feira 2 · Caso Metrô SP</span><span class="p">CINASE e DCW</span></div></div><div class="sem"><span class="cab">Semana de 23/11</span><div class="ev" style="--c:var(--warn)"><span class="d">Até 13/11</span><span class="n">Black Friday: sim ou não</span><span class="p">Se não, semana livre</span></div><div class="ev" style="--c:var(--ok)"><span class="d">Qui 26/11</span><span class="n">Pós-feira 3 · Diagnóstico</span><span class="p">Depende do agendamento</span></div></div><div class="sem"><span class="cab">Semana de 30/11</span><div class="ev" style="--c:var(--lime)"><span class="d">Qua 02/12</span><span class="n">Consultoria gratuita Janitza</span><span class="p">Só engajados</span></div><div class="ev" style="--c:var(--ok)"><span class="d">Qui 03/12</span><span class="n">Pós-feira 4 · Contato comercial</span><span class="p">Depois, entra na nutrição</span></div></div><div class="sem"><span class="cab">Semana de 07/12</span><div class="ev" style="--c:#7dd3fc"><span class="d">Ter 08/12</span><span class="n">Reengajamento 1</span><span class="p">Inativos há mais de 180 dias</span></div><div class="ev" style="--c:var(--warn)"><span class="d">Qui 10/12</span><span class="n">Fechamento do mês</span><span class="p">Metas e regras na reunião</span></div></div></div>
+ <div class="legenda"><span><i style="background:var(--ok)"></i>Pós-feira</span><span><i style="background:var(--lime)"></i>Avulso para engajados</span><span><i style="background:#7dd3fc"></i>Base e automação</span><span><i style="background:var(--warn)"></i>Decisão e acompanhamento</span></div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Decisões" style="background:var(--bg2)">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Para decidir hoje</p>
+ <h2>O que precisamos do Flávio</h2>
+ <div class="checklist"><div class="check-row"><div class="num">1</div><p>Black Friday: vai ter campanha? Se sim, qual oferta e qual linha. Se não, a semana de 23/11 fica livre.</p></div><div class="check-row"><div class="num">2</div><p>Pós-feira 3 (Diagnóstico): como o lead agenda? Link de agenda, formulário ou contato do vendedor.</p></div><div class="check-row"><div class="num">3</div><p>Fluxo DFun: aprovar a pausa e levar o conteúdo para a nutrição de Data center.</p></div><div class="check-row"><div class="num">4</div><p>Aprovar a regra: avulsos só para quem abriu nos últimos 180 dias, e reengajamento para os demais em dezembro.</p></div><div class="check-row"><div class="num">5</div><p>Folheto Low-Power e Produtos descontinuados: seguem bloqueados ou já entram em dezembro?</p></div></div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<section class="slide" data-titulo="Outras frentes">
+ <div class="logo" role="img" aria-label="Autz"></div>
+ <p class="eyebrow">Combinado em 12/10</p>
+ <h2>Outras frentes de marketing</h2>
+ <p class="lead">Retomar a situação de cada uma ao fim da reunião.</p>
+<div class="cards">
+ <div class="card"><h3>SEO e GEO do site</h3><p>Lista de palavras-chave com o vocabulário que os concorrentes usam (exemplo: "multimedidores" na IMS).</p></div>
+ <div class="card"><h3>Concorrentes por área</h3><p>Tabela com IMS, Kron e os principais de cada linha, para copiar o que funciona.</p></div>
+ <div class="card alt"><h3>Agenda de campanhas</h3><p>Aprovada em 29/10. Este plano é o ajuste dela com o que está no RD.</p></div>
+</div>
+ <div class="footer"><span>Planejamento de e-mail marketing · Choice Tecnologia</span><span class="pg"></span></div>
+</section>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto deste slide</div>
+<nav class="barra" aria-label="Navegação dos slides">
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <button type="button" id="anterior" aria-label="Slide anterior">‹</button>
+  <span class="contador" id="contador"></span>
+  <button type="button" id="proximo" aria-label="Próximo slide">›</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    document.querySelectorAll('.pg').forEach(function (p, n) { p.textContent = ''; });
+    var pg = slides[atual].querySelector('.pg'); if (pg) pg.textContent = (atual + 1) + ' / ' + slides.length;
+    avisarRolagem();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisarRolagem() {
+    var s = slides[atual];
+    var falta = s.scrollHeight - s.clientHeight - s.scrollTop;
+    document.getElementById('mais').classList.toggle('visivel', falta > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisarRolagem, { passive: true }); });
+  window.addEventListener('resize', avisarRolagem);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var inicioX = null, inicioY = null;
+  document.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; inicioY = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (inicioX === null) return;
+    var dx = e.changedTouches[0].clientX - inicioX, dy = e.changedTouches[0].clientY - inicioY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    inicioX = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+</body>
+</html>
