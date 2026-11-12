@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Grupo Senne · Reunião 2</title>
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
+  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+p{margin:0;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
+.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+.logo{height:24px; width:auto; display:block;}
+.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
+.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
+.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
+.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
+.lede strong{color:var(--white); font-weight:600;}
+.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
+.capa .lede{font-size:18px;}
+.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
+.meta strong{color:var(--white); font-weight:600;}
+.pauta{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px;}
+.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
+.card.lime{border-color:rgba(233,255,74,.35);}
+.card.ok{border-color:rgba(74,222,128,.35);}
+.card.amb{border-color:rgba(251,191,36,.35);}
+.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
+.card p{font-size:14px; color:var(--gray);}
+.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.kpi{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:18px 20px;}
+.kpi .v{font-size:30px; font-weight:800; line-height:1.1; color:var(--white);}
+.kpi .v.lime{color:var(--lime);}
+.kpi .v.ok{color:var(--green);}
+.kpi .d{font-size:13px; color:var(--gray); margin-top:6px;}
+ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
+ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
+.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
+.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
+.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
+.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.card-head h3{margin:0;}
+/* fluxo */
+.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
+.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
+.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
+.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
+.seta{align-self:center; color:var(--lime); font-weight:700;}
+/* barras por dia */
+.barras{display:flex; flex-direction:column; gap:7px;}
+.barra-dia{display:grid; grid-template-columns:62px 1fr 110px; align-items:center; gap:12px; font-size:13px;}
+.barra-dia .dia{color:var(--gray);}
+.trilho{height:14px; background:var(--bg2); border-radius:7px; overflow:hidden; display:flex;}
+.trilho .a{background:var(--lime); height:100%;}
+.trilho .r{background:var(--gray2); height:100%;}
+.barra-dia .num{color:var(--white); text-align:right; white-space:nowrap;}
+.legenda{display:flex; gap:18px; font-size:12px; color:var(--gray); margin-top:10px;}
+.legenda i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px; vertical-align:-1px;}
+/* funil */
+.funil{display:grid; grid-template-columns:repeat(9,1fr); gap:6px;}
+.etapa{background:var(--surface); border:1px solid var(--border-white); border-radius:10px; padding:12px 10px; font-size:12.5px; font-weight:600; text-align:center; min-width:0;}
+.etapa small{display:block; font-weight:400; color:var(--gray); font-size:11.5px; margin-top:4px;}
+.etapa.cad{border-color:rgba(233,255,74,.4); background:rgba(233,255,74,.06);}
+/* cadência */
+.cad{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.dia-col{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:16px 18px; min-width:0;}
+.dia-col h3{font-size:15px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;}
+.toque{border-left:2px solid var(--lime); padding:2px 0 2px 12px; margin-bottom:12px;}
+.toque:last-child{margin-bottom:0;}
+.toque .h{font-size:12px; font-weight:700; color:var(--lime2);}
+.toque p{font-size:13.5px;}
+/* templates */
+.tpl{background:var(--bg2); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; min-width:0;}
+.tpl .h{display:flex; justify-content:space-between; gap:8px; font-size:12px; font-weight:700; color:var(--lime2); margin-bottom:8px;}
+.tpl .h span:last-child{color:var(--gray); font-weight:600;}
+.bolha{background:#005c4b; color:#fff; border-radius:10px 10px 10px 2px; padding:10px 12px; font-size:13.5px; line-height:1.5;}
+.botoes{display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;}
+.botoes span{flex:1; text-align:center; background:var(--surface2); color:#7fd4ff; border-radius:8px; padding:6px 8px; font-size:12.5px; font-weight:600;}
+.var{color:var(--lime); font-weight:600;}
+/* tabela */
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
+.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
+.nota strong{color:var(--white);}
+a{color:var(--lime);}
+.btn{display:inline-block; background:var(--lime); color:var(--bg2); font-weight:700; font-size:14px; padding:10px 18px; border-radius:999px; text-decoration:none; margin-top:14px;}
+/* barra inferior */
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
+.mais.visivel{display:block;}
+.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
+/* ===== camada visual ===== */
+body{background:
+  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
+  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
+  var(--bg);}
+body::before{content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.label{display:inline-flex; align-items:center; gap:8px;}
+.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
+.card,.kpi,.passo,.dia-col,.etapa{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
+.card:hover,.kpi:hover,.passo:hover,.dia-col:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
+.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
+.card.ok{box-shadow:inset 0 2px 0 var(--green);}
+.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
+.kpi .v.lime{text-shadow:0 0 24px rgba(233,255,74,.35);}
+.kpi .v.ok{text-shadow:0 0 24px rgba(74,222,128,.35);}
+.passo .t{display:flex; align-items:center; gap:8px;}
+.passo .t::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 4px rgba(233,255,74,.15);}
+.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
+@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
+/* entrada de cada slide */
+.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
+.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
+.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
+.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
+.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
+.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
+@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
+.slide.ativo .grid-3 > *, .slide.ativo .grid-4 > *, .slide.ativo .pauta > *, .slide.ativo .funil > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .grid-3 > *:nth-child(2), .slide.ativo .grid-4 > *:nth-child(2), .slide.ativo .pauta > *:nth-child(2){animation-delay:.28s}
+.slide.ativo .grid-3 > *:nth-child(3), .slide.ativo .grid-4 > *:nth-child(3), .slide.ativo .pauta > *:nth-child(3){animation-delay:.36s}
+.slide.ativo .grid-4 > *:nth-child(4){animation-delay:.44s}
+.slide.ativo .funil > *{animation-delay:calc(var(--i,0) * .06s + .25s);}
+.trilho .a,.trilho .r{transform-origin:left; animation:cresce .9s cubic-bezier(.2,.7,.2,1) both; animation-delay:.35s;}
+@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+/* capa */
+.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
+.anel{position:relative; width:100%; max-width:300px; aspect-ratio:1; margin-left:auto; border-radius:50%; box-shadow:0 0 60px -10px rgba(233,255,74,.25);}
+.anel svg{width:100%; height:100%; transform:rotate(-90deg);}
+.anel .fundo{stroke:rgba(255,255,255,.07);}
+.anel .arco{stroke:var(--lime); stroke-linecap:round; stroke-dasharray:283; stroke-dashoffset:283; animation:arco 1.6s .3s cubic-bezier(.2,.7,.2,1) forwards;}
+@keyframes arco{to{stroke-dashoffset:57}}
+.anel .centro{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
+.anel .grande{font-size:72px; font-weight:800; line-height:1; color:var(--lime);}
+.anel .pequeno{font-size:13px; color:var(--gray); max-width:18ch; margin-top:8px;}
+/* telefone */
+.tel{background:#0b141a; border:1px solid rgba(255,255,255,.12); border-radius:26px; padding:10px; box-shadow:0 24px 50px -24px rgba(0,0,0,.9), inset 0 0 0 4px #111b21; min-width:0;}
+.tel-top{display:flex; align-items:center; gap:10px; background:#202c33; border-radius:16px 16px 6px 6px; padding:9px 12px;}
+.tel-top .av{width:28px; height:28px; border-radius:50%; background:var(--lime); color:var(--bg2); font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; flex:none;}
+.tel-top b{font-size:13px; display:block; line-height:1.2;}
+.tel-top small{font-size:11px; color:#8696a0;}
+.tel-top .quando{margin-left:auto; font-size:11px; font-weight:700; color:var(--lime2); background:rgba(233,255,74,.1); padding:3px 8px; border-radius:999px; white-space:nowrap;}
+.tel-chat{padding:14px 8px 10px; background-color:#0b141a; background-image:radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px); background-size:14px 14px; border-radius:6px 6px 16px 16px; min-height:150px;}
+.tel .bolha{border-radius:2px 10px 10px 10px; box-shadow:0 1px 1px rgba(0,0,0,.4); position:relative;}
+.tel .hora{display:block; text-align:right; font-size:10.5px; color:rgba(255,255,255,.6); margin-top:4px;}
+.tel .botoes span{background:#1f2c34; color:#53bdeb;}
+.tel-id{font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--gray); text-transform:uppercase; margin:0 4px 8px;}
+/* trilha 72h */
+.trilha{position:relative; margin:4px 0 18px; height:46px;}
+.trilha .linha{position:absolute; left:0; right:0; top:20px; height:4px; border-radius:4px; background:rgba(255,255,255,.08); overflow:hidden;}
+.trilha .linha::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.4s .3s cubic-bezier(.2,.7,.2,1) both;}
+.trilha .ponto{position:absolute; top:14px; width:16px; height:16px; margin-left:-8px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); box-shadow:0 0 0 5px rgba(233,255,74,.12); animation:entra .4s both;}
+.trilha .marca{position:absolute; top:34px; font-size:11px; color:var(--gray); transform:translateX(-50%); white-space:nowrap;}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+  .anel .arco{stroke-dashoffset:57;}
+}
+@media (min-width:761px) and (max-height:820px){
+  .slide{padding:24px 48px 16px;}
+  .topo{margin-bottom:12px;}
+  .titulo{font-size:25px; margin-bottom:6px;}
+  .lede{font-size:14.5px; margin-bottom:14px;}
+  .card{padding:14px 18px;}
+  .card h3{font-size:15px; margin-bottom:6px;}
+  ul.lista{gap:5px;}
+  ul.lista li{font-size:13.5px;}
+  .kpi{padding:12px 16px;}
+  .kpi .v{font-size:24px;}
+  .kpi .d{font-size:12px; margin-top:2px;}
+  .barras{gap:4px;}
+  .trilho{height:10px;}
+  .barra-dia{font-size:12px;}
+  .legenda{margin-top:6px;}
+  .nota{margin-top:8px; font-size:12px;}
+  td{padding:7px 12px 7px 0; font-size:13px;}
+  .btn{margin-top:10px; padding:8px 16px;}
+  .anel{max-width:260px;}
+  .tel-chat{min-height:0;}
+  .trilha{margin-bottom:10px;}
+  .dia-col{padding:12px 16px;}
+  .toque{margin-bottom:8px;}
+}
+@media (max-width:900px){
+  .funil{grid-template-columns:repeat(3,1fr);}
+  .grid-4{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  .slide{padding:24px 18px 20px;}
+  .titulo{font-size:23px;}
+  .capa .titulo{font-size:34px;}
+  .grid-2,.grid-3,.pauta,.cad{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica{display:none;}
+  .seta{display:none;}
+  .barra-dia{grid-template-columns:52px 1fr 92px; font-size:12px;}
+  .capa-grid{grid-template-columns:1fr; gap:20px;}
+  .anel{max-width:200px; margin:0 auto;}
+  .anel .grande{font-size:48px;}
+  .trilha .marca{font-size:10px;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais{display:none;}
+}
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+
+<section class="slide capa" data-titulo="Capa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <div class="capa-grid">
+      <div>
+        <p class="label">Reunião 2 · Implementação RD Vendas e RD Atendimento</p>
+        <h1 class="titulo">Lead aprovado no CRM em minutos.<br>Agora: <em>IA e follow-up de 72h.</em></h1>
+        <p class="lede">O que já está funcionando desde o kickoff, o que fazemos com quem é reprovado, e as duas decisões de hoje: como o agente de IA atende no RD Atendimento e quais mensagens de follow-up vão rodar nas primeiras 72 horas.</p>
+        <div class="meta">
+          <span>Cliente: <strong>Grupo Senne</strong></span>
+          <span>Preparado por: <strong>AUTZ</strong></span>
+          <span>Data: <strong>novembro de 2026</strong></span>
+        </div>
+        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </div>
+      <div class="anel" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><circle class="fundo" cx="50" cy="50" r="45" fill="none" stroke-width="5"/><circle class="arco" cx="50" cy="50" r="45" fill="none" stroke-width="5"/></svg>
+        <div class="centro"><span class="grande">72h</span><span class="pequeno">a janela em que o lead aprovado decide se contrata</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Pauta">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Pauta de hoje</p>
+    <h2 class="titulo">Três blocos, uma meta: não deixar lead aprovado esfriar</h2>
+    <p class="lede">No kickoff você trouxe o problema central: <strong>19.271 pré-aprovados no mês e 2.160 propostas convertidas (11,2%)</strong>, com consultores recebendo até 95 leads por dia. O cliente que não fecha em 72 horas perde cerca de 80% da chance de contratar.</p>
+    <div class="pauta">
+      <div class="card ok"><p class="n">BLOCO 0</p><h3>Integração validada</h3><p>Todo aprovado da planilha vira negociação no RD Vendas, com os dados do anúncio. E o que fazemos com os reprovados.</p></div>
+      <div class="card lime"><p class="n">PONTO 1</p><h3>Agente de IA no RD Atendimento</h3><p>O que ele faz, o que nunca faz e o briefing que vamos preencher juntos agora.</p></div>
+      <div class="card lime"><p class="n">PONTO 2</p><h3>Follow-up das 72 horas</h3><p>Cadência de 2 a 3 contatos por dia, os templates para validar e como a resposta do cliente move o card sozinha.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Integração: como funciona">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Bloco 0 · Integração</p>
+    <h2 class="titulo">Planilha LEAD SENNE V3 → RD Vendas <span class="pill ok">No ar e validada</span></h2>
+    <p class="lede">A cada 5 minutos a integração lê as linhas novas da planilha. Lead com situação <strong>aprovado</strong> vira negociação no RD Vendas, sem ninguém digitar nada.</p>
+    <div class="fluxo">
+      <div class="passo"><p class="t">1. Cadastro</p><p>Lead se cadastra no anúncio e a análise da Crefaz marca aprovado ou reprovado na planilha.</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><p class="t">2. Leitura a cada 5 min</p><p>O n8n lê as linhas novas e separa só os aprovados.</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><p class="t">3. Sem duplicar</p><p>Busca pelo CPF. Se já existe negociação aberta, atualiza os dados e deixa uma anotação.</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><p class="t">4. Negociação criada</p><p>Contato e negociação com CPF, nascimento, CEP, telefone e a origem do anúncio.</p></div>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card ok"><h3>Dados que chegam em cada negociação</h3>
+        <ul class="lista"><li>CPF, data de nascimento, CEP e telefone</li><li>Situação Crefaz e data e hora do cadastro</li><li>Origem (Facebook, Instagram), campanha, conjunto, criativo e posicionamento</li><li>fbclid, para medir campanha por campanha depois</li></ul></div>
+      <div class="card"><h3>O que já foi configurado no RD Vendas</h3>
+        <ul class="lista"><li>21 consultores da Senne com acesso</li><li>Funil "Vendas Crefaz (72h)" com as etapas D0, D1 e D2</li><li>12 motivos de perda padronizados</li><li>Retomada automática de negociações pausadas, todo dia às 7h</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Integração: números">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Bloco 0 · Validação com a sua planilha</p>
+    <h2 class="titulo"><em>100%</em> dos aprovados estão no CRM</h2>
+    <p class="lede">Conferimos linha a linha a planilha LEAD SENNE V3 contra o RD Vendas, de <strong>03/11 às 18h até 12/11 às 11h53</strong>. Nenhum aprovado ficou de fora.</p>
+    <div class="grid-4">
+      <div class="kpi"><p class="v" data-conta="12137">12.137</p><p class="d">cadastros na planilha no período</p></div>
+      <div class="kpi"><p class="v lime" data-conta="4790">4.790</p><p class="d">aprovados (39,5%)</p></div>
+      <div class="kpi"><p class="v ok"><span data-conta="4697">4.697</span> de 4.697</p><p class="d">CPFs aprovados com negociação no RD Vendas</p></div>
+      <div class="kpi"><p class="v">2,8 min</p><p class="d">tempo médio do cadastro até o CRM (90% em até 4,7 min)</p></div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <div class="barras" id="barras"></div>
+      <div class="legenda"><span><i style="background:var(--lime)"></i>Aprovados</span><span><i style="background:var(--gray2)"></i>Reprovados</span></div>
+    </div>
+    <p class="nota"><strong>93 cadastros</strong> eram a mesma pessoa se cadastrando de novo: não viraram negociação duplicada, a negociação existente foi atualizada com uma anotação. Os 7 últimos aprovados da conferência entraram na rodada seguinte, às 11h55.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Reprovados">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Bloco 0 · E quem é reprovado?</p>
+    <h2 class="titulo"><em>7.347 reprovados</em> (60,5%) ficam fora do funil do consultor</h2>
+    <p class="lede">Reprovado pela Crefaz não pode contratar agora. Colocar esse lead no CRM só tiraria o tempo do consultor de quem pode fechar. Hoje ele fica registrado na planilha, e propomos usar esse volume a favor da operação.</p>
+    <div class="grid-3">
+      <div class="card ok"><div class="card-head"><h3>Hoje</h3><span class="pill ok">Ativo</span></div>
+        <ul class="lista"><li>Não vira negociação nem recebe mensagem automática</li><li>Fica na planilha com CPF, data e campanha</li><li>Se a mesma pessoa voltar aprovada depois, entra no CRM normalmente</li></ul></div>
+      <div class="card amb"><div class="card-head"><h3>Proposta 1: anúncios</h3><span class="pill amb">Para decidir</span></div>
+        <ul class="lista"><li>Lista de reprovados como público de exclusão no Meta, para não pagar de novo por quem não contrata</li><li>Aprovados como base de público semelhante</li><li>Investimento de R$ 100 mil por mês mais focado em quem passa na análise</li></ul></div>
+      <div class="card amb"><div class="card-head"><h3>Proposta 2: nova análise</h3><span class="pill amb">Validar regra Crefaz</span></div>
+        <ul class="lista"><li>Se a Crefaz permitir nova consulta depois de um prazo, os reprovados entram numa lista para nova tentativa</li><li>Contato por e-mail ou campanha, sem ocupar o consultor</li><li>Precisamos saber: depois de quantos dias pode consultar de novo?</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 1: Agente de IA">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 1 · Agente de IA no RD Atendimento</p>
+    <h2 class="titulo">A IA faz as duas primeiras etapas do Método APPLE e <em>entrega o lead pronto</em></h2>
+    <p class="lede">O agente atende no WhatsApp a qualquer hora, faz a apresentação, descobre a motivação e trata a objeção de juros. O consultor entra para simular e fechar, já sabendo o que o cliente quer.</p>
+    <div class="grid-2">
+      <div class="card ok"><h3>O que o agente faz</h3>
+        <ul class="lista"><li><strong>Apresentação:</strong> se identifica e explica o crédito com débito na conta de luz</li><li><strong>Pesquisa:</strong> pergunta quanto o cliente precisa e para quê</li><li>Pede a fatura de energia e o documento de identidade</li><li>Responde a objeção de juros com o raciocínio aprovado por vocês</li><li>Passa para o consultor com um resumo: valor, finalidade e documentos recebidos</li></ul></div>
+      <div class="card"><h3>O que o agente nunca faz</h3>
+        <ul class="lista"><li>Prometer aprovação, valor liberado ou taxa</li><li>Simular ou fechar contrato: isso é do consultor</li><li>Pedir ou repetir dados sensíveis além do combinado</li><li>Insistir quando o cliente pede para falar com uma pessoa: transfere na hora</li></ul></div>
+    </div>
+    <div class="card lime" style="margin-top:14px;"><h3>A objeção que mais aparece, nas suas palavras</h3>
+      <p style="color:var(--white);">"O juro do produto é alto, ou o juro do Brasil é alto? Qual outra instituição libera esse crédito sem abrir conta, sem comprovante de renda e sem fiador?" O agente vai usar essa linha de raciocínio, com os textos que vocês aprovarem.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 1: o que já sabemos">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 1 · Briefing do agente</p>
+    <h2 class="titulo">O que já sabemos do kickoff e o que falta vocês decidirem</h2>
+    <p class="lede">O agente só sabe o que estiver escrito no briefing. Vamos preencher juntos agora, bloco a bloco.</p>
+    <div class="table-scroll"><table>
+      <tr><th>Bloco</th><th>Já temos</th><th>Falta decidir hoje</th></tr>
+      <tr><td class="l">1. Quem é o agente</td><td>Público classes C, D e E, pessoa física, muitos negativados e sem comprovar renda</td><td>Nome do agente, tom de voz, uso de emoji, se avisa que é IA</td></tr>
+      <tr><td class="l">2. Regras e limites</td><td>Nunca prometer aprovação; idade de 21 a 84 anos</td><td>Quando transferir, para qual equipe, horário de atendimento humano</td></tr>
+      <tr><td class="l">3. Habilidades</td><td>Método APPLE: Apresentação, Pesquisa, Possibilidades, Limpeza de objeção, Encerramento</td><td>Perguntas em ordem e o que é um lead pronto para o consultor</td></tr>
+      <tr><td class="l">4. Conhecimento</td><td>Documentos: fatura de energia e identidade. Ticket médio de R$ 400, limite até R$ 4.000</td><td>Respostas aprovadas para juros e as 15 perguntas mais frequentes</td></tr>
+      <tr><td class="l">5. Exemplos reais</td><td>-</td><td>3 conversas boas e 3 ruins do RD Atendimento</td></tr>
+      <tr><td class="l">6. Teste</td><td>-</td><td>Quem testa e aprova antes de ir ao ar, e a meta de sucesso</td></tr>
+    </table></div>
+    <a class="btn" href="https://docs.google.com/document/d/1F-GNcuBnROBzyvRoRfBdLmJNTrHUW-kydrzta7mKa-I/edit" target="_blank" rel="noopener">Abrir o briefing para preencher</a>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 2: o funil das 72h">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 2 · Follow-up das 72 horas</p>
+    <h2 class="titulo">O funil já está desenhado para a janela de 72 horas</h2>
+    <p class="lede">As etapas D0, D1 e D2 contam o tempo desde a entrada do lead. Enquanto ele não responde, a automação manda os follow-ups e avança de etapa sozinha. <strong>Quando o cliente responde, o card vai para "Em atendimento" e a cadência para.</strong></p>
+    <div class="funil">
+      <div class="etapa cad" style="--i:0">D0<small>dia da entrada</small></div>
+      <div class="etapa cad" style="--i:1">D1<small>2º dia</small></div>
+      <div class="etapa cad" style="--i:2">D2<small>3º dia</small></div>
+      <div class="etapa" style="--i:3">Em atendimento<small>cliente respondeu</small></div>
+      <div class="etapa" style="--i:4">Aguardando conta de luz<small>documentos</small></div>
+      <div class="etapa" style="--i:5">Simulação enviada<small>possibilidades</small></div>
+      <div class="etapa" style="--i:6">Objeção<small>juros</small></div>
+      <div class="etapa" style="--i:7">Fechamento<small>encerramento</small></div>
+      <div class="etapa" style="--i:8">Retomar depois<small>volta sozinho na data</small></div>
+    </div>
+    <div class="fluxo" style="margin-top:18px;">
+      <div class="passo"><p class="t">Lead aprovado entra</p><p>Negociação nasce em D0, já distribuída para o consultor.</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><p class="t">Relógio das 72h</p><p>Nos horários combinados, envia o template do momento pelo WhatsApp oficial.</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><p class="t">Cliente respondeu</p><p>Botão ou mensagem cai no RD Atendimento, que avisa o CRM e move o card.</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><p class="t">Sem resposta em 72h</p><p>Última mensagem e o card sai do funil ativo, com motivo registrado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 2: cadência">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 2 · Cadência proposta</p>
+    <h2 class="titulo"><em>8 contatos em 72 horas</em>, sempre entre 8h e 20h</h2>
+    <p class="lede">O que alinhamos no kickoff: 2 a 3 contatos por dia nos 3 primeiros dias. Cada contato tem um papel diferente, seguindo o Método APPLE.</p>
+    <div class="trilha" aria-hidden="true">
+      <div class="linha"></div>
+      <span class="ponto" style="left:1%;animation-delay:.4s"></span><span class="ponto" style="left:7%;animation-delay:.5s"></span><span class="ponto" style="left:20%;animation-delay:.6s"></span>
+      <span class="ponto" style="left:39%;animation-delay:.7s"></span><span class="ponto" style="left:46%;animation-delay:.8s"></span><span class="ponto" style="left:54%;animation-delay:.9s"></span>
+      <span class="ponto" style="left:76%;animation-delay:1s"></span><span class="ponto" style="left:89%;animation-delay:1.1s"></span>
+      <span class="marca" style="left:3%">entrada</span><span class="marca" style="left:33.3%">24h</span><span class="marca" style="left:66.6%">48h</span><span class="marca" style="left:96%">72h</span>
+    </div>
+    <div class="cad">
+      <div class="dia-col"><h3>D0 <span class="pill lime">3 contatos</span></h3>
+        <div class="toque"><p class="h">Até 15 min após a entrada</p><p>Pré-aprovação e convite para continuar</p></div>
+        <div class="toque"><p class="h">+3 horas</p><p>Pedido da conta de luz, mostrando como é simples</p></div>
+        <div class="toque"><p class="h">19h</p><p>Pesquisa: quanto precisa e para quê</p></div></div>
+      <div class="dia-col"><h3>D1 <span class="pill lime">3 contatos</span></h3>
+        <div class="toque"><p class="h">9h</p><p>Benefícios: sem comprovar renda, sem fiador, parcela na conta de luz</p></div>
+        <div class="toque"><p class="h">14h</p><p>Objeção de juros, antes que ela apareça</p></div>
+        <div class="toque"><p class="h">19h</p><p>Consultor reservado para atender</p></div></div>
+      <div class="dia-col"><h3>D2 <span class="pill lime">2 contatos</span></h3>
+        <div class="toque"><p class="h">10h</p><p>Lembrete direto, com botão de resposta rápida</p></div>
+        <div class="toque"><p class="h">17h</p><p>Última mensagem: "posso encerrar seu atendimento?"</p></div></div>
+    </div>
+    <p class="nota">Os horários são proposta para vocês ajustarem. Templates de WhatsApp precisam de aprovação da Meta antes de rodar, e cada envio tem custo por mensagem na conta do WhatsApp oficial.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 2: templates D0">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 2 · Templates para validar (1 de 3)</p>
+    <h2 class="titulo">D0: o dia em que o lead está mais quente</h2>
+    <p class="lede">Rascunhos para vocês ajustarem com o jeito de falar da Senne. <span class="var">{{1}}</span> é o primeiro nome do cliente.</p>
+    <div class="grid-3">
+      <div><p class="tel-id">D0 · 1</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">até 15 min</span></div><div class="tel-chat"><div class="bolha">Oi, <span class="var">{{1}}</span>! Aqui é da Senne, parceira Crefaz. Seu cadastro para o crédito com pagamento na conta de luz foi pré-aprovado. Quer seguir com a sua simulação agora?<span class="hora">09:12</span></div><div class="botoes"><span>Quero simular</span><span>Tenho dúvidas</span></div></div></div></div>
+      <div><p class="tel-id">D0 · 2</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">+3 horas</span></div><div class="tel-chat"><div class="bolha"><span class="var">{{1}}</span>, para liberar a sua simulação só falta uma foto da sua última conta de luz e do seu documento. Leva menos de 1 minuto. Pode mandar por aqui mesmo?<span class="hora">12:12</span></div><div class="botoes"><span>Vou enviar</span><span>Falar com consultor</span></div></div></div></div>
+      <div><p class="tel-id">D0 · 3</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">19h</span></div><div class="tel-chat"><div class="bolha"><span class="var">{{1}}</span>, me conta: quanto você está precisando e para quê? Assim o consultor já prepara a melhor opção para você.<span class="hora">19:00</span></div><div class="botoes"><span>Responder agora</span><span>Amanhã</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 2: templates D1">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 2 · Templates para validar (2 de 3)</p>
+    <h2 class="titulo">D1: benefício e objeção antes que ela apareça</h2>
+    <p class="lede">O contato das 14h usa o raciocínio que você trouxe no kickoff para a objeção de juros.</p>
+    <div class="grid-3">
+      <div><p class="tel-id">D1 · 1</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">9h</span></div><div class="tel-chat"><div class="bolha">Bom dia, <span class="var">{{1}}</span>! Lembrando que esse crédito não pede comprovante de renda, nem fiador, nem conta em banco. A parcela vem direto na sua conta de luz. Vamos continuar?<span class="hora">09:00</span></div><div class="botoes"><span>Vamos</span><span>Tenho dúvidas</span></div></div></div></div>
+      <div><p class="tel-id">D1 · 2</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">14h</span></div><div class="tel-chat"><div class="bolha"><span class="var">{{1}}</span>, muita gente pergunta dos juros. Vale comparar: qual outra opção libera crédito sem comprovar renda, sem fiador e mesmo com nome restrito? Seu consultor mostra os números na simulação, sem compromisso.<span class="hora">14:00</span></div><div class="botoes"><span>Ver simulação</span><span>Falar com consultor</span></div></div></div></div>
+      <div><p class="tel-id">D1 · 3</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">19h</span></div><div class="tel-chat"><div class="bolha"><span class="var">{{1}}</span>, deixei um consultor reservado para o seu atendimento. Quando puder, é só responder aqui que ele continua de onde paramos.<span class="hora">19:00</span></div><div class="botoes"><span>Continuar agora</span><span>Amanhã</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Ponto 2: templates D2">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Ponto 2 · Templates para validar (3 de 3)</p>
+    <h2 class="titulo">D2: lembrete direto e encerramento</h2>
+    <p class="lede">A última mensagem pergunta se pode encerrar. Quem responde "agora não" vai para "Retomar depois" com a data que escolher; quem não responde sai do funil ativo.</p>
+    <div class="grid-2">
+      <div><p class="tel-id">D2 · 1</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">10h</span></div><div class="tel-chat"><div class="bolha"><span class="var">{{1}}</span>, sua pré-aprovação ainda está aqui esperando por você. Falta pouco para ver o valor da sua simulação. Seguimos?<span class="hora">10:00</span></div><div class="botoes"><span>Seguir</span><span>Agora não</span></div></div></div></div>
+      <div><p class="tel-id">D2 · 2</p><div class="tel"><div class="tel-top"><span class="av">S</span><div><b>Senne Crédito</b><small>conta comercial</small></div><span class="quando">17h</span></div><div class="tel-chat"><div class="bolha"><span class="var">{{1}}</span>, não quero te incomodar. Posso encerrar o seu atendimento por enquanto? Se ainda tiver interesse, é só tocar em "Quero continuar".<span class="hora">17:00</span></div><div class="botoes"><span>Quero continuar</span><span>Pode encerrar</span></div></div></div></div>
+    </div>
+    <div class="card amb" style="margin-top:14px;"><div class="card-head"><h3>Precisamos de vocês</h3><span class="pill amb">Pendente do kickoff</span></div>
+      <ul class="lista"><li>Os modelos de follow-up e de objeção que a equipe já usa, para deixar os textos com a cara da Senne</li><li>Confirmar se "pré-aprovação" é a palavra certa para esse momento, pelas regras da Crefaz</li></ul></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Próximos passos">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Grupo Senne</span></div>
+    <p class="label">Próximos passos</p>
+    <h2 class="titulo">O que sai desta reunião</h2>
+    <div class="grid-2">
+      <div class="card"><h3>Grupo Senne</h3>
+        <ul class="lista"><li>Dizer quais consultores são das equipes Águias, Leões e Lobos</li><li>Enviar os modelos de follow-up e de objeção usados hoje</li><li>Completar o briefing do agente de IA (blocos 4 a 6)</li><li>Aprovar os 8 textos de follow-up</li><li>Responder: depois de quantos dias um reprovado pode ser consultado de novo?</li></ul></div>
+      <div class="card lime"><h3>AUTZ</h3>
+        <ul class="lista"><li>Criar as 3 equipes e o rodízio de leads entre os consultores</li><li>Enviar os templates aprovados para a Meta</li><li>Montar o relógio das 72h e a volta da resposta do cliente para o CRM</li><li>Configurar e testar o agente de IA com o briefing</li><li>Virar a entrada dos aprovados para o funil "Vendas Crefaz (72h)"</li></ul></div>
+    </div>
+    <p class="nota">Cronograma da implementação: semana de 17/11 equipes, funil e canal; 24/11 campos, atendimento e automação; 01/12 automação do funil; 08/12 treinamento da equipe.</p>
+  </div>
+</section>
+
+</main>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto</div>
+<nav class="barra">
+  <button id="anterior" aria-label="Anterior">‹</button>
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <span class="contador" id="contador"></span>
+  <button id="proximo" aria-label="Próximo">›</button>
+</nav>
+<script>
+(function () {
+  var dias = [['03/11',8,12],['04/11',763,1194],['05/11',742,1011],['06/11',521,1002],['07/11',502,657],['08/11',1,6],['09/11',572,893],['10/11',708,1002],['11/11',699,1123],['12/11*',274,447]];
+  var max = Math.max.apply(null, dias.map(function (d) { return d[1] + d[2]; }));
+  document.getElementById('barras').innerHTML = dias.map(function (d) {
+    var t = d[1] + d[2];
+    return '<div class="barra-dia"><span class="dia">' + d[0] + '</span><div class="trilho" style="width:' + (t / max * 100) + '%"><div class="a" style="width:' + (d[1] / t * 100) + '%"></div><div class="r" style="width:' + (d[2] / t * 100) + '%"></div></div><span class="num">' + d[1].toLocaleString('pt-BR') + ' de ' + t.toLocaleString('pt-BR') + '</span></div>';
+  }).join('') + '<p class="nota" style="margin-top:4px">* 12/11 até 11h53. 03/11 a partir das 18h.</p>';
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function contar(sl) {
+    sl.querySelectorAll('[data-conta]').forEach(function (el) {
+      var fim = +el.dataset.conta, t0 = null;
+      if (calmo) { el.textContent = fim.toLocaleString('pt-BR'); return; }
+      function passo(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(fim * (1 - Math.pow(1 - k, 3))).toLocaleString('pt-BR'); if (k < 1) requestAnimationFrame(passo); }
+      requestAnimationFrame(passo);
+    });
+  }
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    contar(slides[atual]);
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisar();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisar() {
+    var s = slides[atual];
+    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
+  window.addEventListener('resize', avisar);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+</body>
+</html>
