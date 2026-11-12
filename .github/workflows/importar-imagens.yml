@@ -1,0 +1,49 @@
+# Importa imagens públicas (ex.: arquivo do Drive compartilhado) para o pages, sem passar binário pelo MCP github.
+# Cada linha de .github/importar-imagens.txt: <url> <caminho no repo> <sha1 esperado>
+# Linhas começando com # são ignoradas. O arquivo só é gravado se o sha1 bater.
+name: Importar imagens
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/importar-imagens.txt', '.github/workflows/importar-imagens.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: importar-imagens
+  cancel-in-progress: false
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Baixar imagens
+        run: |
+          set -e
+          grep -vE '^\s*(#|$)' .github/importar-imagens.txt | while read -r url destino sha; do
+            mkdir -p "$(dirname "$destino")"
+            curl -sSfL -o /tmp/img "$url"
+            atual=$(sha1sum /tmp/img | cut -d' ' -f1)
+            if [ "$atual" != "$sha" ]; then echo "sha1 diferente em $destino: $atual"; exit 1; fi
+            if [ -f "$destino" ] && cmp -s /tmp/img "$destino"; then echo "Sem mudança: $destino"; continue; fi
+            mv /tmp/img "$destino"
+            echo "Importado: $destino"
+          done
+
+      - name: Commit e publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A
+          if git diff --cached --quiet; then echo "Nada a alterar."; exit 0; fi
+          git config user.name "autz-importar[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Imagens importadas"
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Build do Pages segue pelo push."
