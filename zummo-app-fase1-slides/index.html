@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Zummo × AUTZ · App de Oportunidades · Fase 1</title>
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
+  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+p{margin:0;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
+.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+.logo{height:24px; width:auto; display:block;}
+.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
+.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
+.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
+.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
+.lede strong{color:var(--white); font-weight:600;}
+.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
+.capa .lede{font-size:18px;}
+.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
+.meta strong{color:var(--white); font-weight:600;}
+.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
+.card.lime{border-color:rgba(233,255,74,.35);}
+.card.ok{border-color:rgba(74,222,128,.35);}
+.card.amb{border-color:rgba(251,191,36,.35);}
+.card.red{border-color:rgba(232,89,60,.35);}
+.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
+.card p{font-size:14px; color:var(--gray);}
+.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
+ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
+.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
+.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
+.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
+.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.card-head h3{margin:0;}
+.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
+.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
+.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
+.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
+.seta{align-self:center; color:var(--lime); font-weight:700;}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
+td.vp{font-weight:800; color:var(--lime); white-space:nowrap;}
+.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
+.nota strong{color:var(--white);}
+a{color:var(--lime);}
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
+.mais.visivel{display:block;}
+.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
+body{background:
+  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
+  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
+  var(--bg);}
+body::before{content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.label{display:inline-flex; align-items:center; gap:8px;}
+.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
+.card,.passo{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
+.card:hover,.passo:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
+.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
+.card.ok{box-shadow:inset 0 2px 0 var(--green);}
+.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
+.card.red{box-shadow:inset 0 2px 0 var(--red);}
+.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
+@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
+.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
+.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
+.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
+.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
+.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
+.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
+@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
+.slide.ativo .grid-3 > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .grid-3 > *:nth-child(2){animation-delay:.28s}
+.slide.ativo .grid-3 > *:nth-child(3){animation-delay:.36s}
+@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
+.table-scroll{overflow-x:auto; max-width:100%;}
+.etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin:8px 0 6px;}
+.etapas::before{content:""; position:absolute; left:12%; right:12%; top:27px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.etp{text-align:center; padding:0 10px; position:relative;}
+.etp .bola{width:56px; height:56px; margin:0 auto 12px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:var(--lime); box-shadow:0 0 0 8px rgba(233,255,74,.08); position:relative; z-index:1;}
+.etp.auto .bola{background:var(--lime); color:var(--bg2);}
+.etp h3{font-size:15px; margin-bottom:6px;}
+.etp p{font-size:13px; color:var(--gray);}
+.etp .quem{display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:rgba(127,212,255,.12); color:#7fd4ff;}
+.etp.auto .quem{background:rgba(233,255,74,.12); color:var(--lime);}
+.lado{display:grid; grid-template-columns:1.15fr .85fr; gap:22px; align-items:start;}
+.lado.inv{grid-template-columns:.85fr 1.15fr;}
+.leitura{display:flex; flex-direction:column; gap:10px;}
+.leitura .item{display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:start; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:12px 14px;}
+.leitura .num{width:30px; height:30px; border-radius:50%; background:rgba(233,255,74,.12); color:var(--lime); font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; flex:none;}
+.leitura h3{font-size:14px; margin-bottom:2px;}
+.leitura p{font-size:13px; color:var(--gray);}
+.shot{width:100%; border-radius:16px; border:1px solid var(--border-white); box-shadow:0 30px 60px -24px rgba(0,0,0,.8); display:block;}
+.shot-wrap{position:relative; display:flex; justify-content:center;}
+.rotina{display:flex; gap:14px; align-items:flex-start;}
+.rotina .rel{flex:none; width:64px; height:64px; border-radius:16px; background:var(--bg2); border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--lime); font-weight:800; font-size:16px; line-height:1;}
+.rotina .rel small{font-size:9.5px; color:var(--gray); font-weight:600; margin-top:4px;}
+.rotina h3{font-size:15px; margin-bottom:4px;}
+.rotina p{font-size:13.5px; color:var(--gray);}
+.pulso{animation:respira 2.4s ease-in-out infinite;}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(233,255,74,.0)} 50%{box-shadow:0 0 0 8px rgba(233,255,74,.10)}}
+.capa-vis{position:relative; display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:340px; margin-left:auto; width:100%;}
+.mini{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; animation:entra .6s both;}
+.mini:nth-child(2){animation-delay:.25s; margin-left:22px;} .mini:nth-child(3){animation-delay:.45s; margin-left:44px;}
+.mini .ico{width:34px; height:34px; border-radius:10px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center; flex:none;}
+.mini b{font-size:13.5px; display:block;}
+.mini small{font-size:12px; color:var(--gray);}
+.ico svg{width:18px; height:18px;}
+.badge-novo{display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:3px 8px; border-radius:6px; background:var(--lime); color:var(--bg2); margin-left:8px; vertical-align:middle;}
+.preco-box{display:flex; align-items:baseline; gap:10px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:18px 22px; box-shadow:0 0 50px -18px rgba(233,255,74,.3);}
+.preco-box .v{font-size:clamp(26px,3.6vw,40px); font-weight:800; color:var(--lime);}
+.preco-box .u{font-size:13px; color:var(--gray);}
+.contato-box{display:flex; flex-direction:column; gap:10px; background:var(--surface); border:2px solid var(--lime); border-radius:16px; padding:24px 28px;}
+.contato-box .linha{font-size:14px; color:rgba(255,255,255,.85); display:flex; align-items:center; gap:10px;}
+.contato-box .linha svg{width:16px; height:16px; color:var(--lime); flex:none;}
+.contato-box a{font-weight:600; text-decoration:underline;}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none !important; transition:none !important;} }
+@media (min-width:761px) and (max-height:820px){
+  .slide{padding:24px 48px 16px;}
+  .topo{margin-bottom:12px;}
+  .titulo{font-size:25px; margin-bottom:6px;}
+  .lede{font-size:14.5px; margin-bottom:14px;}
+  .card{padding:14px 18px;}
+  .card h3{font-size:15px; margin-bottom:6px;}
+  ul.lista{gap:5px;}
+  ul.lista li{font-size:13.5px;}
+  .nota{margin-top:8px; font-size:12px;}
+  td{padding:7px 12px 7px 0; font-size:13px;}
+  .etp .bola{width:48px; height:48px; font-size:17px;} .etapas::before{top:23px;}
+  .leitura .item{padding:9px 12px;}
+}
+@media (max-width:900px){ .lado,.lado.inv{grid-template-columns:1fr;} }
+@media (max-width:760px){
+  .slide{padding:24px 18px 20px;}
+  .titulo{font-size:23px;}
+  .capa .titulo{font-size:34px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica{display:none;}
+  .seta{display:none;}
+  .capa-grid{grid-template-columns:1fr; gap:20px;}
+  .etapas{grid-template-columns:1fr 1fr; row-gap:22px;} .etapas::before{display:none;}
+  .capa-vis{margin:0 auto;} .mini:nth-child(2),.mini:nth-child(3){margin-left:0;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais{display:none;}
+}
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+
+<section class="slide capa" data-titulo="Capa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <div class="capa-grid">
+      <div>
+        <p class="label">Proposta de desenvolvimento · Fase 1</p>
+        <h1 class="titulo">Sua equipe comercial,<br>sempre com <em>a oportunidade na mão</em>.</h1>
+        <p class="lede">App próprio da Zummo que centraliza oportunidades, catálogo, tabela de preço e vídeos no celular do representante, e mantém o RD Vendas atualizado sem digitação manual.</p>
+        <div class="meta"><span>Cliente: <strong>Zummo</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Novembro de 2026</span></div>
+        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </div>
+      <div class="capa-vis" aria-hidden="true">
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><div><b>App completo</b><small>de propriedade da Zummo</small></div></div>
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><div><b>Sincronizado com o RD Vendas</b><small>via API bidirecional</small></div></div>
+        <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>RD Vendas + RD Atendimento</b><small>bônus incluso no projeto</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O cenário">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">O cenário da Zummo</p>
+    <h2 class="titulo">O representante tem mil ferramentas.<br>O CRM não pode ser mais uma.</h2>
+    <p class="lede">Cada representante atende mais de uma pasta, cada fábrica tem seu próprio sistema. O dia a dia dele é vender, não alimentar CRM.</p>
+    <div class="grid-2">
+      <div class="card red"><h3>O lead quebra no meio do caminho</h3><p>Se o cliente não clicar no link para acionar o representante, a conversa some. Ninguém sabe se ele recebeu nem se tentou contato.</p></div>
+      <div class="card red"><h3>CRM não é prioridade</h3><p>Representante com mais de uma pasta só atualiza o CRM se sobrar tempo depois de vender e tirar pedido.</p></div>
+      <div class="card red"><h3>Tabela de preço vazando</h3><p>Catálogo e tabela viram PDF e circulam por link. Já aconteceu de link antigo liberar tabela desatualizada.</p></div>
+      <div class="card red"><h3>Sem visão de quem sumiu</h3><p>Não dá para saber quem está com oportunidade parada há dias ou quem não abre o sistema.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="A solução">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">A solução</p>
+    <h2 class="titulo">Dois passos do representante, dois automáticos</h2>
+    <p class="lede">O app centraliza o que ele já usa (catálogo, tabela, vídeos) e soma as oportunidades do RD Vendas, prontas pra ele agir, sem digitar nada no CRM.</p>
+    <div class="etapas">
+      <div class="etp auto"><div class="bola">1</div><h3>Lead chega</h3><p>Cai no RD Vendas e é roteado por DDD e UF até o representante certo.</p><span class="quem">Automático</span></div>
+      <div class="etp auto"><div class="bola">2</div><h3>RD Atendimento aciona</h3><p>Dispara WhatsApp com atalho que abre o app direto na oportunidade.</p><span class="quem">Automático</span></div>
+      <div class="etp"><div class="bola">3</div><h3>Representante atualiza</h3><p>Toca um botão de status: tentou, conseguiu, ganhou ou perdeu.</p><span class="quem">Representante</span></div>
+      <div class="etp auto"><div class="bola">4</div><h3>RD Vendas atualiza</h3><p>A negociação muda sozinha. Ninguém abre o CRM.</p><span class="quem">Automático</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Telas do app">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Fase 1 · Telas do app</p>
+    <h2 class="titulo">Tudo que ele usa hoje, mais o que faltava</h2>
+    <div class="grid-3">
+      <div class="card lime"><p class="n">ACESSO</p><h3>Login com 2FA</h3><p>Vinculado ao login do representante no RD Vendas, com código de segurança a cada acesso.</p></div>
+      <div class="card lime"><p class="n">OPORTUNIDADES</p><h3>Minhas Oportunidades · lista</h3><p>Toda oportunidade atribuída a ele, com destaque para as mais novas e as mais paradas.</p></div>
+      <div class="card lime"><p class="n">OPORTUNIDADES</p><h3>Minhas Oportunidades · detalhe</h3><p>Histórico do cliente, botão de status e atalho direto para o WhatsApp.</p></div>
+      <div class="card"><h3>Catálogo</h3><p>PDFs migrados pra dentro do app, acessados só por quem está logado.</p></div>
+      <div class="card"><h3>Tabela de preço</h3><p>Sempre a versão atual, sem o risco do link antigo circulando por fora.</p></div>
+      <div class="card"><h3>Vídeos das máquinas</h3><p>Vídeos de operação e de clientes usando o equipamento, organizados dentro do app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Mockup · Login e Oportunidades">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Visual ilustrativo</p>
+    <h2 class="titulo">Login vinculado ao RD Vendas e Minhas Oportunidades em destaque</h2>
+    <div class="shot-wrap"><img class="shot" style="max-width:720px" src="app-login-oportunidades.png" alt="Mockup do app Zummo: tela de login e tela inicial com o card Minhas Oportunidades"></div>
+    <p class="nota">Mockup ilustrativo gerado para a proposta. A identidade visual final segue a marca da Zummo.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Sincronização com o RD Vendas">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Fase 1 · Sincronização</p>
+    <h2 class="titulo">Um toque no app, o CRM se atualiza sozinho</h2>
+    <p class="lede">O representante não digita nada no RD Vendas. API bidirecional nos dois sentidos, sem polling.</p>
+    <div class="fluxo">
+      <div class="passo"><p class="t">App → RD Vendas</p><p>A cada ação do representante (status, contato), o app notifica o CRM por webhook.</p></div>
+      <span class="seta">⇄</span>
+      <div class="passo"><p class="t">RD Vendas → App</p><p>A cada nova oportunidade atribuída, o CRM notifica o app na hora.</p></div>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card"><div class="rotina"><span class="rel pulso">tempo<small>real</small></span><div><h3>Webhook, não polling</h3><p>Nenhum dos dois lados espera. A atualização chega assim que acontece.</p></div></div></div>
+      <div class="card"><div class="rotina"><span class="rel">0<small>digitação</small></span><div><h3>Sem CRM aberto</h3><p>O representante nunca precisa abrir o RD Vendas para registrar o andamento.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Painel administrativo">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Fase 1 · Painel administrativo</p>
+    <h2 class="titulo">Quem vende muito, e quem sumiu há 12 dias</h2>
+    <div class="lado">
+      <div class="shot-wrap"><img class="shot" src="app-painel-admin.png" alt="Mockup do painel administrativo do app Zummo"></div>
+      <div class="leitura">
+        <div class="item"><span class="num">1</span><div><h3>Cadastro e licenças</h3><p>Cada representante usa o mesmo e-mail do login no RD Vendas.</p></div></div>
+        <div class="item"><span class="num">2</span><div><h3>Oportunidades em aberto</h3><p>Quantas negociações cada um está segurando agora.</p></div></div>
+        <div class="item"><span class="num">3</span><div><h3>Último login</h3><p>Em vermelho quando passa do limite combinado, pra gestão ligar antes de esfriar.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Arquitetura e segurança">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Arquitetura e segurança</p>
+    <h2 class="titulo">Resolvendo o problema do link que não devia mais funcionar</h2>
+    <div class="grid-2">
+      <div class="card"><h3>Armazenamento com token rotativo</h3><p>Catálogo e tabela ficam num bucket na nuvem. O acesso exige um token vinculado ao login, renovado todo dia. Link de ontem para de funcionar hoje.</p></div>
+      <div class="card"><h3>API bidirecional com o RD Vendas</h3><p>Webhooks em tempo real nos dois sentidos, sem fila de espera.</p></div>
+    </div>
+    <div class="card" style="margin-top:14px;"><h3>Web app, não loja de aplicativo</h3><p>Acesso por link, sem publicação na App Store ou Play Store: o representante abre no navegador e salva como atalho na tela inicial.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Bônus incluído">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Bônus incluído</p>
+    <h2 class="titulo">O RD Vendas e o RD Atendimento entram de graça nessa</h2>
+    <p class="lede">Para o app funcionar de ponta a ponta, os dois precisam estar implementados corretamente. Esse trabalho não é cobrado à parte.</p>
+    <div class="grid-2">
+      <div class="card ok"><div class="card-head"><h3>RD Vendas</h3><span class="pill ok">Bônus</span></div><p>Funil de oportunidades, campos personalizados, roteamento por UF/DDD e regras de atribuição.</p></div>
+      <div class="card ok"><div class="card-head"><h3>RD Atendimento</h3><span class="pill ok">Bônus</span></div><p>Chatbot que identifica o representante responsável e dispara o WhatsApp com o atalho pro app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Cronograma">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Escopo e cronograma</p>
+    <h2 class="titulo">Da tela de login ao representante usando de verdade</h2>
+    <div class="table-scroll"><table>
+      <tr><th>Semana</th><th>Entrega</th><th>Horas</th></tr>
+      <tr><td class="l">S1</td><td>Kickoff, mapeamento de representantes e arquitetura</td><td>10h</td></tr>
+      <tr><td class="l">S2</td><td>Login com 2FA e painel administrativo</td><td>28h</td></tr>
+      <tr><td class="l">S3-S4</td><td>Minhas Oportunidades (lista, detalhe, status, WhatsApp)</td><td>36h</td></tr>
+      <tr><td class="l">S4-S5</td><td>Catálogo, tabela de preço, vídeos e bucket seguro</td><td>24h</td></tr>
+      <tr><td class="l">S5</td><td>Integração bidirecional com o RD Vendas + bônus RD Vendas/RD Atendimento</td><td>20h</td></tr>
+      <tr><td class="l">S6</td><td>Testes, treinamento da equipe comercial e go-live</td><td>12h</td></tr>
+    </table></div>
+    <p class="nota">Cerca de <strong>130 horas em 6 semanas</strong>, a partir do kickoff e das credenciais liberadas. Estimativa sujeita a confirmação conforme volume de representantes.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Investimento">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Investimento</p>
+    <h2 class="titulo">Um app seu, sem mensalidade de plataforma</h2>
+    <p class="lede">O app é de propriedade da Zummo. Cobre o desenvolvimento completo e a sustentação contínua, sem taxa por representante.</p>
+    <div class="grid-2">
+      <div class="preco-box"><span class="v">R$ 18.900</span><span class="u">setup único<br>desenvolvimento completo</span></div>
+      <div class="preco-box"><span class="v">R$ 890</span><span class="u">por mês<br>sustentação, só 30 dias após a entrega</span></div>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card"><h3>Formas de pagamento</h3><p>Setup em 3x sem juros no boleto ou 12x no cartão (sujeito a juros da operadora).</p></div>
+      <div class="card amb"><h3>Fora do escopo desta fase</h3><p>Integração direta com o Protheus, publicação em loja de aplicativo e licenças do RD Station.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide capa" data-titulo="Próximos passos">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Zummo · App de Oportunidades · Fase 1</span></div>
+    <p class="label">Próximos passos</p>
+    <h2 class="titulo" style="font-size:40px;">Vamos colocar o app<br>na mão de quem vende?</h2>
+    <p class="lede">Com a proposta aprovada, a AUTZ confirma a lista de representantes e as regiões com a Zummo e inicia pelo login e pelo painel administrativo.</p>
+    <div class="contato-box" style="max-width:380px;">
+      <div class="linha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (16) 99289-6549</div>
+      <div class="linha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> mk@autz.com.br</div>
+      <div class="linha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <a href="https://autz.com.br/agenda-online-mika/">Agende uma reunião aqui</a></div>
+    </div>
+    <p class="nota" style="margin-top:20px;">© 2026 AUTZ Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
+  </div>
+</section>
+
+</main>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto</div>
+<nav class="barra">
+  <button id="anterior" aria-label="Anterior">‹</button>
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <span class="contador" id="contador"></span>
+  <button id="proximo" aria-label="Próximo">›</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisar();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisar() {
+    var s = slides[atual];
+    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
+  window.addEventListener('resize', avisar);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+</body>
+</html>
