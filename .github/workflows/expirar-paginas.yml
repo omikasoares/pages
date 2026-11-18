@@ -2,12 +2,12 @@
 # Roda de hora em hora e também à mão (Actions > Expirar propostas (7 dias) > Run workflow).
 # Regra completa em .github/scripts/expirar.py e .github/PUBLICACAO.md. Em resumo:
 # - só proposta entra na regra (proposta-*, adz-demarchi-target-rdstation, zummo-app-fase1, ou tipo "proposta" no published.json);
-# - propostas novas (published.json, criadas depois de CORTE) sairiam do ar depois de 7 dias;
-# - nada do que já estava no repo antes de 18/11/2026 14:00 é apagado (legado: DELETE_LEGACY=false);
-# - assets/, .github/ e arquivos soltos da raiz nunca são apagados;
+# - propostas novas (published.json, criadas depois de CORTE) trocam o conteúdo pela página de validade encerrada depois de 7 dias;
+# - nada do que já estava no repo antes de 18/11/2026 14:00 é alterado (legado: DELETE_LEGACY=false);
+# - assets/, .github/ e arquivos soltos da raiz nunca são alterados;
 # - a cada execução grava o relatório (resumo da execução e artifact relatorio-expiracao);
 # - também garante a meta robots noindex,nofollow em toda página HTML (GARANTIR_NOINDEX).
-# DRY-RUN obrigatório até o Mika confirmar a remoção: lista o que sairia, não apaga nada.
+# DRY-RUN obrigatório até o Mika confirmar: lista o que seria trocado, não altera nada no site.
 name: Expirar propostas (7 dias)
 
 on:
@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Só listar, sem apagar nada'
+        description: 'Só listar, sem alterar o site'
         type: boolean
         default: true
 
@@ -30,9 +30,9 @@ concurrency:
 
 env:
   HORAS: '168'
-  # propostas novas (com published.json, criadas depois de CORTE) saem do ar sozinhas, quando o dry-run for desligado
+  # propostas novas (com published.json, criadas depois de CORTE) trocam o conteúdo, quando o dry-run for desligado
   EXPIRAR_NOVAS: 'true'
-  # true = não apaga nada, só lista. Fica true até o Mika confirmar a remoção automática.
+  # true = não altera nada no site, só lista. Fica true até o Mika confirmar a troca automática.
   # Depois do OK, pode trocar por:
   # DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
   DRY_RUN: 'true'
@@ -52,7 +52,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Listar pastas e expirar propostas vencidas
+      - name: Listar pastas e trocar propostas vencidas
         id: expirar
         run: python3 .github/scripts/expirar.py
 
@@ -72,13 +72,13 @@ jobs:
         if: env.DRY_RUN != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          REMOVIDAS: ${{ steps.expirar.outputs.removidas }}
+          SUBSTITUIDAS: ${{ steps.expirar.outputs.substituidas }}
         run: |
           git add -A
           if git diff --cached --quiet; then echo "Nada a alterar."; exit 0; fi
           git config user.name "autz-expirar[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$REMOVIDAS" ]; then MSG="Expira após 7 dias: $REMOVIDAS"; else MSG="Meta robots noindex nas páginas novas"; fi
+          if [ -n "$SUBSTITUIDAS" ]; then MSG="Proposta fora da validade: $SUBSTITUIDAS"; else MSG="Meta robots noindex nas páginas novas"; fi
           git commit -q -m "$MSG"
           git pull --rebase -q origin main
           git push origin HEAD:main

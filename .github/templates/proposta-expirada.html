@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+  <title>Esta proposta está fora da validade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --petroleo: #00272C;
+      --lime: #E9FF4A;
+      --branco: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: var(--petroleo);
+      color: var(--branco);
+      font-family: Poppins, Arial, Helvetica, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+    main {
+      width: 100%;
+      max-width: 640px;
+      text-align: center;
+    }
+    .logo {
+      display: block;
+      width: 148px;
+      height: auto;
+      margin: 0 auto 40px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 36px;
+    }
+    .contato {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .botao {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--petroleo);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1;
+      padding: 16px 28px;
+      border-radius: 999px;
+    }
+    .email {
+      color: var(--branco);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--lime);
+      padding-bottom: 2px;
+    }
+    .site {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+    }
+    .site:hover, .email:hover { color: var(--lime); }
+    @media (max-width: 620px) {
+      h1 { font-size: 26px; }
+      .lead { font-size: 16px; }
+      .logo { width: 128px; margin-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="/assets/autz-logo-white.png" width="148" height="55" alt="AUTZ">
+    <h1>Esta proposta está fora da validade.</h1>
+    <p class="lead">Fale com a AUTZ para retomar o assunto.</p>
+    <div class="contato">
+      <a class="botao" href="mailto:contato@autz.com.br">Fale com a AUTZ</a>
+      <a class="email" href="mailto:contato@autz.com.br">contato@autz.com.br</a>
+      <a class="site" href="https://autz.com.br">autz.com.br</a>
+    </div>
+  </main>
+</body>
+</html>

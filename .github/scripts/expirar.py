@@ -9,30 +9,36 @@ Data de publicação de cada pasta da raiz:
   1. <pasta>/published.json -> {"published_at": "2026-11-18T14:30:00-03:00", "tipo": "proposta", "expira": true}
   2. sem published.json: data do primeiro commit que criou a pasta (só para listar).
 
-Só apaga uma pasta quando TUDO isto vale:
+Quando uma proposta vence, o script NÃO apaga a pasta e NÃO muda a URL.
+Ele troca o conteúdo publicado por a página .github/templates/proposta-expirada.html
+(index.html com noindex) e um published.json com status "expirada".
+O conteúdo original sai do site, mas permanece no histórico do Git.
+
+A troca só acontece quando TUDO isto vale:
   - a pasta é proposta (published.json com tipo "proposta", slug proposta-*,
     ou slug na lista SLUGS_PROPOSTA: adz-demarchi-target-rdstation, zummo-app-fase1);
   - published.json com published_at válido e expira diferente de false
     (propostas novas, depois de CORTE);
   - passaram HORAS (168, 7 dias) desde published_at;
-  - EXPIRAR_NOVAS=true e DRY_RUN=false.
+  - EXPIRAR_NOVAS=true e DRY_RUN=false;
+  - a pasta ainda não está com status "expirada".
 
-Até o Mika confirmar, o workflow vai com DRY_RUN=true e não apaga nada.
-Pastas antigas (legado) só seriam apagadas com DELETE_LEGACY=true e DRY_RUN_LEGACY=false,
+Até o Mika confirmar, o workflow vai com DRY_RUN=true e não altera nada no site.
+Pastas antigas (legado) só seriam trocadas com DELETE_LEGACY=true e DRY_RUN_LEGACY=false,
 e mesmo assim só se forem proposta. Diagnóstico, e-mail, reunião e outro nunca expiram.
-Nunca apaga assets/, pastas que começam com ponto nem arquivos soltos da raiz.
+Nunca mexe em assets/, pastas que começam com ponto nem arquivos soltos da raiz.
 
 Variáveis: HORAS (168), EXPIRAR_NOVAS (true), DRY_RUN (true), DELETE_LEGACY (false),
 DRY_RUN_LEGACY (true), CORTE (ISO 8601), RELATORIO_DIR (relatorio-expiracao).
 Grava RELATORIO_DIR/relatorio.md e relatorio.csv e, no Actions, o resumo da execução.
 """
-import csv, html, json, os, pathlib, re, subprocess, sys
+import csv, html, json, os, pathlib, re, shutil, subprocess, sys
 from datetime import datetime, timedelta, timezone
 
 BRT = timezone(timedelta(hours=-3))
 PROTEGIDAS = {"assets"}
-# propostas cujo slug não começa com proposta- (título também conta)
 SLUGS_PROPOSTA = {"adz-demarchi-target-rdstation", "zummo-app-fase1"}
+MODELO = pathlib.Path(".github/templates/proposta-expirada.html")
 
 
 def flag(nome, padrao):
@@ -96,13 +102,55 @@ def ler_meta(pasta):
         return None, None
     try:
         meta = json.loads(p.read_text(encoding="utf-8"))
-        return meta, datetime.fromisoformat(meta["published_at"])
+        return meta, datetime.fromisoformat(meta["published_at"]) if meta.get("published_at") else None
     except Exception as e:
         return {"erro": str(e)[:120]}, None
 
 
+def ja_expirada(meta):
+    return bool(meta) and "erro" not in meta and meta.get("status") == "expirada"
+
+
+def substituir_por_pagina_expirada(pasta, meta, publicada, criada):
+    """Troca o conteúdo publicado da pasta pela página de validade encerrada.
+
+    Arquivos atuais saem do working tree (e, no commit da Action, do site).
+    O original permanece no histórico do Git.
+    """
+    modelo = MODELO.read_text(encoding="utf-8")
+    raiz = pathlib.Path(pasta)
+    rastreados = git("ls-files", "-z", "--", pasta).split("\0")
+    rastreados = [x for x in rastreados if x]
+    if rastreados:
+        git("rm", "-q", "-r", "--ignore-unmatch", "--", pasta)
+    if raiz.exists():
+        for filho in raiz.iterdir():
+            if filho.is_dir():
+                shutil.rmtree(filho)
+            else:
+                filho.unlink()
+    else:
+        raiz.mkdir(parents=True, exist_ok=True)
+    (raiz / "index.html").write_text(modelo, encoding="utf-8")
+    origem = publicada or criada
+    novo = {
+        "published_at": origem.isoformat() if origem else AGORA.astimezone(BRT).isoformat(),
+        "tipo": "proposta",
+        "expira": True,
+        "status": "expirada",
+        "expirada_em": AGORA.astimezone(BRT).isoformat(),
+    }
+    if meta and "erro" not in meta:
+        if meta.get("publicado_por"):
+            novo["publicado_por"] = meta["publicado_por"]
+        if meta.get("published_at"):
+            novo["published_at"] = meta["published_at"]
+    (raiz / "published.json").write_text(json.dumps(novo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    git("add", "--", f"{pasta}/index.html", f"{pasta}/published.json")
+
+
 def main():
-    linhas, remover = [], []
+    linhas, trocadas = [], []
     for d in sorted(x for x in os.listdir(".") if os.path.isdir(x)):
         if d.startswith("."):
             continue
@@ -119,22 +167,26 @@ def main():
             acao = "protegida"
         elif not proposta:
             acao = "não expira (não é proposta)"
+        elif ja_expirada(meta):
+            acao = "já substituída (fora da validade)"
         elif nova:
             if meta.get("expira") is False:
                 acao = "mantida (não expira)"
             elif not passou:
                 acao = "no ar (dentro do prazo de 7 dias)"
             elif EXPIRAR_NOVAS and not DRY_RUN:
-                acao = "REMOVIDA"
-                remover.append(d)
+                substituir_por_pagina_expirada(d, meta, publicada, criada)
+                acao = "SUBSTITUÍDA (fora da validade)"
+                trocadas.append(d)
             else:
-                acao = "removeria (dry-run, 7 dias)"
+                acao = "substituiria por página de validade encerrada (dry-run)"
         else:
             if passou and DELETE_LEGACY and not DRY_RUN_LEGACY and not DRY_RUN:
-                acao = "REMOVIDA (legado)"
-                remover.append(d)
+                substituir_por_pagina_expirada(d, meta, publicada, criada)
+                acao = "SUBSTITUÍDA (legado, fora da validade)"
+                trocadas.append(d)
             elif passou:
-                acao = "legado: removeria se ligado (desligado)"
+                acao = "legado: substituiria por página de validade encerrada se ligado (desligado)"
             else:
                 acao = "legado: dentro do prazo de 7 dias"
         linhas.append({
@@ -149,9 +201,6 @@ def main():
             "erro_published_json": (meta or {}).get("erro", "") if meta else "",
         })
 
-    for d in remover:
-        git("rm", "-r", "-q", "--", d)
-
     SAIDA.mkdir(parents=True, exist_ok=True)
     campos = list(linhas[0].keys()) if linhas else []
     with open(SAIDA / "relatorio.csv", "w", newline="", encoding="utf-8") as f:
@@ -163,8 +212,8 @@ def main():
         f"Execução: {AGORA.astimezone(BRT).strftime('%d/%m/%Y %H:%M')} (America/Sao_Paulo). "
         f"EXPIRAR_NOVAS={str(EXPIRAR_NOVAS).lower()}, DRY_RUN={str(DRY_RUN).lower()}, "
         f"DELETE_LEGACY={str(DELETE_LEGACY).lower()}, DRY_RUN_LEGACY={str(DRY_RUN_LEGACY).lower()}, CORTE={CORTE.isoformat()}.\n\n"
-        f"Pastas: {len(linhas)}. Removidas nesta execução: {len(remover)}"
-        + (f" ({', '.join(remover)})" if remover else "") + ".\n\n"
+        f"Pastas: {len(linhas)}. Substituídas nesta execução: {len(trocadas)}"
+        + (f" ({', '.join(trocadas)})" if trocadas else "") + ".\n\n"
     )
     tab = (
         "| Pasta | Publicada em | Origem da data | Idade (h) | Passou de 7 dias | "
@@ -182,14 +231,14 @@ def main():
             f.write(md)
     print(cab.strip())
     propostas = [l for l in linhas if l["classificacao"] == "proposta"]
-    vencidas = [l for l in propostas if l["passou_7d"] == "sim"]
-    print(f"Propostas: {len(propostas)}. Já passaram de 7 dias: {len(vencidas)}"
-          + (": " + ", ".join(l["slug"] for l in vencidas) if vencidas else ".") )
+    vencidas = [l for l in propostas if l["passou_7d"] == "sim" and not l["acao"].startswith("já substituída")]
+    print(f"Propostas: {len(propostas)}. Já passaram de 7 dias (ainda no conteúdo original): {len(vencidas)}"
+          + (": " + ", ".join(l["slug"] for l in vencidas) if vencidas else "."))
     for l in propostas:
         print(f"  - {l['slug']}: {l['publicada_em']} ({l['origem_data']}, {l['idade_horas']}h, {l['acao']})")
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-            f.write(f"removidas={' '.join(remover)}\n")
+            f.write(f"substituidas={' '.join(trocadas)}\n")
 
 
 if __name__ == "__main__":
