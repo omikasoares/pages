@@ -14,19 +14,23 @@ Ele troca o conteúdo publicado por a página .github/templates/proposta-expirad
 (index.html com noindex) e um published.json com status "expirada".
 O conteúdo original sai do site, mas permanece no histórico do Git.
 
-A troca só acontece quando TUDO isto vale:
+A troca automática acontece quando TUDO isto vale:
   - a pasta é proposta (published.json com tipo "proposta", slug proposta-*,
     ou slug na lista SLUGS_PROPOSTA: adz-demarchi-target-rdstation, zummo-app-fase1);
-  - published.json com published_at válido e expira diferente de false
-    (propostas novas, depois de CORTE);
-  - passaram HORAS (168, 7 dias) desde published_at;
+  - expira diferente de false;
+  - passaram HORAS (168, 7 dias) desde published_at ou, se não houver, do primeiro commit;
+  - o prazo de 7 dias termina depois do CORTE (se já tinha vencido no CORTE, é legado
+    e só sai com DELETE_LEGACY=true);
   - EXPIRAR_NOVAS=true e DRY_RUN=false;
   - a pasta ainda não está com status "expirada".
 
-Até o Mika confirmar, o workflow vai com DRY_RUN=true e não altera nada no site.
-Pastas antigas (legado) só seriam trocadas com DELETE_LEGACY=true e DRY_RUN_LEGACY=false,
-e mesmo assim só se forem proposta. Diagnóstico, e-mail, reunião e outro nunca expiram.
-Nunca mexe em assets/, pastas que começam com ponto nem arquivos soltos da raiz.
+Nas execuções agendadas, DRY_RUN=false: propostas que vencem depois do CORTE
+são trocadas automaticamente ao completar 168 horas (mesmo as publicadas antes do CORTE,
+se o prazo de 7 dias ainda não tinha acabado no CORTE).
+Pastas já vencidas no CORTE (legado, ex.: proposta-integracao-rd-cvcrm) só seriam
+trocadas com DELETE_LEGACY=true e DRY_RUN_LEGACY=false. Diagnóstico, e-mail, reunião
+e outro nunca expiram. Nunca mexe em assets/, pastas que começam com ponto nem
+arquivos soltos da raiz.
 
 Variáveis: HORAS (168), EXPIRAR_NOVAS (true), DRY_RUN (true), DELETE_LEGACY (false),
 DRY_RUN_LEGACY (true), CORTE (ISO 8601), RELATORIO_DIR (relatorio-expiracao).
@@ -161,26 +165,28 @@ def main():
         passou = idade is not None and idade >= HORAS
         tipo = (meta or {}).get("tipo") if meta and "erro" not in meta else None
         classe = classificar(d, titulo(d), tipo)
-        nova = bool(publicada) and criada is not None and criada >= CORTE
         proposta = eh_proposta(classe, meta)
+        # Legado protegido: proposta cujo prazo de 7 dias já tinha acabado no CORTE.
+        # Ex.: proposta-integracao-rd-cvcrm. As que ainda estavam no prazo no CORTE
+        # (adz-demarchi, zummo, glauciane) seguem a troca automática.
+        vencida_no_corte = data is not None and (data + timedelta(hours=HORAS)) <= CORTE
+        if d in PROTEGIDAS:
+            grupo = "protegida"
+        elif not proposta:
+            grupo = "nao-expira"
+        elif vencida_no_corte:
+            grupo = "legado"
+        else:
+            grupo = "automatica"
         if d in PROTEGIDAS:
             acao = "protegida"
         elif not proposta:
             acao = "não expira (não é proposta)"
         elif ja_expirada(meta):
             acao = "já substituída (fora da validade)"
-        elif nova:
-            if meta.get("expira") is False:
-                acao = "mantida (não expira)"
-            elif not passou:
-                acao = "no ar (dentro do prazo de 7 dias)"
-            elif EXPIRAR_NOVAS and not DRY_RUN:
-                substituir_por_pagina_expirada(d, meta, publicada, criada)
-                acao = "SUBSTITUÍDA (fora da validade)"
-                trocadas.append(d)
-            else:
-                acao = "substituiria por página de validade encerrada (dry-run)"
-        else:
+        elif (meta or {}).get("expira") is False:
+            acao = "mantida (não expira)"
+        elif grupo == "legado":
             if passou and DELETE_LEGACY and not DRY_RUN_LEGACY and not DRY_RUN:
                 substituir_por_pagina_expirada(d, meta, publicada, criada)
                 acao = "SUBSTITUÍDA (legado, fora da validade)"
@@ -189,6 +195,15 @@ def main():
                 acao = "legado: substituiria por página de validade encerrada se ligado (desligado)"
             else:
                 acao = "legado: dentro do prazo de 7 dias"
+        else:
+            if not passou:
+                acao = "no ar (dentro do prazo de 7 dias)"
+            elif EXPIRAR_NOVAS and not DRY_RUN:
+                substituir_por_pagina_expirada(d, meta, publicada, criada)
+                acao = "SUBSTITUÍDA (fora da validade)"
+                trocadas.append(d)
+            else:
+                acao = "substituiria por página de validade encerrada (dry-run)"
         linhas.append({
             "slug": d,
             "origem_data": "published.json" if publicada else "primeiro commit",
@@ -196,7 +211,7 @@ def main():
             "idade_horas": round(idade, 1) if idade is not None else "",
             "passou_7d": "sim" if passou else "não",
             "classificacao": classe,
-            "grupo": "nova" if nova else "legado",
+            "grupo": grupo,
             "acao": acao,
             "erro_published_json": (meta or {}).get("erro", "") if meta else "",
         })

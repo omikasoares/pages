@@ -7,7 +7,7 @@
 # - assets/, .github/ e arquivos soltos da raiz nunca são alterados;
 # - a cada execução grava o relatório (resumo da execução e artifact relatorio-expiracao);
 # - também garante a meta robots noindex,nofollow em toda página HTML (GARANTIR_NOINDEX).
-# DRY-RUN obrigatório até o Mika confirmar: lista o que seria trocado, não altera nada no site.
+# Troca automática ligada para propostas novas (depois de CORTE, 7 dias). Legado continua desligado.
 name: Expirar propostas (7 dias)
 
 on:
@@ -32,10 +32,9 @@ env:
   HORAS: '168'
   # propostas novas (com published.json, criadas depois de CORTE) trocam o conteúdo, quando o dry-run for desligado
   EXPIRAR_NOVAS: 'true'
-  # true = não altera nada no site, só lista. Fica true até o Mika confirmar a troca automática.
-  # Depois do OK, pode trocar por:
-  # DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
-  DRY_RUN: 'true'
+  # Automatico: nas execuções agendadas é false (troca propostas novas vencidas).
+  # Na execução manual, o campo dry_run (padrão true) ainda permite só listar.
+  DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
   # pastas antigas: desligado até o Mika confirmar
   DELETE_LEGACY: 'false'
   DRY_RUN_LEGACY: 'true'
