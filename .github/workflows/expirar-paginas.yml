@@ -1,0 +1,85 @@
+# Expiração automática das propostas publicadas no pages (7 dias / 168 horas).
+# Roda de hora em hora e também à mão (Actions > Expirar propostas (7 dias) > Run workflow).
+# Regra completa em .github/scripts/expirar.py e .github/PUBLICACAO.md. Em resumo:
+# - só proposta entra na regra (proposta-*, adz-demarchi-target-rdstation, zummo-app-fase1, ou tipo "proposta" no published.json);
+# - propostas novas (published.json, criadas depois de CORTE) sairiam do ar depois de 7 dias;
+# - nada do que já estava no repo antes de 18/11/2026 14:00 é apagado (legado: DELETE_LEGACY=false);
+# - assets/, .github/ e arquivos soltos da raiz nunca são apagados;
+# - a cada execução grava o relatório (resumo da execução e artifact relatorio-expiracao);
+# - também garante a meta robots noindex,nofollow em toda página HTML (GARANTIR_NOINDEX).
+# DRY-RUN obrigatório até o Mika confirmar a remoção: lista o que sairia, não apaga nada.
+name: Expirar propostas (7 dias)
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Só listar, sem apagar nada'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: expirar-paginas
+  cancel-in-progress: false
+
+env:
+  HORAS: '168'
+  # propostas novas (com published.json, criadas depois de CORTE) saem do ar sozinhas, quando o dry-run for desligado
+  EXPIRAR_NOVAS: 'true'
+  # true = não apaga nada, só lista. Fica true até o Mika confirmar a remoção automática.
+  # Depois do OK, pode trocar por:
+  # DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
+  DRY_RUN: 'true'
+  # pastas antigas: desligado até o Mika confirmar
+  DELETE_LEGACY: 'false'
+  DRY_RUN_LEGACY: 'true'
+  # pastas criadas antes deste instante são legado e nunca expiram por esta regra
+  CORTE: '2026-11-18T14:00:00-03:00'
+  GARANTIR_NOINDEX: 'true'
+  RELATORIO_DIR: /tmp/relatorio-expiracao
+
+jobs:
+  expirar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Listar pastas e expirar propostas vencidas
+        id: expirar
+        run: python3 .github/scripts/expirar.py
+
+      - name: Garantir noindex nas páginas
+        if: env.GARANTIR_NOINDEX == 'true' && env.DRY_RUN != 'true'
+        run: python3 .github/scripts/noindex.py
+
+      - name: Guardar relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-expiracao
+          path: ${{ env.RELATORIO_DIR }}
+          retention-days: 30
+
+      - name: Commit e publicar
+        if: env.DRY_RUN != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REMOVIDAS: ${{ steps.expirar.outputs.removidas }}
+        run: |
+          git add -A
+          if git diff --cached --quiet; then echo "Nada a alterar."; exit 0; fi
+          git config user.name "autz-expirar[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$REMOVIDAS" ]; then MSG="Expira após 7 dias: $REMOVIDAS"; else MSG="Meta robots noindex nas páginas novas"; fi
+          git commit -q -m "$MSG"
+          git pull --rebase -q origin main
+          git push origin HEAD:main
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Build do Pages segue pelo push."
