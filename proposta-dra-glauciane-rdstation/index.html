@@ -89,11 +89,11 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
   background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
 /* feixes de luz correndo nas linhas da grade */
 #feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
-.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen;}
-.feixe.h{height:2px; width:140px; background:linear-gradient(90deg, transparent, var(--lime), #ffffff); box-shadow:0 0 14px rgba(233,255,74,.9), 0 0 3px rgba(255,255,255,.9);}
-.feixe.v{width:2px; height:140px; background:linear-gradient(180deg, transparent, var(--lime), #ffffff); box-shadow:0 0 14px rgba(233,255,74,.9), 0 0 3px rgba(255,255,255,.9);}
-@keyframes feixe-h{0%{transform:translateX(-170px); opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{transform:translateX(100vw); opacity:0;}}
-@keyframes feixe-v{0%{transform:translateY(-170px); opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{transform:translateY(100vh); opacity:0;}}
+.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen; filter:blur(.5px);}
+.feixe.h{height:1px; width:90px; background:linear-gradient(90deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+.feixe.v{width:1px; height:90px; background:linear-gradient(180deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+@keyframes feixe-h{0%{transform:translateX(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateX(100vw); opacity:0;}}
+@keyframes feixe-v{0%{transform:translateY(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateY(100vh); opacity:0;}}
 .titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
 .label{display:inline-flex; align-items:center; gap:8px;}
 .label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
