@@ -87,22 +87,13 @@ body{background:
 body::before{content:""; position:fixed; inset:0; pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
   background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
-/* brilho correndo nas linhas da grade */
-.brilho-h,.brilho-v{position:fixed; pointer-events:none; z-index:0; mix-blend-mode:screen;
-  mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
-.brilho-h{left:0; width:100%; height:3px;
-  background-image:linear-gradient(90deg, transparent 0%, transparent 40%, rgba(233,255,74,.35) 47%, rgba(233,255,74,1) 50%, rgba(233,255,74,.35) 53%, transparent 60%, transparent 100%);
-  background-size:260% 100%; filter:blur(.5px); animation:percorrer-h linear infinite;}
-.brilho-v{top:0; height:100%; width:3px;
-  background-image:linear-gradient(180deg, transparent 0%, transparent 40%, rgba(233,255,74,.35) 47%, rgba(233,255,74,1) 50%, rgba(233,255,74,.35) 53%, transparent 60%, transparent 100%);
-  background-size:100% 260%; filter:blur(.5px); animation:percorrer-v linear infinite;}
-#brilho-h1{top:16%; animation-duration:7s;}
-#brilho-h2{top:52%; animation-duration:9.5s; animation-delay:2.4s;}
-#brilho-h3{top:84%; animation-duration:8.2s; animation-delay:4.8s;}
-#brilho-v1{left:14%; animation-duration:8.6s; animation-delay:1.2s;}
-#brilho-v2{left:62%; animation-duration:10s; animation-delay:3.6s;}
-@keyframes percorrer-h{0%{background-position:-260% 0;}100%{background-position:260% 0;}}
-@keyframes percorrer-v{0%{background-position:0 -260%;}100%{background-position:0 260%;}}
+/* feixes de luz correndo nas linhas da grade */
+#feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen;}
+.feixe.h{height:2px; width:140px; background:linear-gradient(90deg, transparent, var(--lime), #ffffff); box-shadow:0 0 14px rgba(233,255,74,.9), 0 0 3px rgba(255,255,255,.9);}
+.feixe.v{width:2px; height:140px; background:linear-gradient(180deg, transparent, var(--lime), #ffffff); box-shadow:0 0 14px rgba(233,255,74,.9), 0 0 3px rgba(255,255,255,.9);}
+@keyframes feixe-h{0%{transform:translateX(-170px); opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{transform:translateX(100vw); opacity:0;}}
+@keyframes feixe-v{0%{transform:translateY(-170px); opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{transform:translateY(100vh); opacity:0;}}
 .titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
 .label{display:inline-flex; align-items:center; gap:8px;}
 .label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
@@ -187,16 +178,12 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
 @media print{
   html,body{height:auto;} body{overflow:visible;}
   .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
-  .barra,.progresso,.mais,.brilho-h,.brilho-v{display:none;}
+  .barra,.progresso,.mais,#feixes{display:none;}
 }
 </style>
 </head>
 <body>
-<div class="brilho-h" id="brilho-h1" aria-hidden="true"></div>
-<div class="brilho-h" id="brilho-h2" aria-hidden="true"></div>
-<div class="brilho-h" id="brilho-h3" aria-hidden="true"></div>
-<div class="brilho-v" id="brilho-v1" aria-hidden="true"></div>
-<div class="brilho-v" id="brilho-v2" aria-hidden="true"></div>
+<div id="feixes" aria-hidden="true"></div>
 <main class="deck" id="deck">
 
 <section class="slide capa" data-titulo="Capa">
@@ -426,6 +413,32 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     x0 = null;
   }, { passive: true });
   mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wrap = document.getElementById('feixes');
+  var gridSize = 48;
+  function criarFeixe() {
+    var el = document.createElement('div');
+    var horizontal = Math.random() > 0.5;
+    el.className = 'feixe ' + (horizontal ? 'h' : 'v');
+    var duracao = Math.random() * 4 + 5;
+    el.style.animation = (horizontal ? 'feixe-h' : 'feixe-v') + ' ' + duracao + 's linear forwards';
+    if (horizontal) {
+      var maxRows = Math.floor(window.innerHeight / gridSize);
+      el.style.top = (Math.floor(Math.random() * maxRows) * gridSize) + 'px';
+      el.style.left = '0px';
+    } else {
+      var maxCols = Math.floor(window.innerWidth / gridSize);
+      el.style.left = (Math.floor(Math.random() * maxCols) * gridSize) + 'px';
+      el.style.top = '0px';
+    }
+    wrap.appendChild(el);
+    setTimeout(function () { el.remove(); }, duracao * 1000 + 100);
+  }
+  setInterval(criarFeixe, 2200);
 })();
 </script>
 </body>
