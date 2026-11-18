@@ -87,19 +87,22 @@ body{background:
 body::before{content:""; position:fixed; inset:0; pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
   background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
-/* brilho andando pela grade */
-#brilho{position:fixed; top:0; left:0; width:380px; height:380px; margin:-190px; border-radius:50%;
-  background:radial-gradient(circle, rgba(233,255,74,.22), rgba(233,255,74,.05) 45%, transparent 72%);
-  mix-blend-mode:screen; pointer-events:none; z-index:0; filter:blur(2px);
-  animation:brilho-andando 22s linear infinite;}
-@keyframes brilho-andando{
-  0%{transform:translate(0vw,0vh);}
-  20%{transform:translate(95vw,8vh);}
-  45%{transform:translate(72vw,88vh);}
-  65%{transform:translate(8vw,96vh);}
-  85%{transform:translate(-4vw,14vh);}
-  100%{transform:translate(0vw,0vh);}
-}
+/* brilho correndo nas linhas da grade */
+.brilho-h,.brilho-v{position:fixed; pointer-events:none; z-index:0;
+  mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+.brilho-h{left:0; width:100%; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(233,255,74,.9), transparent);
+  background-size:220% 100%; filter:blur(.6px); animation:percorrer-h linear infinite;}
+.brilho-v{top:0; height:100%; width:2px;
+  background:linear-gradient(180deg, transparent, rgba(233,255,74,.9), transparent);
+  background-size:100% 220%; filter:blur(.6px); animation:percorrer-v linear infinite;}
+#brilho-h1{top:16%; animation-duration:7s;}
+#brilho-h2{top:52%; animation-duration:9.5s; animation-delay:2.4s;}
+#brilho-h3{top:84%; animation-duration:8.2s; animation-delay:4.8s;}
+#brilho-v1{left:14%; animation-duration:8.6s; animation-delay:1.2s;}
+#brilho-v2{left:62%; animation-duration:10s; animation-delay:3.6s;}
+@keyframes percorrer-h{0%{background-position:-220% 0;}100%{background-position:220% 0;}}
+@keyframes percorrer-v{0%{background-position:0 -220%;}100%{background-position:0 220%;}}
 .titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
 .label{display:inline-flex; align-items:center; gap:8px;}
 .label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
@@ -184,12 +187,16 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
 @media print{
   html,body{height:auto;} body{overflow:visible;}
   .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
-  .barra,.progresso,.mais,#brilho{display:none;}
+  .barra,.progresso,.mais,.brilho-h,.brilho-v{display:none;}
 }
 </style>
 </head>
 <body>
-<div id="brilho" aria-hidden="true"></div>
+<div class="brilho-h" id="brilho-h1" aria-hidden="true"></div>
+<div class="brilho-h" id="brilho-h2" aria-hidden="true"></div>
+<div class="brilho-h" id="brilho-h3" aria-hidden="true"></div>
+<div class="brilho-v" id="brilho-v1" aria-hidden="true"></div>
+<div class="brilho-v" id="brilho-v2" aria-hidden="true"></div>
 <main class="deck" id="deck">
 
 <section class="slide capa" data-titulo="Capa">
