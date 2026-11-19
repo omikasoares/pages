@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AUTZ · Gás Verde · Funil RD CRM</title>
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
+  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+p{margin:0;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
+.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+.logo{height:24px; width:auto; display:block;}
+.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
+.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
+.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
+.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
+.lede strong{color:var(--white); font-weight:600;}
+.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
+.capa .lede{font-size:18px;}
+.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
+.meta strong{color:var(--white); font-weight:600;}
+.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
+.card.lime{border-color:rgba(233,255,74,.35);}
+.card.ok{border-color:rgba(74,222,128,.35);}
+.card.amb{border-color:rgba(251,191,36,.35);}
+.card.red{border-color:rgba(232,89,60,.35);}
+.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
+.card p{font-size:14px; color:var(--gray);}
+.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
+ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
+.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
+.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
+.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
+.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.card-head h3{margin:0;}
+.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
+.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
+.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
+.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
+.seta{align-self:center; color:var(--lime); font-weight:700;}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
+.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
+.nota strong{color:var(--white);}
+a{color:var(--lime);}
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
+.mais.visivel{display:block;}
+.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
+/* camada visual */
+body{background:
+  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
+  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
+  var(--bg);}
+body::before{content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+/* feixes de luz correndo nas linhas da grade */
+#feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen; filter:blur(.5px);}
+.feixe.h{height:1px; width:90px; background:linear-gradient(90deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+.feixe.v{width:1px; height:90px; background:linear-gradient(180deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+@keyframes feixe-h{0%{transform:translateX(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateX(100vw); opacity:0;}}
+@keyframes feixe-v{0%{transform:translateY(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateY(100vh); opacity:0;}}
+.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.label{display:inline-flex; align-items:center; gap:8px;}
+.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
+.card,.passo{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
+.card:hover,.passo:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
+.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
+.card.ok{box-shadow:inset 0 2px 0 var(--green);}
+.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
+.card.red{box-shadow:inset 0 2px 0 var(--red);}
+.passo .t{display:flex; align-items:center; gap:8px;}
+.passo .t::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 4px rgba(233,255,74,.15);}
+.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
+@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
+.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
+.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
+.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
+.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
+.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
+.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
+@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
+.slide.ativo .grid-3 > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .grid-3 > *:nth-child(2){animation-delay:.28s}
+.slide.ativo .grid-3 > *:nth-child(3){animation-delay:.36s}
+@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
+.etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin:8px 0 6px;}
+.etapas::before{content:""; position:absolute; left:12%; right:12%; top:27px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.etp{text-align:center; padding:0 10px; position:relative;}
+.etp .bola{width:56px; height:56px; margin:0 auto 12px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:var(--lime); box-shadow:0 0 0 8px rgba(233,255,74,.08); position:relative; z-index:1;}
+.etp.auto .bola{background:var(--lime); color:var(--bg2);}
+.etp h3{font-size:15px; margin-bottom:6px;}
+.etp p{font-size:13px; color:var(--gray);}
+.etp .quem{display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:rgba(127,212,255,.12); color:#7fd4ff;}
+.etp.auto .quem{background:rgba(233,255,74,.12); color:var(--lime);}
+.pulso{animation:respira 2.4s ease-in-out infinite;}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(233,255,74,.0)} 50%{box-shadow:0 0 0 8px rgba(233,255,74,.10)}}
+.capa-vis{position:relative; display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:340px; margin-left:auto; width:100%;}
+.mini{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; animation:entra .6s both;}
+.mini:nth-child(2){animation-delay:.25s; margin-left:22px;} .mini:nth-child(3){animation-delay:.45s; margin-left:44px;}
+.mini .ico{width:34px; height:34px; border-radius:10px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center; flex:none;}
+.mini b{font-size:13.5px; display:block;}
+.mini small{font-size:12px; color:var(--gray);}
+.ico svg{width:18px; height:18px;}
+/* preço */
+.preco-box{display:inline-flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px 32px; box-shadow:0 0 50px -18px rgba(233,255,74,.45); margin-bottom:20px;}
+.preco-box .rotulo{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray);}
+.preco-box .valor{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:clamp(40px,6vw,64px); font-weight:800; color:var(--lime); letter-spacing:-.02em; line-height:1; margin:2px 0;}
+.preco-box p{font-size:14px; color:var(--gray); max-width:56ch;}
+/* contato */
+.contato-box{display:inline-flex; flex-direction:column; gap:10px; background:var(--surface); border:2px solid var(--lime); border-radius:16px; padding:24px 30px; margin-top:12px;}
+.contato-box .linha{font-size:14.5px; color:rgba(255,255,255,.85); display:flex; align-items:center; gap:8px;}
+.contato-box .linha strong{color:var(--white); font-weight:600;}
+.contato-box a{text-decoration:underline; font-weight:600;}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none !important; transition:none !important;} }
+@media (min-width:761px) and (max-height:820px){
+  .slide{padding:24px 48px 16px;}
+  .topo{margin-bottom:12px;}
+  .titulo{font-size:25px; margin-bottom:6px;}
+  .lede{font-size:14.5px; margin-bottom:14px;}
+  .card{padding:14px 18px;}
+  .card h3{font-size:15px; margin-bottom:6px;}
+  ul.lista{gap:5px;}
+  ul.lista li{font-size:13.5px;}
+  .nota{margin-top:8px; font-size:12px;}
+  .etp .bola{width:48px; height:48px; font-size:17px;} .etapas::before{top:23px;}
+  .preco-box{padding:20px 24px;}
+}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr;} }
+@media (max-width:760px){
+  .slide{padding:24px 18px 20px;}
+  .titulo{font-size:23px;}
+  .capa .titulo{font-size:34px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica{display:none;}
+  .seta{display:none;}
+  .capa-grid{grid-template-columns:1fr; gap:20px;}
+  .etapas{grid-template-columns:1fr 1fr; row-gap:22px;} .etapas::before{display:none;}
+  .capa-vis{margin:0 auto;} .mini:nth-child(2),.mini:nth-child(3){margin-left:0;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais,#feixes{display:none;}
+}
+/* funil gás verde */
+.funil{display:grid; grid-template-columns:repeat(8,1fr); gap:0; position:relative; margin:6px 0 18px;}
+.funil::before{content:""; position:absolute; left:6%; right:6%; top:23px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.funil .etp{padding:0 6px;}
+.funil .etp .bola{width:48px; height:48px; font-size:17px; margin-bottom:10px;}
+.funil .etp h3{font-size:13px; line-height:1.3;}
+.funil .etp p{font-size:11.5px;}
+.funil .etp.fim .bola{background:var(--lime); color:var(--bg2);}
+.linha-tempo{margin-top:6px;}
+.linha-tempo .faixa{display:flex; height:30px; border-radius:8px; overflow:hidden; border:1px solid var(--border-white);}
+.linha-tempo .seg{display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--bg2); background:var(--lime2); border-right:1px solid var(--bg2); transform-origin:left; animation:cresce .9s cubic-bezier(.2,.7,.2,1) both; white-space:nowrap; overflow:hidden;}
+.linha-tempo .seg.b{background:rgba(233,255,74,.55);}
+.linha-tempo .seg.c{background:rgba(233,255,74,.3); color:var(--white);}
+.linha-tempo .meses{display:flex; justify-content:space-between; font-size:11px; color:var(--gray); margin-top:6px;}
+.tab-etapas td{font-size:13.5px;}
+.tab-etapas td.l{white-space:normal; min-width:150px;}
+.tab-etapas td.p{white-space:nowrap; color:var(--lime); font-weight:700;}
+.cad{position:relative; display:grid; gap:10px; margin:4px 0 14px;}
+.cad.c9{grid-template-columns:repeat(9,1fr);}
+.cad.c4{grid-template-columns:repeat(4,1fr);}
+.cad.c5{grid-template-columns:repeat(5,1fr);}
+.cad::before{content:""; position:absolute; left:4%; right:4%; top:19px; height:2px; background:rgba(233,255,74,.35); transform-origin:left; animation:cresce 1.4s .2s cubic-bezier(.2,.7,.2,1) both;}
+.toque{text-align:center; position:relative; min-width:0;}
+.toque .ic{width:40px; height:40px; margin:0 auto 8px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--bg); border:1px solid rgba(233,255,74,.45); color:var(--lime); position:relative; z-index:1;}
+.toque .ic svg{width:18px; height:18px;}
+.toque .d{font-size:11px; font-weight:800; color:var(--lime); letter-spacing:.06em;}
+.toque b{display:block; font-size:12.5px; margin:2px 0 3px;}
+.toque small{display:block; font-size:11.5px; color:var(--gray); line-height:1.4;}
+.toque.fim .ic{background:var(--lime); color:var(--bg2);}
+.slide.ativo .toque{animation:entra .5s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .toque:nth-child(2){animation-delay:.1s} .slide.ativo .toque:nth-child(3){animation-delay:.2s} .slide.ativo .toque:nth-child(4){animation-delay:.3s} .slide.ativo .toque:nth-child(5){animation-delay:.4s} .slide.ativo .toque:nth-child(6){animation-delay:.5s} .slide.ativo .toque:nth-child(7){animation-delay:.6s} .slide.ativo .toque:nth-child(8){animation-delay:.7s} .slide.ativo .toque:nth-child(9){animation-delay:.8s}
+.legenda{display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--gray); margin-bottom:12px;}
+.legenda span{display:inline-flex; align-items:center; gap:6px;}
+.legenda svg{width:14px; height:14px; color:var(--lime);}
+.tarefa{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; padding:8px 0; border-bottom:1px solid var(--border-white);}
+.tarefa:last-child{border-bottom:none;}
+.tarefa .ic{flex:none; width:28px; height:28px; border-radius:8px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center;}
+.tarefa .ic svg{width:15px; height:15px;}
+.tarefa b{color:var(--white); font-weight:600;}
+.tarefa .q{color:var(--lime2); font-weight:700; font-size:12px; margin-right:4px;}
+.tarefa span.t{color:var(--gray);}
+.campo{display:flex; justify-content:space-between; gap:10px; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--border-white); font-size:13.5px;}
+.campo:last-child{border-bottom:none;}
+.campo b{font-weight:600;}
+.campo small{color:var(--gray); font-size:12px; text-align:right;}
+.opcao{display:flex; flex-direction:column; gap:6px;}
+.decisao{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:10px; align-items:stretch;}
+@media (min-width:761px) and (max-height:820px){
+  .funil .etp .bola{width:42px; height:42px; font-size:15px;} .funil::before{top:20px;}
+  .cad::before{top:17px;} .toque .ic{width:36px; height:36px;}
+  .tab-etapas td{padding-top:8px; padding-bottom:8px; font-size:13px;}
+}
+@media (max-width:1100px){ .cad.c9{grid-template-columns:repeat(5,1fr); row-gap:18px;} .cad.c9::before{display:none;} }
+@media (max-width:760px){
+  .funil{grid-template-columns:1fr 1fr; row-gap:18px;} .funil::before{display:none;}
+  .cad.c9,.cad.c5,.cad.c4{grid-template-columns:1fr 1fr; row-gap:16px;} .cad::before{display:none;}
+  .decisao{grid-template-columns:1fr;}
+  .linha-tempo .seg{font-size:0;}
+  .tab-etapas td.l{min-width:0;}
+}
+</style>
+</head>
+<body>
+<div id="feixes" aria-hidden="true"></div>
+<main class="deck" id="deck">
+
+<section class="slide capa" data-titulo="Capa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <div class="capa-grid">
+      <div>
+        <p class="label">Implementação RD Station CRM</p>
+        <h1 class="titulo">Do primeiro contato ao contrato,<br><em>sem perder ninguém no caminho.</em></h1>
+        <p class="lede">Planejamento do funil comercial da Gás Verde para grandes contas: etapas, tarefas automáticas de follow-up e as informações que cada oportunidade precisa ter para um ciclo de venda de até 12 meses.</p>
+        <div class="meta"><span>Cliente: <strong>Gás Verde · Grupo Urca Energia</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Versão: <strong>novembro de 2026</strong></span></div>
+        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </div>
+      <div class="capa-vis" aria-hidden="true">
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span><div><b>8 etapas</b><small>da nova oportunidade ao contrato</small></div></div>
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><b>Follow-up automático</b><small>ligação, WhatsApp, e-mail e LinkedIn</small></div></div>
+        <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Até 12 meses</b><small>ciclo de grandes empresas</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Premissas do funil">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">01 · Premissas</p>
+    <h2 class="titulo">Venda grande, longa e técnica.<br><em>O funil precisa mostrar isso.</em></h2>
+    <p class="lede">A Gás Verde vende para indústrias e frotas de grande porte, com várias áreas envolvidas na decisão e, muitas vezes, a matriz no exterior. O CRM organiza essa jornada sem depender de memória.</p>
+    <div class="grid-2">
+      <div class="card lime"><h3>Ciclo de até 12 meses</h3><p>Cada etapa tem um prazo de referência. Quando a negociação passa do prazo, o time enxerga antes que ela esfrie.</p></div>
+      <div class="card lime"><h3>Uma negociação por unidade</h3><p>Uma multinacional com três fábricas gera três negociações dentro da mesma empresa. Cada unidade tem volume, distância e prazo próprios.</p></div>
+      <div class="card"><h3>Viabilidade decide o produto</h3><p>Volume e distância até a planta definem se a proposta é de molécula. Quando a logística não fecha, a venda segue pelo certificado.</p></div>
+      <div class="card"><h3>Atributo ambiental desde o início</h3><p>Se o cliente precisa comprovar redução de emissão, isso muda o produto, o preço e o argumento. Fica registrado já na qualificação.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Entrada dos leads">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">02 · Entrada dos leads</p>
+    <h2 class="titulo">Quatro portas de entrada,<br><em>um único ponto de partida.</em></h2>
+    <p class="lede">Todo lead vira negociação na etapa <strong>Nova oportunidade</strong>, já com a fonte e a campanha preenchidas. Assim dá para saber qual canal traz contrato, não só contato.</p>
+    <div class="fluxo" style="margin-bottom:16px;">
+      <div class="passo"><div class="t">Meta Ads</div><p>Formulários de campanha no Instagram e Facebook.</p></div>
+      <div class="passo"><div class="t">Google Ads</div><p>Busca e formulários do site.</p></div>
+      <div class="passo"><div class="t">LinkedIn Ads</div><p>Formulários de geração de leads para decisores.</p></div>
+      <div class="passo"><div class="t">Prospecção ativa</div><p>Contas-alvo abordadas pelo time comercial.</p></div>
+      <div class="seta">→</div>
+      <div class="passo" style="border-color:rgba(233,255,74,.45);"><div class="t">Nova oportunidade</div><p>Responsável definido e tarefa de primeiro contato criada.</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h3>Integração automática</h3><p>Leads de anúncios entram no CRM sem digitação, com nome, empresa, cargo, telefone, e-mail, fonte e campanha.</p></div>
+      <div class="card"><h3>Prospecção com o mesmo padrão</h3><p>Quem prospecta cadastra a empresa e o contato com a fonte "Prospecção ativa". Os relatórios separam inbound de outbound.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O funil em uma tela">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">03 · O funil em uma tela</p>
+    <h2 class="titulo">Comercial · Grandes Contas:<br><em>8 etapas até o contrato assinado.</em></h2>
+    <div class="funil">
+      <div class="etp"><div class="bola">1</div><h3>Nova oportunidade</h3><p>Lead recebido</p></div>
+      <div class="etp"><div class="bola">2</div><h3>Tentando contato</h3><p>Cadência ativa</p></div>
+      <div class="etp"><div class="bola">3</div><h3>Em qualificação</h3><p>Diagnóstico</p></div>
+      <div class="etp"><div class="bola">4</div><h3>Viabilidade técnica</h3><p>Volume e logística</p></div>
+      <div class="etp"><div class="bola">5</div><h3>Proposta enviada</h3><p>Apresentação</p></div>
+      <div class="etp"><div class="bola">6</div><h3>Nutrição de proposta</h3><p>Aprovação interna</p></div>
+      <div class="etp"><div class="bola">7</div><h3>Negociação comercial</h3><p>Preço e prazo</p></div>
+      <div class="etp fim"><div class="bola">8</div><h3>Contrato</h3><p>Jurídico e assinatura</p></div>
+    </div>
+    <div class="linha-tempo" aria-label="Distribuição do tempo médio por etapa">
+      <div class="faixa">
+        <div class="seg" style="width:1%"></div>
+        <div class="seg" style="width:4.3%">2</div>
+        <div class="seg" style="width:8.7%">3</div>
+        <div class="seg b" style="width:13%">4</div>
+        <div class="seg b" style="width:4.3%">5</div>
+        <div class="seg c" style="width:39%">6 · Nutrição de proposta</div>
+        <div class="seg b" style="width:17.3%">7</div>
+        <div class="seg" style="width:12.4%">8</div>
+      </div>
+      <div class="meses"><span>Mês 0</span><span>Mês 3</span><span>Mês 6</span><span>Mês 9</span><span>Mês 12</span></div>
+    </div>
+    <p class="nota">Ao assinar o contrato, a negociação é marcada como <strong>vendida</strong> no RD CRM. Os prazos de cada etapa são referência para validar com o time e servem para mostrar negociação parada.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Etapas 1 a 4">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">04 · Etapas 1 a 4 · Do lead à solução definida</p>
+    <h2 class="titulo">Cada etapa com entrada,<br><em>saída e prazo claros.</em></h2>
+    <table class="tab-etapas">
+      <tr><th>Etapa</th><th>Objetivo</th><th>Avança quando</th><th>Prazo</th></tr>
+      <tr><td class="l">1 · Nova oportunidade</td><td>Receber o lead e definir o responsável</td><td>Primeira tentativa de contato feita</td><td class="p">1 dia útil</td></tr>
+      <tr><td class="l">2 · Tentando contato</td><td>Conseguir a primeira conversa com a cadência de toques</td><td>Conversa realizada. Sem resposta ao fim da cadência: perdida por "Sem contato"</td><td class="p">15 dias</td></tr>
+      <tr><td class="l">3 · Em qualificação</td><td>Entender consumo, volume, local, decisores, timing e motivação ambiental</td><td>Campos de qualificação preenchidos e fit confirmado</td><td class="p">30 dias</td></tr>
+      <tr><td class="l">4 · Viabilidade técnica</td><td>Confirmar volume, logística até a planta, infraestrutura e atributo ambiental</td><td>Solução definida: molécula, molécula com certificado ou só certificado</td><td class="p">45 dias</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Etapas 5 a 8">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">05 · Etapas 5 a 8 · Da proposta à assinatura</p>
+    <h2 class="titulo">A maior parte do tempo está<br><em>depois da proposta.</em></h2>
+    <table class="tab-etapas">
+      <tr><th>Etapa</th><th>Objetivo</th><th>Avança quando</th><th>Prazo</th></tr>
+      <tr><td class="l">5 · Proposta enviada</td><td>Apresentar a proposta em reunião, não só por e-mail</td><td>Proposta apresentada aos decisores</td><td class="p">15 dias</td></tr>
+      <tr><td class="l">6 · Nutrição de proposta</td><td>Manter o relacionamento enquanto o cliente aprova internamente (orçamento, área técnica, matriz)</td><td>O cliente pede para negociar condições</td><td class="p">90 a 180 dias</td></tr>
+      <tr><td class="l">7 · Negociação comercial</td><td>Fechar preço, volume, prazo de contrato, início do fornecimento e reajuste</td><td>Condições aceitas pelo cliente</td><td class="p">60 dias</td></tr>
+      <tr><td class="l">8 · Contrato</td><td>Minuta, jurídico das duas partes e assinatura</td><td>Contrato assinado: marcar como vendida</td><td class="p">45 dias</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Follow-up · Tentando contato">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">06 · Automação de follow-up · Etapa 2</p>
+    <h2 class="titulo">9 toques em 15 dias,<br><em>alternando os canais.</em></h2>
+    <p class="lede">Ao entrar em <strong>Tentando contato</strong>, o RD CRM cria as tarefas da cadência para o responsável, cada uma com tipo, prazo e roteiro. Quando o lead responde, a negociação avança e as tarefas restantes são concluídas.</p>
+    <div class="cad c9">
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 0</span><b>Ligação</b><small>Primeira tentativa</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="d">DIA 0</span><b>WhatsApp</b><small>Apresentação curta</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="d">DIA 1</span><b>E-mail</b><small>Case do segmento</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 2</span><b>Ligação</b><small>Outro horário</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="d">DIA 4</span><b>LinkedIn</b><small>Conexão e mensagem</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="d">DIA 6</span><b>WhatsApp</b><small>Conteúdo útil</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 9</span><b>Ligação</b><small>Terceira tentativa</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="d">DIA 12</span><b>E-mail</b><small>"Faz sentido conversar?"</small></div>
+      <div class="toque fim"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="d">DIA 15</span><b>WhatsApp</b><small>Mensagem de encerramento</small></div>
+    </div>
+    <div class="grid-2">
+      <div class="card ok"><h3>Respondeu</h3><p>Move para <strong>Em qualificação</strong> e agenda a reunião de diagnóstico.</p></div>
+      <div class="card amb"><h3>Sem resposta no dia 15</h3><p>Perdida por "Sem contato", com tarefa de nova tentativa em 90 dias.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Follow-up · Qualificação e viabilidade">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">07 · Automação de follow-up · Etapas 1, 3 e 4</p>
+    <h2 class="titulo">Tarefas que nascem sozinhas<br><em>quando a etapa muda.</em></h2>
+    <div class="grid-3">
+      <div class="card lime"><p class="n">1 · NOVA OPORTUNIDADE</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">Dia 0</span><b>Ligação de primeiro contato</b><br><span class="t">No mesmo dia em que o lead chega.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">Dia 0</span><b>WhatsApp se não atender</b><br><span class="t">Apresentação e pedido do melhor horário.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><span class="q">Dia 1</span><b>Mover para Tentando contato</b><br><span class="t">A cadência de 15 dias começa.</span></div></div>
+      </div>
+      <div class="card lime"><p class="n">3 · EM QUALIFICAÇÃO</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><span class="q">Dia 0</span><b>Reunião de diagnóstico</b><br><span class="t">Com o roteiro de qualificação.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 1</span><b>E-mail de resumo</b><br><span class="t">Pedido de dados de consumo.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">Dia 7</span><b>WhatsApp de cobrança dos dados</b></div></div>
+      </div>
+      <div class="card lime"><p class="n">4 · VIABILIDADE TÉCNICA</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><span class="q">Dia 0</span><b>Validar logística com a operação</b><br><span class="t">Planta, distância e volume.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span class="q">Dia 5</span><b>Visita técnica</b><br><span class="t">Caldeira, queimador ou posto.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">Dia 15</span><b>Ligação de status</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Follow-up · Proposta e nutrição">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">08 · Automação de follow-up · Etapas 5 e 6</p>
+    <h2 class="titulo">Meses de aprovação interna,<br><em>com contato a cada 15 dias.</em></h2>
+    <p class="lede">Na <strong>Proposta enviada</strong> o ritmo é curto. Na <strong>Nutrição de proposta</strong> o objetivo é ser lembrado com algo útil, nunca só "alguma novidade?".</p>
+    <p class="n" style="font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:8px;">5 · PROPOSTA ENVIADA</p>
+    <div class="cad c4">
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><span class="d">DIA 0</span><b>Reunião</b><small>Apresentar a proposta</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="d">DIA 2</span><b>E-mail</b><small>Resumo e próximos passos</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 7</span><b>Ligação</b><small>Primeiras impressões</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="d">DIA 12</span><b>WhatsApp</b><small>Quem mais precisa aprovar?</small></div>
+    </div>
+    <p class="n" style="font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:8px;">6 · NUTRIÇÃO DE PROPOSTA · CICLO QUE SE REPETE A CADA 60 DIAS</p>
+    <div class="cad c4">
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="d">DIA 15</span><b>E-mail</b><small>Case do mesmo segmento</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 30</span><b>Ligação</b><small>Status da aprovação</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="d">DIA 45</span><b>WhatsApp</b><small>Novidade do mandato e do certificado</small></div>
+      <div class="toque fim"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span class="d">DIA 60</span><b>Convite</b><small>Visita à planta de Seropédica</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Follow-up · Negociação e contrato">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">09 · Automação de follow-up · Etapas 7 e 8</p>
+    <h2 class="titulo">Na reta final,<br><em>contato toda semana.</em></h2>
+    <div class="grid-2">
+      <div class="card lime"><p class="n">7 · NEGOCIAÇÃO COMERCIAL</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><span class="q">Dia 0</span><b>Reunião de negociação</b><br><span class="t">Preço, volume, prazo, início e reajuste.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 2</span><b>E-mail com a proposta revisada</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">A cada 7 dias</span><b>Ligação ou WhatsApp</b><br><span class="t">Alternando, até as condições serem aceitas.</span></div></div>
+      </div>
+      <div class="card lime"><p class="n">8 · CONTRATO</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 0</span><b>Enviar minuta do contrato</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">Dia 5</span><b>Ligação sobre o jurídico</b><br><span class="t">Ajustes pedidos e prazo de assinatura.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">A cada 7 dias</span><b>WhatsApp de acompanhamento</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><span class="q">Assinado</span><b>Marcar como vendida</b><br><span class="t">Tarefa de passagem para a operação.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Informações · Consumo e volume">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">10 · Informações da oportunidade · Consumo e local</p>
+    <h2 class="titulo">O que o time precisa saber<br><em>antes de falar em proposta.</em></h2>
+    <div class="grid-2">
+      <div class="card lime"><h3>Consumo e volume</h3>
+        <div class="campo"><b>Volume de biometano (m³/dia)</b><small>número</small></div>
+        <div class="campo"><b>Combustível atual</b><small>gás natural, GLP, óleo, diesel, GNV...</small></div>
+        <div class="campo"><b>Consumo atual e unidade</b><small>m³, litros, kg ou t por mês</small></div>
+        <div class="campo"><b>Aplicação</b><small>caldeira, forno, frota pesada ou leve</small></div>
+        <div class="campo"><b>Vencimento do contrato atual de gás</b><small>data, principal gatilho de timing</small></div>
+      </div>
+      <div class="card lime"><h3>Local e logística</h3>
+        <div class="campo"><b>Planta Gás Verde mais próxima</b><small>Seropédica, São Paulo, Igarassu (2027)</small></div>
+        <div class="campo"><b>Distância até a planta (km)</b><small>número</small></div>
+        <div class="campo"><b>Faixa de proximidade</b><small>até 150, 150 a 300, 300 a 500, acima de 500 km</small></div>
+        <div class="campo"><b>Unidade / cidade</b><small>qual fábrica, CD ou frota</small></div>
+        <div class="campo"><b>Início de fornecimento desejado</b><small>data</small></div>
+      </div>
+    </div>
+    <p class="nota">Faixas de distância e volume mínimo viável são sugestões para validar com a operação da Gás Verde.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Informações · Matriz e decisão">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">11 · Informações da empresa · Matriz e decisão</p>
+    <h2 class="titulo">Quando a decisão passa pela matriz,<br><em>o ciclo muda.</em></h2>
+    <p class="lede">Os dados da empresa ficam no cadastro da <strong>empresa</strong> e valem para todas as unidades. Os dados de cada proposta ficam na <strong>negociação</strong>.</p>
+    <div class="grid-2">
+      <div class="card"><p class="n">NA EMPRESA</p>
+        <div class="campo"><b>Possui matriz global?</b><small>sim ou não</small></div>
+        <div class="campo"><b>País da matriz</b><small>texto</small></div>
+        <div class="campo"><b>Meta Net Zero (ano)</b><small>número</small></div>
+        <div class="campo"><b>Nº de unidades no Brasil</b><small>potencial da conta</small></div>
+        <div class="campo"><b>Agente obrigado pelo mandato?</b><small>produtor ou importador de gás natural</small></div>
+      </div>
+      <div class="card"><p class="n">NA NEGOCIAÇÃO</p>
+        <div class="campo"><b>Decisão passa pela matriz?</b><small>sim ou não</small></div>
+        <div class="campo"><b>Solução de interesse</b><small>biometano, frota, certificado, CO₂, energia</small></div>
+        <div class="campo"><b>Prazo de contrato desejado</b><small>anos</small></div>
+        <div class="campo"><b>Emissões estimadas</b><small>tCO₂e por ano</small></div>
+        <div class="campo"><b>Fonte e campanha</b><small>campos nativos do RD CRM</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Atributo ambiental">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">12 · Atributo ambiental</p>
+    <h2 class="titulo">Vai ter atributo ambiental?<br><em>A resposta define o produto.</em></h2>
+    <p class="lede">Campo obrigatório a partir da <strong>Viabilidade técnica</strong>. Na qualificação ele pode ficar como "A definir".</p>
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div class="card lime"><div class="card-head"><h3>Com atributo</h3><span class="pill lime">Molécula + certificado</span></div><p>O cliente consome o biometano e recebe o certificado para comprovar a redução de emissão no inventário.</p></div>
+      <div class="card"><div class="card-head"><h3>Sem atributo</h3><span class="pill amb">Só molécula</span></div><p>O cliente compra o combustível pela economia ou previsibilidade de preço, sem reivindicar a redução de emissão.</p></div>
+      <div class="card ok"><div class="card-head"><h3>Só certificado</h3><span class="pill ok">Sem molécula</span></div><p>Quando a logística não fecha ou a troca de combustível ainda não é possível, o cliente neutraliza emissões com o certificado.</p></div>
+      <div class="card"><div class="card-head"><h3>A definir</h3><span class="pill lime">Qualificação</span></div><p>Aceito só até a etapa Em qualificação. Precisa estar resolvido para avançar.</p></div>
+    </div>
+    <div class="card"><h3>Finalidade do atributo</h3><p>Meta Net Zero e ESG · Inventário GHG Protocol · Mandato do biometano (CGOB) · Exigência de cliente ou exportação · Selo verde e marketing</p></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Regra da viabilidade">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">13 · Regra da viabilidade</p>
+    <h2 class="titulo">Logística que não fecha<br><em>não é venda perdida.</em></h2>
+    <p class="lede">A etapa <strong>Viabilidade técnica</strong> termina com uma decisão clara. Em vez de perder a oportunidade por distância, ela segue com outra solução.</p>
+    <div class="decisao" style="margin-bottom:16px;">
+      <div class="passo"><div class="t">Volume e distância</div><p>Consumo em m³/dia e km até a planta mais próxima.</p></div>
+      <div class="seta">→</div>
+      <div class="passo" style="border-color:rgba(74,222,128,.45);"><div class="t">Viável</div><p>Proposta de molécula, com ou sem atributo ambiental.</p></div>
+      <div class="seta">ou</div>
+      <div class="passo" style="border-color:rgba(251,191,36,.45);"><div class="t">Inviável hoje</div><p>Proposta de só certificado, e a molécula volta à pauta quando abrir uma planta mais perto.</p></div>
+    </div>
+    <div class="grid-3">
+      <div class="card"><h3>Plantas em operação</h3><p>Seropédica (RJ) e São Paulo (SP).</p></div>
+      <div class="card"><h3>Próxima planta</h3><p>Igarassu (PE), fornecimento a partir de 2027.</p></div>
+      <div class="card"><h3>Expansão</h3><p>Novas unidades em RJ, SP, MG, BA e MA. A data entra no campo de início de fornecimento.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Motivos de perda">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">14 · Motivos de perda e reativação</p>
+    <h2 class="titulo">Em um ciclo de 12 meses,<br><em>perdido hoje volta amanhã.</em></h2>
+    <div class="grid-2">
+      <div class="card red"><h3>Motivos de perda</h3>
+        <ul class="lista">
+          <li>Sem contato após a cadência</li>
+          <li>Volume abaixo do mínimo</li>
+          <li>Logística inviável e sem interesse no certificado</li>
+          <li>Preço acima do combustível atual</li>
+          <li>Optou por crédito de carbono ou por concorrente</li>
+          <li>Infraestrutura incompatível</li>
+          <li>Lead desqualificado</li>
+        </ul>
+      </div>
+      <div class="card amb"><h3>Perdas que viram tarefa futura</h3>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Contrato vigente com fornecedor atual</b><br><span class="t">Nova tarefa 4 meses antes do vencimento.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Sem orçamento ou projeto congelado</b><br><span class="t">Nova tarefa no ciclo de orçamento seguinte.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Sem contato</b><br><span class="t">Nova tentativa em 90 dias.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Prospecção ativa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">15 · Funil auxiliar · Prospecção ativa</p>
+    <h2 class="titulo">Prospecção de grandes contas<br><em>com funil próprio.</em></h2>
+    <p class="lede">Abordar uma grande empresa leva várias tentativas antes da primeira reunião. Separar essa fase mantém o funil comercial limpo, só com quem já conversou.</p>
+    <div class="etapas" style="margin-bottom:16px;">
+      <div class="etp"><div class="bola">1</div><h3>Conta mapeada</h3><p>Empresa-alvo, segmento, unidades e consumo estimado.</p></div>
+      <div class="etp"><div class="bola">2</div><h3>Decisores identificados</h3><p>Sustentabilidade, industrial e suprimentos.</p></div>
+      <div class="etp"><div class="bola">3</div><h3>Em abordagem</h3><p>Cadência de ligação, LinkedIn, e-mail e WhatsApp.</p></div>
+      <div class="etp auto"><div class="bola">4</div><h3>Reunião agendada</h3><p>Passa para Em qualificação no funil comercial.</p><span class="quem">Automático</span></div>
+    </div>
+    <p class="nota">Se a equipe preferir um único funil, a prospecção entra direto em Nova oportunidade e a fonte "Prospecção ativa" separa os relatórios.</p>
+  </div>
+</section>
+
+<section class="slide capa" data-titulo="Próximos passos">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">16 · Próximos passos</p>
+    <h2 class="titulo">Validar juntos e<br><em>colocar o funil no ar.</em></h2>
+    <div class="grid-3" style="margin-bottom:16px;">
+      <div class="card"><h3>1. Validar</h3><p>Etapas, prazos, faixas de distância, volume mínimo e os campos com o time comercial.</p></div>
+      <div class="card"><h3>2. Configurar</h3><p>Funis, campos, motivos de perda, fontes, produtos e as automações de tarefas no RD CRM.</p></div>
+      <div class="card"><h3>3. Integrar e treinar</h3><p>Leads de Meta, Google e LinkedIn entrando direto no CRM. Time treinado na rotina de tarefas.</p></div>
+    </div>
+    <div class="card lime"><h3>Pontos para confirmar na reunião</h3>
+      <ul class="lista">
+        <li>O volume em m³/dia é o que o cliente consumiria, ou também atendem quem produz biogás?</li>
+        <li>O CRM atende só a Gás Verde ou também outras empresas do Grupo Urca?</li>
+        <li>Certificado, CO₂ verde e energia têm time ou funil próprio?</li>
+        <li>Como os leads de anúncios chegam hoje e para quem?</li>
+      </ul>
+    </div>
+    <p class="nota" style="margin-top:18px;">© 2026 AUTZ Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
+  </div>
+</section>
+
+</main>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto</div>
+<nav class="barra">
+  <button id="anterior" aria-label="Anterior">‹</button>
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <span class="contador" id="contador"></span>
+  <button id="proximo" aria-label="Próximo">›</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisar();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisar() {
+    var s = slides[atual];
+    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
+  window.addEventListener('resize', avisar);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wrap = document.getElementById('feixes');
+  var gridSize = 48;
+  function criarFeixe() {
+    var el = document.createElement('div');
+    var horizontal = Math.random() > 0.5;
+    el.className = 'feixe ' + (horizontal ? 'h' : 'v');
+    var duracao = Math.random() * 4 + 5;
+    el.style.animation = (horizontal ? 'feixe-h' : 'feixe-v') + ' ' + duracao + 's linear forwards';
+    if (horizontal) {
+      var maxRows = Math.floor(window.innerHeight / gridSize);
+      el.style.top = (Math.floor(Math.random() * maxRows) * gridSize) + 'px';
+      el.style.left = '0px';
+    } else {
+      var maxCols = Math.floor(window.innerWidth / gridSize);
+      el.style.left = (Math.floor(Math.random() * maxCols) * gridSize) + 'px';
+      el.style.top = '0px';
+    }
+    wrap.appendChild(el);
+    setTimeout(function () { el.remove(); }, duracao * 1000 + 100);
+  }
+  setInterval(criarFeixe, 2200);
+})();
+</script>
+</body>
+</html>
