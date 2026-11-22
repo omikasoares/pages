@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AUTZ · Oximag · Guia do funil</title>
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
+  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+p{margin:0;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
+.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+.logo{height:24px; width:auto; display:block;}
+.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
+.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
+.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
+.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
+.lede strong{color:var(--white); font-weight:600;}
+.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
+.capa .lede{font-size:18px;}
+.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
+.meta strong{color:var(--white); font-weight:600;}
+.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
+.card.lime{border-color:rgba(233,255,74,.35);}
+.card.ok{border-color:rgba(74,222,128,.35);}
+.card.amb{border-color:rgba(251,191,36,.35);}
+.card.red{border-color:rgba(232,89,60,.35);}
+.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
+.card p{font-size:14px; color:var(--gray);}
+.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
+ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
+.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
+.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
+.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
+.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.card-head h3{margin:0;}
+.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
+.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
+.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
+.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
+.seta{align-self:center; color:var(--lime); font-weight:700;}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
+.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
+.nota strong{color:var(--white);}
+a{color:var(--lime);}
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
+.mais.visivel{display:block;}
+.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
+/* camada visual */
+body{background:
+  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
+  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
+  var(--bg);}
+body::before{content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+/* feixes de luz correndo nas linhas da grade */
+#feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen; filter:blur(.5px);}
+.feixe.h{height:1px; width:90px; background:linear-gradient(90deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+.feixe.v{width:1px; height:90px; background:linear-gradient(180deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+@keyframes feixe-h{0%{transform:translateX(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateX(100vw); opacity:0;}}
+@keyframes feixe-v{0%{transform:translateY(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateY(100vh); opacity:0;}}
+.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.label{display:inline-flex; align-items:center; gap:8px;}
+.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
+.card,.passo{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
+.card:hover,.passo:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
+.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
+.card.ok{box-shadow:inset 0 2px 0 var(--green);}
+.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
+.card.red{box-shadow:inset 0 2px 0 var(--red);}
+.passo .t{display:flex; align-items:center; gap:8px;}
+.passo .t::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 4px rgba(233,255,74,.15);}
+.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
+@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
+.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
+.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
+.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
+.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
+.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
+.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
+@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
+.slide.ativo .grid-3 > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .grid-3 > *:nth-child(2){animation-delay:.28s}
+.slide.ativo .grid-3 > *:nth-child(3){animation-delay:.36s}
+@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
+.etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin:8px 0 6px;}
+.etapas::before{content:""; position:absolute; left:12%; right:12%; top:27px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.etp{text-align:center; padding:0 10px; position:relative;}
+.etp .bola{width:56px; height:56px; margin:0 auto 12px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:var(--lime); box-shadow:0 0 0 8px rgba(233,255,74,.08); position:relative; z-index:1;}
+.etp.auto .bola{background:var(--lime); color:var(--bg2);}
+.etp h3{font-size:15px; margin-bottom:6px;}
+.etp p{font-size:13px; color:var(--gray);}
+.etp .quem{display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:rgba(127,212,255,.12); color:#7fd4ff;}
+.etp.auto .quem{background:rgba(233,255,74,.12); color:var(--lime);}
+.pulso{animation:respira 2.4s ease-in-out infinite;}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(233,255,74,.0)} 50%{box-shadow:0 0 0 8px rgba(233,255,74,.10)}}
+.capa-vis{position:relative; display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:340px; margin-left:auto; width:100%;}
+.mini{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; animation:entra .6s both;}
+.mini:nth-child(2){animation-delay:.25s; margin-left:22px;} .mini:nth-child(3){animation-delay:.45s; margin-left:44px;}
+.mini .ico{width:34px; height:34px; border-radius:10px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center; flex:none;}
+.mini b{font-size:13.5px; display:block;}
+.mini small{font-size:12px; color:var(--gray);}
+.ico svg{width:18px; height:18px;}
+/* preço */
+.preco-box{display:inline-flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px 32px; box-shadow:0 0 50px -18px rgba(233,255,74,.45); margin-bottom:20px;}
+.preco-box .rotulo{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray);}
+.preco-box .valor{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:clamp(40px,6vw,64px); font-weight:800; color:var(--lime); letter-spacing:-.02em; line-height:1; margin:2px 0;}
+.preco-box p{font-size:14px; color:var(--gray); max-width:56ch;}
+/* contato */
+.contato-box{display:inline-flex; flex-direction:column; gap:10px; background:var(--surface); border:2px solid var(--lime); border-radius:16px; padding:24px 30px; margin-top:12px;}
+.contato-box .linha{font-size:14.5px; color:rgba(255,255,255,.85); display:flex; align-items:center; gap:8px;}
+.contato-box .linha strong{color:var(--white); font-weight:600;}
+.contato-box a{text-decoration:underline; font-weight:600;}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none !important; transition:none !important;} }
+@media (min-width:761px) and (max-height:820px){
+  .slide{padding:24px 48px 16px;}
+  .topo{margin-bottom:12px;}
+  .titulo{font-size:25px; margin-bottom:6px;}
+  .lede{font-size:14.5px; margin-bottom:14px;}
+  .card{padding:14px 18px;}
+  .card h3{font-size:15px; margin-bottom:6px;}
+  ul.lista{gap:5px;}
+  ul.lista li{font-size:13.5px;}
+  .nota{margin-top:8px; font-size:12px;}
+  .etp .bola{width:48px; height:48px; font-size:17px;} .etapas::before{top:23px;}
+  .preco-box{padding:20px 24px;}
+}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr;} }
+@media (max-width:760px){
+  .slide{padding:24px 18px 20px;}
+  .titulo{font-size:23px;}
+  .capa .titulo{font-size:34px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica{display:none;}
+  .seta{display:none;}
+  .capa-grid{grid-template-columns:1fr; gap:20px;}
+  .etapas{grid-template-columns:1fr 1fr; row-gap:22px;} .etapas::before{display:none;}
+  .capa-vis{margin:0 auto;} .mini:nth-child(2),.mini:nth-child(3){margin-left:0;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais,#feixes{display:none;}
+}
+/* funil gás verde */
+.funil{display:grid; grid-template-columns:repeat(8,1fr); gap:0; position:relative; margin:6px 0 18px;}
+.funil::before{content:""; position:absolute; left:6%; right:6%; top:23px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.funil .etp{padding:0 6px;}
+.funil .etp .bola{width:48px; height:48px; font-size:17px; margin-bottom:10px;}
+.funil .etp h3{font-size:13px; line-height:1.3;}
+.funil .etp p{font-size:11.5px;}
+.funil .etp.fim .bola{background:var(--lime); color:var(--bg2);}
+.linha-tempo{margin-top:6px;}
+.linha-tempo .faixa{display:flex; height:30px; border-radius:8px; overflow:hidden; border:1px solid var(--border-white);}
+.linha-tempo .seg{display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--bg2); background:var(--lime2); border-right:1px solid var(--bg2); transform-origin:left; animation:cresce .9s cubic-bezier(.2,.7,.2,1) both; white-space:nowrap; overflow:hidden;}
+.linha-tempo .seg.b{background:rgba(233,255,74,.55);}
+.linha-tempo .seg.c{background:rgba(233,255,74,.3); color:var(--white);}
+.linha-tempo .meses{display:flex; justify-content:space-between; font-size:11px; color:var(--gray); margin-top:6px;}
+.tab-etapas td{font-size:13.5px;}
+.tab-etapas td.l{white-space:normal; min-width:150px;}
+.tab-etapas td.p{white-space:nowrap; color:var(--lime); font-weight:700;}
+.cad{position:relative; display:grid; gap:10px; margin:4px 0 14px;}
+.cad.c9{grid-template-columns:repeat(9,1fr);}
+.cad.c4{grid-template-columns:repeat(4,1fr);}
+.cad.c5{grid-template-columns:repeat(5,1fr);}
+.cad::before{content:""; position:absolute; left:4%; right:4%; top:19px; height:2px; background:rgba(233,255,74,.35); transform-origin:left; animation:cresce 1.4s .2s cubic-bezier(.2,.7,.2,1) both;}
+.toque{text-align:center; position:relative; min-width:0;}
+.toque .ic{width:40px; height:40px; margin:0 auto 8px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--bg); border:1px solid rgba(233,255,74,.45); color:var(--lime); position:relative; z-index:1;}
+.toque .ic svg{width:18px; height:18px;}
+.toque .d{font-size:11px; font-weight:800; color:var(--lime); letter-spacing:.06em;}
+.toque b{display:block; font-size:12.5px; margin:2px 0 3px;}
+.toque small{display:block; font-size:11.5px; color:var(--gray); line-height:1.4;}
+.toque.fim .ic{background:var(--lime); color:var(--bg2);}
+.slide.ativo .toque{animation:entra .5s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .toque:nth-child(2){animation-delay:.1s} .slide.ativo .toque:nth-child(3){animation-delay:.2s} .slide.ativo .toque:nth-child(4){animation-delay:.3s} .slide.ativo .toque:nth-child(5){animation-delay:.4s} .slide.ativo .toque:nth-child(6){animation-delay:.5s} .slide.ativo .toque:nth-child(7){animation-delay:.6s} .slide.ativo .toque:nth-child(8){animation-delay:.7s} .slide.ativo .toque:nth-child(9){animation-delay:.8s}
+.legenda{display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--gray); margin-bottom:12px;}
+.legenda span{display:inline-flex; align-items:center; gap:6px;}
+.legenda svg{width:14px; height:14px; color:var(--lime);}
+.tarefa{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; padding:8px 0; border-bottom:1px solid var(--border-white);}
+.tarefa:last-child{border-bottom:none;}
+.tarefa .ic{flex:none; width:28px; height:28px; border-radius:8px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center;}
+.tarefa .ic svg{width:15px; height:15px;}
+.tarefa b{color:var(--white); font-weight:600;}
+.tarefa .q{color:var(--lime2); font-weight:700; font-size:12px; margin-right:4px;}
+.tarefa span.t{color:var(--gray);}
+.campo{display:flex; justify-content:space-between; gap:10px; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--border-white); font-size:13.5px;}
+.campo:last-child{border-bottom:none;}
+.campo b{font-weight:600;}
+.campo small{color:var(--gray); font-size:12px; text-align:right;}
+.opcao{display:flex; flex-direction:column; gap:6px;}
+.decisao{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:10px; align-items:stretch;}
+@media (min-width:761px) and (max-height:820px){
+  .funil .etp .bola{width:42px; height:42px; font-size:15px;} .funil::before{top:20px;}
+  .cad::before{top:17px;} .toque .ic{width:36px; height:36px;}
+  .tab-etapas td{padding-top:8px; padding-bottom:8px; font-size:13px;}
+}
+@media (max-width:1100px){ .cad.c9{grid-template-columns:repeat(5,1fr); row-gap:18px;} .cad.c9::before{display:none;} }
+@media (max-width:760px){
+  .funil{grid-template-columns:1fr 1fr; row-gap:18px;} .funil::before{display:none;}
+  .cad.c9,.cad.c5,.cad.c4{grid-template-columns:1fr 1fr; row-gap:16px;} .cad::before{display:none;}
+  .decisao{grid-template-columns:1fr;}
+  .linha-tempo .seg{font-size:0;}
+  .tab-etapas td.l{min-width:0;}
+}
+
+/* oximag */
+.pill.blue{background:rgba(127,212,255,.12); color:#7fd4ff;}
+.funil.f9{grid-template-columns:repeat(9,1fr);}
+.funil .etp .quem{font-size:9.5px; padding:2px 7px;}
+.card.red ul.lista.evite li::before{content:"✕"; color:var(--red);}
+.tab-etapas td[rowspan]{vertical-align:middle;}
+@media (max-width:1100px){ .funil.f9{grid-template-columns:repeat(5,1fr); row-gap:18px;} .funil.f9::before{display:none;} }
+@media (max-width:760px){ .funil.f9{grid-template-columns:1fr 1fr;} }
+</style>
+</head>
+<body>
+<div id="feixes" aria-hidden="true"></div>
+<main class="deck" id="deck">
+
+<section class="slide capa" data-titulo="Capa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <div class="capa-grid">
+      <div>
+        <p class="label">RD CRM integrado à Omie</p>
+        <h1 class="titulo">O funil da Oximag,<br><em>etapa por etapa.</em></h1>
+        <p class="lede">Guia para vendedores e representantes: o que fazer em cada etapa do funil, o que a automação faz sozinha e o que fazer quando a negociação volta de etapa.</p>
+        <div class="meta"><span>Cliente: <strong>Oximag</strong></span><span>Para: <strong>vendedores e representantes</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Versão: <strong>novembro de 2026</strong></span></div>
+        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </div>
+      <div class="capa-vis" aria-hidden="true">
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span><div><b>2 funis, mesma ordem</b><small>Comercial e E-commerce</small></div></div>
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><div><b>Pedido nasce sozinho</b><small>na Omie, ao chegar em Pedido ERP</small></div></div>
+        <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><b>Status em até 5 min</b><small>faturado e cancelado voltam para o RD</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="Como o funil funciona">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">01 · Antes de começar</p>
+    <h2 class="titulo">Você conduz a venda.<br><em>A automação cuida da Omie.</em></h2>
+    <p class="lede">O RD CRM é onde a venda acontece. Quando a negociação muda de etapa, a integração conversa com a Omie: completa o cadastro, cria o pedido e traz de volta o andamento. Por isso <strong>mover a negociação para a etapa certa é o que faz tudo funcionar</strong>.</p>
+    <div class="grid-2">
+      <div class="card lime"><h3>Dois funis, as mesmas regras</h3><p>O funil Comercial e o funil E-commerce têm as mesmas etapas, na mesma ordem. Tudo neste guia vale para os dois.</p></div>
+      <div class="card lime"><h3>Empresa sempre com CNPJ</h3><p>O CNPJ é obrigatório na empresa. É por ele que o RD encontra o cliente na Omie. Sem CNPJ não há consulta na Receita nem pedido.</p></div>
+      <div class="card"><h3>Uma empresa, um vendedor</h3><p>O responsável pela negociação no RD é quem vai como vendedor no pedido da Omie. Mantenha o responsável certo.</p></div>
+      <div class="card"><h3>Anotações e tarefas avisam você</h3><p>Sempre que a automação faz algo ou encontra um problema, ela deixa uma anotação na negociação ou cria uma tarefa para o responsável.</p></div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="O funil em uma tela">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">02 · O funil em uma tela</p>
+    <h2 class="titulo">9 etapas até o faturamento,<br><em>2 saídas quando não dá certo.</em></h2>
+    <div class="legenda"><span><span class="pill blue">Você</span> etapa conduzida pelo vendedor</span><span><span class="pill lime">Automação</span> a integração age sozinha</span></div>
+    <div class="funil f9">
+      <div class="etp"><div class="bola">1</div><h3>Sem Responsável</h3><p>Lead chegou</p><span class="quem">Você</span></div>
+      <div class="etp auto"><div class="bola">2</div><h3>Qualificação</h3><p>Cadastro pela Receita</p><span class="quem">Automação</span></div>
+      <div class="etp"><div class="bola">3</div><h3>Prospecção</h3><p>Entender a necessidade</p><span class="quem">Você</span></div>
+      <div class="etp"><div class="bola">4</div><h3>Proposta</h3><p>Orçamento enviado</p><span class="quem">Você</span></div>
+      <div class="etp"><div class="bola">5</div><h3>Negociação</h3><p>Ajuste de condições</p><span class="quem">Você</span></div>
+      <div class="etp"><div class="bola">6</div><h3>Negócio Fechado</h3><p>Cliente aprovou</p><span class="quem">Você</span></div>
+      <div class="etp"><div class="bola">7</div><h3>Ganho - Inserir Produto</h3><p>Produto real e frete</p><span class="quem">Você</span></div>
+      <div class="etp auto"><div class="bola">8</div><h3>Pedido ERP</h3><p>Pedido criado na Omie</p><span class="quem">Automação</span></div>
+      <div class="etp auto fim"><div class="bola">9</div><h3>Pedido Faturado</h3><p>Pós-venda</p><span class="quem">Automação</span></div>
+    </div>
+    <div class="grid-2">
+      <div class="card amb"><div class="card-head"><h3>Negócio Perdido</h3><span class="pill blue">Você</span></div><p>O cliente desistiu antes de existir pedido. Você marca como perdida e escolhe o motivo.</p></div>
+      <div class="card red"><div class="card-head"><h3>Pedido Cancelado</h3><span class="pill lime">Automação</span></div><p>O pedido foi cancelado na Omie. A negociação vem para cá sozinha, já marcada como perdida.</p></div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="Etapas 1 e 2">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">03 · Etapas 1 e 2 · Sem Responsável e Qualificação</p>
+    <h2 class="titulo">Assumir o lead e<br><em>deixar o cadastro completo.</em></h2>
+    <div class="grid-2">
+      <div class="card lime"><p class="n">1 · SEM RESPONSÁVEL</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><span class="q">Você</span><b>Assumir a negociação</b><br><span class="t">Defina o responsável. É ele que vai como vendedor no pedido.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div><span class="q">Você</span><b>Conferir se a empresa já existe</b><br><span class="t">Busque pelo CNPJ antes de cadastrar, para não duplicar.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><span class="q">Você</span><b>Cadastrar a empresa com CNPJ</b><br><span class="t">Pessoa física fica só como contato, sem empresa.</span></div></div>
+      </div>
+      <div class="card lime"><p class="n">2 · QUALIFICAÇÃO</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><span class="q">Você</span><b>Preencher a Origem da Oportunidade</b><br><span class="t">Campo obrigatório para entrar nesta etapa.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><span class="q">Automação</span><b>Consulta o CNPJ na Receita Federal</b><br><span class="t">Completa razão social, nome fantasia, endereço, CNAE, porte e situação da empresa no RD.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><div><span class="q">Automação</span><b>Completa o cliente na Omie</b><br><span class="t">Se o cliente já existe na Omie, preenche o que estiver faltando lá.</span></div></div>
+      </div>
+    </div>
+    <p class="nota"><strong>Regra:</strong> a automação só preenche campo vazio. O que você ou a equipe já cadastraram nunca é sobrescrito. Cliente que ainda não existe na Omie não é criado por ela: o cadastro de cliente novo na Omie continua com a equipe interna.</p>
+  </div>
+</section>
+<section class="slide" data-titulo="Etapas 3 a 6">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">04 · Etapas 3 a 6 · Da prospecção ao fechamento</p>
+    <h2 class="titulo">O trabalho de venda é seu.<br><em>Registre tudo na negociação.</em></h2>
+    <p class="lede">Nestas etapas não há troca de dados com a Omie. O que conta é o histórico: anotações, tarefas e produtos atualizados para quem vier depois entender a negociação.</p>
+    <table class="tab-etapas">
+      <tr><th>Etapa</th><th>O que fazer</th><th>Avança quando</th></tr>
+      <tr><td class="l">3 · Prospecção</td><td>Falar com o cliente, entender a aplicação, a medida e a quantidade. Registrar a conversa em anotação.</td><td>A necessidade está clara para montar o orçamento</td></tr>
+      <tr><td class="l">4 · Proposta</td><td>Enviar o orçamento e incluir os produtos e valores na negociação. Agendar uma tarefa de retorno.</td><td>O cliente recebeu e está avaliando</td></tr>
+      <tr><td class="l">5 · Negociação</td><td>Ajustar preço, prazo e frete. Atualizar produtos e valores sempre que a proposta mudar.</td><td>O cliente aceita as condições</td></tr>
+      <tr><td class="l">6 · Negócio Fechado</td><td>Confirmar a compra com o cliente e verificar se o produto já tem código na Omie.</td><td>Venda confirmada: seguir para Ganho - Inserir Produto</td></tr>
+    </table>
+    <p class="nota"><strong>Dica:</strong> produto especial, que ainda não existe na Omie, pode seguir como <strong>Item a Definir</strong> até a etapa 7. O cadastro do produto real é feito pela equipe interna.</p>
+  </div>
+</section>
+<section class="slide" data-titulo="Etapa 7 · Ganho - Inserir Produto">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">05 · Etapa 7 · Ganho - Inserir Produto</p>
+    <h2 class="titulo">Venda fechada.<br><em>Agora o pedido precisa estar completo.</em></h2>
+    <p class="lede">Esta é a etapa de preparação do pedido. <strong>Nada é enviado à Omie aqui.</strong> Para entrar nela a negociação precisa ter ao menos um produto, que pode ser o genérico Item a Definir.</p>
+    <div class="fluxo" style="margin-bottom:16px;">
+      <div class="passo"><div class="t">Produto real</div><p>Troque o Item a Definir pelo produto real. Busque pelo código: os produtos aparecem como "código - descrição".</p></div>
+      <div class="passo"><div class="t">Quantidade e valor</div><p>Confira a quantidade e o valor unitário de cada item. É isso que vai para o pedido.</p></div>
+      <div class="passo"><div class="t">Tipo de Frete</div><p>Escolha FOB ou CIF. Sem frete o pedido não é criado.</p></div>
+      <div class="seta">→</div>
+      <div class="passo" style="border-color:rgba(233,255,74,.45);"><div class="t">Mover para Pedido ERP</div><p>Só depois de conferir os três pontos.</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h3>Produto especial ainda não cadastrado?</h3><p>A equipe interna cadastra o produto na Omie e avisa você. Em até 5 minutos, em horário comercial, ele aparece no catálogo do RD com código, preço, NCM e estoque.</p></div>
+      <div class="card"><h3>Estoque é informativo</h3><p>O estoque de cada produto vem da Omie às 6h e às 12h. Não há trava para estoque zerado, porque pode haver compra ou importação a caminho.</p></div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="Etapa 8 · Pedido ERP">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">06 · Etapa 8 · Pedido ERP</p>
+    <h2 class="titulo">Moveu para Pedido ERP,<br><em>o pedido nasce na Omie.</em></h2>
+    <div class="grid-2">
+      <div class="card lime"><p class="n">ANTES DE MOVER, CONFIRA</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Empresa com CNPJ</b><br><span class="t">E o cliente já cadastrado na Omie com esse mesmo CNPJ.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Nenhum Item a Definir</b><br><span class="t">Todos os produtos são reais, com código da Omie.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Tipo de Frete preenchido</b><br><span class="t">FOB ou CIF.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Responsável certo</b><br><span class="t">Ele vai como vendedor no pedido.</span></div></div>
+      </div>
+      <div class="card ok"><p class="n">O QUE A AUTOMAÇÃO FAZ</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><div><b>Cria o pedido de venda na Omie</b><br><span class="t">Uma única vez, com produtos, quantidades, valores, frete e vendedor.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><b>Renomeia a negociação</b><br><span class="t">Passa a se chamar "032195 - Nome da empresa".</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><b>Registra o número do pedido</b><br><span class="t">No campo Número Pedido Venda Omie e numa anotação "Pedido criado com sucesso na Omie".</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><b>Atualiza a empresa</b><br><span class="t">Grava a Data da Última Compra.</span></div></div>
+      </div>
+    </div>
+    <p class="nota"><strong>Tempo:</strong> o pedido costuma aparecer em poucos minutos. A <strong>condição de pagamento e as parcelas</strong> não são escolhidas no RD: a equipe ajusta direto no pedido da Omie.</p>
+  </div>
+</section>
+<section class="slide" data-titulo="Quando a negociação volta">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">07 · Etapa 8 · Quando a negociação volta sozinha</p>
+    <h2 class="titulo">Voltou para Ganho - Inserir Produto?<br><em>A anotação diz o motivo.</em></h2>
+    <p class="lede">Se faltar alguma coisa, nenhum pedido é criado e a negociação volta para <strong>Ganho - Inserir Produto</strong>. Corrija o ponto indicado e mova de novo para Pedido ERP.</p>
+    <table class="tab-etapas">
+      <tr><th>Motivo</th><th>Como você fica sabendo</th><th>O que fazer</th></tr>
+      <tr><td class="l">Produto ainda é Item a Definir</td><td>Anotação na negociação</td><td>Trocar pelo produto real e mover de novo</td></tr>
+      <tr><td class="l">Tipo de Frete vazio</td><td>Anotação na negociação</td><td>Escolher FOB ou CIF e mover de novo</td></tr>
+      <tr><td class="l">Cliente não encontrado na Omie</td><td>Anotação e tarefa "Pedido NÃO criado na Omie"</td><td>Pedir o cadastro do cliente na Omie com o mesmo CNPJ. Depois, mover de novo</td></tr>
+      <tr><td class="l">Omie recusou o pedido</td><td>Anotação e tarefa "Pedido NÃO criado na Omie", com a mensagem exata</td><td>Corrigir o que a Omie apontou (código de produto, cadastro) ou acionar a equipe interna</td></tr>
+    </table>
+    <p class="nota"><strong>Instabilidade da Omie:</strong> quando a Omie está ocupada, a automação espera e tenta de novo sozinha, até 3 vezes. Você só recebe a tarefa se mesmo assim não der certo.</p>
+  </div>
+</section>
+<section class="slide" data-titulo="Acompanhar o pedido">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">08 · Depois que o pedido existe</p>
+    <h2 class="titulo">Acompanhe o pedido<br><em>sem precisar entrar na Omie.</em></h2>
+    <p class="lede">O campo <strong>Etapa do Pedido Omie</strong>, na negociação, mostra em que ponto o pedido está. Ele é atualizado a cada 5 minutos em horário comercial (segunda a sexta, 7h às 19h) e a cada 15 minutos fora dele.</p>
+    <div class="fluxo" style="margin-bottom:16px;">
+      <div class="passo"><div class="t">Pedido de Venda</div><p>Recém-criado</p></div>
+      <div class="passo"><div class="t">Aguardando Projeto / Estoque</div><p>Em preparação</p></div>
+      <div class="passo"><div class="t">Separar Estoque</div><p>Na expedição</p></div>
+      <div class="passo"><div class="t">Pedido Programado</div><p>Com data definida</p></div>
+      <div class="passo"><div class="t">Faturar</div><p>Pronto para nota</p></div>
+      <div class="seta">→</div>
+      <div class="passo" style="border-color:rgba(233,255,74,.45);"><div class="t">Faturado</div><p>Vai para Pedido Faturado</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h3>Precisa mudar o pedido?</h3><p>Alteração de item, quantidade, prazo ou pagamento depois que o pedido existe é feita na Omie, pela equipe interna. Mover a negociação de novo para Pedido ERP não cria nem altera pedido.</p></div>
+      <div class="card"><h3>Não mexa no número</h3><p>O número do pedido liga a negociação ao pedido da Omie. É por ele que o faturamento e o cancelamento voltam para o RD. Não apague nem edite esse campo.</p></div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="Etapa 9 · Pedido Faturado">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">09 · Etapa 9 · Pedido Faturado</p>
+    <h2 class="titulo">Faturou na Omie,<br><em>começa o pós-venda.</em></h2>
+    <div class="cad c4">
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="d">OMIE</span><b>Pedido faturado</b><small>A nota fiscal é emitida</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><span class="d">ATÉ 5 MIN</span><b>Negociação movida</b><small>Vai sozinha para Pedido Faturado</small></div>
+      <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="d">NA HORA</span><b>Tarefa criada</b><small>"Pós-venda: pedido 032195 faturado"</small></div>
+      <div class="toque fim"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">ATÉ 20 DIAS</span><b>Seu contato</b><small>Recebimento e suporte</small></div>
+    </div>
+    <div class="grid-2">
+      <div class="card lime"><h3>O que fazer na tarefa de pós-venda</h3>
+        <ul class="lista">
+          <li>Confirmar com o cliente se o pedido chegou certo</li>
+          <li>Perguntar se precisa de suporte na aplicação</li>
+          <li>Registrar o retorno em anotação e concluir a tarefa</li>
+          <li>Se houver nova necessidade, abrir outra negociação</li>
+        </ul>
+      </div>
+      <div class="card"><h3>Regras</h3>
+        <ul class="lista">
+          <li>A tarefa é criada uma única vez por pedido, para o responsável da negociação</li>
+          <li>Não mova manualmente para Pedido Faturado: quem decide é o faturamento na Omie</li>
+          <li>Negociação marcada como perdida não é movida</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="Perdido ou cancelado">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">10 · As duas saídas</p>
+    <h2 class="titulo">Perdido e cancelado<br><em>não são a mesma coisa.</em></h2>
+    <div class="grid-2">
+      <div class="card amb"><div class="card-head"><h3>Negócio Perdido</h3><span class="pill blue">Você</span></div>
+        <ul class="lista">
+          <li>O cliente desistiu <strong>antes</strong> de existir pedido na Omie</li>
+          <li>Você marca a negociação como perdida e escolhe o motivo real</li>
+          <li>O motivo alimenta o relatório de perdas, então evite "Outros"</li>
+          <li>Não há troca de dados com a Omie</li>
+        </ul>
+      </div>
+      <div class="card red"><div class="card-head"><h3>Pedido Cancelado</h3><span class="pill lime">Automação</span></div>
+        <ul class="lista">
+          <li>O pedido <strong>já existia</strong> e foi cancelado na Omie</li>
+          <li>Em até 5 minutos a negociação vai sozinha para Pedido Cancelado, no mesmo funil</li>
+          <li>É marcada como perdida com o motivo "Pedido Cancelado na Omie"</li>
+          <li>Se estava como ganha, é reaberta e marcada como perdida, para não contar como venda</li>
+        </ul>
+      </div>
+    </div>
+    <p class="nota"><strong>Para cancelar um pedido</strong>, o cancelamento é feito na Omie. Mover a negociação para Pedido Cancelado no RD não cancela nada na Omie.</p>
+  </div>
+</section>
+<section class="slide" data-titulo="Tarefas automáticas">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">11 · O que a automação cria para você</p>
+    <h2 class="titulo">Tarefas e negociações<br><em>que aparecem sozinhas.</em></h2>
+    <p class="lede">Tudo é criado para o responsável da negociação ou da empresa. Confira sua lista de tarefas no RD todo dia.</p>
+    <table class="tab-etapas">
+      <tr><th>O que aparece</th><th>Quando</th><th>O que fazer</th></tr>
+      <tr><td class="l">Tarefa "Pós-venda: pedido ... faturado"</td><td>Pedido faturado na Omie</td><td>Contato com o cliente em até 20 dias</td></tr>
+      <tr><td class="l">Tarefa "Pedido NÃO criado na Omie"</td><td>Pedido recusado ou cliente fora da Omie</td><td>Corrigir o motivo e mover de novo para Pedido ERP</td></tr>
+      <tr><td class="l">Tarefa "Cliente inativo há mais de 180 dias"</td><td>Negociação em aberto sem interação há 180 dias</td><td>Retomar o contato ou encerrar a negociação</td></tr>
+      <tr><td class="l">Negociação "Contato Periódico - Curva A"</td><td>Empresa Curva A, a cada 30 dias</td><td rowspan="3">Fazer o contato de relacionamento. A negociação nasce em Qualificação e segue o funil normal</td></tr>
+      <tr><td class="l">Negociação "Contato Periódico - Curva B"</td><td>Empresa Curva B, a cada 90 dias</td></tr>
+      <tr><td class="l">Negociação "Contato Periódico - Curva C ou D"</td><td>Empresa Curva C ou D, a cada 180 dias</td></tr>
+    </table>
+    <p class="nota">A Curva (A, B, C ou D) é definida pela Oximag no cadastro da empresa. Empresa sem Curva não recebe contato periódico.</p>
+  </div>
+</section>
+<section class="slide" data-titulo="Regras de ouro">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">12 · Regras de ouro</p>
+    <h2 class="titulo">O que fazer e<br><em>o que evitar.</em></h2>
+    <div class="grid-2">
+      <div class="card ok"><h3>Faça</h3>
+        <ul class="lista">
+          <li>Mova a negociação sempre que a venda avançar: é o movimento que aciona a integração</li>
+          <li>Cadastre a empresa com CNPJ e busque antes de criar, para não duplicar</li>
+          <li>Busque o produto pelo código da Omie</li>
+          <li>Preencha o Tipo de Frete antes de Pedido ERP</li>
+          <li>Leia as anotações quando a negociação voltar de etapa</li>
+          <li>Conclua as tarefas registrando o que aconteceu</li>
+        </ul>
+      </div>
+      <div class="card red"><h3>Evite</h3>
+        <ul class="lista evite">
+          <li>Criar o pedido direto na Omie para uma negociação do RD: gera pedido duplicado</li>
+          <li>Apagar ou editar o número do pedido na negociação</li>
+          <li>Mover manualmente para Pedido Faturado ou Pedido Cancelado</li>
+          <li>Usar Negócio Perdido para pedido que já existe na Omie</li>
+          <li>Deixar Item a Definir e mover para Pedido ERP esperando que passe</li>
+          <li>Trocar o responsável depois do pedido criado sem avisar a equipe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide" data-titulo="Horários e contato">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Guia do funil</span></div>
+
+    <p class="label">13 · Resumo</p>
+    <h2 class="titulo">Quando cada automação roda<br><em>e com quem falar.</em></h2>
+    <table class="tab-etapas">
+      <tr><th>Automação</th><th>Quando roda</th><th>O que você vê no RD</th></tr>
+      <tr><td class="l">Cadastro pela Receita</td><td>Na hora, ao entrar em Qualificação</td><td>Empresa completa</td></tr>
+      <tr><td class="l">Pedido de venda</td><td>Na hora, ao entrar em Pedido ERP</td><td>Número do pedido, nome novo e anotação, ou a negociação de volta com o motivo</td></tr>
+      <tr><td class="l">Andamento do pedido</td><td>A cada 5 min (seg a sex, 7h às 19h) e a cada 15 min fora disso</td><td>Etapa do Pedido Omie, Pedido Faturado e Pedido Cancelado</td></tr>
+      <tr><td class="l">Produtos novos</td><td>A cada 5 min em horário comercial</td><td>Produto novo da Omie no catálogo</td></tr>
+      <tr><td class="l">Estoque</td><td>Todo dia às 6h e às 12h</td><td>Campo Estoque do produto</td></tr>
+      <tr><td class="l">Inatividade e Curva</td><td>Todo dia pela manhã</td><td>Tarefas de inatividade e negociações de contato periódico</td></tr>
+    </table>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card lime"><h3>Dúvida sobre produto, cliente ou pedido</h3><p>Equipe interna da Oximag: cadastro de produto e cliente na Omie, condição de pagamento e alterações de pedido.</p></div>
+      <div class="card"><h3>A automação não fez o que deveria</h3><p>Avise o gestor comercial com o nome da negociação. A AUTZ recebe um alerta automático de qualquer erro da integração.</p></div>
+    </div>
+    <p class="nota" style="margin-top:18px;">© 2026 AUTZ Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
+  </div>
+</section>
+
+</main>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto</div>
+<nav class="barra">
+  <button id="anterior" aria-label="Anterior">‹</button>
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <span class="contador" id="contador"></span>
+  <button id="proximo" aria-label="Próximo">›</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisar();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisar() {
+    var s = slides[atual];
+    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
+  window.addEventListener('resize', avisar);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wrap = document.getElementById('feixes');
+  var gridSize = 48;
+  function criarFeixe() {
+    var el = document.createElement('div');
+    var horizontal = Math.random() > 0.5;
+    el.className = 'feixe ' + (horizontal ? 'h' : 'v');
+    var duracao = Math.random() * 4 + 5;
+    el.style.animation = (horizontal ? 'feixe-h' : 'feixe-v') + ' ' + duracao + 's linear forwards';
+    if (horizontal) {
+      var maxRows = Math.floor(window.innerHeight / gridSize);
+      el.style.top = (Math.floor(Math.random() * maxRows) * gridSize) + 'px';
+      el.style.left = '0px';
+    } else {
+      var maxCols = Math.floor(window.innerWidth / gridSize);
+      el.style.left = (Math.floor(Math.random() * maxCols) * gridSize) + 'px';
+      el.style.top = '0px';
+    }
+    wrap.appendChild(el);
+    setTimeout(function () { el.remove(); }, duracao * 1000 + 100);
+  }
+  setInterval(criarFeixe, 2200);
+})();
+</script>
+</body>
+</html>
