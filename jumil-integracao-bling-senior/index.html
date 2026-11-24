@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>AUTZ · Jumil · Integração Bling e Senior</title>
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
+  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+p{margin:0;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
+.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+.logo{height:24px; width:auto; display:block;}
+.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
+.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
+.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
+.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
+.lede strong{color:var(--white); font-weight:600;}
+.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
+.capa .lede{font-size:18px;}
+.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
+.meta strong{color:var(--white); font-weight:600;}
+.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
+.card.lime{border-color:rgba(233,255,74,.35);}
+.card.ok{border-color:rgba(74,222,128,.35);}
+.card.amb{border-color:rgba(251,191,36,.35);}
+.card.red{border-color:rgba(232,89,60,.35);}
+.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
+.card p{font-size:14px; color:var(--gray);}
+.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
+ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
+.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
+.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
+.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
+.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.card-head h3{margin:0;}
+.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
+.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
+.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
+.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
+.seta{align-self:center; color:var(--lime); font-weight:700;}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
+.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
+.nota strong{color:var(--white);}
+a{color:var(--lime);}
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
+.mais.visivel{display:block;}
+.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
+/* camada visual */
+body{background:
+  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
+  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
+  var(--bg);}
+body::before{content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+/* feixes de luz correndo nas linhas da grade */
+#feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen; filter:blur(.5px);}
+.feixe.h{height:1px; width:90px; background:linear-gradient(90deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+.feixe.v{width:1px; height:90px; background:linear-gradient(180deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+@keyframes feixe-h{0%{transform:translateX(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateX(100vw); opacity:0;}}
+@keyframes feixe-v{0%{transform:translateY(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateY(100vh); opacity:0;}}
+.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.label{display:inline-flex; align-items:center; gap:8px;}
+.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
+.card,.passo{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
+.card:hover,.passo:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
+.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
+.card.ok{box-shadow:inset 0 2px 0 var(--green);}
+.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
+.card.red{box-shadow:inset 0 2px 0 var(--red);}
+.passo .t{display:flex; align-items:center; gap:8px;}
+.passo .t::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 4px rgba(233,255,74,.15);}
+.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
+@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
+.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
+.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
+.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
+.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
+.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
+.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
+@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
+.slide.ativo .grid-3 > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .grid-3 > *:nth-child(2){animation-delay:.28s}
+.slide.ativo .grid-3 > *:nth-child(3){animation-delay:.36s}
+@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
+.etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin:8px 0 6px;}
+.etapas::before{content:""; position:absolute; left:12%; right:12%; top:27px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.etp{text-align:center; padding:0 10px; position:relative;}
+.etp .bola{width:56px; height:56px; margin:0 auto 12px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:var(--lime); box-shadow:0 0 0 8px rgba(233,255,74,.08); position:relative; z-index:1;}
+.etp.auto .bola{background:var(--lime); color:var(--bg2);}
+.etp h3{font-size:15px; margin-bottom:6px;}
+.etp p{font-size:13px; color:var(--gray);}
+.etp .quem{display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:rgba(127,212,255,.12); color:#7fd4ff;}
+.etp.auto .quem{background:rgba(233,255,74,.12); color:var(--lime);}
+.pulso{animation:respira 2.4s ease-in-out infinite;}
+@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(233,255,74,.0)} 50%{box-shadow:0 0 0 8px rgba(233,255,74,.10)}}
+.capa-vis{position:relative; display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:340px; margin-left:auto; width:100%;}
+.mini{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; animation:entra .6s both;}
+.mini:nth-child(2){animation-delay:.25s; margin-left:22px;} .mini:nth-child(3){animation-delay:.45s; margin-left:44px;}
+.mini .ico{width:34px; height:34px; border-radius:10px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center; flex:none;}
+.mini b{font-size:13.5px; display:block;}
+.mini small{font-size:12px; color:var(--gray);}
+.ico svg{width:18px; height:18px;}
+/* preço */
+.preco-box{display:inline-flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px 32px; box-shadow:0 0 50px -18px rgba(233,255,74,.45); margin-bottom:20px;}
+.preco-box .rotulo{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray);}
+.preco-box .valor{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:clamp(40px,6vw,64px); font-weight:800; color:var(--lime); letter-spacing:-.02em; line-height:1; margin:2px 0;}
+.preco-box p{font-size:14px; color:var(--gray); max-width:56ch;}
+/* contato */
+.contato-box{display:inline-flex; flex-direction:column; gap:10px; background:var(--surface); border:2px solid var(--lime); border-radius:16px; padding:24px 30px; margin-top:12px;}
+.contato-box .linha{font-size:14.5px; color:rgba(255,255,255,.85); display:flex; align-items:center; gap:8px;}
+.contato-box .linha strong{color:var(--white); font-weight:600;}
+.contato-box a{text-decoration:underline; font-weight:600;}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none !important; transition:none !important;} }
+@media (min-width:761px) and (max-height:820px){
+  .slide{padding:24px 48px 16px;}
+  .topo{margin-bottom:12px;}
+  .titulo{font-size:25px; margin-bottom:6px;}
+  .lede{font-size:14.5px; margin-bottom:14px;}
+  .card{padding:14px 18px;}
+  .card h3{font-size:15px; margin-bottom:6px;}
+  ul.lista{gap:5px;}
+  ul.lista li{font-size:13.5px;}
+  .nota{margin-top:8px; font-size:12px;}
+  .etp .bola{width:48px; height:48px; font-size:17px;} .etapas::before{top:23px;}
+  .preco-box{padding:20px 24px;}
+}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr;} }
+@media (max-width:760px){
+  .slide{padding:24px 18px 20px;}
+  .titulo{font-size:23px;}
+  .capa .titulo{font-size:34px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica{display:none;}
+  .seta{display:none;}
+  .capa-grid{grid-template-columns:1fr; gap:20px;}
+  .etapas{grid-template-columns:1fr 1fr; row-gap:22px;} .etapas::before{display:none;}
+  .capa-vis{margin:0 auto;} .mini:nth-child(2),.mini:nth-child(3){margin-left:0;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais,#feixes{display:none;}
+}
+/* kpis the gallery */
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.kpi{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:18px 20px; display:flex; flex-direction:column; gap:4px;}
+.kpi .v{font-size:32px; font-weight:800; color:var(--lime); line-height:1.1; letter-spacing:-.01em;}
+.kpi .r{font-size:13px; color:var(--gray);}
+.slide.ativo .kpis > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .kpis > *:nth-child(2){animation-delay:.1s} .slide.ativo .kpis > *:nth-child(3){animation-delay:.2s} .slide.ativo .kpis > *:nth-child(4){animation-delay:.3s}
+@media (min-width:761px) and (max-height:820px){ .kpi{padding:12px 16px;} .kpi .v{font-size:26px;} table td{padding:8px 14px 8px 0;} }
+@media (max-width:900px){ .kpis{grid-template-columns:1fr 1fr;} }
+@media (max-width:760px){ .fluxo{flex-direction:column;} }
+</style>
+</head>
+<body>
+<style>
+.tbl{overflow-x:auto;}
+.tbl table{min-width:640px;}
+table.cmp{font-size:13px;}
+table.cmp td{padding:8px 12px 8px 0;}
+code,.mono{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:.92em; color:var(--lime2);}
+td.c{white-space:nowrap;}
+.pill.red{background:rgba(232,89,60,.15); color:var(--red);}
+.pill.blue{background:rgba(127,212,255,.12); color:#7fd4ff;}
+.etapas.cinco{grid-template-columns:repeat(5,1fr);}
+.etapas.cinco::before{left:10%; right:10%;}
+.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
+.card.red ul.lista li::before{content:"×"; color:var(--red);}
+.card.amb ul.lista li::before{content:"?"; color:var(--amber);}
+.card.amb.seta-lst ul.lista li::before{content:"→";}
+.fase{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--bg2); background:var(--lime); border-radius:6px; padding:3px 8px; margin-right:8px;}
+.fase.f2{background:rgba(127,212,255,.85);}
+@media (max-width:760px){ .etapas.cinco{grid-template-columns:1fr 1fr;} }
+@media (min-width:761px) and (max-height:820px){ table.cmp td{padding:6px 12px 6px 0;} table.cmp{font-size:12.5px;} }
+</style>
+<div id="feixes" aria-hidden="true"></div>
+<main class="deck" id="deck">
+
+<section class="slide capa" data-titulo="Capa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <div class="capa-grid">
+      <div>
+        <p class="label">Mercado Livre · Bling · Senior</p>
+        <h1 class="titulo">Pedido do Mercado Livre<br><em>entrando sozinho no Senior.</em></h1>
+        <p class="lede">Onde estamos na fase 1: o Bling e a API e-commerce da Jumil já estão conectados e testados. Falta resolver o cadastro de cliente e alguns pontos da API para ligar o fluxo completo.</p>
+        <div class="meta"><span>Cliente: <strong>Jumil</strong></span><span>Para: <strong>Luis Eduardo e time de TI</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Atualizado em: <strong>24 de novembro de 2026</strong></span></div>
+        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </div>
+      <div class="capa-vis" aria-hidden="true">
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Bling conectado</b><small>pedidos e clientes reais lidos</small></div></div>
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>API Jumil testada</b><small>pedido de teste criado no Senior</small></div></div>
+        <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div><b>Cadastro de cliente</b><small>bloqueado, depende da Jumil</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Fluxo da fase 1">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">01 · Fase 1</p>
+    <h2 class="titulo">Do Mercado Livre ao Senior,<br><em>sem digitar nada.</em></h2>
+    <p class="lede">Quando o Bling avisa que chegou um pedido novo, o middleware da AUTZ busca o pedido e o cliente, <strong>completa o cadastro com a Brasil API</strong> e grava cliente e pedido no Senior pela API e-commerce da Jumil.</p>
+    <div class="etapas cinco">
+      <div class="etp auto"><div class="bola">1</div><h3>Mercado Livre</h3><p>Cliente compra na loja oficial</p><span class="quem">já existe</span></div>
+      <div class="etp auto"><div class="bola">2</div><h3>Bling</h3><p>Recebe o pedido e avisa o middleware</p><span class="quem">conectado</span></div>
+      <div class="etp"><div class="bola">3</div><h3>Middleware AUTZ</h3><p>Busca pedido e cliente no Bling</p><span class="quem">a montar</span></div>
+      <div class="etp"><div class="bola">4</div><h3>Brasil API</h3><p>Completa os dados do CNPJ</p><span class="quem">testada</span></div>
+      <div class="etp"><div class="bola">5</div><h3>Senior</h3><p>Cadastra cliente e cria o pedido</p><span class="quem">ajustes Jumil</span></div>
+    </div>
+    <p class="nota">A Brasil API é gratuita e pública. Usamos a Receita Federal só para preencher o que o Mercado Livre e o Bling não trazem.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O que já está conectado">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">02 · Status</p>
+    <h2 class="titulo">O que já funciona<br><em>e o que está travando.</em></h2>
+    <div class="grid-3">
+      <div class="card ok"><div class="card-head"><h3>Bling</h3><span class="pill ok">conectado</span></div><ul class="lista"><li>Acesso autorizado pela Jumil</li><li>Pedidos de venda com itens, pagamento e entrega</li><li>Cadastro do cliente (contatos)</li></ul></div>
+      <div class="card ok"><div class="card-head"><h3>API e-commerce</h3><span class="pill ok">no ar</span></div><ul class="lista"><li>Conectada ao Oracle do Senior</li><li>Pedido criado pela API</li><li>Status e histórico do pedido</li><li>Prazo de entrega</li></ul></div>
+      <div class="card red"><div class="card-head"><h3>Travando</h3><span class="pill red">Jumil</span></div><ul class="lista"><li>Cadastro de cliente dá erro no banco</li><li>Documentação diferente da API real</li><li>Cancelamento sem confirmação</li><li>Consulta de estoque lenta e sem filtro</li></ul></div>
+    </div>
+    <p class="nota">Testes feitos em 24/11/2026 com a chave do Mercado Livre, no ambiente de produção.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Teste de 24/11">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">03 · Teste ponta a ponta</p>
+    <h2 class="titulo">Cadastro, pedido e cancelamento<br><em>em produção.</em></h2>
+    <div class="tbl"><table class="cmp">
+      <thead><tr><th>Etapa</th><th>Rota</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td class="l">Cadastrar cliente</td><td class="c"><code>PUT /client</code></td><td><span class="pill red">erro 500</span> O banco recusou: a API não gera o código do cliente (<code>USU_CODCLI</code>). Nada foi gravado.</td></tr>
+        <tr><td class="l">Criar pedido</td><td class="c"><code>POST /requests</code></td><td><span class="pill ok">criado</span> Status "Não Integrado". Só aceitou os campos do formato antigo do Zeitten.</td></tr>
+        <tr><td class="l">Consultar status</td><td class="c"><code>GET /requests/status</code></td><td><span class="pill amb">vazio</span> Não mostra pedido ainda não integrado.</td></tr>
+        <tr><td class="l">Cancelar</td><td class="c"><code>DELETE /requests/cancel</code></td><td><span class="pill amb">sem confirmação</span> Respondeu <code>true</code>, mas o status continua vazio.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card amb" style="margin-top:16px"><div class="card-head"><h3>Pedido de teste para remover</h3><span class="pill amb">conferir no Senior</span></div><p>Pedido <strong class="mono">TESTE-AUTZ-20261124-01</strong> (campo zeittenOrderId) · CNPJ <span class="mono">51838840000199</span> · 1 un. da peça <span class="mono">2769160</span> a R$ 1.176,44 · observação "TESTE DE INTEGRACAO AUTZ - NAO FATURAR". Se o cancelamento não tiver valido, pode excluir.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="De onde vem cada dado">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">04 · Enriquecimento do cliente</p>
+    <h2 class="titulo">Três fontes<br><em>para um cadastro completo.</em></h2>
+    <div class="grid-3">
+      <div class="card lime"><div class="n">BLING</div><h3>Vem em todo pedido</h3><ul class="lista"><li>Nome e CPF ou CNPJ</li><li>Endereço de entrega completo</li><li>Inscrição estadual, quando cadastrada</li><li>Itens, valores e pagamento</li></ul></div>
+      <div class="card lime"><div class="n">BRASIL API</div><h3>Só para CNPJ</h3><ul class="lista"><li>Razão social e nome fantasia</li><li>Endereço da Receita e CEP</li><li>Telefone e CNAE</li><li>Situação cadastral (ativa, baixada)</li></ul></div>
+      <div class="card"><div class="n">REGRA FIXA</div><h3>Definido pela Jumil</h3><ul class="lista"><li>Tipo de cliente pelo documento</li><li>Mercado interno</li><li>Situação ativa</li><li>Origem Mercado Livre</li></ul></div>
+    </div>
+    <div class="card amb" style="margin-top:16px"><h3>Atenção</h3><p>A Brasil API <strong>não atende CPF e não traz inscrição estadual</strong>. Comprador pessoa física entra só com os dados do Bling. E o Mercado Livre não repassa telefone nem e-mail do comprador ao Bling.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Campos obrigatórios">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">05 · Tabela USU_TE085CLI</p>
+    <h2 class="titulo">Os 11 campos obrigatórios<br><em>e nossa proposta.</em></h2>
+    <p class="lede">A tabela intermediária tem 182 colunas e 11 obrigatórias. A API pede só o CNPJ, então estas não são preenchidas hoje. <strong>Os valores abaixo são proposta da AUTZ, a confirmar.</strong></p>
+    <div class="tbl"><table class="cmp">
+      <thead><tr><th>Coluna</th><th>O que entendemos</th><th>Proposta</th></tr></thead>
+      <tbody>
+        <tr><td class="l">USU_CODCLI</td><td>Código do cliente</td><td><span class="pill red">dúvida</span> Quem gera? Sequência do Senior?</td></tr>
+        <tr><td class="l">USU_NOMCLI</td><td>Nome ou razão social</td><td>Bling, ou razão social da Brasil API</td></tr>
+        <tr><td class="l">USU_APECLI</td><td>Apelido (até 50)</td><td>Nome fantasia, ou nome do Bling cortado</td></tr>
+        <tr><td class="l">USU_TIPCLI</td><td>Pessoa física ou jurídica</td><td><code>F</code> para CPF, <code>J</code> para CNPJ</td></tr>
+        <tr><td class="l">USU_TIPMER</td><td>Mercado</td><td><code>I</code> (interno)</td></tr>
+        <tr><td class="l">USU_CLICON</td><td>Contribuinte de ICMS</td><td><code>N</code> para CPF; CNPJ <span class="pill amb">dúvida</span></td></tr>
+        <tr><td class="l">USU_TEMENT · USU_TEMCOB</td><td>Tem endereço de entrega e de cobrança</td><td><code>S</code> e <code>N</code>? <span class="pill amb">dúvida</span></td></tr>
+        <tr><td class="l">USU_SITCLI</td><td>Situação</td><td><code>A</code> (ativo)</td></tr>
+        <tr><td class="l">USU_TIPACE</td><td>Não identificado</td><td><span class="pill red">dúvida</span> O que é e qual valor?</td></tr>
+        <tr><td class="l">USU_CODEPX</td><td>Origem do e-commerce</td><td><code>105</code>, código da chave Mercado Livre</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Outros campos do cadastro">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">06 · Campos para a nota fiscal</p>
+    <h2 class="titulo">Não obrigatórios no banco,<br><em>mas necessários para faturar.</em></h2>
+    <div class="tbl"><table class="cmp">
+      <thead><tr><th>Dado</th><th>Coluna no Senior</th><th>Fonte</th></tr></thead>
+      <tbody>
+        <tr><td class="l">CPF ou CNPJ</td><td><code>USU_CGCCPF</code></td><td>Bling</td></tr>
+        <tr><td class="l">Inscrição estadual</td><td><code>USU_INSEST</code></td><td>Bling, quando cadastrada. Brasil API não tem.</td></tr>
+        <tr><td class="l">Endereço, número, complemento</td><td><code>USU_ENDCLI · USU_NENCLI · USU_CPLEND</code></td><td>Brasil API para CNPJ; Bling para CPF</td></tr>
+        <tr><td class="l">Bairro, cidade, UF, CEP</td><td><code>USU_BAICLI · USU_CIDCLI · USU_SIGUFS · USU_CEPCLI</code></td><td>Brasil API para CNPJ; Bling para CPF</td></tr>
+        <tr><td class="l">Endereço de entrega</td><td><code>USU_ENDENT · USU_CIDENT · USU_ESTENT · USU_CEPENT</code></td><td>Bling (etiqueta do Mercado Livre)</td></tr>
+        <tr><td class="l">Telefone</td><td><code>USU_FONCLI</code></td><td>Brasil API, só CNPJ</td></tr>
+        <tr><td class="l">E-mail e e-mail da NF-e</td><td><code>USU_INTNET · USU_EMANFE</code></td><td>Brasil API quando houver; o Mercado Livre não repassa</td></tr>
+        <tr><td class="l">Ramo de atividade</td><td><code>USU_CODRAM</code></td><td>CNAE da Brasil API, se a Jumil usar esse código <span class="pill amb">dúvida</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Problemas na API e na documentação">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">07 · Pontos para corrigir</p>
+    <h2 class="titulo">O que encontramos<br><em>na API e na documentação.</em></h2>
+    <div class="grid-2">
+      <div class="card red"><h3>Bloqueiam a fase 1</h3><ul class="lista"><li>Cadastro de cliente: erro 500, o código do cliente e as outras colunas obrigatórias não são preenchidos</li><li>Pedido: a documentação pede <code>orderId</code>, <code>customerCnpj</code> e <code>sku</code>; a API só aceita <code>zeittenOrderId</code>, <code>cnpj</code>, <code>fullAddress</code> e <code>code</code></li><li>Pedido aceito para CNPJ que não é cliente</li><li>Status e histórico não mostram pedido "Não Integrado"; cancelamento devolve só <code>true</code></li></ul></div>
+      <div class="card amb seta-lst"><h3>Afetam a fase 2</h3><ul class="lista"><li>Estoque ignora o filtro: pedimos a 2769160 e veio a 0103562</li><li>Estoque leva cerca de 28 s; sem filtro, passa de 30 s sem resposta</li><li>Prazo de entrega: a documentação diz <code>sku</code>, a API aceita <code>code</code></li><li>Prazo de máquina parada (14/12) maior que o padrão (24/11)</li><li>Histórico ignora o filtro por data</li></ul></div>
+    </div>
+    <p class="nota"><strong>Segurança:</strong> a API roda sem HTTPS, e a chave do Mercado Livre também lê descontos, condições de pagamento e clientes do sistema comercial. Recomendamos HTTPS e uma chave com acesso só ao e-commerce.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Dúvidas para o time">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">08 · Precisamos da Jumil</p>
+    <h2 class="titulo">Respostas que destravam<br><em>a fase 1.</em></h2>
+    <div class="grid-2">
+      <div class="card amb"><h3>Cadastro de cliente</h3><ul class="lista"><li>Quem gera o <code>USU_CODCLI</code>: a API, uma sequência do Senior ou a AUTZ?</li><li>O que é o <code>USU_TIPACE</code> e qual valor usar?</li><li>Valores certos de <code>TIPMER</code>, <code>CLICON</code>, <code>TEMENT</code> e <code>TEMCOB</code> para o e-commerce</li><li>O <code>USU_CODEPX</code> do Mercado Livre é mesmo 105?</li><li>Como tratar comprador sem inscrição estadual e CNPJ inativo</li></ul></div>
+      <div class="card amb"><h3>Pedido e faturamento</h3><ul class="lista"><li>Qual o formato oficial do pedido: o da documentação nova ou o do Zeitten?</li><li>O que vai em <code>zeittenOrderId</code> para pedido do Bling: o número do Bling?</li><li>Quando o pedido sai de "Não Integrado" e quem faz isso?</li><li>A API só cria o pedido ou também fatura com a série 2 e o depósito 1500?</li><li>Existe ambiente de homologação para os próximos testes?</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Fase 2: estoque">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">09 · Fase 2</p>
+    <h2 class="titulo">O caminho de volta:<br><em>Senior, Bling e Mercado Livre.</em></h2>
+    <p class="lede">Uma rotina periódica lê o que mudou no Senior e devolve ao Bling, que repassa ao Mercado Livre. O primeiro item é o <strong>estoque</strong>; depois, a nota fiscal do pedido faturado.</p>
+    <div class="fluxo">
+      <div class="passo"><div class="t">Senior</div><p>Saldo por peça na API e-commerce</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><div class="t">Middleware AUTZ</div><p>Compara com o Bling e envia só o que mudou</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><div class="t">Bling</div><p>Atualiza o estoque do produto</p></div>
+      <span class="seta">→</span>
+      <div class="passo"><div class="t">Mercado Livre</div><p>Anúncio com o saldo certo</p></div>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card ok"><h3>O que a API já tem</h3><ul class="lista"><li>Saldo disponível e se a peça está disponível</li><li>Preço, NCM e prazo de reposição</li><li>Status do pedido com data de entrega e campo para o XML da nota</li></ul></div>
+      <div class="card amb"><h3>O que falta para sincronizar</h3><ul class="lista"><li>Filtro por código funcionando e resposta rápida</li><li>Data da última alteração, para ler só o que mudou</li><li>Saldo do depósito 1500 (e-commerce)</li><li>De-para do código Senior com o SKU do Bling</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Próximos passos">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">10 · Próximos passos</p>
+    <h2 class="titulo">O que vem agora<br><em>e quem faz.</em></h2>
+    <div class="grid-2">
+      <div class="card"><div class="card-head"><h3>Com a Jumil</h3><span class="pill amb">pedido</span></div><ul class="lista"><li>Corrigir o cadastro de cliente na API</li><li>Responder as dúvidas do slide 9</li><li>Alinhar a documentação com a API real</li><li>Conferir e remover o pedido de teste</li><li>Liberar um ambiente de homologação, se houver</li></ul></div>
+      <div class="card lime"><div class="card-head"><h3>Com a AUTZ</h3><span class="pill lime">em seguida</span></div><ul class="lista"><li>Montar o fluxo: aviso do Bling, enriquecimento e envio ao Senior</li><li>Testar com um pedido real acompanhado pela Jumil</li><li>Ligar o fluxo em produção</li><li>Começar a fase 2 com o estoque</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Contato">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Jumil · Integração Bling e Senior</span></div>
+    <p class="label">Obrigado</p>
+    <h2 class="titulo">Qualquer dúvida,<br><em>é só chamar.</em></h2>
+    <p class="lede">Assim que as correções da API saírem, refazemos o teste completo e seguimos para o fluxo automático.</p>
+    <div class="contato-box">
+      <span class="linha">Responsável: <strong>Mika Soares · AUTZ</strong></span>
+      <span class="linha">E-mail: <a href="mailto:contato@autz.com.br">contato@autz.com.br</a></span>
+      <span class="linha">Site: <a href="https://autz.com.br" target="_blank" rel="noopener">autz.com.br</a></span>
+    </div>
+  </div>
+</section>
+
+</main>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto</div>
+<nav class="barra">
+  <button id="anterior" aria-label="Anterior">‹</button>
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <span class="contador" id="contador"></span>
+  <button id="proximo" aria-label="Próximo">›</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisar();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisar() {
+    var s = slides[atual];
+    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
+  window.addEventListener('resize', avisar);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wrap = document.getElementById('feixes');
+  var gridSize = 48;
+  function criarFeixe() {
+    var el = document.createElement('div');
+    var horizontal = Math.random() > 0.5;
+    el.className = 'feixe ' + (horizontal ? 'h' : 'v');
+    var duracao = Math.random() * 4 + 5;
+    el.style.animation = (horizontal ? 'feixe-h' : 'feixe-v') + ' ' + duracao + 's linear forwards';
+    if (horizontal) {
+      var maxRows = Math.floor(window.innerHeight / gridSize);
+      el.style.top = (Math.floor(Math.random() * maxRows) * gridSize) + 'px';
+      el.style.left = '0px';
+    } else {
+      var maxCols = Math.floor(window.innerWidth / gridSize);
+      el.style.left = (Math.floor(Math.random() * maxCols) * gridSize) + 'px';
+      el.style.top = '0px';
+    }
+    wrap.appendChild(el);
+    setTimeout(function () { el.remove(); }, duracao * 1000 + 100);
+  }
+  setInterval(criarFeixe, 2200);
+})();
+</script>
+</body>
+</html>
