@@ -407,7 +407,16 @@ $('btnAtual').onclick = function(){
   b.disabled = true; b.textContent = 'Atualizando...';
   var fim = function(ok){ b.disabled = false; b.textContent = 'Atualizar'; toast(ok ? 'Atualizado' : 'Não consegui atualizar'); };
   if (aba === 'log') { api('registro').then(function(r){ registro = r.registro || []; render(true); fim(true); }).catch(function(){ fim(false); }); return; }
-  api('lista').then(function(r){ dados = { itens: r.itens || [], agendadas: r.agendadas || [] }; render(true); fim(true); }).catch(function(){ fim(false); });
+  api('preparar').catch(function(){});
+  api('lista').then(function(r){
+    dados = { itens: r.itens || [], agendadas: r.agendadas || [] }; render(true);
+    var falta = dados.itens.filter(function(x){ return !x.resumo; }).length;
+    b.disabled = false; b.textContent = 'Atualizar';
+    if (falta) {
+      toast('Gerando ' + falta + (falta === 1 ? ' resumo' : ' resumos') + '. A lista atualiza sozinha em instantes');
+      setTimeout(function(){ carregar(true); }, 40000); setTimeout(function(){ carregar(true); }, 90000);
+    } else toast('Atualizado');
+  }).catch(function(){ fim(false); });
 };
 document.addEventListener('focusout', function(e){ if (e.target.tagName === 'TEXTAREA') setTimeout(function(){ carregar(); }, 300); });
 setInterval(function(){ if (aba !== 'log') carregar(); }, 30000); setInterval(status, 20000);
