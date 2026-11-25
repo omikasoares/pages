@@ -280,6 +280,8 @@ function entrar(){
   $('quemNome').textContent = eu.nome;
   $('abaLog').hidden = eu.papel !== 'admin';
   carregar(true); status();
+  api('preparar').catch(function(){});
+  setTimeout(function(){ carregar(); }, 45000); setTimeout(function(){ carregar(); }, 100000);
 }
 function sair(msg){
   token = ''; gravarToken(''); eu = { nome: '', papel: '' };
@@ -414,7 +416,7 @@ $('btnAtual').onclick = function(){
     b.disabled = false; b.textContent = 'Atualizar';
     if (falta) {
       toast('Gerando ' + falta + (falta === 1 ? ' resumo' : ' resumos') + '. A lista atualiza sozinha em instantes');
-      setTimeout(function(){ carregar(true); }, 40000); setTimeout(function(){ carregar(true); }, 90000);
+      setTimeout(function(){ carregar(); }, 40000); setTimeout(function(){ carregar(); }, 90000);
     } else toast('Atualizado');
   }).catch(function(){ fim(false); });
 };
