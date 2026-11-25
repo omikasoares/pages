@@ -284,7 +284,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <p class="lede">O RD Vendas é onde a venda acontece. Quando a negociação muda de etapa, a integração conversa com a Omie: completa o cadastro, cria o pedido e traz de volta o andamento. Por isso <strong>mover a negociação para a etapa certa é o que faz tudo funcionar</strong>.</p>
     <div class="grid-2">
       <div class="card lime"><h3>Dois funis, as mesmas regras</h3><p>O funil Comercial e o funil E-commerce têm as mesmas etapas, na mesma ordem. Tudo neste guia vale para os dois.</p></div>
-      <div class="card lime"><h3>Empresa sempre com CNPJ</h3><p>O CNPJ é obrigatório na empresa. É por ele que o RD encontra o cliente na Omie. Sem CNPJ não há consulta na Receita nem pedido.</p></div>
+      <div class="card lime"><h3>CNPJ na empresa, CPF na negociação</h3><p>Empresa sempre com CNPJ. Cliente pessoa física fica sem empresa e o CPF vai no campo CPF do Cliente da negociação. É por esse documento que o RD encontra o cliente na Omie.</p></div>
       <div class="card"><h3>Uma empresa, um vendedor</h3><p>O responsável pela negociação no RD é quem vai como vendedor no pedido da Omie. Mantenha o responsável certo.</p></div>
       <div class="card"><h3>Anotações e tarefas avisam você</h3><p>Sempre que a automação faz algo ou encontra um problema, ela deixa uma anotação na negociação ou cria uma tarefa para o responsável.</p></div>
     </div>
@@ -324,7 +324,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
       <div class="card lime"><p class="n">1 · SEM RESPONSÁVEL</p>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><span class="q">Você</span><b>Assumir a negociação</b><br><span class="t">Defina o responsável. É ele que vai como vendedor no pedido.</span></div></div>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div><span class="q">Você</span><b>Conferir se a empresa já existe</b><br><span class="t">Busque pelo CNPJ antes de cadastrar, para não duplicar.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><span class="q">Você</span><b>Cadastrar a empresa com CNPJ</b><br><span class="t">Pessoa física fica só como contato, sem empresa.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><span class="q">Você</span><b>Cadastrar a empresa com CNPJ</b><br><span class="t">Pessoa física: só o contato, sem empresa, e o CPF no campo CPF do Cliente.</span></div></div>
       </div>
       <div class="card lime"><p class="n">2 · QUALIFICAÇÃO</p>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><span class="q">Você</span><b>Preencher a Origem da Oportunidade</b><br><span class="t">Campo obrigatório para entrar nesta etapa.</span></div></div>
@@ -380,7 +380,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <h2 class="titulo">Moveu para Pedido ERP,<br><em>o pedido nasce na Omie.</em></h2>
     <div class="grid-2">
       <div class="card lime"><p class="n">ANTES DE MOVER, CONFIRA</p>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Empresa com CNPJ</b><br><span class="t">E o cliente já cadastrado na Omie com esse mesmo CNPJ.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Empresa com CNPJ ou CPF do Cliente</b><br><span class="t">E o cliente já cadastrado na Omie com esse mesmo documento.</span></div></div>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Nenhum Item a Definir</b><br><span class="t">Todos os produtos são reais, com código da Omie.</span></div></div>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Tipo de Frete preenchido</b><br><span class="t">FOB ou CIF.</span></div></div>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><b>Responsável certo</b><br><span class="t">Ele vai como vendedor no pedido.</span></div></div>
@@ -406,7 +406,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
       <tr><th>Motivo</th><th>Como você fica sabendo</th><th>O que fazer</th></tr>
       <tr><td class="l">Produto ainda é Item a Definir</td><td>Anotação na negociação</td><td>Trocar pelo produto real e mover de novo</td></tr>
       <tr><td class="l">Tipo de Frete vazio</td><td>Anotação na negociação</td><td>Escolher FOB ou CIF e mover de novo</td></tr>
-      <tr><td class="l">Cliente não encontrado na Omie</td><td>Anotação e tarefa "Pedido NÃO criado na Omie"</td><td>Pedir o cadastro do cliente na Omie com o mesmo CNPJ. Depois, mover de novo</td></tr>
+      <tr><td class="l">Cliente não encontrado na Omie</td><td>Anotação e tarefa "Pedido NÃO criado na Omie"</td><td>Pedir o cadastro do cliente na Omie com o mesmo CNPJ ou CPF. Depois, mover de novo</td></tr>
       <tr><td class="l">Omie recusou o pedido</td><td>Anotação e tarefa "Pedido NÃO criado na Omie", com a mensagem exata</td><td>Corrigir o que a Omie apontou (código de produto, cadastro) ou acionar a equipe interna</td></tr>
     </table>
     <p class="nota"><strong>Instabilidade da Omie:</strong> quando a Omie está ocupada, a automação espera e tenta de novo sozinha, até 3 vezes. Você só recebe a tarefa se mesmo assim não der certo.</p>
@@ -521,7 +521,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
       <div class="card ok"><h3>Faça</h3>
         <ul class="lista">
           <li>Mova a negociação sempre que a venda avançar: é o movimento que aciona a integração</li>
-          <li>Cadastre a empresa com CNPJ e busque antes de criar, para não duplicar</li>
+          <li>Cadastre a empresa com CNPJ e busque antes de criar, para não duplicar. Pessoa física: CPF no campo CPF do Cliente</li>
           <li>Busque o produto pelo código da Omie</li>
           <li>Preencha o Tipo de Frete antes de Pedido ERP</li>
           <li>Leia as anotações quando a negociação voltar de etapa</li>
