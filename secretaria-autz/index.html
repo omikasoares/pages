@@ -402,7 +402,13 @@ function checar(modo){
   });
 }
 $('btnRecon').onclick = abrir; $('btnQr').onclick = function(){ conectar('qr'); }; $('btnCod').onclick = function(){ conectar('codigo'); }; $('btnFechar').onclick = fechar;
-$('btnAtual').onclick = function(){ abertos = {}; if (aba === 'log') carregarLog(); else carregar(true); };
+$('btnAtual').onclick = function(){
+  var b = this; abertos = {};
+  b.disabled = true; b.textContent = 'Atualizando...';
+  var fim = function(ok){ b.disabled = false; b.textContent = 'Atualizar'; toast(ok ? 'Atualizado' : 'Não consegui atualizar'); };
+  if (aba === 'log') { api('registro').then(function(r){ registro = r.registro || []; render(true); fim(true); }).catch(function(){ fim(false); }); return; }
+  api('lista').then(function(r){ dados = { itens: r.itens || [], agendadas: r.agendadas || [] }; render(true); fim(true); }).catch(function(){ fim(false); });
+};
 document.addEventListener('focusout', function(e){ if (e.target.tagName === 'TEXTAREA') setTimeout(function(){ carregar(); }, 300); });
 setInterval(function(){ if (aba !== 'log') carregar(); }, 30000); setInterval(status, 20000);
 
