@@ -90,6 +90,7 @@ svg{width:16px;height:16px;flex:none}
 .selo-ia{font-size:11px;font-weight:600;color:var(--cinza)}
 .selo-ia.edit{color:var(--amb)}
 .filtro{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sep{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 12px;padding-top:14px;border-top:1px solid var(--linha);color:var(--cinza);font-size:13px}
 [hidden]{display:none!important}
 @media(max-width:560px){.acoes .esp{display:none}.acoes button,.acoes .btn{flex:1;justify-content:center}}
 </style>
@@ -169,6 +170,7 @@ var ICO_VER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 var ICO_REL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 function iniciais(n){ n = String(n || '?').trim().split(' ').filter(Boolean); return ((n[0] || '?')[0] + ((n[1] || '')[0] || '')).toUpperCase(); }
 function avatar(it){ var ini = '<span class="av">' + esc(iniciais(it.nome)) + '</span>'; if (!it.foto) return ini; return '<img class="av" alt="" src="' + esc(it.foto) + '" onerror="this.outerHTML=this.dataset.ini" data-ini="' + esc(ini) + '">'; }
+function semPend(it){ return String(it.resumo || '').indexOf('Sem pendência') === 0; }
 function item(jid){ var a = dados.itens.concat(dados.agendadas); for (var i = 0; i < a.length; i++) if (a[i].chat_jid === jid) return a[i]; return {}; }
 
 function cabecalho(it){
@@ -244,7 +246,13 @@ function render(forcar){
     if (ativo || gravando || Object.keys(abertos).length) return;
   }
   if (!lista.length) { $('lista').innerHTML = '<div class="vazio-geral">' + (aba === 'pend' ? 'Tudo respondido por aqui.' : 'Nada agendado.') + '</div>'; return; }
-  $('lista').innerHTML = lista.map(aba === 'pend' ? cardPend : cardAgen).join('');
+  if (aba === 'pend') {
+    var com = p.filter(function(x){ return !semPend(x); }), sem = p.filter(semPend);
+    $('lista').innerHTML = com.map(cardPend).join('') +
+      (sem.length ? '<div class="sep"><span>Sem pendência (' + sem.length + '): avisos, agradecimentos e confirmações</span><button class="ghost" id="btnIgnTodas">Ignorar todas</button></div>' + sem.map(cardPend).join('') : '');
+    return;
+  }
+  $('lista').innerHTML = lista.map(cardAgen).join('');
 }
 function carregar(forcar){
   if (!token) return;
@@ -287,6 +295,18 @@ $('formLogin').addEventListener('submit', function(e){
   }).catch(function(){ $('lgBtn').disabled = false; $('lgErro').textContent = 'Falha de conexão'; });
 });
 $('btnSair').onclick = function(){ sair(''); };
+document.addEventListener('click', function(e){
+  var b = e.target.closest('#btnIgnTodas'); if (!b) return;
+  var sem = dados.itens.filter(semPend);
+  if (!sem.length || !confirm('Ignorar as ' + sem.length + ' conversas sem pendência?')) return;
+  b.disabled = true; b.textContent = 'Ignorando...';
+  var i = 0;
+  (function prox(){
+    if (i >= sem.length) { toast(sem.length + ' conversas ignoradas'); carregar(true); return; }
+    var it = sem[i++];
+    api('ignorar', { chat_jid: it.chat_jid, contato: it.nome || fone(it.telefone) || '', sugestao_ia: it.sugestao || '' }).then(prox, prox);
+  })();
+});
 $('selPessoa').onchange = function(){ render(true); };
 
 document.addEventListener('input', function(e){ if (e.target.tagName === 'TEXTAREA') editados[e.target.dataset.jid] = e.target.value; });
