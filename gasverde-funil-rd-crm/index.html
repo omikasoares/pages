@@ -181,7 +181,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
   .barra,.progresso,.mais,#feixes{display:none;}
 }
 /* funil gás verde */
-.funil{display:grid; grid-template-columns:repeat(8,1fr); gap:0; position:relative; margin:6px 0 18px;}
+.funil{display:grid; grid-template-columns:repeat(9,1fr); gap:0; position:relative; margin:6px 0 18px;}
 .funil::before{content:""; position:absolute; left:6%; right:6%; top:23px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
 .funil .etp{padding:0 6px;}
 .funil .etp .bola{width:48px; height:48px; font-size:17px; margin-bottom:10px;}
@@ -254,14 +254,31 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
         <p class="label">Implementação RD Station CRM</p>
         <h1 class="titulo">Do primeiro contato ao contrato,<br><em>sem perder ninguém no caminho.</em></h1>
         <p class="lede">Planejamento do funil comercial da Gás Verde para grandes contas: etapas, tarefas automáticas de follow-up e as informações que cada oportunidade precisa ter para um ciclo de venda de até 12 meses.</p>
-        <div class="meta"><span>Cliente: <strong>Gás Verde · Grupo Urca Energia</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Versão: <strong>novembro de 2026</strong></span></div>
+        <div class="meta"><span>Cliente: <strong>Gás Verde · Grupo Urca Energia</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Versão: <strong>revisada em 25/11/2026</strong></span></div>
         <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
       </div>
       <div class="capa-vis" aria-hidden="true">
-        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span><div><b>8 etapas</b><small>da nova oportunidade ao contrato</small></div></div>
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span><div><b>9 etapas</b><small>biometano e gás natural</small></div></div>
         <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><b>Follow-up automático</b><small>ligação, WhatsApp, e-mail e LinkedIn</small></div></div>
         <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Até 12 meses</b><small>ciclo de grandes empresas</small></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O que mudou em 25/11">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
+    <p class="label">00 · Reunião de 25/11</p>
+    <h2 class="titulo">O que mudou depois<br><em>da conversa com o time.</em></h2>
+    <p class="lede">Versão revisada com Kayo, João Paulo, Yllan e o time da Urca. As mudanças abaixo já estão configuradas no RD CRM.</p>
+    <div class="grid-2">
+      <div class="card lime"><h3>Proposta antes da viabilidade</h3><p>No biometano e gás natural, a proposta vai primeiro. O time técnico só vai à planta do cliente quando há aderência econômica.</p></div>
+      <div class="card lime"><h3>Follow-up da proposta</h3><p>"Nutrição de proposta" virou "Follow-up da proposta", na linguagem do time, logo depois da proposta enviada.</p></div>
+      <div class="card lime"><h3>Contrato em duas etapas</h3><p>"Discussão da minuta" para o vai e volta dos jurídicos e "Contrato assinado" para correr atrás das assinaturas.</p></div>
+      <div class="card lime"><h3>Atributo ambiental sem "a definir"</h3><p>O vendedor precisa saber se é com atributo, sem atributo ou só certificado antes da proposta. Só certificado vai para o funil de Certificados.</p></div>
+      <div class="card"><h3>Data de denúncia do contrato</h3><p>Campo novo, além do vencimento. É quando o comercial precisa agir. Sem a informação, considerar 6 meses antes do vencimento.</p></div>
+      <div class="card"><h3>Funis por produto</h3><p>Biometano e gás natural no mesmo funil. CO₂ e Certificados (regulado e voluntário) em funis próprios, detalhados na reunião de sexta.</p></div>
     </div>
   </div>
 </section>
@@ -273,10 +290,10 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <h2 class="titulo">Venda grande, longa e técnica.<br><em>O funil precisa mostrar isso.</em></h2>
     <p class="lede">A Gás Verde vende para indústrias e frotas de grande porte, com várias áreas envolvidas na decisão e, muitas vezes, a matriz no exterior. O CRM organiza essa jornada sem depender de memória.</p>
     <div class="grid-2">
-      <div class="card lime"><h3>Ciclo de até 12 meses</h3><p>Cada etapa tem um prazo de referência. Quando a negociação passa do prazo, o time enxerga antes que ela esfrie.</p></div>
-      <div class="card lime"><h3>Uma negociação por unidade</h3><p>Uma multinacional com três fábricas gera três negociações dentro da mesma empresa. Cada unidade tem volume, distância e prazo próprios.</p></div>
-      <div class="card"><h3>Viabilidade decide o produto</h3><p>Volume e distância até a planta definem se a proposta é de molécula. Quando a logística não fecha, a venda segue pelo certificado.</p></div>
-      <div class="card"><h3>Atributo ambiental desde o início</h3><p>Se o cliente precisa comprovar redução de emissão, isso muda o produto, o preço e o argumento. Fica registrado já na qualificação.</p></div>
+      <div class="card lime"><h3>Ciclo de até 12 meses</h3><p>Cada etapa tem um prazo de referência. Com conversão de cerca de 5%, o topo do funil precisa de volume constante: a referência levantada foi de 20 novas oportunidades por mês.</p></div>
+      <div class="card lime"><h3>Uma negociação por unidade</h3><p>Uma multinacional com três fábricas gera três negociações dentro da mesma empresa, ou uma empresa por filial com CNPJ próprio. A visão da empresa mostra tudo junto.</p></div>
+      <div class="card"><h3>Proposta antes da viabilidade</h3><p>Primeiro a proposta. Só com aderência econômica o time técnico se desloca para avaliar a planta do cliente.</p></div>
+      <div class="card"><h3>Toda negociação com uma tarefa</h3><p>Negociação sem próxima tarefa é negociação esquecida. O filtro "sem tarefa" é a ferramenta do gestor para cobrar o time.</p></div>
     </div>
   </div>
 </section>
@@ -285,19 +302,21 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
     <p class="label">02 · Entrada dos leads</p>
-    <h2 class="titulo">Quatro portas de entrada,<br><em>um único ponto de partida.</em></h2>
-    <p class="lede">Todo lead vira negociação na etapa <strong>Nova oportunidade</strong>, já com a fonte e a campanha preenchidas. Assim dá para saber qual canal traz contrato, não só contato.</p>
+    <h2 class="titulo">Primeiro a pré-qualificação,<br><em>depois o funil do produto.</em></h2>
+    <p class="lede">Leads de anúncios e contas de prospecção passam pelo funil de <strong>Prospecção e Pré-qualificação</strong>. Quem chega ao vendedor já vem com matriz, consumo e combustível atual preenchidos e a reunião marcada.</p>
     <div class="fluxo" style="margin-bottom:16px;">
-      <div class="passo"><div class="t">Meta Ads</div><p>Formulários de campanha no Instagram e Facebook.</p></div>
-      <div class="passo"><div class="t">Google Ads</div><p>Busca e formulários do site.</p></div>
-      <div class="passo"><div class="t">LinkedIn Ads</div><p>Formulários de geração de leads para decisores.</p></div>
-      <div class="passo"><div class="t">Prospecção ativa</div><p>Contas-alvo abordadas pelo time comercial.</p></div>
+      <div class="passo"><div class="t">Meta Ads</div><p>Formulários de campanha.</p></div>
+      <div class="passo"><div class="t">Google Ads</div><p>Busca e site.</p></div>
+      <div class="passo"><div class="t">LinkedIn Ads</div><p>Formulários para decisores.</p></div>
+      <div class="passo"><div class="t">Prospecção ativa</div><p>Contas mapeadas pelo SDR.</p></div>
       <div class="seta">→</div>
-      <div class="passo" style="border-color:rgba(233,255,74,.45);"><div class="t">Nova oportunidade</div><p>Responsável definido e tarefa de primeiro contato criada.</p></div>
+      <div class="passo" style="border-color:rgba(233,255,74,.45);"><div class="t">Pré-qualificação</div><p>SDR valida e marca a reunião.</p></div>
+      <div class="seta">→</div>
+      <div class="passo" style="border-color:rgba(233,255,74,.45);"><div class="t">Funil do produto</div><p>Biometano e gás natural, CO₂ ou Certificados.</p></div>
     </div>
     <div class="grid-2">
-      <div class="card"><h3>Integração automática</h3><p>Leads de anúncios entram no CRM sem digitação, com nome, empresa, cargo, telefone, e-mail, fonte e campanha.</p></div>
-      <div class="card"><h3>Prospecção com o mesmo padrão</h3><p>Quem prospecta cadastra a empresa e o contato com a fonte "Prospecção ativa". Os relatórios separam inbound de outbound.</p></div>
+      <div class="card"><h3>Origem rastreada</h3><p>Fonte e campanha preenchidas desde a entrada. O relatório mostra quanto vem de anúncio, de site e de prospecção, e qual canal fecha mais.</p></div>
+      <div class="card"><h3>Base atual do Monday</h3><p>As negociações ativas hoje no Monday serão exportadas e carregadas no CRM, já nas etapas certas.</p></div>
     </div>
   </div>
 </section>
@@ -306,60 +325,63 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
     <p class="label">03 · O funil em uma tela</p>
-    <h2 class="titulo">Comercial · Grandes Contas:<br><em>8 etapas até o contrato assinado.</em></h2>
+    <h2 class="titulo">Biometano e Gás Natural:<br><em>9 etapas até o contrato assinado.</em></h2>
     <div class="funil">
       <div class="etp"><div class="bola">1</div><h3>Nova oportunidade</h3><p>Lead recebido</p></div>
       <div class="etp"><div class="bola">2</div><h3>Tentando contato</h3><p>Cadência ativa</p></div>
       <div class="etp"><div class="bola">3</div><h3>Em qualificação</h3><p>Diagnóstico</p></div>
-      <div class="etp"><div class="bola">4</div><h3>Viabilidade técnica</h3><p>Volume e logística</p></div>
-      <div class="etp"><div class="bola">5</div><h3>Proposta enviada</h3><p>Apresentação</p></div>
-      <div class="etp"><div class="bola">6</div><h3>Nutrição de proposta</h3><p>Aprovação interna</p></div>
+      <div class="etp"><div class="bola">4</div><h3>Proposta enviada</h3><p>Apresentação</p></div>
+      <div class="etp"><div class="bola">5</div><h3>Follow-up da proposta</h3><p>Aprovação interna</p></div>
+      <div class="etp"><div class="bola">6</div><h3>Viabilidade técnica</h3><p>Visita e logística</p></div>
       <div class="etp"><div class="bola">7</div><h3>Negociação comercial</h3><p>Preço e prazo</p></div>
-      <div class="etp fim"><div class="bola">8</div><h3>Contrato</h3><p>Jurídico e assinatura</p></div>
+      <div class="etp"><div class="bola">8</div><h3>Discussão da minuta</h3><p>Jurídicos</p></div>
+      <div class="etp fim"><div class="bola">9</div><h3>Contrato assinado</h3><p>Assinaturas</p></div>
     </div>
     <div class="linha-tempo" aria-label="Distribuição do tempo médio por etapa">
       <div class="faixa">
         <div class="seg" style="width:1%"></div>
         <div class="seg" style="width:4.3%">2</div>
         <div class="seg" style="width:8.7%">3</div>
-        <div class="seg b" style="width:13%">4</div>
-        <div class="seg b" style="width:4.3%">5</div>
-        <div class="seg c" style="width:39%">6 · Nutrição de proposta</div>
-        <div class="seg b" style="width:17.3%">7</div>
-        <div class="seg" style="width:12.4%">8</div>
+        <div class="seg b" style="width:4.3%">4</div>
+        <div class="seg c" style="width:35%">5 · Follow-up da proposta</div>
+        <div class="seg b" style="width:13%">6</div>
+        <div class="seg b" style="width:17.4%">7</div>
+        <div class="seg" style="width:12%">8</div>
+        <div class="seg" style="width:4.3%">9</div>
       </div>
       <div class="meses"><span>Mês 0</span><span>Mês 3</span><span>Mês 6</span><span>Mês 9</span><span>Mês 12</span></div>
     </div>
-    <p class="nota">Ao assinar o contrato, a negociação é marcada como <strong>vendida</strong> no RD CRM. Os prazos de cada etapa são referência para validar com o time e servem para mostrar negociação parada.</p>
+    <p class="nota">Ao assinar, a negociação é marcada como <strong>vendida</strong>. CO₂ segue a ordem viabilidade antes da proposta, e Certificados não têm viabilidade técnica: esses funis serão detalhados na reunião de sexta.</p>
   </div>
 </section>
 
 <section class="slide" data-titulo="Etapas 1 a 4">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">04 · Etapas 1 a 4 · Do lead à solução definida</p>
+    <p class="label">04 · Etapas 1 a 4 · Do lead à proposta</p>
     <h2 class="titulo">Cada etapa com entrada,<br><em>saída e prazo claros.</em></h2>
     <table class="tab-etapas">
       <tr><th>Etapa</th><th>Objetivo</th><th>Avança quando</th><th>Prazo</th></tr>
       <tr><td class="l">1 · Nova oportunidade</td><td>Receber o lead e definir o responsável</td><td>Primeira tentativa de contato feita</td><td class="p">1 dia útil</td></tr>
-      <tr><td class="l">2 · Tentando contato</td><td>Conseguir a primeira conversa com a cadência de toques</td><td>Conversa realizada. Sem resposta ao fim da cadência: perdida por "Sem contato"</td><td class="p">15 dias</td></tr>
+      <tr><td class="l">2 · Tentando contato</td><td>Conseguir a primeira conversa com a cadência de 9 toques</td><td>Conversa realizada. Sem resposta: perdida por "Sem contato" e Multivendas em 90 dias</td><td class="p">15 dias</td></tr>
       <tr><td class="l">3 · Em qualificação</td><td>Entender consumo, volume, local, decisores, timing e motivação ambiental</td><td>Campos de qualificação preenchidos e fit confirmado</td><td class="p">30 dias</td></tr>
-      <tr><td class="l">4 · Viabilidade técnica</td><td>Confirmar volume, logística até a planta, infraestrutura e atributo ambiental</td><td>Solução definida: molécula, molécula com certificado ou só certificado</td><td class="p">45 dias</td></tr>
+      <tr><td class="l">4 · Proposta enviada</td><td>Apresentar a proposta em reunião aos decisores</td><td>Proposta apresentada, com atributo ambiental definido</td><td class="p">15 dias</td></tr>
     </table>
   </div>
 </section>
 
-<section class="slide" data-titulo="Etapas 5 a 8">
+<section class="slide" data-titulo="Etapas 5 a 9">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">05 · Etapas 5 a 8 · Da proposta à assinatura</p>
+    <p class="label">05 · Etapas 5 a 9 · Da proposta à assinatura</p>
     <h2 class="titulo">A maior parte do tempo está<br><em>depois da proposta.</em></h2>
     <table class="tab-etapas">
       <tr><th>Etapa</th><th>Objetivo</th><th>Avança quando</th><th>Prazo</th></tr>
-      <tr><td class="l">5 · Proposta enviada</td><td>Apresentar a proposta em reunião, não só por e-mail</td><td>Proposta apresentada aos decisores</td><td class="p">15 dias</td></tr>
-      <tr><td class="l">6 · Nutrição de proposta</td><td>Manter o relacionamento enquanto o cliente aprova internamente (orçamento, área técnica, matriz)</td><td>O cliente pede para negociar condições</td><td class="p">90 a 180 dias</td></tr>
-      <tr><td class="l">7 · Negociação comercial</td><td>Fechar preço, volume, prazo de contrato, início do fornecimento e reajuste</td><td>Condições aceitas pelo cliente</td><td class="p">60 dias</td></tr>
-      <tr><td class="l">8 · Contrato</td><td>Minuta, jurídico das duas partes e assinatura</td><td>Contrato assinado: marcar como vendida</td><td class="p">45 dias</td></tr>
+      <tr><td class="l">5 · Follow-up da proposta</td><td>Cobrar retorno enquanto o cliente aprova internamente (orçamento, área técnica, matriz)</td><td>Proposta aceita em princípio, com aderência econômica</td><td class="p">até 180 dias</td></tr>
+      <tr><td class="l">6 · Viabilidade técnica</td><td>Visita técnica, logística até a planta e infraestrutura do cliente</td><td>Viabilidade técnica aprovada</td><td class="p">45 dias</td></tr>
+      <tr><td class="l">7 · Negociação comercial</td><td>Fechar preço, volume, prazo, início do fornecimento e reajuste</td><td>Condições aceitas e minuta enviada ao jurídico</td><td class="p">60 dias</td></tr>
+      <tr><td class="l">8 · Discussão da minuta</td><td>Vai e volta dos jurídicos. Se travar, volta para a etapa 7</td><td>OK dos jurídicos das duas partes</td><td class="p">45 dias</td></tr>
+      <tr><td class="l">9 · Contrato assinado</td><td>Correr atrás das assinaturas, digital ou física</td><td>Assinado: marcar como vendida e passar para a operação</td><td class="p">15 dias</td></tr>
     </table>
   </div>
 </section>
@@ -383,15 +405,15 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     </div>
     <div class="grid-2">
       <div class="card ok"><h3>Respondeu</h3><p>Move para <strong>Em qualificação</strong> e agenda a reunião de diagnóstico.</p></div>
-      <div class="card amb"><h3>Sem resposta no dia 15</h3><p>Perdida por "Sem contato", com tarefa de nova tentativa em 90 dias.</p></div>
+      <div class="card amb"><h3>Sem resposta no dia 15</h3><p>Perdida por "Sem contato após a cadência" e Multivendas em 90 dias.</p></div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-titulo="Follow-up · Qualificação e viabilidade">
+<section class="slide" data-titulo="Follow-up · Etapas 1, 3 e 6">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">07 · Automação de follow-up · Etapas 1, 3 e 4</p>
+    <p class="label">07 · Automação de follow-up · Etapas 1, 3 e 6</p>
     <h2 class="titulo">Tarefas que nascem sozinhas<br><em>quando a etapa muda.</em></h2>
     <div class="grid-3">
       <div class="card lime"><p class="n">1 · NOVA OPORTUNIDADE</p>
@@ -402,31 +424,31 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
       <div class="card lime"><p class="n">3 · EM QUALIFICAÇÃO</p>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><span class="q">Dia 0</span><b>Reunião de diagnóstico</b><br><span class="t">Com o roteiro de qualificação.</span></div></div>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 1</span><b>E-mail de resumo</b><br><span class="t">Pedido de dados de consumo.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">Dia 7</span><b>WhatsApp de cobrança dos dados</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">Dia 7</span><b>Cobrar pendências da reunião</b></div></div>
       </div>
-      <div class="card lime"><p class="n">4 · VIABILIDADE TÉCNICA</p>
+      <div class="card lime"><p class="n">6 · VIABILIDADE TÉCNICA</p>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><span class="q">Dia 0</span><b>Validar logística com a operação</b><br><span class="t">Planta, distância e volume.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span class="q">Dia 5</span><b>Visita técnica</b><br><span class="t">Caldeira, queimador ou posto.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span class="q">Dia 5</span><b>Agendar visita técnica</b><br><span class="t">Caldeira, queimador ou posto. Ajustar a data se preciso.</span></div></div>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">Dia 15</span><b>Ligação de status</b></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-titulo="Follow-up · Proposta e nutrição">
+<section class="slide" data-titulo="Follow-up · Proposta e follow-up">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">08 · Automação de follow-up · Etapas 5 e 6</p>
-    <h2 class="titulo">Meses de aprovação interna,<br><em>com contato a cada 15 dias.</em></h2>
-    <p class="lede">Na <strong>Proposta enviada</strong> o ritmo é curto. Na <strong>Nutrição de proposta</strong> o objetivo é ser lembrado com algo útil, nunca só "alguma novidade?".</p>
-    <p class="n" style="font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:8px;">5 · PROPOSTA ENVIADA</p>
+    <p class="label">08 · Automação de follow-up · Etapas 4 e 5</p>
+    <h2 class="titulo">Proposta apresentada,<br><em>follow-up até ter resposta.</em></h2>
+    <p class="lede">Na <strong>Proposta enviada</strong> o ritmo é curto. No <strong>Follow-up da proposta</strong> o objetivo é ter um sim ou um não, com algo útil a cada contato. Se o cliente pedir prazo, o vendedor registra a anotação e cria a próxima tarefa.</p>
+    <p class="n" style="font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:8px;">4 · PROPOSTA ENVIADA</p>
     <div class="cad c4">
       <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><span class="d">DIA 0</span><b>Reunião</b><small>Apresentar a proposta</small></div>
       <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="d">DIA 2</span><b>E-mail</b><small>Resumo e próximos passos</small></div>
       <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 7</span><b>Ligação</b><small>Primeiras impressões</small></div>
       <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="d">DIA 12</span><b>WhatsApp</b><small>Quem mais precisa aprovar?</small></div>
     </div>
-    <p class="n" style="font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:8px;">6 · NUTRIÇÃO DE PROPOSTA · CICLO QUE SE REPETE A CADA 60 DIAS</p>
+    <p class="n" style="font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:8px;">5 · FOLLOW-UP DA PROPOSTA · CICLO DE 60 DIAS</p>
     <div class="cad c4">
       <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="d">DIA 15</span><b>E-mail</b><small>Case do mesmo segmento</small></div>
       <div class="toque"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="d">DIA 30</span><b>Ligação</b><small>Status da aprovação</small></div>
@@ -439,46 +461,50 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
 <section class="slide" data-titulo="Follow-up · Negociação e contrato">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">09 · Automação de follow-up · Etapas 7 e 8</p>
+    <p class="label">09 · Automação de follow-up · Etapas 7, 8 e 9</p>
     <h2 class="titulo">Na reta final,<br><em>contato toda semana.</em></h2>
-    <div class="grid-2">
+    <div class="grid-3">
       <div class="card lime"><p class="n">7 · NEGOCIAÇÃO COMERCIAL</p>
         <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><span class="q">Dia 0</span><b>Reunião de negociação</b><br><span class="t">Preço, volume, prazo, início e reajuste.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 2</span><b>E-mail com a proposta revisada</b></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">A cada 7 dias</span><b>Ligação ou WhatsApp</b><br><span class="t">Alternando, até as condições serem aceitas.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 2</span><b>Proposta revisada</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">A cada 7 dias</span><b>Ligação ou WhatsApp</b></div></div>
       </div>
-      <div class="card lime"><p class="n">8 · CONTRATO</p>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 0</span><b>Enviar minuta do contrato</b></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">Dia 5</span><b>Ligação sobre o jurídico</b><br><span class="t">Ajustes pedidos e prazo de assinatura.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">A cada 7 dias</span><b>WhatsApp de acompanhamento</b></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><span class="q">Assinado</span><b>Marcar como vendida</b><br><span class="t">Tarefa de passagem para a operação.</span></div></div>
+      <div class="card lime"><p class="n">8 · DISCUSSÃO DA MINUTA</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><span class="q">Dia 0</span><b>Enviar a minuta</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><span class="q">Dia 5</span><b>Ajustes pedidos pelo jurídico</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">A cada 7 dias</span><b>Acompanhar o jurídico</b><br><span class="t">Se travar, volta para Negociação.</span></div></div>
+      </div>
+      <div class="card lime"><p class="n">9 · CONTRATO ASSINADO</p>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span><div><span class="q">Dia 0</span><b>Enviar para assinatura</b><br><span class="t">Digital ou física.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><div><span class="q">Dia 3</span><b>Cobrar assinaturas pendentes</b></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><span class="q">Assinado</span><b>Marcar como vendida</b><br><span class="t">Passar para a operação.</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-titulo="Informações · Consumo e volume">
+<section class="slide" data-titulo="Informações · Consumo e local">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">10 · Informações da oportunidade · Consumo e local</p>
+    <p class="label">10 · Informações da oportunidade · Consumo, local e contrato</p>
     <h2 class="titulo">O que o time precisa saber<br><em>antes de falar em proposta.</em></h2>
     <div class="grid-2">
-      <div class="card lime"><h3>Consumo e volume</h3>
-        <div class="campo"><b>Volume de biometano (m³/dia)</b><small>número</small></div>
-        <div class="campo"><b>Combustível atual</b><small>gás natural, GLP, óleo, diesel, GNV...</small></div>
-        <div class="campo"><b>Consumo atual e unidade</b><small>m³, litros, kg ou t por mês</small></div>
+      <div class="card lime"><h3>Consumo e contrato atual</h3>
+        <div class="campo"><b>Volume de biometano (m³/dia)</b><small>obrigatório na qualificação</small></div>
+        <div class="campo"><b>Combustível atual, consumo e unidade</b><small>obrigatório na qualificação</small></div>
         <div class="campo"><b>Aplicação</b><small>caldeira, forno, frota pesada ou leve</small></div>
-        <div class="campo"><b>Vencimento do contrato atual de gás</b><small>data, principal gatilho de timing</small></div>
+        <div class="campo"><b>Vencimento do contrato atual de gás</b><small>data</small></div>
+        <div class="campo"><b>Data de denúncia do contrato</b><small>novo: quando agir. Sem dado, 6 meses antes</small></div>
       </div>
       <div class="card lime"><h3>Local e logística</h3>
-        <div class="campo"><b>Planta Gás Verde mais próxima</b><small>Seropédica, São Paulo, Igarassu (2027)</small></div>
-        <div class="campo"><b>Distância até a planta (km)</b><small>número</small></div>
-        <div class="campo"><b>Faixa de proximidade</b><small>até 150, 150 a 300, 300 a 500, acima de 500 km</small></div>
-        <div class="campo"><b>Unidade / cidade</b><small>qual fábrica, CD ou frota</small></div>
-        <div class="campo"><b>Início de fornecimento desejado</b><small>data</small></div>
+        <div class="campo"><b>Unidade / cidade</b><small>obrigatório na qualificação</small></div>
+        <div class="campo"><b>Planta Gás Verde mais próxima</b><small>obrigatório na viabilidade</small></div>
+        <div class="campo"><b>Distância até a planta (km)</b><small>obrigatório na viabilidade</small></div>
+        <div class="campo"><b>Faixa de proximidade</b><small>até 150, 150-300, 300-500, 500-1.000, acima de 1.000 km</small></div>
+        <div class="campo"><b>Início de fornecimento e prazo de contrato</b><small>obrigatórios na proposta</small></div>
       </div>
     </div>
-    <p class="nota">Faixas de distância e volume mínimo viável são sugestões para validar com a operação da Gás Verde.</p>
+    <p class="nota">A data de denúncia é o momento de ação do comercial: se o cliente não denunciar o contrato atual a tempo, ele renova automaticamente com o fornecedor atual.</p>
   </div>
 </section>
 
@@ -511,35 +537,36 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
     <p class="label">12 · Atributo ambiental</p>
-    <h2 class="titulo">Vai ter atributo ambiental?<br><em>A resposta define o produto.</em></h2>
-    <p class="lede">Campo obrigatório a partir da <strong>Viabilidade técnica</strong>. Na qualificação ele pode ficar como "A definir".</p>
-    <div class="grid-2" style="margin-bottom:14px;">
-      <div class="card lime"><div class="card-head"><h3>Com atributo</h3><span class="pill lime">Molécula + certificado</span></div><p>O cliente consome o biometano e recebe o certificado para comprovar a redução de emissão no inventário.</p></div>
-      <div class="card"><div class="card-head"><h3>Sem atributo</h3><span class="pill amb">Só molécula</span></div><p>O cliente compra o combustível pela economia ou previsibilidade de preço, sem reivindicar a redução de emissão.</p></div>
-      <div class="card ok"><div class="card-head"><h3>Só certificado</h3><span class="pill ok">Sem molécula</span></div><p>Quando a logística não fecha ou a troca de combustível ainda não é possível, o cliente neutraliza emissões com o certificado.</p></div>
-      <div class="card"><div class="card-head"><h3>A definir</h3><span class="pill lime">Qualificação</span></div><p>Aceito só até a etapa Em qualificação. Precisa estar resolvido para avançar.</p></div>
+    <h2 class="titulo">Com, sem ou só certificado.<br><em>Definido antes da proposta.</em></h2>
+    <p class="lede">O atributo muda o preço, por isso é obrigatório a partir da <strong>Proposta enviada</strong>. A opção "a definir" saiu.</p>
+    <div class="grid-3" style="margin-bottom:14px;">
+      <div class="card lime"><div class="card-head"><h3>Com atributo</h3><span class="pill lime">Fica no funil</span></div><p>Molécula com certificado. A Gás Verde emite o certificado para o cliente.</p></div>
+      <div class="card"><div class="card-head"><h3>Sem atributo</h3><span class="pill lime">Fica no funil</span></div><p>Só a molécula. O atributo vira estoque para o time de certificados vender a terceiros.</p></div>
+      <div class="card ok"><div class="card-head"><h3>Só certificado</h3><span class="pill ok">Vai para Certificados</span></div><p>Sem a molécula. A negociação é transferida, com o histórico, para o funil de Certificados.</p></div>
     </div>
-    <div class="card"><h3>Finalidade do atributo</h3><p>Meta Net Zero e ESG · Inventário GHG Protocol · Mandato do biometano (CGOB) · Exigência de cliente ou exportação · Selo verde e marketing</p></div>
+    <div class="grid-2">
+      <div class="card"><h3>Mercado do certificado</h3><p>Campo novo: <strong>Regulado</strong> (mandato, CGOB) ou <strong>Voluntário</strong>. Define para qual dos dois funis de Certificados a negociação vai.</p></div>
+      <div class="card"><h3>Finalidade do atributo</h3><p>Meta Net Zero e ESG · Inventário GHG Protocol · Mandato (CGOB) · Exigência de cliente ou exportação · Selo verde. Argumento para o vendedor usar na negociação.</p></div>
+    </div>
   </div>
 </section>
 
 <section class="slide" data-titulo="Regra da viabilidade">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">13 · Regra da viabilidade</p>
+    <p class="label">13 · Regras de desqualificação</p>
     <h2 class="titulo">Logística que não fecha<br><em>não é venda perdida.</em></h2>
-    <p class="lede">A etapa <strong>Viabilidade técnica</strong> termina com uma decisão clara. Em vez de perder a oportunidade por distância, ela segue com outra solução.</p>
+    <p class="lede">Molécula inviável hoje pode virar venda de certificado. Já o que está muito fora do perfil sai cedo, para o time não gastar energia.</p>
     <div class="decisao" style="margin-bottom:16px;">
-      <div class="passo"><div class="t">Volume e distância</div><p>Consumo em m³/dia e km até a planta mais próxima.</p></div>
+      <div class="passo"><div class="t">Consumo e distância</div><p>m³/dia e km até a planta mais próxima.</p></div>
       <div class="seta">→</div>
-      <div class="passo" style="border-color:rgba(74,222,128,.45);"><div class="t">Viável</div><p>Proposta de molécula, com ou sem atributo ambiental.</p></div>
+      <div class="passo" style="border-color:rgba(74,222,128,.45);"><div class="t">Viável</div><p>Proposta de molécula, com ou sem atributo.</p></div>
       <div class="seta">ou</div>
-      <div class="passo" style="border-color:rgba(251,191,36,.45);"><div class="t">Inviável hoje</div><p>Proposta de só certificado, e a molécula volta à pauta quando abrir uma planta mais perto.</p></div>
+      <div class="passo" style="border-color:rgba(251,191,36,.45);"><div class="t">Molécula inviável</div><p>Oferecer só certificado. A molécula volta à pauta quando abrir uma planta mais perto.</p></div>
     </div>
-    <div class="grid-3">
-      <div class="card"><h3>Plantas em operação</h3><p>Seropédica (RJ) e São Paulo (SP).</p></div>
-      <div class="card"><h3>Próxima planta</h3><p>Igarassu (PE), fornecimento a partir de 2027.</p></div>
-      <div class="card"><h3>Expansão</h3><p>Novas unidades em RJ, SP, MG, BA e MA. A data entra no campo de início de fornecimento.</p></div>
+    <div class="grid-2">
+      <div class="card red"><h3>Perdida por regra (a validar)</h3><p>Consumo igual ou menor que <strong>1.000 m³/dia</strong> ou distância de <strong>1.000 km</strong> ou mais da planta: perdida como desqualificado. Os limites exatos o time confirma.</p></div>
+      <div class="card"><h3>Plantas</h3><p>Em operação: Seropédica (RJ) e São Paulo (SP). Próxima: Igarassu (PE), a partir de 2027. Expansão em RJ, SP, MG, BA e MA.</p></div>
     </div>
   </div>
 </section>
@@ -555,34 +582,35 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
           <li>Sem contato após a cadência</li>
           <li>Volume abaixo do mínimo</li>
           <li>Logística inviável e sem interesse no certificado</li>
-          <li>Preço acima do combustível atual</li>
-          <li>Optou por crédito de carbono ou por concorrente</li>
-          <li>Infraestrutura incompatível</li>
-          <li>Lead desqualificado</li>
+          <li>Preço acima do combustível atual (anotar o concorrente e o preço)</li>
+          <li>Optou por crédito de carbono ou fechou com outra empresa</li>
+          <li>Infraestrutura do cliente incompatível</li>
+          <li>Lead desqualificado (fora do perfil, sem retomar contato)</li>
         </ul>
       </div>
-      <div class="card amb"><h3>Perdas que viram tarefa futura</h3>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Contrato vigente com fornecedor atual</b><br><span class="t">Nova tarefa 4 meses antes do vencimento.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Sem orçamento ou projeto congelado</b><br><span class="t">Nova tarefa no ciclo de orçamento seguinte.</span></div></div>
-        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Sem contato</b><br><span class="t">Nova tentativa em 90 dias.</span></div></div>
+      <div class="card amb"><h3>Perdas que voltam ao funil</h3>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><span class="q">Multivendas</span><b>Sem contato</b><br><span class="t">Ao marcar a perda, acionar o Multivendas em 90 dias: a negociação volta para o início do funil.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><span class="q">Tarefa</span><b>Contrato vigente com fornecedor atual</b><br><span class="t">Nova tarefa perto da data de denúncia do contrato.</span></div></div>
+        <div class="tarefa"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><span class="q">Tarefa</span><b>Sem orçamento ou projeto congelado</b><br><span class="t">Nova tarefa no próximo ciclo de orçamento.</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-titulo="Prospecção ativa">
+<section class="slide" data-titulo="Prospecção e pré-qualificação">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
-    <p class="label">15 · Funil auxiliar · Prospecção ativa</p>
-    <h2 class="titulo">Prospecção de grandes contas<br><em>com funil próprio.</em></h2>
-    <p class="lede">Abordar uma grande empresa leva várias tentativas antes da primeira reunião. Separar essa fase mantém o funil comercial limpo, só com quem já conversou.</p>
-    <div class="etapas" style="margin-bottom:16px;">
-      <div class="etp"><div class="bola">1</div><h3>Conta mapeada</h3><p>Empresa-alvo, segmento, unidades e consumo estimado.</p></div>
-      <div class="etp"><div class="bola">2</div><h3>Decisores identificados</h3><p>Sustentabilidade, industrial e suprimentos.</p></div>
-      <div class="etp"><div class="bola">3</div><h3>Em abordagem</h3><p>Cadência de ligação, LinkedIn, e-mail e WhatsApp.</p></div>
-      <div class="etp auto"><div class="bola">4</div><h3>Reunião agendada</h3><p>Passa para Em qualificação no funil comercial.</p><span class="quem">Automático</span></div>
+    <p class="label">15 · Funil auxiliar · Prospecção e Pré-qualificação (SDR)</p>
+    <h2 class="titulo">O SDR valida,<br><em>o vendedor recebe pronto.</em></h2>
+    <p class="lede">Recebe os leads de anúncios e as contas mapeadas. O vendedor só recebe a negociação quando a reunião acontece, com resumo e campos de qualificação preenchidos.</p>
+    <div class="fluxo" style="margin-bottom:16px;">
+      <div class="passo"><div class="t">1. Lead recebido / conta mapeada</div><p>Empresa, segmento, unidades e consumo estimado.</p></div>
+      <div class="passo"><div class="t">2. Decisores identificados</div><p>Sustentabilidade, industrial, suprimentos.</p></div>
+      <div class="passo"><div class="t">3. Em abordagem</div><p>Cadência e pré-qualificação: matriz, consumo, combustível.</p></div>
+      <div class="passo"><div class="t">4. Reunião agendada</div><p>Compareceu: vai para o funil do produto.</p></div>
+      <div class="passo" style="border-color:rgba(251,191,36,.45);"><div class="t">5. No-show</div><p>SDR remarca antes de passar ao vendedor.</p></div>
     </div>
-    <p class="nota">Se a equipe preferir um único funil, a prospecção entra direto em Nova oportunidade e a fonte "Prospecção ativa" separa os relatórios.</p>
+    <p class="nota">A negociação chega ao funil do produto em Nova oportunidade, com a fonte preservada. Assim o relatório mostra quanto da venda veio de prospecção e quanto de anúncio.</p>
   </div>
 </section>
 
@@ -590,18 +618,18 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Gás Verde · Funil RD CRM</span></div>
     <p class="label">16 · Próximos passos</p>
-    <h2 class="titulo">Validar juntos e<br><em>colocar o funil no ar.</em></h2>
+    <h2 class="titulo">CO₂ e Certificados na sexta,<br><em>depois o treinamento.</em></h2>
     <div class="grid-3" style="margin-bottom:16px;">
-      <div class="card"><h3>1. Validar</h3><p>Etapas, prazos, faixas de distância, volume mínimo e os campos com o time comercial.</p></div>
-      <div class="card"><h3>2. Configurar</h3><p>Funis, campos, motivos de perda, fontes, produtos e as automações de tarefas no RD CRM.</p></div>
-      <div class="card"><h3>3. Integrar e treinar</h3><p>Leads de Meta, Google e LinkedIn entrando direto no CRM. Time treinado na rotina de tarefas.</p></div>
+      <div class="card lime"><h3>Sexta, 10h às 11h</h3><p>Desenhar os funis de CO₂ (viabilidade antes da proposta, fabricante ou revenda) e de Certificados, regulado e voluntário (sem viabilidade técnica).</p></div>
+      <div class="card"><h3>Urca envia antes</h3><p>Exportação do Monday com as negociações ativas e o pipeline da pesquisa, para a AUTZ organizar os campos.</p></div>
+      <div class="card"><h3>Depois</h3><p>Carga da base, treinamento do time e hipercare de cerca de um mês, ajustando etapas e tarefas com o uso.</p></div>
     </div>
-    <div class="card lime"><h3>Pontos para confirmar na reunião</h3>
+    <div class="card"><h3>Pontos em aberto</h3>
       <ul class="lista">
-        <li>O volume em m³/dia é o que o cliente consumiria, ou também atendem quem produz biogás?</li>
-        <li>O CRM atende só a Gás Verde ou também outras empresas do Grupo Urca?</li>
-        <li>Certificado, CO₂ verde e energia têm time ou funil próprio?</li>
-        <li>Como os leads de anúncios chegam hoje e para quem?</li>
+        <li>Confirmar os limites de desqualificação: consumo mínimo e distância máxima.</li>
+        <li>Preencher produtos e valores em cada negociação, mesmo usando proposta própria em PDF ou PPT.</li>
+        <li>Automações entre funis (biometano para certificados) ficam para depois do uso inicial.</li>
+        <li>Disparo automático de WhatsApp exige o RD Atendimento (API oficial); hoje as tarefas lembram o vendedor.</li>
       </ul>
     </div>
     <p class="nota" style="margin-top:18px;">© 2026 AUTZ Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
