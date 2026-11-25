@@ -1,445 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>AUTZ · Proposta de implantação RD Station · Escritório da Dra. Glauciane</title>
-<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
-  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
-  --gray:#7a9fa8; --gray2:#4a7078;
-  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
-  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
-}
-*{box-sizing:border-box;}
-html,body{height:100%;}
-body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
-h1,h2,h3{margin:0; text-wrap:balance;}
-p{margin:0;}
-.deck{position:fixed; inset:0 0 56px 0;}
-.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
-.slide.ativo{display:flex;}
-.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
-.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
-.logo{height:24px; width:auto; display:block;}
-.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
-.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
-.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
-.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
-.lede strong{color:var(--white); font-weight:600;}
-.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
-.capa .lede{font-size:18px;}
-.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
-.meta strong{color:var(--white); font-weight:600;}
-.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
-.card.lime{border-color:rgba(233,255,74,.35);}
-.card.ok{border-color:rgba(74,222,128,.35);}
-.card.amb{border-color:rgba(251,191,36,.35);}
-.card.red{border-color:rgba(232,89,60,.35);}
-.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
-.card p{font-size:14px; color:var(--gray);}
-.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
-.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
-.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
-ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
-ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
-ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
-.card.ok ul.lista li::before{content:"✓"; color:var(--green);}
-.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
-.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
-.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
-.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
-.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
-.card-head h3{margin:0;}
-.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
-.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
-.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
-.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
-.seta{align-self:center; color:var(--lime); font-weight:700;}
-table{width:100%; border-collapse:collapse; font-size:14px;}
-th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
-td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
-tr:last-child td{border-bottom:none;}
-td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
-.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
-.nota strong{color:var(--white);}
-a{color:var(--lime);}
-.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
-.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
-.barra button:disabled{opacity:.25; cursor:default;}
-.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
-.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
-.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
-.mais.visivel{display:block;}
-.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
-/* camada visual */
-body{background:
-  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
-  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
-  var(--bg);}
-body::before{content:""; position:fixed; inset:0; pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
-/* feixes de luz correndo nas linhas da grade */
-#feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
-.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen; filter:blur(.5px);}
-.feixe.h{height:1px; width:90px; background:linear-gradient(90deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
-.feixe.v{width:1px; height:90px; background:linear-gradient(180deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
-@keyframes feixe-h{0%{transform:translateX(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateX(100vw); opacity:0;}}
-@keyframes feixe-v{0%{transform:translateY(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateY(100vh); opacity:0;}}
-.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
-.label{display:inline-flex; align-items:center; gap:8px;}
-.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
-.card,.passo{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
-.card:hover,.passo:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
-.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
-.card.ok{box-shadow:inset 0 2px 0 var(--green);}
-.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
-.card.red{box-shadow:inset 0 2px 0 var(--red);}
-.passo .t{display:flex; align-items:center; gap:8px;}
-.passo .t::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 4px rgba(233,255,74,.15);}
-.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
-@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
-.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
-.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
-.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
-.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
-.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
-.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
-.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
-@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
-.slide.ativo .grid-3 > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
-.slide.ativo .grid-3 > *:nth-child(2){animation-delay:.28s}
-.slide.ativo .grid-3 > *:nth-child(3){animation-delay:.36s}
-@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
-.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
-.etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin:8px 0 6px;}
-.etapas::before{content:""; position:absolute; left:12%; right:12%; top:27px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
-.etp{text-align:center; padding:0 10px; position:relative;}
-.etp .bola{width:56px; height:56px; margin:0 auto 12px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:var(--lime); box-shadow:0 0 0 8px rgba(233,255,74,.08); position:relative; z-index:1;}
-.etp.auto .bola{background:var(--lime); color:var(--bg2);}
-.etp h3{font-size:15px; margin-bottom:6px;}
-.etp p{font-size:13px; color:var(--gray);}
-.etp .quem{display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:rgba(127,212,255,.12); color:#7fd4ff;}
-.etp.auto .quem{background:rgba(233,255,74,.12); color:var(--lime);}
-.pulso{animation:respira 2.4s ease-in-out infinite;}
-@keyframes respira{0%,100%{box-shadow:0 0 0 0 rgba(233,255,74,.0)} 50%{box-shadow:0 0 0 8px rgba(233,255,74,.10)}}
-.capa-vis{position:relative; display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:340px; margin-left:auto; width:100%;}
-.mini{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; animation:entra .6s both;}
-.mini:nth-child(2){animation-delay:.25s; margin-left:22px;} .mini:nth-child(3){animation-delay:.45s; margin-left:44px;}
-.mini .ico{width:34px; height:34px; border-radius:10px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center; flex:none;}
-.mini b{font-size:13.5px; display:block;}
-.mini small{font-size:12px; color:var(--gray);}
-.ico svg{width:18px; height:18px;}
-/* preço */
-.preco-box{display:inline-flex; flex-direction:column; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px 32px; box-shadow:0 0 50px -18px rgba(233,255,74,.45); margin-bottom:20px;}
-.preco-box .rotulo{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray);}
-.preco-box .valor{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:clamp(40px,6vw,64px); font-weight:800; color:var(--lime); letter-spacing:-.02em; line-height:1; margin:2px 0;}
-.preco-box p{font-size:14px; color:var(--gray); max-width:56ch;}
-/* contato */
-.contato-box{display:inline-flex; flex-direction:column; gap:10px; background:var(--surface); border:2px solid var(--lime); border-radius:16px; padding:24px 30px; margin-top:12px;}
-.contato-box .linha{font-size:14.5px; color:rgba(255,255,255,.85); display:flex; align-items:center; gap:8px;}
-.contato-box .linha strong{color:var(--white); font-weight:600;}
-.contato-box a{text-decoration:underline; font-weight:600;}
-@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none !important; transition:none !important;} }
-@media (min-width:761px) and (max-height:820px){
-  .slide{padding:24px 48px 16px;}
-  .topo{margin-bottom:12px;}
-  .titulo{font-size:25px; margin-bottom:6px;}
-  .lede{font-size:14.5px; margin-bottom:14px;}
-  .card{padding:14px 18px;}
-  .card h3{font-size:15px; margin-bottom:6px;}
-  ul.lista{gap:5px;}
-  ul.lista li{font-size:13.5px;}
-  .nota{margin-top:8px; font-size:12px;}
-  .etp .bola{width:48px; height:48px; font-size:17px;} .etapas::before{top:23px;}
-  .preco-box{padding:20px 24px;}
-}
-@media (max-width:900px){ .grid-2{grid-template-columns:1fr;} }
-@media (max-width:760px){
-  .slide{padding:24px 18px 20px;}
-  .titulo{font-size:23px;}
-  .capa .titulo{font-size:34px;}
-  .grid-2,.grid-3{grid-template-columns:1fr;}
-  .barra{padding:0 12px;}
-  .dica{display:none;}
-  .seta{display:none;}
-  .capa-grid{grid-template-columns:1fr; gap:20px;}
-  .etapas{grid-template-columns:1fr 1fr; row-gap:22px;} .etapas::before{display:none;}
-  .capa-vis{margin:0 auto;} .mini:nth-child(2),.mini:nth-child(3){margin-left:0;}
-}
-@media print{
-  html,body{height:auto;} body{overflow:visible;}
-  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
-  .barra,.progresso,.mais,#feixes{display:none;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+  <title>Esta proposta está fora da validade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --petroleo: #00272C;
+      --lime: #E9FF4A;
+      --branco: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: var(--petroleo);
+      color: var(--branco);
+      font-family: Poppins, Arial, Helvetica, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+    main {
+      width: 100%;
+      max-width: 640px;
+      text-align: center;
+    }
+    .logo {
+      display: block;
+      width: 148px;
+      height: auto;
+      margin: 0 auto 40px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 36px;
+    }
+    .contato {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .botao {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--petroleo);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1;
+      padding: 16px 28px;
+      border-radius: 999px;
+    }
+    .email {
+      color: var(--branco);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--lime);
+      padding-bottom: 2px;
+    }
+    .site {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+    }
+    .site:hover, .email:hover { color: var(--lime); }
+    @media (max-width: 620px) {
+      h1 { font-size: 26px; }
+      .lead { font-size: 16px; }
+      .logo { width: 128px; margin-bottom: 32px; }
+    }
+  </style>
 </head>
 <body>
-<div id="feixes" aria-hidden="true"></div>
-<main class="deck" id="deck">
-
-<section class="slide capa" data-titulo="Capa">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <div class="capa-grid">
-      <div>
-        <p class="label">RD Marketing + RD Conversas + RD CRM</p>
-        <h1 class="titulo">Cada lead no WhatsApp,<br>com <em>padrão, sem se perder.</em></h1>
-        <p class="lede">Proposta de implantação do RD Station Marketing, Conversas e CRM para o escritório da Dra. Glauciane. Organizamos o atendimento, construímos uma base sólida e preparamos o caminho até a reunião com quem decide.</p>
-        <div class="meta"><span>Cliente: <strong>Escritório da Dra. Glauciane</strong></span><span>Preparado por: <strong>AUTZ</strong></span><span>Atualizado em: <strong>novembro de 2026</strong></span></div>
-        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
-      </div>
-      <div class="capa-vis" aria-hidden="true">
-        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><div><b>3 ferramentas</b><small>Marketing, Conversas e CRM juntos</small></div></div>
-        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><b>R$ 3.000</b><small>implantação conduzida pela AUTZ</small></div></div>
-        <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><b>Começa em novembro</b><small>ainda este mês</small></div></div>
-      </div>
+  <main>
+    <img class="logo" src="/assets/autz-logo-white.png" width="148" height="55" alt="AUTZ">
+    <h1>Esta proposta está fora da validade.</h1>
+    <p class="lead">Fale com a AUTZ para retomar o assunto.</p>
+    <div class="contato">
+      <a class="botao" href="https://wa.me/5516992896549?text=Ol%C3%A1%2C%20acessei%20uma%20proposta%20da%20AUTZ%20que%20est%C3%A1%20fora%20da%20validade%20e%20quero%20retomar%20o%20assunto." target="_blank" rel="noopener noreferrer">Fale com a AUTZ</a>
+      <a class="email" href="mailto:contato@autz.com.br">contato@autz.com.br</a>
+      <a class="site" href="https://autz.com.br">autz.com.br</a>
     </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="Quem conduz a implantação">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">01 · Quem conduz a implantação</p>
-    <h2 class="titulo">O braço técnico<br><em>ao lado da sua operação.</em></h2>
-    <p class="lede">A AUTZ é consultoria parceira TOTVS, especializada na unidade de negócios RD Station, nível Diamante, entre os 5 maiores em MRR do ecossistema. Atuamos na construção dos processos, na configuração das ferramentas e no treino do time que vai usar no dia a dia.</p>
-    <div class="grid-3">
-      <div class="card"><h3>Parceira, não fabricante</h3><p>Implantamos e operamos o RD Station com o escritório. A contratação dos planos das ferramentas acontece junto à TOTVS RD Station.</p></div>
-      <div class="card"><h3>Foco no uso real</h3><p>Não entregamos só a ferramenta ligada. Deixamos o processo desenhado, o time treinado e a doutora com visibilidade de ponta a ponta.</p></div>
-      <div class="card"><h3>Ponte com quem já opera</h3><p>Trabalhamos com as estagiárias, com a orientação dos advogados e com o responsável terceirizado de anúncios e WordPress.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="O ponto de partida">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">02 · O ponto de partida</p>
-    <h2 class="titulo">O tráfego pausou porque<br>o atendimento <em>não tinha padrão.</em></h2>
-    <p class="lede">O escritório atua em direito trabalhista e empresarial preventivo. A doutora também é referência no meio jurídico, com cerca de 150 mil seguidores no Instagram. A atenção já existe. Falta um processo que sustente cada conversa que chega.</p>
-    <div class="grid-2">
-      <div class="card red"><h3>WhatsApp sem ferramenta de atendimento</h3><p>Tudo chega no WhatsApp e é atendido pelas estagiárias, sem um padrão. Há lead que fica para trás e oportunidade que se perde no meio do caminho.</p></div>
-      <div class="card red"><h3>RD Marketing Light, base ainda no começo</h3><p>Já existe o plano Light, até 2 mil contatos. Não há uma base legada organizada. A captação de dados ainda não constrói um ativo consistente.</p></div>
-      <div class="card red"><h3>Tráfego pago em pausa</h3><p>O escritório investia de R$ 5 a 7 mil por mês em tráfego pago e interrompeu esse investimento. O motivo foi o desperdício de leads, não a falta de demanda.</p></div>
-      <div class="card red"><h3>Qualificação ainda informal</h3><p>É preciso separar pessoa física de pessoa jurídica, entender a demanda e levar à reunião com a doutora. Hoje isso depende de memória e de improviso.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="A direção do projeto">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">03 · A direção do projeto</p>
-    <h2 class="titulo">Um processo simples,<br>do primeiro contato <em>à reunião.</em></h2>
-    <p class="lede">Quando o atendimento tem padrão, o investimento em divulgação volta a fazer sentido. O lead é identificado, qualificado e encaminhado. A base cresce com dados certos. O CRM registra o que aconteceu.</p>
-    <div class="etapas">
-      <div class="etp auto"><div class="bola">1</div><h3>Identificar</h3><p>Pessoa física ou jurídica, na entrada da conversa.</p><span class="quem">Bot</span></div>
-      <div class="etp auto"><div class="bola">2</div><h3>Qualificar</h3><p>Se empresa: processo em aberto e qual demanda.</p><span class="quem">Bot</span></div>
-      <div class="etp"><div class="bola">3</div><h3>Agendar</h3><p>Marcar a reunião com a doutora, que aprofunda o caso.</p><span class="quem">Estagiária</span></div>
-      <div class="etp auto"><div class="bola">4</div><h3>Registrar e nutrir</h3><p>CRM guarda o andamento; Marketing nutre quem não fechou.</p><span class="quem">CRM + Marketing</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="RD Conversas · Bot no WhatsApp">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">04 · RD Conversas · Plano PRO</p>
-    <h2 class="titulo">Um bot simples no WhatsApp.<br>As estagiárias entram <em>na hora certa.</em></h2>
-    <p class="lede">O fluxo é curto e objetivo. A pessoa física vai para a fila humana. A pessoa jurídica passa por duas perguntas essenciais antes da reunião com a doutora.</p>
-    <div class="fluxo" style="margin-bottom:14px;">
-      <div class="passo"><div class="t">1. Identificar</div><p>O bot pergunta se o contato é pessoa física ou jurídica.</p></div>
-      <div class="seta">→</div>
-      <div class="passo"><div class="t">Se PF</div><p>Vai direto para a fila das estagiárias, já com o contexto.</p></div>
-      <div class="seta">→</div>
-      <div class="passo"><div class="t">Se PJ</div><p>Processo em aberto no tribunal?</p></div>
-    </div>
-    <div class="grid-2" style="margin-bottom:14px;">
-      <div class="card"><h3>Se sim: coletar o número</h3><p>Pedimos o número do processo para a doutora já chegar à reunião com esse dado em mãos.</p></div>
-      <div class="card"><h3>Se não: qual a demanda</h3><p>Identificamos qual consultoria ou tipo de demanda a empresa busca, inclusive no preventivo.</p></div>
-    </div>
-    <div class="card lime"><h3>Qualificar e agendar com a doutora</h3><p>Com as informações essenciais coletadas, a reunião é marcada com a Dra. Glauciane. O restante da qualificação, com os detalhes do caso, ela conduz pessoalmente.</p></div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="RD Marketing · Upgrade PRO">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">05 · RD Marketing · Upgrade para o plano PRO, até 5 mil contatos</p>
-    <h2 class="titulo">Captar dados certos e<br>construir uma base <em>que se sustenta.</em></h2>
-    <p class="lede">Hoje o escritório está no plano Light, até 2 mil contatos, sem uma base legada organizada. A prioridade é sair da dispersão e transformar cada conversa em informação útil.</p>
-    <div class="grid-3">
-      <div class="card lime"><div class="card-head"><h3>Upgrade para o PRO</h3><span class="pill lime">Novo</span></div><p>O plano PRO, até 5 mil contatos, dá espaço para a base crescer com método, acompanhando a retomada da captação e do tráfego quando fizer sentido.</p></div>
-      <div class="card"><h3>Captação para uma base sólida</h3><p>Organizamos a entrada de dados: quem é o contato, se é PF ou PJ, de onde veio e qual a demanda. A base deixa de ser uma lista solta e vira um ativo do escritório.</p></div>
-      <div class="card"><h3>Nutrição básica, segmentada</h3><p>Fluxos simples e objetivos, separados para empresa e para pessoa física. A comunicação começa por e-mail e, no momento certo, também pode usar o WhatsApp.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="RD CRM · Quem faz o quê">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">06 · RD CRM · Quem faz o quê</p>
-    <h2 class="titulo">As estagiárias atualizam.<br><em>Os advogados conduzem.</em></h2>
-    <p class="lede">O CRM não pede que a doutora ou o sócio operem a ferramenta no dia a dia. Eles orientam. Quem registra o andamento é o time de atendimento, com clareza de etapa, tarefa, ganho e perda.</p>
-    <div class="grid-2">
-      <div class="card lime"><p class="n">ADVOGADOS</p><h3>Dra. Glauciane e o sócio</h3><p>A doutora conduz as reuniões e faz a qualificação de fundo. Os advogados passam as orientações para as estagiárias: o que avançar, o que aguardar, o que marcar como ganho ou como perda. A doutora acompanha o processo de ponta a ponta.</p></div>
-      <div class="card lime"><p class="n">ATENDIMENTO</p><h3>As duas estagiárias</h3><p>Atualizam o CRM no dia a dia: criam e concluem tarefas, mudam a etapa da negociação e registram venda ou perda. Trabalham com comando claro dos advogados, sem improvisar o rumo do caso.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="Papéis na operação">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">07 · Papéis na operação</p>
-    <h2 class="titulo">Cada pessoa no lugar certo,<br><em>com o processo visível.</em></h2>
-    <div class="grid-2">
-      <div class="card"><p class="n">DECISÃO E REUNIÃO</p><h3>Dra. Glauciane</h3><p>Dona do escritório, conduz as reuniões e quer visibilidade de tudo. Vamos explicar cada processo implementado, com a clareza que essa condução pede.</p></div>
-      <div class="card"><p class="n">ORIENTAÇÃO</p><h3>Advogado sócio</h3><p>Atua junto à doutora na orientação do time. Não precisa operar o CRM no detalhe; precisa confiar no que está registrado.</p></div>
-      <div class="card"><p class="n">ATENDIMENTO E REGISTRO</p><h3>Duas estagiárias</h3><p>Recebem a fila do WhatsApp, seguem o padrão de atendimento e mantêm o CRM em dia. São o público principal do treinamento prático.</p></div>
-      <div class="card"><p class="n">PONTE OPERACIONAL</p><h3>Responsável de anúncios e WordPress</h3><p>Profissional terceirizado que já cuida de anúncios e do site. Será nossa ponte para encaixar captação, páginas e campanhas no novo processo.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="O que a AUTZ entrega">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">08 · O que a AUTZ entrega</p>
-    <h2 class="titulo">Construir, treinar e deixar<br><em>o processo claro para a doutora.</em></h2>
-    <div class="grid-3">
-      <div class="card lime"><h3>1. Construir os processos</h3><p>Configuramos as três ferramentas para trabalharem juntas: o bot e as filas no Conversas, a captação e a nutrição no Marketing, o funil e as tarefas no CRM. O fluxo de PF e de PJ fica desenhado e em operação.</p></div>
-      <div class="card lime"><h3>2. Treinar as estagiárias</h3><p>Treinamento prático de atendimento no WhatsApp com padrão, uso da fila, preenchimento do CRM, mudança de etapa e registro de ganho ou perda. O time sai sabendo o que fazer em cada conversa.</p></div>
-      <div class="card lime"><h3>3. Explicar para a doutora</h3><p>A Dra. Glauciane acompanha de perto e quer entender o que está sendo implementado. Apresentamos os processos, os papéis e os pontos de controle, para ela ter segurança e visibilidade total.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-titulo="Investimento de implantação">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">09 · Investimento de implantação</p>
-    <h2 class="titulo">Um valor para começar agora,<br>com as três ferramentas <em>no ar.</em></h2>
-    <div class="preco-box">
-      <p class="rotulo">Implantação conduzida pela AUTZ</p>
-      <p class="valor">R$ 3.000</p>
-      <p>Valor único de implantação para construir os processos no RD Station Marketing, Conversas e CRM, treinar as estagiárias e apresentar o funcionamento para a doutora.</p>
-    </div>
-    <ul class="lista">
-      <li>Desenho e configuração do bot e das filas no RD Conversas, no plano PRO.</li>
-      <li>Evolução do RD Marketing para o plano PRO, até 5 mil contatos, com captação e nutrição básica segmentada entre PJ e PF.</li>
-      <li>Organização do RD CRM, com papéis claros para estagiárias e advogados.</li>
-      <li>Treinamento do time de atendimento e alinhamento completo com a Dra. Glauciane.</li>
-    </ul>
-    <p class="nota">O valor acima é o da implantação conduzida pela AUTZ. Os planos das ferramentas RD Station são contratados à parte, junto à TOTVS RD Station.</p>
-  </div>
-</section>
-
-<section class="slide capa" data-titulo="Próximos passos">
-  <div class="slide-inner">
-    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Escritório da Dra. Glauciane · Proposta RD Station</span></div>
-    <p class="label">10 · Próximos passos</p>
-    <h2 class="titulo">Vamos organizar o atendimento<br><em>ainda neste mês?</em></h2>
-    <p class="lede">Com a decisão de hoje, a AUTZ começa a construção dos processos nas três ferramentas, treina o time e deixa a doutora com visibilidade de tudo. O padrão no WhatsApp passa a existir. A base começa a ser construída de verdade.</p>
-    <div class="grid-3" style="margin-bottom:10px;">
-      <div class="card"><h3>1. Alinhar e iniciar</h3><p>Validamos juntos o fluxo de PF e PJ, os papéis do time e o ponto de contato com quem cuida de anúncios e WordPress.</p></div>
-      <div class="card"><h3>2. Construir nas ferramentas</h3><p>Bot, filas, captação, nutrição e CRM entram no ar com o processo do escritório.</p></div>
-      <div class="card"><h3>3. Treinar e acompanhar</h3><p>Estagiárias treinadas, doutora alinhada e operação pronta para atender com padrão.</p></div>
-    </div>
-    <div class="contato-box">
-      <div class="linha"><strong><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></strong> (16) 99289-6549</div>
-      <div class="linha"><strong><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></strong> mk@autz.com.br</div>
-      <div class="linha"><a href="https://autz.com.br/agenda-online-mika/"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agende uma reunião aqui</a></div>
-    </div>
-    <p class="nota" style="margin-top:18px;">© 2026 AUTZ Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
-  </div>
-</section>
-
-</main>
-<div class="progresso" id="progresso"></div>
-<div class="mais" id="mais">Role para ver o resto</div>
-<nav class="barra">
-  <button id="anterior" aria-label="Anterior">‹</button>
-  <span class="titulo-atual" id="titulo-atual"></span>
-  <span class="contador" id="contador"></span>
-  <button id="proximo" aria-label="Próximo">›</button>
-</nav>
-<script>
-(function () {
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var atual = 0;
-  function mostrar(i) {
-    atual = Math.max(0, Math.min(slides.length - 1, i));
-    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
-    slides[atual].scrollTop = 0;
-    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
-    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
-    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
-    document.getElementById('anterior').disabled = atual === 0;
-    document.getElementById('proximo').disabled = atual === slides.length - 1;
-    avisar();
-    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
-  }
-  function avisar() {
-    var s = slides[atual];
-    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
-  }
-  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
-  window.addEventListener('resize', avisar);
-  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
-  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
-  document.addEventListener('keydown', function (e) {
-    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
-    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
-    if (e.key === 'Home') mostrar(0);
-    if (e.key === 'End') mostrar(slides.length - 1);
-  });
-  var x0 = null, y0 = null;
-  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
-  document.addEventListener('touchend', function (e) {
-    if (x0 === null) return;
-    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
-    x0 = null;
-  }, { passive: true });
-  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
-})();
-</script>
-<script>
-(function () {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var wrap = document.getElementById('feixes');
-  var gridSize = 48;
-  function criarFeixe() {
-    var el = document.createElement('div');
-    var horizontal = Math.random() > 0.5;
-    el.className = 'feixe ' + (horizontal ? 'h' : 'v');
-    var duracao = Math.random() * 4 + 5;
-    el.style.animation = (horizontal ? 'feixe-h' : 'feixe-v') + ' ' + duracao + 's linear forwards';
-    if (horizontal) {
-      var maxRows = Math.floor(window.innerHeight / gridSize);
-      el.style.top = (Math.floor(Math.random() * maxRows) * gridSize) + 'px';
-      el.style.left = '0px';
-    } else {
-      var maxCols = Math.floor(window.innerWidth / gridSize);
-      el.style.left = (Math.floor(Math.random() * maxCols) * gridSize) + 'px';
-      el.style.top = '0px';
-    }
-    wrap.appendChild(el);
-    setTimeout(function () { el.remove(); }, duracao * 1000 + 100);
-  }
-  setInterval(criarFeixe, 2200);
-})();
-</script>
+  </main>
 </body>
 </html>
