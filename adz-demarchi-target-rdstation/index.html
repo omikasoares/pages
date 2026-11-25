@@ -1,108 +1,429 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex,nofollow">
-  <link rel="icon" type="image/png" href="/assets/favicon-autz.png">
-  <title>Esta proposta está fora da validade</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --petroleo: #00272C;
-      --lime: #E9FF4A;
-      --branco: #FFFFFF;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      min-height: 100%;
-      background: var(--petroleo);
-      color: var(--branco);
-      font-family: Poppins, Arial, Helvetica, sans-serif;
-    }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px;
-    }
-    main {
-      width: 100%;
-      max-width: 640px;
-      text-align: center;
-    }
-    .logo {
-      display: block;
-      width: 148px;
-      height: auto;
-      margin: 0 auto 40px;
-    }
-    h1 {
-      font-size: 32px;
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-    .lead {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.88);
-      margin-bottom: 36px;
-    }
-    .contato {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-    }
-    .botao {
-      display: inline-block;
-      background: var(--lime);
-      color: var(--petroleo);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 1;
-      padding: 16px 28px;
-      border-radius: 999px;
-    }
-    .email {
-      color: var(--branco);
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 1px solid var(--lime);
-      padding-bottom: 2px;
-    }
-    .site {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
-      font-weight: 400;
-      text-decoration: none;
-    }
-    .site:hover, .email:hover { color: var(--lime); }
-    @media (max-width: 620px) {
-      h1 { font-size: 26px; }
-      .lead { font-size: 16px; }
-      .logo { width: 128px; margin-bottom: 32px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AUTZ · Proposta ADZ · Integração RD Station CRM → ERP Target · DeMarchi</title>
+<link rel="icon" type="image/png" href="/assets/favicon-autz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#00272C; --bg2:#001e23; --surface:#00323A; --surface2:#003D47;
+  --lime:#E9FF4A; --lime2:#D2E132; --white:#ffffff;
+  --gray:#7a9fa8; --gray2:#4a7078;
+  --green:#4ade80; --amber:#fbbf24; --red:#E8593C;
+  --border:rgba(233,255,74,0.15); --border-white:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0; background:var(--bg); color:var(--white); font-family:'Poppins',system-ui,-apple-system,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow:hidden;}
+h1,h2,h3{margin:0; text-wrap:balance;}
+p{margin:0;}
+.deck{position:fixed; inset:0 0 56px 0;}
+.slide{position:absolute; inset:0; display:none; overflow-y:auto; padding:40px 56px 28px;}
+.slide.ativo{display:flex;}
+.slide-inner{margin:auto; width:100%; max-width:1080px; position:relative;}
+.topo{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+.logo{height:24px; width:auto; display:block;}
+.cliente{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray);}
+.label{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin-bottom:8px;}
+.titulo{font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1.2; margin-bottom:10px;}
+.lede{font-size:16px; color:var(--gray); max-width:74ch; margin-bottom:22px;}
+.lede strong{color:var(--white); font-weight:600;}
+.capa .titulo{font-size:50px; line-height:1.08; margin:10px 0 18px;}
+.capa .lede{font-size:18px;}
+.meta{display:flex; flex-wrap:wrap; gap:22px; font-size:13px; color:var(--gray); border-top:1px solid var(--border-white); padding-top:16px; margin-top:26px;}
+.meta strong{color:var(--white); font-weight:600;}
+.card{background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:20px 22px; min-width:0;}
+.card.lime{border-color:rgba(233,255,74,.35);}
+.card.ok{border-color:rgba(74,222,128,.35);}
+.card.amb{border-color:rgba(251,191,36,.35);}
+.card.red{border-color:rgba(232,89,60,.35);}
+.card h3{font-size:16px; font-weight:700; margin-bottom:8px;}
+.card p{font-size:14px; color:var(--gray);}
+.card .n{font-size:12px; font-weight:700; color:var(--lime); letter-spacing:.1em; margin-bottom:6px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+ul.lista{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+ul.lista li{font-size:14.5px; padding-left:22px; position:relative;}
+ul.lista li::before{content:"→"; position:absolute; left:0; color:var(--lime); font-weight:700;}
+.pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+.pill.ok{background:rgba(74,222,128,.15); color:var(--green);}
+.pill.lime{background:rgba(233,255,74,.12); color:var(--lime);}
+.pill.amb{background:rgba(251,191,36,.14); color:var(--amber);}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+.card-head h3{margin:0;}
+.fluxo{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap;}
+.passo{flex:1 1 150px; background:var(--surface); border:1px solid var(--border-white); border-radius:12px; padding:14px 16px; position:relative; min-width:0;}
+.passo .t{font-size:13px; font-weight:700; color:var(--lime2); margin-bottom:4px;}
+.passo p{font-size:13.5px; color:var(--white); opacity:.9;}
+.seta{align-self:center; color:var(--lime); font-weight:700;}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th{text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray); padding:0 14px 10px 0; border-bottom:1px solid var(--border-white);}
+td{padding:11px 14px 11px 0; border-bottom:1px solid var(--border-white); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td.l{font-weight:600; color:var(--lime2); white-space:nowrap;}
+.nota{font-size:12.5px; color:var(--gray); margin-top:14px;}
+.nota strong{color:var(--white);}
+a{color:var(--lime);}
+.barra{position:fixed; left:0; right:0; bottom:0; height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 24px; background:var(--bg2); border-top:1px solid var(--border-white); z-index:5;}
+.barra button{font:600 14px 'Poppins',system-ui,sans-serif; color:var(--bg2); background:var(--lime); border:0; border-radius:999px; width:44px; height:36px; cursor:pointer;}
+.barra button:disabled{opacity:.25; cursor:default;}
+.contador{font-size:13px; color:var(--gray); min-width:64px; text-align:center;}
+.titulo-atual{flex:1; font-size:13px; color:var(--gray); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.progresso{position:fixed; left:0; bottom:56px; height:3px; background:var(--lime); transition:width .25s; z-index:5;}
+.mais{position:fixed; left:50%; bottom:68px; transform:translateX(-50%); font-size:12px; font-weight:600; color:var(--bg2); background:var(--lime); padding:6px 14px; border-radius:999px; display:none; pointer-events:none; z-index:6;}
+.mais.visivel{display:block;}
+.dica{font-size:12px; color:var(--gray2); margin-top:14px;}
+/* camada visual */
+body{background:
+  radial-gradient(900px 520px at 88% -10%, rgba(233,255,74,.10), transparent 60%),
+  radial-gradient(700px 500px at -10% 110%, rgba(0,180,170,.14), transparent 60%),
+  var(--bg);}
+body::before{content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:48px 48px; mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%); -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);}
+/* feixes de luz correndo nas linhas da grade */
+#feixes{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+.feixe{position:absolute; border-radius:999px; opacity:0; mix-blend-mode:screen; filter:blur(.5px);}
+.feixe.h{height:1px; width:90px; background:linear-gradient(90deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+.feixe.v{width:1px; height:90px; background:linear-gradient(180deg, transparent, rgba(233,255,74,.4), transparent); box-shadow:0 0 4px rgba(233,255,74,.25);}
+@keyframes feixe-h{0%{transform:translateX(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateX(100vw); opacity:0;}}
+@keyframes feixe-v{0%{transform:translateY(-100px); opacity:0;} 20%{opacity:.5;} 80%{opacity:.5;} 100%{transform:translateY(100vh); opacity:0;}}
+.titulo em{font-style:normal; background:linear-gradient(90deg,var(--lime),#9dffb0); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.label{display:inline-flex; align-items:center; gap:8px;}
+.label::before{content:""; width:18px; height:2px; background:var(--lime); border-radius:2px;}
+.card,.passo{background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0)) , var(--surface); transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;}
+.card:hover,.passo:hover{transform:translateY(-3px); border-color:rgba(233,255,74,.35); box-shadow:0 14px 34px -18px rgba(0,0,0,.7);}
+.card.lime{box-shadow:inset 0 2px 0 var(--lime);}
+.card.ok{box-shadow:inset 0 2px 0 var(--green);}
+.card.amb{box-shadow:inset 0 2px 0 var(--amber);}
+.card.red{box-shadow:inset 0 2px 0 var(--red);}
+.passo .t{display:flex; align-items:center; gap:8px;}
+.passo .t::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 4px rgba(233,255,74,.15);}
+.seta{font-size:18px; animation:pulso 1.6s ease-in-out infinite;}
+@keyframes pulso{0%,100%{transform:translateX(0); opacity:.6} 50%{transform:translateX(4px); opacity:1}}
+.slide.ativo .slide-inner > *{animation:entra .6s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .slide-inner > *:nth-child(2){animation-delay:.05s}
+.slide.ativo .slide-inner > *:nth-child(3){animation-delay:.12s}
+.slide.ativo .slide-inner > *:nth-child(4){animation-delay:.2s}
+.slide.ativo .slide-inner > *:nth-child(5){animation-delay:.28s}
+.slide.ativo .slide-inner > *:nth-child(6){animation-delay:.36s}
+.slide.ativo .slide-inner > *:nth-child(7){animation-delay:.44s}
+@keyframes entra{from{opacity:0; transform:translateY(16px); filter:blur(6px)} to{opacity:1; transform:none; filter:none}}
+.slide.ativo .grid-3 > *{animation:entra .55s cubic-bezier(.2,.7,.2,1) both;}
+.slide.ativo .grid-3 > *:nth-child(2){animation-delay:.28s}
+.slide.ativo .grid-3 > *:nth-child(3){animation-delay:.36s}
+@keyframes cresce{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.capa-grid{display:grid; grid-template-columns:1.5fr .6fr; gap:40px; align-items:center;}
+.etapas{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin:8px 0 6px;}
+.etapas::before{content:""; position:absolute; left:12%; right:12%; top:27px; height:3px; background:linear-gradient(90deg,var(--lime),#9dffb0); transform-origin:left; animation:cresce 1.2s .2s cubic-bezier(.2,.7,.2,1) both; border-radius:3px;}
+.etp{text-align:center; padding:0 10px; position:relative;}
+.etp .bola{width:56px; height:56px; margin:0 auto 12px; border-radius:50%; background:var(--bg); border:3px solid var(--lime); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; color:var(--lime); box-shadow:0 0 0 8px rgba(233,255,74,.08); position:relative; z-index:1;}
+.etp.auto .bola{background:var(--lime); color:var(--bg2);}
+.etp h3{font-size:15px; margin-bottom:6px;}
+.etp p{font-size:13px; color:var(--gray);}
+.etp .quem{display:inline-block; margin-top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; background:rgba(127,212,255,.12); color:#7fd4ff;}
+.etp.auto .quem{background:rgba(233,255,74,.12); color:var(--lime);}
+.capa-vis{position:relative; display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:340px; margin-left:auto; width:100%;}
+.mini{background:var(--surface); border:1px solid var(--border-white); border-radius:14px; padding:12px 14px; display:flex; align-items:center; gap:12px; animation:entra .6s both;}
+.mini:nth-child(2){animation-delay:.25s; margin-left:22px;} .mini:nth-child(3){animation-delay:.45s; margin-left:44px;}
+.mini .ico{width:34px; height:34px; border-radius:10px; background:rgba(233,255,74,.12); color:var(--lime); display:flex; align-items:center; justify-content:center; flex:none;}
+.mini b{font-size:13.5px; display:block;}
+.mini small{font-size:12px; color:var(--gray);}
+.ico svg{width:18px; height:18px;}
+.codigo{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-weight:700;}
+.codigo .f1{color:#9dffb0;} .codigo .f2{color:var(--lime);} .codigo .f3{color:#7fd4ff;}
+.contato-box{display:inline-flex; flex-direction:column; gap:10px; background:var(--surface); border:2px solid var(--lime); border-radius:16px; padding:24px 30px; margin-top:12px;}
+.contato-box .linha{font-size:14.5px; color:rgba(255,255,255,.85); display:flex; align-items:center; gap:8px;}
+.contato-box .linha strong{color:var(--white); font-weight:600;}
+.contato-box a{text-decoration:underline; font-weight:600;}
+.card p.valor,.valor{font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:clamp(28px,3.4vw,40px); font-weight:800; color:var(--lime); letter-spacing:-.02em; line-height:1.1; margin:6px 0 8px;}
+.card p.valor.pend,.valor.pend{color:var(--gray); font-size:clamp(22px,2.6vw,30px);}
+.horas{display:inline-flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+td.num{font-family:ui-monospace,'SF Mono',Menlo,monospace; white-space:nowrap;}
+tr.tot td{font-weight:700; color:var(--white);}
+.table-scroll{overflow-x:auto; max-width:100%;}
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none !important; transition:none !important;} }
+@media (min-width:761px) and (max-height:820px){
+  .slide{padding:24px 48px 16px;}
+  .topo{margin-bottom:12px;}
+  .titulo{font-size:25px; margin-bottom:6px;}
+  .lede{font-size:14.5px; margin-bottom:14px;}
+  .card{padding:14px 18px;}
+  .card h3{font-size:15px; margin-bottom:6px;}
+  ul.lista{gap:5px;}
+  ul.lista li{font-size:13.5px;}
+  .nota{margin-top:8px; font-size:12px;}
+  .etp .bola{width:48px; height:48px; font-size:17px;} .etapas::before{top:23px;}
+}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr;} }
+@media (max-width:760px){
+  .slide{padding:24px 18px 20px;}
+  .titulo{font-size:23px;}
+  .capa .titulo{font-size:34px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .barra{padding:0 12px;}
+  .dica{display:none;}
+  .seta{display:none;}
+  .capa-grid{grid-template-columns:1fr; gap:20px;}
+  .etapas{grid-template-columns:1fr 1fr; row-gap:22px;} .etapas::before{display:none;}
+  .capa-vis{margin:0 auto;} .mini:nth-child(2),.mini:nth-child(3){margin-left:0;}
+}
+@media print{
+  html,body{height:auto;} body{overflow:visible;}
+  .deck{position:static;} .slide{position:static; display:flex !important; min-height:100vh; page-break-after:always;}
+  .barra,.progresso,.mais,#feixes{display:none;}
+}
+</style>
 </head>
 <body>
-  <main>
-    <img class="logo" src="/assets/autz-logo-white.png" width="148" height="55" alt="AUTZ">
-    <h1>Esta proposta está fora da validade.</h1>
-    <p class="lead">Fale com a AUTZ para retomar o assunto.</p>
-    <div class="contato">
-      <a class="botao" href="https://wa.me/5516992896549?text=Ol%C3%A1%2C%20acessei%20uma%20proposta%20da%20AUTZ%20que%20est%C3%A1%20fora%20da%20validade%20e%20quero%20retomar%20o%20assunto." target="_blank" rel="noopener noreferrer">Fale com a AUTZ</a>
-      <a class="email" href="mailto:contato@autz.com.br">contato@autz.com.br</a>
-      <a class="site" href="https://autz.com.br">autz.com.br</a>
+<div id="feixes" aria-hidden="true"></div>
+<main class="deck" id="deck">
+<section class="slide capa" data-titulo="Capa">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <div class="capa-grid">
+      <div>
+        <p class="label">ERP Target × RD Station CRM · versão enxuta</p>
+        <h1 class="titulo">A vendedora fecha no RD.<br>O pedido <em>nasce sozinho no Target.</em></h1>
+        <p class="lede">Proposta de parceria técnica para a ADZ: a AUTZ conecta o RD Station CRM da DeMarchi ao ERP Target para que o pedido e o cliente sejam criados no Target a partir do CRM, sem a vendedora digitar duas vezes.</p>
+        <div class="meta"><span>A/c: <strong>ADZ Comunicação · Luciana</strong></span><span>Cliente final: <strong>DeMarchi</strong></span><span>Preparado por: <strong>AUTZ</strong></span></div>
+        <p class="dica">Use as setas do teclado ou os botões abaixo para avançar.</p>
+      </div>
+      <div class="capa-vis" aria-hidden="true">
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><div><b>Fim da digitação dupla</b><small>o pedido é lançado uma vez só</small></div></div>
+        <div class="mini"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><div><b>Status de volta no CRM</b><small>número e situação do pedido</small></div></div>
+        <div class="mini pulso"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><b>4 semanas</b><small>após credenciais liberadas</small></div></div>
+      </div>
     </div>
-  </main>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Quem é a AUTZ">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">01 · Quem é a AUTZ</p>
+    <h2 class="titulo">O braço técnico<br><em>da sua agência.</em></h2>
+    <p class="lede">A AUTZ é consultoria parceira TOTVS, especializada na unidade de negócios RD Station, nível Diamante, entre os 5 maiores em MRR do ecossistema.</p>
+    <div class="grid-3">
+      <div class="card"><h3>Não concorremos com a ADZ</h3><p>Não fazemos tráfego pago, redes sociais nem conteúdo. Nosso foco é tecnologia e integração entre sistemas.</p></div>
+      <div class="card"><h3>A ADZ segue dona da relação</h3><p>A ADZ cuida da estratégia e do relacionamento com a DeMarchi. A AUTZ entra por trás, construindo e sustentando a integração.</p></div>
+      <div class="card"><h3>Integração de verdade</h3><p>Conectamos o RD Station a ERPs pelas APIs oficiais, com monitoramento e alerta de falha.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O problema">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">02 · O problema</p>
+    <h2 class="titulo">O mesmo pedido<br><em>lançado duas vezes.</em></h2>
+    <p class="lede">Hoje a vendedora negocia no RD Station CRM e depois precisa subir o pedido e o cliente no Target, à mão. Essa versão da proposta ataca só esse ponto, com o menor escopo possível.</p>
+    <div class="grid-2">
+      <div class="card red"><h3>Retrabalho diário</h3><p>Cada venda fechada vira digitação de novo no Target: cliente, produtos, tabela de preço, condição de pagamento.</p></div>
+      <div class="card red"><h3>Erro de digitação</h3><p>Relançar à mão abre espaço para item, preço ou quantidade errados no pedido que vai para faturamento.</p></div>
+      <div class="card red"><h3>Tempo fora da venda</h3><p>O tempo gasto lançando pedido no ERP é tempo que a vendedora não está atendendo cliente.</p></div>
+      <div class="card red"><h3>CRM e ERP desencontrados</h3><p>Sem ligação entre os dois, ninguém sabe no CRM se o pedido foi aceito, travou ou foi rejeitado no Target.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Como funciona">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">03 · Como funciona</p>
+    <h2 class="titulo">Um movimento da vendedora,<br><em>o resto é automático.</em></h2>
+    <p class="lede">A vendedora monta a negociação no CRM com os produtos do Target e marca a venda. A integração cuida do resto.</p>
+    <div class="etapas">
+      <div class="etp"><div class="bola">1</div><h3>Fecha no CRM</h3><p>Produtos, tabela, condição e vendedor preenchidos na negociação.</p><span class="quem">Vendedora</span></div>
+      <div class="etp auto"><div class="bola">2</div><h3>Cliente no Target</h3><p>Cadastrado se for novo; reaproveitado pelo CPF ou CNPJ se já existir.</p><span class="quem">Automático</span></div>
+      <div class="etp auto"><div class="bola">3</div><h3>Pedido no Target</h3><p>Entra na área eletrônica do Target, com identificador único, sem duplicidade.</p><span class="quem">Automático</span></div>
+      <div class="etp auto"><div class="bola">4</div><h3>Status no CRM</h3><p>Número do pedido e situação voltam para a negociação.</p><span class="quem">Automático</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O que entra">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">04 · O que entra nesta versão</p>
+    <h2 class="titulo">Só o necessário<br><em>para o pedido nascer no CRM.</em></h2>
+    <div class="grid-3">
+      <div class="card lime"><h3>Catálogo do Target no CRM</h3><p>Produtos e tabelas de preço do Target refletidos no CRM, para a negociação ser montada com os itens e valores reais do ERP.</p></div>
+      <div class="card lime"><h3>Cliente e pedido no Target</h3><p>Ao marcar a venda, o cliente é cadastrado ou reaproveitado e o pedido de venda é criado no Target.</p></div>
+      <div class="card lime"><h3>Retorno do status</h3><p>Enfileirado, confirmado, aguardando liberação manual, rejeitado ou cancelado. Se rejeitar, o motivo aparece no CRM para a vendedora corrigir.</p></div>
+    </div>
+    <div class="card" style="margin-top:14px;"><h3>Regras do pedido travadas no CRM</h3><p>Tipo de pedido, tabela de preço, vendedor, condição de pagamento e kits são mapeados com a DeMarchi e viram campos obrigatórios antes do envio.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="O que fica de fora">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">05 · O que fica de fora</p>
+    <h2 class="titulo">Enxuto de propósito.<br><em>O resto pode vir depois.</em></h2>
+    <p class="lede">Para chegar a um investimento menor, esta versão deixa de fora os itens abaixo. Eles podem entrar numa etapa futura, orçada à parte.</p>
+    <div class="grid-2">
+      <div class="card"><h3>Estoque e notas fiscais</h3><p>Leitura de saldo de estoque e das vendas faturadas do Target para o CRM.</p></div>
+      <div class="card"><h3>Automações dos funis</h3><p>Funil Agenda de Contatos com tarefas por dia e fluxo Vendido para Agenda.</p></div>
+      <div class="card"><h3>Banco intermediário</h3><p>A integração usa só a API do Target, sem a réplica do banco de produção.</p></div>
+      <div class="card"><h3>Base completa de clientes</h3><p>Importação de todos os clientes do Target. Nesta versão, o cliente entra no Target quando a venda é fechada.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Caminho técnico">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">06 · Caminho técnico</p>
+    <h2 class="titulo">A Target abre a porta,<br><em>a AUTZ constrói a ponte.</em></h2>
+    <p class="lede">A Target não desenvolve integrações customizadas: ela libera a API e um parceiro técnico constrói a ligação com o RD Station.</p>
+    <div class="fluxo">
+      <div class="passo"><div class="t">RD Station CRM</div><p>Venda marcada dispara a integração.</p></div>
+      <div class="seta">→</div>
+      <div class="passo"><div class="t">Camada AUTZ</div><p>Confere as regras, monta o pedido e trata falhas com nova tentativa.</p></div>
+      <div class="seta">→</div>
+      <div class="passo"><div class="t">API do Target</div><p>OAuth2, token renovado a cada 15 minutos, escopos de leitura e escrita.</p></div>
+    </div>
+    <p class="nota">Cada pedido leva um identificador único, então nunca é enviado em duplicidade. Falhas geram alerta para a AUTZ.</p>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Premissas">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">07 · Premissas</p>
+    <h2 class="titulo">O que precisa estar<br><em>de pé para começar.</em></h2>
+    <div class="grid-2">
+      <div class="card amb"><h3>NDA e aprovação da Target</h3><p>A Target exige NDA e aprovação do jurídico para a integração. O desenvolvimento começa com a autorização formal.</p></div>
+      <div class="card amb"><h3>Credenciais e escopos</h3><p>URL de produção, credenciais e escopos de leitura de produtos e preços e de escrita de pedidos e clientes.</p></div>
+      <div class="card amb"><h3>Custos da Target à parte</h3><p>Taxas e mensalidade das APIs são cobradas pela Target diretamente da DeMarchi, fora do investimento AUTZ.</p></div>
+      <div class="card amb"><h3>Prazo começa com o acesso</h3><p>As 4 semanas contam a partir das credenciais liberadas e do acesso de administrador ao RD Station CRM.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Cronograma e horas">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">08 · Cronograma e horas</p>
+    <h2 class="titulo">Quatro semanas,<br><em>cerca de 28 horas.</em></h2>
+    <div class="table-scroll"><table>
+      <tr><th>Semana</th><th>Entrega</th><th>Horas</th></tr>
+      <tr><td class="l">S1</td><td>Kickoff com ADZ e DeMarchi, validação das credenciais e mapeamento das regras do pedido.</td><td>6h</td></tr>
+      <tr><td class="l">S2</td><td>Catálogo de produtos e tabelas de preço do Target no CRM. Campos obrigatórios na negociação.</td><td>8h</td></tr>
+      <tr><td class="l">S3</td><td>Escrita de cliente e pedido no Target, com identificador único e tratamento de falha.</td><td>10h</td></tr>
+      <tr><td class="l">S4</td><td>Retorno do status, testes ponta a ponta, orientação das vendedoras e passagem para a ADZ.</td><td>4h</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section class="slide" data-titulo="Investimento">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <p class="label">09 · Investimento · condição de parceiro</p>
+    <h2 class="titulo">Valores de parceiro<br><em>para a ADZ.</em></h2>
+    <div class="grid-2">
+      <div class="card lime"><p class="n">SETUP</p><h3>Integração RD Station CRM → Target</h3><p class="valor">R$ 9.800</p><p>Em até 3x sem juros no boleto ou 12x no cartão (o cartão está sujeito aos juros da operadora).</p></div>
+      <div class="card lime"><p class="n">MENSAL</p><h3>Sustentação</h3><p class="valor">R$ 790/mês</p><p>Servidor, monitoramento, correções e ajustes por mudança de API. Começa 30 dias após a solução aprovada e rodando.</p></div>
+    </div>
+    <p class="nota" style="margin-top:16px;">A ADZ define o preço de revenda para a DeMarchi. Fora do escopo AUTZ: taxas da Target, licenças do RD Station e os itens da etapa futura. Proposta válida por 7 dias.</p>
+  </div>
+</section>
+
+<section class="slide capa" data-titulo="Vamos começar?">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">A/c ADZ Comunicação · DeMarchi · Target × RD Station</span></div>
+    <h2 class="titulo">Vamos tirar o pedido<br><em>das mãos da vendedora?</em></h2>
+    <p class="lede">Com a proposta aprovada, a DeMarchi encaminha o NDA com a Target. Assim que as credenciais forem liberadas, a AUTZ coloca a integração no ar em quatro semanas.</p>
+    <div class="contato-box">
+      <div class="linha"><strong><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></strong> (16) 99289-6549</div>
+      <div class="linha"><strong><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></strong> mk@autz.com.br</div>
+      <div class="linha"><a href="https://autz.com.br/agenda-online-mika/"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agende uma reunião aqui</a></div>
+    </div>
+    <p class="nota" style="margin-top:18px;">© 2026 AUTZ Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
+  </div>
+</section>
+
+</main>
+<div class="progresso" id="progresso"></div>
+<div class="mais" id="mais">Role para ver o resto</div>
+<nav class="barra">
+  <button id="anterior" aria-label="Anterior">‹</button>
+  <span class="titulo-atual" id="titulo-atual"></span>
+  <span class="contador" id="contador"></span>
+  <button id="proximo" aria-label="Próximo">›</button>
+</nav>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var atual = 0;
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('ativo', n === atual); });
+    slides[atual].scrollTop = 0;
+    document.getElementById('contador').textContent = (atual + 1) + ' / ' + slides.length;
+    document.getElementById('titulo-atual').textContent = slides[atual].dataset.titulo || '';
+    document.getElementById('progresso').style.width = ((atual + 1) / slides.length * 100) + '%';
+    document.getElementById('anterior').disabled = atual === 0;
+    document.getElementById('proximo').disabled = atual === slides.length - 1;
+    avisar();
+    if (location.hash !== '#' + (atual + 1)) history.replaceState(null, '', '#' + (atual + 1));
+  }
+  function avisar() {
+    var s = slides[atual];
+    document.getElementById('mais').classList.toggle('visivel', s.scrollHeight - s.clientHeight - s.scrollTop > 8);
+  }
+  slides.forEach(function (s) { s.addEventListener('scroll', avisar, { passive: true }); });
+  window.addEventListener('resize', avisar);
+  document.getElementById('anterior').addEventListener('click', function () { mostrar(atual - 1); });
+  document.getElementById('proximo').addEventListener('click', function () { mostrar(atual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual + 1); }
+    if (['ArrowLeft', 'PageUp'].indexOf(e.key) >= 0) { e.preventDefault(); mostrar(atual - 1); }
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(slides.length - 1);
+  });
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  mostrar((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wrap = document.getElementById('feixes');
+  var gridSize = 48;
+  function criarFeixe() {
+    var el = document.createElement('div');
+    var horizontal = Math.random() > 0.5;
+    el.className = 'feixe ' + (horizontal ? 'h' : 'v');
+    var duracao = Math.random() * 4 + 5;
+    el.style.animation = (horizontal ? 'feixe-h' : 'feixe-v') + ' ' + duracao + 's linear forwards';
+    if (horizontal) {
+      var maxRows = Math.floor(window.innerHeight / gridSize);
+      el.style.top = (Math.floor(Math.random() * maxRows) * gridSize) + 'px';
+      el.style.left = '0px';
+    } else {
+      var maxCols = Math.floor(window.innerWidth / gridSize);
+      el.style.left = (Math.floor(Math.random() * maxCols) * gridSize) + 'px';
+      el.style.top = '0px';
+    }
+    wrap.appendChild(el);
+    setTimeout(function () { el.remove(); }, duracao * 1000 + 100);
+  }
+  setInterval(criarFeixe, 2200);
+})();
+</script>
 </body>
 </html>
