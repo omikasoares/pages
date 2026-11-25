@@ -342,7 +342,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <h2 class="titulo">Venda fechada,<br><em>pedido ainda em preparação.</em></h2>
     <p class="lede">Etapa de espera: a venda foi fechada, mas o produto real pode ainda não existir na Omie. Para entrar nela é obrigatório ter um produto, que pode ser o genérico <strong>Item a Definir</strong>. Nenhum pedido é criado aqui.</p>
     <div class="grid-2">
-      <div class="card ok"><div class="card-head"><h3>Omie → RD Vendas</h3><span class="pill lime">A cada 5 min</span></div>
+      <div class="card ok"><div class="card-head"><h3>Omie → RD Vendas</h3><span class="pill lime">A cada 1 min</span></div>
         <ul class="lista"><li>Roda em horário comercial, só se houver negociação nesta etapa</li><li>Produto Acabado novo ou alterado nos últimos 3 dias entra no catálogo</li><li>Vai com "código - descrição", preço, NCM, código da Omie, categoria e estoque</li></ul>
       </div>
       <div class="card"><div class="card-head"><h3>O que continua manual</h3><span class="pill blue">Time</span></div>
@@ -439,7 +439,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
 
     <p class="label">Resumo</p>
     <h2 class="titulo">Rotinas automáticas<br><em>e quando cada uma roda.</em></h2>
-    <table class="tab-etapas"><tr><th>Rotina</th><th>Quando roda</th><th>O que faz</th></tr><tr><td class="l">Enriquecimento</td><td>Na hora, ao entrar em Qualificação</td><td>Receita Federal completa a empresa no RD e o cliente na Omie</td></tr><tr><td class="l">Pedido de venda</td><td>Na hora, ao entrar em Pedido ERP</td><td>Cria o pedido ou devolve para Ganho - Inserir Produto com o motivo</td></tr><tr><td class="l">Varredura de segurança</td><td>A cada 2 min em horário comercial, a cada 10 min fora</td><td>Reprocessa negociações em Qualificação ou Pedido ERP cujo aviso do RD não chegou</td></tr><tr><td class="l">Status do pedido</td><td>A cada 5 min em horário comercial, a cada 15 min fora</td><td>Etapa do Pedido Omie, Pedido Faturado com pós-venda e Pedido Cancelado</td></tr><tr><td class="l">Produtos novos</td><td>A cada 5 min em horário comercial, se houver negociação em Ganho</td><td>Traz Produtos Acabados novos da Omie para o catálogo</td></tr><tr><td class="l">Estoque</td><td>Todo dia às 6h e às 12h</td><td>Atualiza o campo Estoque dos produtos que mudaram</td></tr><tr><td class="l">Impacto periódico</td><td>Todo dia às 8h30</td><td>Cria negociação de contato para empresas com Curva: A a cada 30 dias, B a cada 90, C e D a cada 180</td></tr></table>
+    <table class="tab-etapas"><tr><th>Rotina</th><th>Quando roda</th><th>O que faz</th></tr><tr><td class="l">Enriquecimento</td><td>Na hora, ao entrar em Qualificação</td><td>Receita Federal completa a empresa no RD e o cliente na Omie</td></tr><tr><td class="l">Pedido de venda</td><td>Na hora, ao entrar em Pedido ERP</td><td>Cria o pedido ou devolve para Ganho - Inserir Produto com o motivo</td></tr><tr><td class="l">Varredura de segurança</td><td>A cada 2 min em horário comercial, a cada 10 min fora</td><td>Reprocessa negociações em Qualificação ou Pedido ERP cujo aviso do RD não chegou</td></tr><tr><td class="l">Status do pedido</td><td>A cada 5 min em horário comercial, a cada 15 min fora</td><td>Etapa do Pedido Omie, Pedido Faturado com pós-venda e Pedido Cancelado</td></tr><tr><td class="l">Produtos novos</td><td>A cada 1 min em horário comercial, se houver negociação em Ganho</td><td>Traz Produtos Acabados novos da Omie para o catálogo</td></tr><tr><td class="l">Estoque</td><td>Todo dia às 6h e às 12h</td><td>Atualiza o campo Estoque dos produtos que mudaram</td></tr><tr><td class="l">Impacto periódico</td><td>Todo dia às 8h30</td><td>Cria negociação de contato para empresas com Curva: A a cada 30 dias, B a cada 90, C e D a cada 180</td></tr></table>
     <p class="nota">Horário comercial: segunda a sexta, das 7h às 19h.</p>
   </div>
 </section>
@@ -451,7 +451,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <h2 class="titulo">Produtos e estoque<br><em>vindos da Omie.</em></h2>
     <div class="grid-2">
       <div class="card lime"><div class="card-head"><h3>Produtos Acabados da Omie</h3><span class="pill ok">5.813 ativos</span></div>
-        <ul class="lista"><li>Toda a família Produto Acabado da Omie</li><li>Nome "código - descrição", para buscar pelo código</li><li>Preço de venda, NCM, código da Omie, categoria e estoque</li><li>Produto novo entra sozinho em até 5 minutos</li></ul>
+        <ul class="lista"><li>Toda a família Produto Acabado da Omie</li><li>Nome "código - descrição", para buscar pelo código</li><li>Preço de venda, NCM, código da Omie, categoria e estoque</li><li>Produto novo entra sozinho em cerca de 1 minuto</li></ul>
       </div>
       <div class="card"><div class="card-head"><h3>Estoque</h3><span class="pill lime">6h e 12h</span></div>
         <ul class="lista"><li>Saldo disponível na Omie: físico menos reservado</li><li>Só os produtos que mudaram são atualizados</li><li>Sem trava para estoque zerado, porque pode haver compra a caminho</li><li>Se a Omie estiver instável, espera 1 minuto e tenta de novo</li></ul>
