@@ -286,7 +286,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
         <ul class="lista"><li>Pedido criado gera uma anotação na negociação, com o número e o código do pedido na Omie</li><li>Guia do funil para vendedores e representantes publicado</li><li>Produto RD CRM passa a se chamar RD Vendas, novo nome da RD Station</li></ul>
       </div>
       <div class="card ok"><h3>Na integração</h3>
-        <ul class="lista"><li>Varredura de segurança a cada 2 minutos, para quando o aviso do RD atrasa ou não chega</li><li>Avisos atrasados de negociações que já saíram de Pedido ERP são ignorados</li><li>Estoque com nova tentativa automática quando a Omie está instável</li><li>Todo erro fica registrado em uma tabela de log, além do alerta por e-mail</li><li>Rotinas antigas da migração do Smark desligadas</li></ul>
+        <ul class="lista"><li>Varredura de segurança a cada 2 minutos, para quando o aviso do RD atrasa ou não chega</li><li>Avisos atrasados de negociações que já saíram de Pedido ERP são ignorados</li><li>Estoque com nova tentativa automática quando a Omie está instável</li><li>Todo erro fica registrado em uma tabela de log, além do alerta por e-mail</li><li>Rotinas antigas da migração do Smark desligadas</li><li>Estoque também às 18h e produtos novos fora do horário comercial</li><li>Recompra pela duplicação da negociação no RD</li></ul>
       </div>
     </div>
   </div>
@@ -428,7 +428,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
         <ul class="lista"><li>Recusa temporária (sistema ocupado, excesso de chamadas): espera e tenta de novo, até 3 vezes</li><li>Recusa definitiva ou cliente fora da Omie: a negociação volta para Ganho - Inserir Produto</li><li>O motivo da Omie fica em anotação na negociação</li><li>O responsável recebe a tarefa "Pedido NÃO criado na Omie"</li><li>A falha fica registrada no log de erros</li></ul>
       </div>
       <div class="card lime"><h3>Proteção contra duplicidade</h3>
-        <ul class="lista"><li>O RD manda vários avisos para uma mesma movimentação. Só o primeiro é processado</li><li>Se a Omie disser que o pedido já existe, a integração só busca o número dele</li><li>Aviso atrasado de uma negociação que já saiu de Pedido ERP é ignorado</li><li>Negociação com número de pedido nunca gera outro</li></ul>
+        <ul class="lista"><li>O RD manda vários avisos para uma mesma movimentação. Só o primeiro é processado</li><li>Se a Omie disser que o pedido já existe, a integração só busca o número dele</li><li>Aviso atrasado de uma negociação que já saiu de Pedido ERP é ignorado</li><li>Negociação com número de pedido nunca gera outro</li><li>Recompra: negociação duplicada no RD tem o número antigo limpo e gera um pedido novo</li></ul>
       </div>
     </div>
   </div>
@@ -439,7 +439,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
 
     <p class="label">Resumo</p>
     <h2 class="titulo">Rotinas automáticas<br><em>e quando cada uma roda.</em></h2>
-    <table class="tab-etapas"><tr><th>Rotina</th><th>Quando roda</th><th>O que faz</th></tr><tr><td class="l">Enriquecimento</td><td>Na hora, ao entrar em Qualificação</td><td>Receita Federal completa a empresa no RD e o cliente na Omie</td></tr><tr><td class="l">Pedido de venda</td><td>Na hora, ao entrar em Pedido ERP</td><td>Cria o pedido ou devolve para Ganho - Inserir Produto com o motivo</td></tr><tr><td class="l">Varredura de segurança</td><td>A cada 2 min em horário comercial, a cada 10 min fora</td><td>Reprocessa negociações em Qualificação ou Pedido ERP cujo aviso do RD não chegou</td></tr><tr><td class="l">Status do pedido</td><td>A cada 5 min em horário comercial, a cada 15 min fora</td><td>Etapa do Pedido Omie, Pedido Faturado com pós-venda e Pedido Cancelado</td></tr><tr><td class="l">Produtos novos</td><td>A cada 1 min em horário comercial, se houver negociação em Ganho</td><td>Traz Produtos Acabados novos da Omie para o catálogo</td></tr><tr><td class="l">Estoque</td><td>Todo dia às 6h e às 12h</td><td>Atualiza o campo Estoque dos produtos que mudaram</td></tr><tr><td class="l">Impacto periódico</td><td>Todo dia às 8h30</td><td>Cria negociação de contato para empresas com Curva: A a cada 30 dias, B a cada 90, C e D a cada 180</td></tr></table>
+    <table class="tab-etapas"><tr><th>Rotina</th><th>Quando roda</th><th>O que faz</th></tr><tr><td class="l">Enriquecimento</td><td>Na hora, ao entrar em Qualificação</td><td>Receita Federal completa a empresa no RD e o cliente na Omie</td></tr><tr><td class="l">Pedido de venda</td><td>Na hora, ao entrar em Pedido ERP</td><td>Cria o pedido ou devolve para Ganho - Inserir Produto com o motivo</td></tr><tr><td class="l">Varredura de segurança</td><td>A cada 2 min em horário comercial, a cada 10 min fora</td><td>Reprocessa negociações em Qualificação ou Pedido ERP cujo aviso do RD não chegou</td></tr><tr><td class="l">Status do pedido</td><td>A cada 5 min em horário comercial, a cada 15 min fora</td><td>Etapa do Pedido Omie, Pedido Faturado com pós-venda e Pedido Cancelado</td></tr><tr><td class="l">Produtos novos</td><td>A cada 1 min em horário comercial e a cada 15 min fora dele, se houver negociação em Ganho</td><td>Traz Produtos Acabados novos da Omie para o catálogo</td></tr><tr><td class="l">Estoque</td><td>Todo dia às 6h, 12h e 18h</td><td>Atualiza o campo Estoque dos produtos que mudaram</td></tr><tr><td class="l">Impacto periódico</td><td>Todo dia às 8h30</td><td>Cria negociação de contato para empresas com Curva: A a cada 30 dias, B a cada 90, C e D a cada 180</td></tr></table>
     <p class="nota">Horário comercial: segunda a sexta, das 7h às 19h.</p>
   </div>
 </section>
@@ -451,9 +451,9 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <h2 class="titulo">Produtos e estoque<br><em>vindos da Omie.</em></h2>
     <div class="grid-2">
       <div class="card lime"><div class="card-head"><h3>Produtos Acabados da Omie</h3><span class="pill ok">5.813 ativos</span></div>
-        <ul class="lista"><li>Toda a família Produto Acabado da Omie</li><li>Nome "código - descrição", para buscar pelo código</li><li>Preço de venda, NCM, código da Omie, categoria e estoque</li><li>Produto novo entra sozinho em cerca de 1 minuto</li></ul>
+        <ul class="lista"><li>Toda a família Produto Acabado da Omie</li><li>Nome "código - descrição", para buscar pelo código</li><li>Preço de venda, NCM, código da Omie, categoria e estoque</li><li>Produto novo entra sozinho em cerca de 1 minuto (15 minutos fora do horário comercial)</li></ul>
       </div>
-      <div class="card"><div class="card-head"><h3>Estoque</h3><span class="pill lime">6h e 12h</span></div>
+      <div class="card"><div class="card-head"><h3>Estoque</h3><span class="pill lime">6h, 12h e 18h</span></div>
         <ul class="lista"><li>Saldo disponível na Omie: físico menos reservado</li><li>Só os produtos que mudaram são atualizados</li><li>Sem trava para estoque zerado, porque pode haver compra a caminho</li><li>Se a Omie estiver instável, espera 1 minuto e tenta de novo</li></ul>
       </div>
     </div>
@@ -499,6 +499,15 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
     <p class="nota">Os testes acharam e corrigiram pontos fracos antes da operação real, entre eles o limite de chamadas da Omie, o limite por minuto do RD e os avisos atrasados.</p>
   </div>
 </section>
+<section class="slide" data-titulo="Validação de 25 de novembro">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Integração RD Vendas e Omie</span></div>
+
+    <p class="label">Validação de 25 de novembro</p>
+    <h2 class="titulo">Pontos levantados<br><em>na apresentação do guia.</em></h2>
+    <table class="tab-etapas"><tr><th>Ponto</th><th>Status</th><th>Resposta</th></tr><tr><td class="l">Estoque às 18h</td><td><span class="pill ok">Feito</span></td><td>O estoque agora é atualizado às 6h, 12h e 18h</td></tr><tr><td class="l">Produto cadastrado à noite</td><td><span class="pill ok">Feito</span></td><td>Fora do horário comercial o catálogo é conferido a cada 15 minutos</td></tr><tr><td class="l">Recompra igual</td><td><span class="pill ok">Feito</span></td><td>Duplicar a negociação no RD e mover para Pedido ERP. O número antigo é limpo e um pedido novo é criado</td></tr><tr><td class="l">Cliente que já existe na Omie</td><td><span class="pill ok">Respondido</span></td><td>A integração encontra o cliente pelo CNPJ e não cria outro na Omie. No RD o CNPJ é único</td></tr><tr><td class="l">Cliente pessoa física (CPF)</td><td><span class="pill amb">Em análise</span></td><td>Pedido atrelado ao CPF do contato, sem empresa</td></tr><tr><td class="l">Travas: número do pedido e perdido com pedido</td><td><span class="pill amb">Em análise</span></td><td>A automação devolve a negociação e avisa o gestor</td></tr><tr><td class="l">Relatórios gerenciais</td><td><span class="pill lime">26/11, 14h</span></td><td>Alinhamento com a Autz</td></tr></table>
+  </div>
+</section>
 <section class="slide" data-titulo="Pontos em aberto">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Oximag · Integração RD Vendas e Omie</span></div>
@@ -521,7 +530,7 @@ body::before{content:""; position:fixed; inset:0; pointer-events:none;
 
     <p class="label">Cronograma</p>
     <h2 class="titulo">Fases concluídas<br><em>e próximos passos.</em></h2>
-    <table class="tab-etapas"><tr><th>Fase</th><th>Status</th><th>Entrega</th></tr><tr><td class="l">Diagnóstico e arquitetura</td><td><span class="pill ok">Concluído</span></td><td>Conexão com a Omie, reuniões de 28/09 e 21/10</td></tr><tr><td class="l">Receita Federal e pedido de venda</td><td><span class="pill ok">Concluído</span></td><td>Enriquecimento, pedido único em Pedido ERP e devolução automática</td></tr><tr><td class="l">Status, cancelamento e faturado</td><td><span class="pill ok">Concluído</span></td><td>Etapa do pedido, Pedido Cancelado e Pedido Faturado com pós-venda</td></tr><tr><td class="l">Catálogo e estoque</td><td><span class="pill ok">Concluído</span></td><td>5.813 produtos, produtos novos e estoque às 6h e 12h</td></tr><tr><td class="l">Proteções e monitoramento</td><td><span class="pill ok">Concluído</span></td><td>Varredura, log de erros, alertas e proteção contra duplicidade</td></tr><tr><td class="l">Guia do funil</td><td><span class="pill ok">Concluído</span></td><td>Material para vendedores e representantes</td></tr><tr><td class="l">Operação real</td><td><span class="pill amb">Em andamento</span></td><td>Primeiros pedidos reais e confirmação do faturamento</td></tr><tr><td class="l">Limpeza e treinamento</td><td><span class="pill lime">Próximo</span></td><td>Remover testes e treinar as equipes no funil</td></tr></table>
+    <table class="tab-etapas"><tr><th>Fase</th><th>Status</th><th>Entrega</th></tr><tr><td class="l">Diagnóstico e arquitetura</td><td><span class="pill ok">Concluído</span></td><td>Conexão com a Omie, reuniões de 28/09 e 21/10</td></tr><tr><td class="l">Receita Federal e pedido de venda</td><td><span class="pill ok">Concluído</span></td><td>Enriquecimento, pedido único em Pedido ERP e devolução automática</td></tr><tr><td class="l">Status, cancelamento e faturado</td><td><span class="pill ok">Concluído</span></td><td>Etapa do pedido, Pedido Cancelado e Pedido Faturado com pós-venda</td></tr><tr><td class="l">Catálogo e estoque</td><td><span class="pill ok">Concluído</span></td><td>5.813 produtos, produtos novos e estoque às 6h, 12h e 18h</td></tr><tr><td class="l">Proteções e monitoramento</td><td><span class="pill ok">Concluído</span></td><td>Varredura, log de erros, alertas e proteção contra duplicidade</td></tr><tr><td class="l">Guia do funil</td><td><span class="pill ok">Concluído</span></td><td>Material para vendedores e representantes</td></tr><tr><td class="l">Operação real</td><td><span class="pill amb">Em andamento</span></td><td>Primeiros pedidos reais e confirmação do faturamento</td></tr><tr><td class="l">Limpeza e treinamento</td><td><span class="pill lime">Próximo</span></td><td>Remover testes e treinar as equipes no funil</td></tr></table>
     <p class="nota" style="margin-top:18px;">© 2026 Autz Soluções Digitais Integradas · CNPJ 54.489.785/0001-37</p>
   </div>
 </section>
