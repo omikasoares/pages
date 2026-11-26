@@ -210,17 +210,30 @@ tr.tot td{font-weight:700; color:var(--white);}
     <h2 class="titulo">Fora do escopo do simulador,<br><em>pronto do lado do Protheus.</em></h2>
     <p class="lede">Na reunião de entrega de 24/11 ficou registrado que o cadastro de cliente e a blindagem da carteira não faziam parte do contrato do simulador de financiamento. O middleware da Delav já tem as rotas prontas. Falta a parte do RD Vendas.</p>
     <div class="grid-3">
-      <div class="card ok"><div class="card-head"><h3>Simulador</h3><span class="pill ok">Entregue</span></div><p>Preço da tabela, versão da proposta, entrada mínima, parcelas e simulação de financiamento, nos 3 funis.</p></div>
+      <div class="card ok"><div class="card-head"><h3>Simulador</h3><span class="pill ok">Entregue e validado</span></div><p>Preço da tabela, versão da proposta, entrada mínima, parcelas e simulação de financiamento, nos 3 funis.</p></div>
       <div class="card lime"><div class="card-head"><h3>Middleware</h3><span class="pill lime">Pronto</span></div><p>Consulta de CNPJ e consulta do representante dono do cliente, já disponíveis na API do Protheus.</p></div>
       <div class="card amb"><div class="card-head"><h3>RD Vendas</h3><span class="pill amb">Este aditivo</span></div><p>Ligar essas rotas ao cadastro de empresas e às negociações do RD Vendas.</p></div>
     </div>
   </div>
 </section>
 
+<section class="slide" data-titulo="Escopo anterior">
+  <div class="slide-inner">
+    <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
+    <p class="label">02 · Escopo anterior</p>
+    <h2 class="titulo">O simulador de financiamento<br><em>entregue e validado.</em></h2>
+    <div class="table-scroll"><table>
+      <tr><th>Item do escopo</th><th>Situação</th></tr>
+      <tr><td>Preenchimento do percentual de entrada</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Regra de financiamento pela tabela do Protheus</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Versionamento de proposta (código AAAADDDNNN-VV)</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Cálculo financeiro com a estrutura de juros do Protheus</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Atualização automática do valor total da proposta</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Exibição transparente de entrada e parcelas</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Preço da tabela do representante em cada produto</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Catálogo de produtos sincronizado todo dia com o Protheus</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Funis de Máquinas, Consumíveis e Peças/Serviços</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Erros como anotação e alerta para a AUTZ</td><td><span class="pill ok">Entregue e validado</span></td></tr><tr><td>Testes, homologação e acompanhamento</td><td><span class="pill ok">Entregue e validado</span></td></tr>
+    </table></div>
+    <p class="nota">Itens do contrato do simulador, apresentados e validados na reunião de entrega de 24/11/2026.</p>
+  </div>
+</section>
+
 <section class="slide" data-titulo="Enriquecimento de CNPJ">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
-    <p class="label">02 · Enriquecimento de CNPJ</p>
+    <p class="label">03 · Enriquecimento de CNPJ</p>
     <h2 class="titulo">O representante digita o CNPJ.<br><em>O resto vem sozinho.</em></h2>
     <p class="lede">Ao cadastrar a empresa com CNPJ no RD Vendas, a integração consulta o middleware e preenche o cadastro com os dados oficiais. Sem digitação e sem comprar crédito de enriquecimento do RD.</p>
     <div class="grid-2">
@@ -234,7 +247,7 @@ tr.tot td{font-weight:700; color:var(--white);}
 <section class="slide" data-titulo="Carteira do Protheus">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
-    <p class="label">03 · Carteira do Protheus no RD</p>
+    <p class="label">04 · Carteira do Protheus no RD</p>
     <h2 class="titulo">Os clientes do Protheus<br><em>já dentro do RD Vendas.</em></h2>
     <p class="lede">A carteira de clientes do Protheus é trazida para o RD Vendas, cada empresa com o representante responsável, e mantida em dia por uma rotina automática.</p>
     <div class="fluxo">
@@ -251,7 +264,7 @@ tr.tot td{font-weight:700; color:var(--white);}
 <section class="slide" data-titulo="Trava de carteira">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
-    <p class="label">04 · Trava de carteira</p>
+    <p class="label">05 · Trava de carteira</p>
     <h2 class="titulo">Cliente de outro representante<br><em>não vira negociação.</em></h2>
     <p class="lede">Quando um representante abre uma negociação, a integração confere no Protheus, pelo CNPJ ou CPF, de quem é o cliente.</p>
     <div class="etapas">
@@ -267,7 +280,7 @@ tr.tot td{font-weight:700; color:var(--white);}
 <section class="slide" data-titulo="Regras">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
-    <p class="label">05 · Regras</p>
+    <p class="label">06 · Regras</p>
     <h2 class="titulo">O que precisa estar certo<br><em>para a trava funcionar.</em></h2>
     <div class="grid-2">
       <div class="card"><h3>Mesmo e-mail nos dois sistemas</h3><p>O e-mail do representante no RD Vendas precisa ser o mesmo cadastrado no Protheus, como já acontece no simulador.</p></div>
@@ -281,7 +294,7 @@ tr.tot td{font-weight:700; color:var(--white);}
 <section class="slide" data-titulo="Horas e prazo">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
-    <p class="label">06 · Horas e prazo</p>
+    <p class="label">07 · Horas e prazo</p>
     <h2 class="titulo">12 horas de trabalho,<br><em>no ar em até 2 semanas.</em></h2>
     <div class="table-scroll"><table>
       <tr><th>Entrega</th><th>Horas</th></tr>
@@ -297,7 +310,7 @@ tr.tot td{font-weight:700; color:var(--white);}
 <section class="slide" data-titulo="Investimento">
   <div class="slide-inner">
     <div class="topo"><img class="logo" src="/assets/autz-logo-white.png" alt="AUTZ"><span class="cliente">Delav · Aditivo do middleware RD Vendas + Protheus</span></div>
-    <p class="label">07 · Investimento</p>
+    <p class="label">08 · Investimento</p>
     <h2 class="titulo">Um aditivo enxuto,<br><em>sobre o que já está pronto.</em></h2>
     <div class="grid-2">
       <div class="card lime"><p class="n">ADITIVO</p><h3>CNPJ, carteira e trava de representante</h3><p class="valor">R$ 2.200</p><p>Valor único, 12 horas de trabalho.</p></div>
